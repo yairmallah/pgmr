@@ -10,8 +10,8 @@
                 display: flex;
                 align-items: flex-start;
                 justify-content: center;
-                height: 98vh;
-                width: 99vw;
+                height: 100vh;
+                width: 100vw;
                 margin: 0;
                 background-color: #000000;
             }
@@ -21,7 +21,7 @@
                 top: 5%;
                 left: 2%;
                 width: 40%;
-                height: 89%;
+                height: 100%;
                 border: 1px solid #000000;
                 box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
             }
@@ -226,7 +226,7 @@
             node.on("click", (event, d) => {
                 const infoParagraph = document.getElementById('node-info');
                 let text = nodeMessages[d.id];
-                t2 = text.split(" ");
+                let t2 = text.split(" ");
                 for (let key in nodeMessages) {
                     //if (index != -1){t2 = t2.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);}
                     let regex = new RegExp(`${key}`, "g");
