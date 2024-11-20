@@ -142,6 +142,19 @@
         <script type="module">
             const width = 448;
             const height = 471;
+            function nodeClick(nodeName) {
+                const infoParagraph = document.getElementById('node-info');
+                let text = nodeMessages[nodeName];
+
+                for (let key in nodeMessages) {
+                    const regex = new RegExp(key, "g");
+                    text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
+                }
+
+                const infoTitle = document.getElementById('title');
+                infoParagraph.innerHTML = text;
+                infoTitle.textContent = `${nodeName}`;
+            }
             import { nodeMessages } from './dictionarys.js';
             import { nodeClass } from './dictionarys.js';
         
@@ -236,19 +249,6 @@
                 infoParagraph.innerHTML = text;
                 infoTitle.textContent = `${d.id}`;
             });
-            function nodeClick(nodeName) {
-                const infoParagraph = document.getElementById('node-info');
-                let text = nodeMessages[nodeName];
-
-                for (let key in nodeMessages) {
-                    const regex = new RegExp(key, "g");
-                    text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
-                }
-
-                const infoTitle = document.getElementById('title');
-                infoParagraph.innerHTML = text;
-                infoTitle.textContent = `${nodeName}`;
-            }
 
             node.append("circle")
                 .attr("r", 10)
