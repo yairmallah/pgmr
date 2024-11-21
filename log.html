@@ -136,6 +136,7 @@
                 הגבול התחתון של הסימולקרה (לכיוון הסימולציה). ה<b class="bgen" onclick="nodeClick('ארכיטקטורה')">ארכיטקטורה</b> היא תכנון, לכן היא רעיונית, אולם היא שואפת להתקרב למציאות ככל האפשר<br>ה<b class="bgen" onclick="nodeClick('ארכיטקטורה')">ארכיטקטורה</b> מקבלת <b class="bterm" onclick="nodeClick('מושג')">מושג</b>ם מופשטים ומקרבת אותם ככל האפשר למערכות קונקרטיות<br>ה<b class="bterm" onclick="nodeClick('מושג')">מושג</b> הופך לפרוגרמה, ה<b class="bmus" onclick="nodeClick('מוזיקה')">מוזיקה</b> לסדר, ה<b class="bspc" onclick="nodeClick('מרחב')">מרחב</b> לחל, ה<b class="bmath " onclick="nodeClick('מתמטיקה')">מתמטיקה</b> (והאלגבה בעיקר) למחבר, וה<b class="bmyt" onclick="nodeClick('מיתוס')">מיתוס</b> לקונספט
             </p>
         </div>
+        <div id="schemes"></div>
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarys.js"></script>
@@ -236,7 +237,6 @@
                     .on("end", dragEnd));
 
             node.on("click", (event, d) => {
-                const infoParagraph = document.getElementById('node-info');
                 let text = nodeMessages[d.id];
                 let t2 = text.split(" ");
                 for (let key in nodeMessages) {
@@ -245,8 +245,11 @@
                     text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
                 }
                 const infoTitle = document.getElementById('title');
-                infoParagraph.innerHTML = text;
                 infoTitle.textContent = `${d.id}`;
+                const infoParagraph = document.getElementById('node-info');
+                infoParagraph.innerHTML = text;
+                const scheme = document.getElementById('schemes');
+                scheme.innerHTML = '<img src="/blob/imgs/ארכיטקטורה.png" class="scheme">';
             });
 
             node.append("circle")
