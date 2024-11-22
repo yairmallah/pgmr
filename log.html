@@ -174,7 +174,7 @@
                 const scheme = document.getElementById('schemes');
                 let inner = "";
                 for (let imgObj in nodeScheme[d.id]){
-                    inner += '<img src="/pgmr/imgs/' + nodeScheme[d.id][imgObj][0] + '.png" class="scheme-img">';
+                    inner += '<img src="/pgmr/' + nodeScheme[d.id][imgObj][0] + '" class="scheme-img">';
                     inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
                 }
                 scheme.innerHTML = inner;
@@ -276,7 +276,7 @@
                 const scheme = document.getElementById('schemes');
                 let inner = "";
                 for (let imgObj in nodeScheme[d.id]){
-                    inner += '<img src="/pgmr/imgs/' + nodeScheme[d.id][imgObj][0] + '.png" class="scheme-img">';
+                    inner += '<img src="/pgmr/' + nodeScheme[d.id][imgObj][0] + '" class="scheme-img">';
                     inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
                 }
                 scheme.innerHTML = inner;
