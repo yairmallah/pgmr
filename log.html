@@ -159,19 +159,27 @@
             const width = 770;
             const height = 700;
             function nodeClick(nodeName) {
+                const infoTitle = document.getElementById('title');
+                infoTitle.textContent = `${nodeName}`;
+                
                 const infoParagraph = document.getElementById('node-info');
                 let text = nodeMessages[nodeName];
-
                 for (let key in nodeMessages) {
+                    if (key=="הר"){
+                        continue;}
                     const regex = new RegExp(key, "g");
                     text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
                 }
-
-                const infoTitle = document.getElementById('title');
                 infoParagraph.innerHTML = text;
-                infoTitle.textContent = `${nodeName}`;
+                const scheme = document.getElementById('schemes');
+                let inner = "";
+                for (let imgObj in nodeScheme[d.id]){
+                    inner += '<img src="/pgmr/imgs/' + nodeScheme[d.id][imgObj][0] + '.png" class="scheme-img">';
+                    inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
+                }
+                scheme.innerHTML = inner;
             }
-
+                
         
             const links = [];
 
@@ -268,9 +276,8 @@
                 const scheme = document.getElementById('schemes');
                 let inner = "";
                 for (let imgObj in nodeScheme[d.id]){
-                    console.log(imgObj);
-                    inner += '<img src="/pgmr/imgs/' + imgObj[0] + '.png" class="scheme-img">';
-                    inner += '<p class="scheme-text">' + imgObj[1] + '</p>';
+                    inner += '<img src="/pgmr/imgs/' + nodeScheme[d.id][imgObj][0] + '.png" class="scheme-img">';
+                    inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
                 }
                 scheme.innerHTML = inner;
             });
