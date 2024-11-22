@@ -268,6 +268,7 @@
                 const scheme = document.getElementById('schemes');
                 let inner = "";
                 for (let imgObj in nodeScheme[d.id]){
+                    console.log(imgObj);
                     inner += '<img src="/pgmr/imgs/' + imgObj[0] + '.png" class="scheme-img">';
                     inner += '<p class="scheme-text">' + imgObj[1] + '</p>';
                 }
