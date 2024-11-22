@@ -25,12 +25,20 @@
                 border: 1px solid #000000;
                 box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
             }
-
+            #schemes {
+                position: absolute;
+                top: 5%;
+                left: 63%;
+                width: 35%;
+                height: 89%;
+                border: 1px solid #000000;
+                box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
+            }
             .textcot{
                 position: absolute;
                 top: 5%;
                 left: 45%;
-                width: 25%; /* Set fixed width */
+                width: 15%; /* Set fixed width */
                 height: 89%; /* Set fixed height */
                 border: 1px solid #000;
                 padding: 15px;
@@ -101,6 +109,13 @@
                 text-align: right;
                 justify-content: right;
                 word-wrap: break-word;
+            }
+            .scheme-text{
+                font-style: italic;
+                font-size: 12px;
+            }
+            .scheme-img{
+                width: 100%;
             }
             b {
                 cursor: pointer;
@@ -249,7 +264,12 @@
                 const infoParagraph = document.getElementById('node-info');
                 infoParagraph.innerHTML = text;
                 const scheme = document.getElementById('schemes');
-                //scheme.innerHTML = '<img src="/pgmr/imgs/ארכיטקטורה.png" class="scheme">';
+                let inner = "";
+                for (let imgObg in nodeScheme){
+                    inner += '<img src="/pgmr/imgs/' + imgObj[0] + '.png" class="scheme-img">';
+                    inner += '<p class="scheme-text">' + imgObj[1] + '</p>';
+                }
+                scheme.innerHTML = inner;
             });
 
             node.append("circle")
