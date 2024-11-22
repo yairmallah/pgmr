@@ -173,9 +173,9 @@
                 infoParagraph.innerHTML = text;
                 const scheme = document.getElementById('schemes');
                 let inner = "";
-                for (let imgObj in nodeScheme[d.id]){
-                    inner += '<img src="/pgmr/' + nodeScheme[d.id][imgObj][0] + '" class="scheme-img">';
-                    inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
+                for (let imgObj in nodeScheme[nodeName]){
+                    inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
+                    inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
                 }
                 scheme.innerHTML = inner;
             }
