@@ -256,6 +256,8 @@
                 let t2 = text.split(" ");
                 for (let key in nodeMessages) {
                     //if (index != -1){t2 = t2.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);}
+                    if (key=="הר"){
+                        continue;}
                     let regex = new RegExp(`${key}`, "g");
                     text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
                 }
