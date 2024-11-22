@@ -267,7 +267,7 @@
                 infoParagraph.innerHTML = text;
                 const scheme = document.getElementById('schemes');
                 let inner = "";
-                for (let imgObj in nodeScheme){
+                for (let imgObj in nodeScheme[d.id]){
                     inner += '<img src="/pgmr/imgs/' + imgObj[0] + '.png" class="scheme-img">';
                     inner += '<p class="scheme-text">' + imgObj[1] + '</p>';
                 }
