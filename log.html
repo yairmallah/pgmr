@@ -171,9 +171,8 @@
     <body>
         <div id="graph-container"></div>
         <div class="textcot">
-            <h3 id="title">ארכיטקטורה</h3>
+            <h3 id="title"></h3>
             <p id="node-info">
-                הגבול התחתון של הסימולקרה (לכיוון הסימולציה). ה<b class="bgen" onclick="nodeClick('ארכיטקטורה')">ארכיטקטורה</b> היא תכנון, לכן היא רעיונית, אולם היא שואפת להתקרב למציאות ככל האפשר<br>ה<b class="bgen" onclick="nodeClick('ארכיטקטורה')">ארכיטקטורה</b> מקבלת <b class="bterm" onclick="nodeClick('מושג')">מושג</b>ם מופשטים ומקרבת אותם ככל האפשר למערכות קונקרטיות<br>ה<b class="bterm" onclick="nodeClick('מושג')">מושג</b> הופך לפרוגרמה, ה<b class="bmus" onclick="nodeClick('מוזיקה')">מוזיקה</b> לסדר, ה<b class="bspc" onclick="nodeClick('מרחב')">מרחב</b> לחל, ה<b class="bmath " onclick="nodeClick('מתמטיקה')">מתמטיקה</b> (והאלגבה בעיקר) למחבר, וה<b class="bmyt" onclick="nodeClick('מיתוס')">מיתוס</b> לקונספט
             </p>
         </div>
         <div id="schemes"></div>
@@ -204,7 +203,7 @@
                 }
                 scheme.innerHTML = inner;
             }
-                
+            nodeClick("ארכיטקטורה");    
         
             const links = [];
 
@@ -285,26 +284,7 @@
                     .on("end", dragEnd));
 
             node.on("click", (event, d) => {
-                let text = nodeMessages[d.id];
-                let t2 = text.split(" ");
-                for (let key in nodeMessages) {
-                    //if (index != -1){t2 = t2.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);}
-                    if (key=="הר"){
-                        continue;}
-                    let regex = new RegExp(`${key}`, "g");
-                    text = text.replace(regex, `<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick("${key}")'>${key}</b>`);
-                }
-                const infoTitle = document.getElementById('title');
-                infoTitle.textContent = `${d.id}`;
-                const infoParagraph = document.getElementById('node-info');
-                infoParagraph.innerHTML = text;
-                const scheme = document.getElementById('schemes');
-                let inner = "";
-                for (let imgObj in nodeScheme[d.id]){
-                    inner += '<img src="/pgmr/' + nodeScheme[d.id][imgObj][0] + '" class="scheme-img">';
-                    inner += '<p class="scheme-text">' + nodeScheme[d.id][imgObj][1] + '</p>';
-                }
-                scheme.innerHTML = inner;
+				nodeClick(d.id);
             });
 
             node.append("circle")
