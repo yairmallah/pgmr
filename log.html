@@ -185,10 +185,24 @@
         <div id="schemes"></div>
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="dictionarys.js"></script>
+        <script src="dictionarysGen.js"></script>
         <script>
+			// definitions
             const width = 770;
             const height = 700;
+			
+			// dictionary definitions
+			var nodeData = [];
+			initializeAllDicts().then(() => {
+				// Access the messages object after initialization is complete
+				nodeData.push[window.messages];
+				nodeData.push[window.classes];
+				nodeData.push[window.images];
+			});
+			const nodeMessages = nodeData[0];
+			const nodeClass = nodeData[1];
+			const nodeScheme = nodeData[2];
+			
             function nodeClick(nodeName) {
                 const infoTitle = document.getElementById('title');
                 infoTitle.textContent = `${nodeName}`;
