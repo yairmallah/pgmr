@@ -11,7 +11,7 @@ async function loadDictionary(filePath, delimiter = ':') {
         const text = await response.text();
 
         // Process text into a dictionary
-        const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+        const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
         const dictionary = {};
         lines.forEach(line => {
             const [key, value] = line.split(delimiter).map(part => part.trim());
@@ -28,5 +28,7 @@ async function loadDictionary(filePath, delimiter = ':') {
     }
 }
 
-const nodeMessages = loadDictionary('nodeMessages.txt');
+// Example usage
+let nodeFull = loadDictionary('nodeMessages.txt');
+const nodeMessages = nodeFull;
 
