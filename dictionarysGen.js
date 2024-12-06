@@ -37,4 +37,6 @@ function reformat(dict){
 	return dict
 }
 
-const nodeMessages = loadDictionary('/nodeMessages.txt');
+let fullDict = loadDictionary('/pgmr/nodeMessages.txt');
+const nodeMessages = fullDict;
+
