@@ -1,5 +1,5 @@
 // Function to fetch and parse the dictionary data from the .txt file
-async function loadDictionary(filePath, delimiter = ':') {
+async function loadDictionary(filePath, delimiter = ':\n') {
     try {
         // Fetch the file content
         const response = await fetch(filePath);
@@ -35,7 +35,8 @@ function reformat(dict){
 	return dict
 }
 
-// Example usage
 let nodeFull = loadDictionary('nodeMessages.txt');
+console.log('nodeFull:', JSON.stringify(nodeFull));
+console.log('nodeFull0:', nodeFull);
 const nodeMessages = reformat(nodeFull);
 console.log('nodeMessages:', JSON.stringify(nodeMessages));
