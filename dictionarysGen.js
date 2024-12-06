@@ -13,12 +13,18 @@ async function loadDictionary(filePath, delimiter = ':\n') {
         // Process text into a dictionary
         const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
         const dictionary = {};
-        lines.forEach(line => {
-            const [key, value] = line.split(delimiter).map(part => part.trim());
-            if (key && value !== undefined) {
-                dictionary[key] = value;
-            }
-        });
+		lines.forEach(line => {
+			const [key, value] = line.split(delimiter).map(part => part.trim());
+			if (key && value !== undefined) {
+				// Explicitly define enumerable keys
+				Object.defineProperty(dictionary, key, {
+					value: value,
+					enumerable: true, // Ensure the key is enumerable
+					configurable: true,
+					writable: true
+				});
+			}
+		});
 
         console.log('Loaded Dictionary:', dictionary);
         return dictionary;
@@ -27,6 +33,10 @@ async function loadDictionary(filePath, delimiter = ':\n') {
         return {};
     }
 }
+
+
+
+
 
 function reformat(dict){
 	for (const key in dict) {
@@ -42,3 +52,6 @@ const nodeMessages = reformat(nodeFull);
 console.log('nodeMessages:', JSON.stringify(nodeMessages));
 console.log('nodeMessages0:', nodeMessages);
 console.log("keys: ", Object.keys(nodeMessages));
+for (const key in nodeMessages) {
+	nodeMessages[key] = console.log(key, nodeMessages[key]);
+}
