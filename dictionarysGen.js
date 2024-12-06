@@ -28,7 +28,11 @@ async function loadDictionary(filePath, delimiter = ':') {
     }
 }
 
+function reformat(definition){
+	
+}
+
 // Example usage
 let nodeFull = loadDictionary('nodeMessages.txt');
-const nodeMessages = nodeFull;
-
+const nodeMessages = nodeFull.replace("\n", "<br/>");
+console.log('nodeMessages:', JSON.stringify(nodeMessages));
