@@ -1,8 +1,10 @@
 window.messages = {};
+window.classes = {};
+window.images = {};
 
 // Initialization function using Promises
-window.initializeMessages = function (filePath) {
-    return loadDictionary(filePath)
+window.initializeAllDicts = function () {
+    return loadDictionary('/pgmr/nodeMessages.txt')
         .then(fullDict => {
             window.messages = extractMsgs(fullDict);
             console.log("Messages initialized:", window.messages);
@@ -28,12 +30,10 @@ function loadDictionary(filePath, delimiter = ':\n') {
             lines.forEach(line => {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
-                    dictionary[key] = value.replaceAll("\n", "<br/>");
-					console.log(key, value);
+                    dictionary[key] = value.split("\n###");
                 }
             });
-			console.log("dictionary", dictionary)
-			console.log("keys", Object.keys(dictionary))
+			console.log("keys: ", Object.keys(dictionary))
             return dictionary;
         })
         .catch(error => {
@@ -44,8 +44,38 @@ function loadDictionary(filePath, delimiter = ':\n') {
 
 // Extraction function for messages
 function extractMsgs(dict) {
-    return Object.entries(dict).filter(([key]) => key.startsWith('msg_')).reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-    }, {});
+    let msgdict = {}
+	for (let key in dict){
+		try {
+			msgdict[key] = dict[key][0].replaceAll("\n", "<br/>");
+		} catch (error) {
+			msgdict[key] = "";
+		}
+	}
+	console.log(msgdict);
+	return msgdict;
+}
+// Extraction function for classes
+function extractClss(dict) {
+    let clsdict = {}
+	for (let key in dict){
+		try {
+			clsdict[key] = dict[key][0].replaceAll("\n", "<br/>");
+		} catch (error) {
+			clsdict[key] = "";
+		}
+	}
+	return clsdict;
+}
+// Extraction function for images
+function extractImgs(dict) {
+    let msgdict = {}
+	for (let key in dict){
+		try {
+			msgdict[key] = dict[key][0].replaceAll("\n", "<br/>");
+		} catch (error) {
+			msgdict[key] = "";
+		}
+	}
+	return msgdict;
 }
