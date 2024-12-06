@@ -4,9 +4,9 @@ function loadDictionary(filePath, delimiter = ':\n') {
         // Fetch the file content
         const response = fetch(filePath);
 		console.log(response);
-        if (!response.ok) {
-            throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
-        }
+        //if (!response.ok) {
+        //    throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+        //}
 
         // Read text content
         const text = response.text();
@@ -30,12 +30,11 @@ function loadDictionary(filePath, delimiter = ':\n') {
     }
 }
 
-
-function reformat(dict){
-	for (const key in dict) {
-		dict[key] = dict[key].replace("\n", "<br/>");
-	}
-	return dict
+function extractMsgs(dict){
+}
+function extractClasss(dict){
+}
+function extractImgs(dict){
 }
 
 let fullDict = loadDictionary('/pgmr/nodeMessages.txt');
