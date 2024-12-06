@@ -22,6 +22,7 @@ function loadDictionary(filePath, delimiter = ':\\n') {
             return response.text();
         })
         .then(text => {
+			console.log(text);
             const lines = text.split('\\n\\n').map(line => line.trim()).filter(line => line);
             const dictionary = {};
 
