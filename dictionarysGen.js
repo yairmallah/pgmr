@@ -23,13 +23,13 @@ function loadDictionary(filePath, delimiter = ':\\n') {
         })
         .then(text => {
 			console.log(text);
-            const lines = text.split('\\n\\n').map(line => line.trim()).filter(line => line);
+            const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
             const dictionary = {};
 
             lines.forEach(line => {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
-                    dictionary[key] = value.replaceAll("\\n", "<br/>");
+                    dictionary[key] = value.replaceAll("\n", "<br/>");
 					console.log(key, value);
                 }
             });
