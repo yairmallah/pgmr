@@ -37,4 +37,4 @@ function reformat(dict){
 	return dict
 }
 
-const nodeMessages = loadDictionary('//nodeMessages.txt');
+const nodeMessages = loadDictionary('/nodeMessages.txt');
