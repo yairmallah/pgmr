@@ -34,7 +34,7 @@ function loadDictionary(filePath, delimiter = ':\n') {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
                     dictionary[key] = value.split("\n###");
-					console.log(key, (key=='ארכיטקטורה');
+					console.log(key, (key=='ארכיטקטורה'));
                 }
             });
 			console.log("keys: ", Object.keys(dictionary))
