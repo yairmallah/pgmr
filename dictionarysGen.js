@@ -56,7 +56,6 @@ function extractMsgs(dict) {
 			msgdict[key] = "";
 		}
 	}
-	console.log(msgdict);
 	return msgdict;
 }
 // Extraction function for classes
