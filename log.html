@@ -191,38 +191,39 @@
             const width = 770;
             const height = 700;
 			
+			function nodeClick(nodeName, msgs, cls, schs) {
+					const infoTitle = document.getElementById('title');
+					infoTitle.textContent = `${nodeName}`;
+					
+					const infoParagraph = document.getElementById('node-info');
+					let text = msgs[nodeName];
+					for (let key in msgs) {
+						if (key=="הר"){
+							continue;}
+						const regex = new RegExp(key, "g");
+						text = text.replace(regex, "<b class='b" + cls[nodeName] +"' onclick='nodeClick(\""+key+"\",nodeMessages,nodeClass,nodeScheme)'>"+key+"</b>");
+					}
+					infoParagraph.innerHTML = text;
+					const scheme = document.getElementById('schemes');
+					let inner = "";
+					for (let imgObj in schs[nodeName]){
+						if (schs[nodeName][imgObj][0] === undefined){
+							break;
+						}
+						inner += '<img src="/pgmr/' + schs[nodeName][imgObj][0] + '" class="scheme-img">';
+						inner += '<p class="scheme-text">' + schs[nodeName][imgObj][1] + '</p>';
+						consol
+					}
+					scheme.innerHTML = inner;
+				}
+			
 			initializeAllDicts().then(() => {
 				// define dictionarys
 				const nodeMessages = window.messages;
 				const nodeClass = window.classes;
 				const nodeScheme = window.images;
 				
-				function nodeClick(nodeName) {
-					const infoTitle = document.getElementById('title');
-					infoTitle.textContent = `${nodeName}`;
-					
-					const infoParagraph = document.getElementById('node-info');
-					let text = nodeMessages[nodeName];
-					for (let key in nodeMessages) {
-						if (key=="הר"){
-							continue;}
-						const regex = new RegExp(key, "g");
-						text = text.replace(regex, `<b class='b${nodeClass[key] || "gen"}' onclick='nodeClick("${key}")'>${key}</b>`);
-					}
-					infoParagraph.innerHTML = text;
-					const scheme = document.getElementById('schemes');
-					let inner = "";
-					for (let imgObj in nodeScheme[nodeName]){
-						if (nodeScheme[nodeName][imgObj][0] === undefined){
-							break;
-						}
-						inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
-						inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
-					}
-					scheme.innerHTML = inner;
-				}
-				
-				nodeClick('ארכיטקטורה');    
+				nodeClick('ארכיטקטורה', nodeMessages, nodeClass, nodeScheme);    
 			
 				const links = [];
 
@@ -303,7 +304,7 @@
 						.on("end", dragEnd));
 
 				node.on("click", (event, d) => {
-					nodeClick(d.id);
+					nodeClick(d.id, nodeMessages, nodeClass, nodeScheme);
 				});
 
 				node.append("circle")
