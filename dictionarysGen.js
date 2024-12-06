@@ -4,7 +4,7 @@ function loadDictionary(filePath, delimiter = ':\n') {
         // Fetch the file content
         const response = fetch(filePath);
         if (!response.ok) {
-            throw new Error(`Failed to load file: ${response.statusText}`);
+            throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
         }
 
         // Read text content
@@ -37,4 +37,4 @@ function reformat(dict){
 	return dict
 }
 
-const nodeMessages = loadDictionary('nodeMessages.txt');
+const nodeMessages = loadDictionary('//nodeMessages.txt');
