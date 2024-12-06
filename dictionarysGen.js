@@ -13,7 +13,7 @@ window.initializeMessages = function (filePath) {
 };
 
 // Dictionary loading function using Promises
-function loadDictionary(filePath, delimiter = ':\\n') {
+function loadDictionary(filePath, delimiter = ':\n') {
     return fetch(filePath)
         .then(response => {
             if (!response.ok) {
@@ -22,10 +22,9 @@ function loadDictionary(filePath, delimiter = ':\\n') {
             return response.text();
         })
         .then(text => {
-			console.log(text);
             const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
             const dictionary = {};
-
+			console.log(lines);
             lines.forEach(line => {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
