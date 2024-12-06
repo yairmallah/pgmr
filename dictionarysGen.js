@@ -40,3 +40,4 @@ console.log('nodeFull:', JSON.stringify(nodeFull));
 console.log('nodeFull0:', nodeFull);
 const nodeMessages = reformat(nodeFull);
 console.log('nodeMessages:', JSON.stringify(nodeMessages));
+console.log('nodeMessages0:', nodeMessages);
