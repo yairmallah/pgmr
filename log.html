@@ -207,7 +207,7 @@
 						if (key=="הר"){
 							continue;}
 						const regex = new RegExp(key, "g");
-						text = text.replace(regex, "<b class='b${nodeClass[key] || 'default-class'}' onclick='nodeClick(\"${key}\")'>${key}</b>");
+						text = text.replace(regex, `<b class='b${nodeClass[key] || "gen"}' onclick='nodeClick("${key}")'>${key}</b>`);
 					}
 					infoParagraph.innerHTML = text;
 					const scheme = document.getElementById('schemes');
