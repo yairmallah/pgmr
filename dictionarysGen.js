@@ -1,13 +1,17 @@
-function readTxtToDictionary(file, delimiter = ':') {
-    const reader = new FileReader();
+// Function to fetch and parse the dictionary data from the .txt file
+async function loadDictionary(filePath, delimiter = ':') {
+    try {
+        // Fetch the file content
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            throw new Error(`Failed to load file: ${response.statusText}`);
+        }
 
-    reader.onload = function (event) {
-        const content = event.target.result;
+        // Read text content
+        const text = await response.text();
 
-        // Split the content into lines
-        const lines = content.split('\n').map(line => line.trim()).filter(line => line);
-
-        // Convert each line into a key-value pair
+        // Process text into a dictionary
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line);
         const dictionary = {};
         lines.forEach(line => {
             const [key, value] = line.split(delimiter).map(part => part.trim());
@@ -16,26 +20,18 @@ function readTxtToDictionary(file, delimiter = ':') {
             }
         });
 
-        // Display the dictionary
-        document.getElementById('output').textContent = JSON.stringify(dictionary, null, 2);
-    };
-
-    // Handle file reading errors
-    reader.onerror = function () {
-        console.error('Error reading file:', reader.error);
-    };
-
-    // Read the file as text
-	try{
-    return reader.readAsText(file);
-	}
-	catch{
-		return file;
-	}
+        console.log('Loaded Dictionary:', dictionary);
+        return dictionary;
+    } catch (error) {
+        console.error('Error loading dictionary:', error.message);
+        return {};
+    }
 }
 
-
 // Example usage
-const filePath = ('nodeMessages.txt'); // Replace with your file path
-const nodeMessages = readTxtToDictionary(filePath);
+loadDictionary('nodeMessages.txt');
+
+
+
+const nodeMessagesPath = ("C:\\Users\\yairm\\OneDrive\\Documents\\GitHub\\pgmr\\nodeMessages.txt"); // Replace with your file path
 
