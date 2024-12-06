@@ -2,13 +2,13 @@
 function loadDictionary(filePath, delimiter = ':\n') {
     try {
         // Fetch the file content
-        const response = await fetch(filePath);
+        const response = fetch(filePath);
         if (!response.ok) {
             throw new Error(`Failed to load file: ${response.statusText}`);
         }
 
         // Read text content
-        const text = await response.text();
+        const text = response.text();
 
         // Process text into a dictionary
         const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
