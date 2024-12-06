@@ -11,7 +11,6 @@
 		<script src="dictionarysGen.js"></script>
         <script>
             const info = document.getElementById('info');
-            info.innerHTML = JSON.stringify(nodeMessages);
 			initializeMessages('/pgmr/nodeMessages.txt').then(() => {
 				// Access the messages object after initialization is complete
 				console.log('Loaded messages:', window.messages);
