@@ -7,11 +7,11 @@ window.initializeAllDicts = function () {
     return loadDictionary('/pgmr/nodeMessages.txt')
         .then(fullDict => {
             window.messages = extractMsgs(fullDict);
-			console.log("Messages initialized:", window.messages);
+			//console.log("Messages initialized:", window.messages);
 			window.classes = extractClss(fullDict);
-			console.log("classes initialized:", window.classes);
+			//console.log("classes initialized:", window.classes);
 			window.images = extractImgs(fullDict);
-			console.log("images initialized:", window.images);
+			//console.log("images initialized:", window.images);
         })
         .catch(error => {
             console.error("Error initializing messages:", error.message);
@@ -36,7 +36,6 @@ function loadDictionary(filePath, delimiter = ':\n') {
                     dictionary[key] = value.split("\n###");
                 }
             });
-			console.log("keys: ", Object.keys(dictionary))
             return dictionary;
         })
         .catch(error => {
