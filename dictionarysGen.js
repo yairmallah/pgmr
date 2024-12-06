@@ -1,5 +1,5 @@
 // Function to fetch and parse the dictionary data from the .txt file
-async function loadDictionary(filePath, delimiter = ':\n') {
+function loadDictionary(filePath, delimiter = ':\n') {
     try {
         // Fetch the file content
         const response = await fetch(filePath);
@@ -16,13 +16,7 @@ async function loadDictionary(filePath, delimiter = ':\n') {
 		lines.forEach(line => {
 			const [key, value] = line.split(delimiter).map(part => part.trim());
 			if (key && value !== undefined) {
-				// Explicitly define enumerable keys
-				Object.defineProperty(dictionary, key, {
-					value: value,
-					enumerable: true, // Ensure the key is enumerable
-					configurable: true,
-					writable: true
-				});
+				dictionary[key] = = value.replaceAll("\n", "<br/>");
 			}
 		});
 
@@ -35,9 +29,6 @@ async function loadDictionary(filePath, delimiter = ':\n') {
 }
 
 
-
-
-
 function reformat(dict){
 	for (const key in dict) {
 		dict[key] = dict[key].replace("\n", "<br/>");
@@ -45,13 +36,4 @@ function reformat(dict){
 	return dict
 }
 
-let nodeFull = loadDictionary('nodeMessages.txt');
-console.log('nodeFull:', JSON.stringify(nodeFull));
-console.log('nodeFull0:', nodeFull);
-const nodeMessages = reformat(nodeFull);
-console.log('nodeMessages:', JSON.stringify(nodeMessages));
-console.log('nodeMessages0:', nodeMessages);
-console.log("keys: ", Object.keys(nodeMessages));
-for (const key in nodeMessages) {
-	nodeMessages[key] = console.log(key, nodeMessages[key]);
-}
+const nodeMessages = loadDictionary('nodeMessages.txt');
