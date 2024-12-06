@@ -16,11 +16,12 @@ function loadDictionary(filePath, delimiter = ':\n') {
 		lines.forEach(line => {
 			const [key, value] = line.split(delimiter).map(part => part.trim());
 			if (key && value !== undefined) {
-				dictionary[key] = = value.replaceAll("\n", "<br/>");
+				dictionary[key] = value.replaceAll("\n", "<br/>");
 			}
 		});
 
         console.log('Loaded Dictionary:', dictionary);
+		console.log('Loaded keys:', Object.keys(dictionary));
         return dictionary;
     } catch (error) {
         console.error('Error loading dictionary:', error.message);
