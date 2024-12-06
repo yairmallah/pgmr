@@ -30,7 +30,6 @@ function loadDictionary(filePath, delimiter = ':\n') {
         .then(text => {
             const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
             const dictionary = {};
-			console.log(lines);
             lines.forEach(line => {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
