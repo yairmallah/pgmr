@@ -29,5 +29,5 @@ async function loadDictionary(filePath, delimiter = ':') {
 }
 
 // Example usage
-loadDictionary('nodeMessages.txt');
+nodeMessages = loadDictionary('nodeMessages.txt');
 
