@@ -31,7 +31,3 @@ async function loadDictionary(filePath, delimiter = ':') {
 // Example usage
 loadDictionary('nodeMessages.txt');
 
-
-
-const nodeMessagesPath = ("C:\\Users\\yairm\\OneDrive\\Documents\\GitHub\\pgmr\\nodeMessages.txt"); // Replace with your file path
-
