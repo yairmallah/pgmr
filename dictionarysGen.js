@@ -60,7 +60,7 @@ function extractClss(dict) {
     let clsdict = {}
 	for (let key in dict){
 		try {
-			clsdict[key] = dict[key][0].replaceAll("\n", "<br/>");
+			clsdict[key] = dict[key][1];
 		} catch (error) {
 			clsdict[key] = "";
 		}
@@ -69,13 +69,24 @@ function extractClss(dict) {
 }
 // Extraction function for images
 function extractImgs(dict) {
-    let msgdict = {}
+    let imgdict = {}
 	for (let key in dict){
 		try {
-			msgdict[key] = dict[key][0].replaceAll("\n", "<br/>");
+			let midval = dict[key][2].split("&&");
+			var finval = [];
+			for (let val in midval){
+				try{
+					finval.push(midval[val].split("&");
+				} catch (error){
+					console.log("erorr during img dictionary load for ", key, ". error=", error.toString());
+					break;
+				}
+			}
+			imgdict[key] = finval;
 		} catch (error) {
-			msgdict[key] = "";
+			imgdict[key] = [];
+			console.log("erorr during img dictionary load for ", key, ". error=", error.toString());
 		}
 	}
-	return msgdict;
+	return imgdict;
 }
