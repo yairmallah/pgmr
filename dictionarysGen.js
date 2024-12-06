@@ -30,6 +30,7 @@ function loadDictionary(filePath, delimiter = ':\\n') {
                 const [key, value] = line.split(delimiter).map(part => part.trim());
                 if (key && value !== undefined) {
                     dictionary[key] = value.replaceAll("\\n", "<br/>");
+					console.log(key, value);
                 }
             });
 			console.log("dictionary", dictionary)
