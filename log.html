@@ -208,7 +208,7 @@
 					const scheme = document.getElementById('schemes');
 					let inner = "";
 					for (let imgObj in nodeScheme[nodeName]){
-						if (nodeScheme[nodeName][imgObj] == ""){
+						if (nodeScheme[nodeName][imgObj][0] == ""){
 							break;
 						}
 						inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
