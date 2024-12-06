@@ -28,11 +28,14 @@ async function loadDictionary(filePath, delimiter = ':') {
     }
 }
 
-function reformat(definition){
-	
+function reformat(dict){
+	for (const key in dict) {
+		dict[key] = dict[key].replace("\n", "<br/>");
+	}
+	return dict
 }
 
 // Example usage
 let nodeFull = loadDictionary('nodeMessages.txt');
-const nodeMessages = nodeFull.replace("\n", "<br/>");
+const nodeMessages = reformat(nodeFull);
 console.log('nodeMessages:', JSON.stringify(nodeMessages));
