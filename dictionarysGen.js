@@ -3,6 +3,7 @@ function loadDictionary(filePath, delimiter = ':\n') {
     try {
         // Fetch the file content
         const response = fetch(filePath);
+		console.log(response);
         if (!response.ok) {
             throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
         }
