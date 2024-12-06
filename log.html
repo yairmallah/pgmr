@@ -195,10 +195,10 @@
 			var nodeData = [];
 			initializeAllDicts().then(() => {
 				// Access the messages object after initialization is complete
+				console.log(window.messages);
 				nodeData.push[window.messages];
 				nodeData.push[window.classes];
 				nodeData.push[window.images];
-				console.log(nodeData);
 			});
 			const nodeMessages = nodeData[0];
 			const nodeClass = nodeData[1];
