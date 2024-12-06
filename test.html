@@ -12,6 +12,11 @@
         <script>
             const info = document.getElementById('info');
             info.innerHTML = JSON.stringify(nodeMessages);
+			initializeMessages('/pgmr/nodeMessages.txt').then(() => {
+				// Access the messages object after initialization is complete
+				console.log('Loaded messages:', window.messages);
+				info.innerHTML = `<pre>${JSON.stringify(window.messages, null, 2)}</pre>`;
+			});
         </script>
     </body>
 </html>
