@@ -28,6 +28,5 @@ async function loadDictionary(filePath, delimiter = ':') {
     }
 }
 
-// Example usage
-nodeMessages = loadDictionary('nodeMessages.txt');
+const nodeMessages = loadDictionary('nodeMessages.txt');
 
