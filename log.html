@@ -191,37 +191,41 @@
             const width = 770;
             const height = 700;
 			
+			var nodeMessages = window.messages;
+			var nodeClass = window.classes;
+			var nodeScheme = window.images;
+			
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
-					const infoTitle = document.getElementById('title');
-					infoTitle.textContent = `${nodeName}`;
-					
-					const infoParagraph = document.getElementById('node-info');
-					let text = nodeMessages[nodeName];
-					for (let key in nodeMessages) {
-						if (key=="הר"){
-							continue;}
-						const regex = new RegExp(key, "g");
-						text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
-					}
-					infoParagraph.innerHTML = text;
-					const scheme = document.getElementById('schemes');
-					let inner = "";
-					for (let imgObj in nodeScheme[nodeName]){
-						if (nodeScheme[nodeName][imgObj][0] == ""){
-							break;
-						}
-						inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
-						inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
-					}
-					scheme.innerHTML = inner;
+				const infoTitle = document.getElementById('title');
+				infoTitle.textContent = `${nodeName}`;
+				
+				const infoParagraph = document.getElementById('node-info');
+				let text = nodeMessages[nodeName];
+				for (let key in nodeMessages) {
+					if (key=="הר"){
+						continue;}
+					const regex = new RegExp(key, "g");
+					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 				}
+				infoParagraph.innerHTML = text;
+				const scheme = document.getElementById('schemes');
+				let inner = "";
+				for (let imgObj in nodeScheme[nodeName]){
+					if (nodeScheme[nodeName][imgObj][0] == ""){
+						break;
+					}
+					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
+					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
+				}
+				scheme.innerHTML = inner;
+			}
 			
 			initializeAllDicts().then(() => {
 				// define dictionarys
-				const nodeMessages = window.messages;
-				const nodeClass = window.classes;
-				const nodeScheme = window.images;
+				nodeMessages = window.messages;
+				nodeClass = window.classes;
+				nodeScheme = window.images;
 				
 				nodeClick('ארכיטקטורה', nodeMessages, nodeClass, nodeScheme);    
 			
