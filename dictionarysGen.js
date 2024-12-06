@@ -80,7 +80,7 @@ function extractImgs(dict) {
 			var finval = [];
 			for (let val in midval){
 				try{
-					finval.push(midval[val].split("&");
+					finval.push(midval[val].split("&"));
 				} catch (error){
 					console.log("erorr during img dictionary load for ", key, ". error=", error.toString());
 					break;
