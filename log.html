@@ -191,7 +191,13 @@
             const width = 770;
             const height = 700;
 			
-			function nodeClick(nodeName) {
+			initializeAllDicts().then(() => {
+				// define dictionarys
+				const nodeMessages = window.messages;
+				const nodeClass = window.classes;
+				const nodeScheme = window.images;
+				
+				function nodeClick(nodeName) {
 					const infoTitle = document.getElementById('title');
 					infoTitle.textContent = `${nodeName}`;
 					
@@ -215,12 +221,6 @@
 					}
 					scheme.innerHTML = inner;
 				}
-			initializeAllDicts().then(() => {
-				// Access the messages object after initialization is complete
-
-				const nodeMessages = window.messages;
-				const nodeClass = window.classes;
-				const nodeScheme = window.images;
 				
 				nodeClick('ארכיטקטורה');    
 			
