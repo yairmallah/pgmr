@@ -240,13 +240,12 @@
 				for (let i = 0; i < nodesKeys.length; i++) {
 					for (let j = 0; j < nodesKeys.length; j++) {
 						const source = nodesKeys[i];
-						if (key=="הר" && !mountain_con.includes(nodeName)) {
-							continue;}
-						if (key=="קו" && !line_con.includes(nodeName)) {
-							continue;}
 						const target = nodesKeys[j];
+						if (source=="הר" && !mountain_con.includes(target)) {
+							continue;}
+						if (source=="קו" && !line_con.includes(target)) {
+							continue;}
 						const targetWords = nodeMessages[target];
-
 						if (targetWords.includes(source)) {
 							links.push({ source, target });
 						}
