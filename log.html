@@ -209,8 +209,8 @@
 						continue;}
 					if (key=="קו") {
 						if (line_con.includes(nodeName)) {
-							let regex = " קו " 
-							text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'> "+key+"</b>");}
+							let regex = "קו " 
+							text = text.replaceAll(regex, " <b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'> "+key+"</b>");}
 						continue;}
 					const regex = new RegExp(key, "g");
 					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
