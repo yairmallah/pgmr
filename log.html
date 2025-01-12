@@ -207,7 +207,10 @@
 				for (let key in nodeMessages) {
 					if (key=="הר" && !mountain_con.includes(nodeName)) {
 						continue;}
-					if (key=="קו" && !line_con.includes(nodeName)) {
+					if (key=="קו") {
+						if (line_con.includes(nodeName)) {
+							let regex = "קו " 
+							text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");}
 						continue;}
 					const regex = new RegExp(key, "g");
 					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
