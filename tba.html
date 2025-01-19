@@ -26,7 +26,7 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
         <script>
-			tba_base_txt = "";
+			var tba_base_txt = [];
 
 			/*
 			// Initialization function using Promises
@@ -55,7 +55,7 @@
 						return response.text();
 					})
 					.then(text => {
-						tba_base_txt = text.replaceAll("\n", "<br/>");
+						tba_base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
 						return tba_base_txt;
 					})
 					.catch(error => {
@@ -64,14 +64,52 @@
 					});
 			}
 			
+			function generateIndentedList(strings) {
+				// Create a container for the nested structure
+				let html = '';
+
+				// Stack to keep track of the current list levels
+				const stack = [];
+
+				// Iterate over the input strings
+				strings.forEach(str => {
+					// Split the string into prefix and text
+					const [prefix, text] = str.split('.');
+
+					// Determine the numeric or alphabetical order of the prefix
+					const level = isNaN(parseInt(prefix, 10)) ? prefix.charCodeAt(0) : parseInt(prefix, 10);
+
+					// Pop the stack until we find the correct parent level
+					while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+						html += '</ul>';
+						stack.pop();
+					}
+
+					// Add a new list if necessary
+					if (stack.length === 0 || stack[stack.length - 1].level < level) {
+						html += '<ul>';
+						stack.push({ level });
+					}
+
+					// Add the current item
+					html += '<li>${prefix}.${text}</li>';
+				});
+
+				// Close any remaining open lists
+				while (stack.length > 0) {
+					html += '</ul>';
+					stack.pop();
+				}
+
+				return html;
+			}
+			
 			loadTba().then(() => {
-				console.log(tba_base_txt);
+				tba_base_txt = generateIndentedList(tba_base_txt);
 				document.getElementById('tba-txt').innerHTML = tba_base_txt;				
 			});
 			
-		</script>
-		
-        <script>
+			// SECTION 2 - scheme
 			// definitions
             const width = document.getElementById("graph-container").offsetWidth;
             const height = document.getElementById("graph-container").offsetHeight;
