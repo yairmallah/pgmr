@@ -186,6 +186,7 @@
                 .attr("dx", 0)
                 .attr("dy", ".35em")
                 .attr("text-anchor", "middle")
+				.attr("class", d => "b"+nodeClass[d.id])
                 //.attr("anchor", "center")
                 .text(d => d.id);
 
