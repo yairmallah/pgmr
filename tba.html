@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Graph-Style Site Map</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
+		<link rel="stylesheet" type="text/css" href="css\tba.css"/>
         
     </head>
     <body>
@@ -64,8 +65,9 @@
 			}
 			
 			loadTba().then(() => {
+				console.log(tba_base_txt);
 				document.getElementById('tba-txt').textContent = tba_base_txt;				
-			}
+			});
 			
 		</script>
 		
