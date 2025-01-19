@@ -70,7 +70,6 @@
 
 				// Stack to keep track of the current list levels
 				const stack = [];
-
 				// Helper function to determine the level based on the prefix
 				function getLevel(prefix) {
 					if (!isNaN(parseInt(prefix, 10))) {
@@ -89,7 +88,7 @@
 					// Split the string into prefix and text
 					const [prefix, text] = str.split('.');
 
-					// Determine the level based on the prefix
+					// Determine the numeric or alphabetical order of the prefix
 					const level = getLevel(prefix);
 
 					// Pop the stack until we find the correct parent level
@@ -105,7 +104,7 @@
 					}
 
 					// Add the current item
-					html += '<li>'+prefix}+'.'+text+'</li>';
+					html += '<li>'+prefix+'.'+text+'</li>';
 				});
 
 				// Close any remaining open lists
@@ -116,7 +115,6 @@
 
 				return html;
 			}
-
 			
 			loadTba().then(() => {
 				tba_base_txt = generateIndentedList(tba_base_txt);
