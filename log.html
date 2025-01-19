@@ -194,8 +194,9 @@
 			var nodeMessages = window.messages;
 			var nodeClass = window.classes;
 			var nodeScheme = window.images;
-			const line_con = ["גבול", "מסילה"]
+			const line_con = ["גבול", "מסילה", "מעיין"]
 			const mountain_con = []
+			const heart_con = []
 			
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
@@ -210,6 +211,11 @@
 					if (key=="קו") {
 						if (line_con.includes(nodeName)) {
 							let regex = "קו " 
+							text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");}
+						continue;	
+					if (key=="לב") {
+						if (heart_con.includes(nodeName)) {
+							let regex = "לב " 
 							text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");}
 						continue;}
 					const regex = new RegExp(key, "g");
@@ -248,6 +254,8 @@
 							continue;}
 						if (source=="קו" && !line_con.includes(target)) {
 							continue;}
+						if (source=="לב" && !heart_con.includes(target)) {
+							continue;}	
 						const targetWords = nodeMessages[target];
 						if (targetWords.includes(source)) {
 							links.push({ source, target });
