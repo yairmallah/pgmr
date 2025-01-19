@@ -212,7 +212,7 @@
 						if (line_con.includes(nodeName)) {
 							let regex = "קו " 
 							text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");}
-						continue;	
+						continue;}
 					if (key=="לב") {
 						if (heart_con.includes(nodeName)) {
 							let regex = "לב " 
@@ -255,7 +255,7 @@
 						if (source=="קו" && !line_con.includes(target)) {
 							continue;}
 						if (source=="לב" && !heart_con.includes(target)) {
-							continue;}	
+							continue;}
 						const targetWords = nodeMessages[target];
 						if (targetWords.includes(source)) {
 							links.push({ source, target });
