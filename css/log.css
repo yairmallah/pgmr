@@ -1,34 +1,3 @@
-body {
-  font-family: 'Courier New', monospace;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 99vh;
-  width: 98vw;
-  margin: 0;
-  background-color: #000000;
-}
-    
-/* scrollbar */
-/* width */
-::-webkit-scrollbar {
-width: 10px;
-}
-/* Track */
-::-webkit-scrollbar-track {
-background: #000; 
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-background: #333; 
-box-shadow: inset 0px 0px 2px 2px #111;
-}
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-background: #999; 
-}
-/* end scrollbar */
-
 #graph-container {
   position: absolute;
   top: 5%;
@@ -79,59 +48,9 @@ svg{
     font-size: 12px;
     fill: #fff;
 }
-
-.term{
-    fill: #008033
-}
-.bterm{
-    color: #7fff7f
-}
-.math{
-    fill: #800000
-}
-.bmath{
-    color: #ff8080
-}
-.spc{
-    fill: #660080
-}
-.bspc{
-    color: #e680ff
-}
-.mus{
-    fill: #003380
-}
-.bmus{
-    color: #80b3ff
-}
-.myt{
-    fill: #668000
-}
-.bmyt{
-    color: #e5ff80
-}
-
 .link {
     stroke: #999;
     stroke-opacity: 0.6;
-}
-
-h3 {
-    position: relative;
-    color: #FFFFFF;
-    text-align: right;
-    direction: rtl;
-}
-
-p {
-    position: relative;
-    color: #FFFFFF;
-    unicode-bidi: isolate;
-    text-align: right;
-    justify-content: right;
-    word-wrap: break-word;
-    text-align: right;
-    direction: rtl;
 }
 .scheme-text{
     font-style: italic;
@@ -139,10 +58,6 @@ p {
 }
 .scheme-img{
     width: 100%;
-}
-b {
-    cursor: pointer;
-    color: inherit;
 }
 text {
     opacity: 0.8;
