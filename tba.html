@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Graph-Style Site Map</title>
+		<link rel="stylesheet" type="text/css" href="css\general.css"/>
+		<link rel="stylesheet" type="text/css" href="css\log.css"/>
+        
+    </head>
+    <body>
+        <div id="graph-container"></div>
+        <div class="textcot">
+            <h3 id="title"></h3>
+            <p id="node-info">
+            </p>
+        </div>
+        <div id="schemes"></div>
+
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="dictionarysGen.js"></script>
+        <script>
+			// definitions
+            const width = document.getElementById("graph-container").offsetWidth;
+            const height = document.getElementById("graph-container").offsetHeight;
+			
+			var nodeMessages = window.messages;
+			var nodeClass = window.classes;
+			var nodeScheme = window.images;
+			const line_con = ["גבול", "מסילה", "לב"]
+			const mountain_con = ["מעיין"]
+			const heart_con = []
+			const problem_words = ["לב", "הר", "קו"]
+			
+			async function nodeClick(nodeName) {
+				await initializeAllDicts();
+				const infoTitle = document.getElementById('title');
+				infoTitle.textContent = `${nodeName}`;
+				
+				const infoParagraph = document.getElementById('node-info');
+				let text = nodeMessages[nodeName];
+				for (let key in nodeMessages) {
+					if (problem_words.includes(key)){
+						if (key=="הר" && !mountain_con.includes(nodeName)) {
+							continue;}
+						if (key=="קו") {
+							if (line_con.includes(nodeName)) {
+								let regex = "קו " 
+								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								continue;}
+							continue;}
+						if (key=="לב") {
+							if (heart_con.includes(nodeName)) {
+								let regex = "לב " 
+								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								continue;}
+							continue;}
+					}
+					const regex = new RegExp(key, "g");
+					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+				}
+				infoParagraph.innerHTML = text;
+				const scheme = document.getElementById('schemes');
+				let inner = "";
+				for (let imgObj in nodeScheme[nodeName]){
+					if (nodeScheme[nodeName][imgObj][0] == ""){
+						break;
+					}
+					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
+					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
+				}
+				scheme.innerHTML = inner;
+			}
+			
+			initializeAllDicts().then(() => {
+				// define dictionarys
+				nodeMessages = window.messages;
+				nodeClass = window.classes;
+				nodeScheme = window.images;
+				
+				nodeClick('ארכיטקטורה', nodeMessages, nodeClass, nodeScheme);    
+			
+				const links = [];
+
+				// Generate links if messages share a common word
+				const nodesKeys = Object.keys(nodeMessages);
+				for (let i = 0; i < nodesKeys.length; i++) {
+					const source = nodesKeys[i];
+					if (problem_words.includes(source)){
+						if (source=="הר"){
+							for (let j = 0; j < mountain_con.length; j++) {
+								const target = mountain_con[j];
+								const targetWords = nodeMessages[target];
+								if (targetWords.includes(source)) {
+									links.push({ source, target });
+								}
+							}
+						}
+						if (source=="קו"){
+							for (let j = 0; j < line_con.length; j++) {
+								const target = line_con[j];
+								const targetWords = nodeMessages[target];
+								if (targetWords.includes(source)) {
+									links.push({ source, target });
+								}
+							}
+						}
+						if (source=="לב"){
+							for (let j = 0; j < heart_con.length; j++) {
+								const target = heart_con[j];
+								const targetWords = nodeMessages[target];
+								if (targetWords.includes(source)) {
+									links.push({ source, target });
+								}
+							}
+						}
+					}
+					else{
+						for (let j = 0; j < nodesKeys.length; j++) {
+							const target = nodesKeys[j];
+							if (source=="הר" && !mountain_con.includes(target)) {
+								continue;}
+							if (source=="קו" && !line_con.includes(target)) {
+								continue;}
+							if (source=="לב" && !heart_con.includes(target)) {
+								continue;}
+							const targetWords = nodeMessages[target];
+							if (targetWords.includes(source)) {
+								links.push({ source, target });
+							}
+						}
+					}
+				}
+
+				const svg = d3.select("#graph-container").append("svg")
+					.attr("width", "100%")
+					.attr("height", "100%");
+				// Define the simulation with forces
+				const simulation = d3.forceSimulation()
+					.force("link", d3.forceLink().id(d => d.id).distance(70).strength(0.5))
+					.force("charge", d3.forceManyBody().strength(-1))
+					.force("center", d3.forceCenter(width / 2, height / 2))
+					.force("collide", d3.forceCollide(30));
+				function forceSameClassAttraction(strength) {
+					return (alpha) => {
+						const nodes = simulation.nodes();
+						for (let i = 0; i < nodes.length; i++) {
+							for (let j = i + 1; j < nodes.length; j++) {
+								const nodeA = nodes[i];
+								const nodeB = nodes[j];
+								// Apply attraction only for nodes of the same class
+								if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
+									const dx = nodeB.x - nodeA.x;
+									const dy = nodeB.y - nodeA.y;
+									const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
+
+									// Strength of the attraction
+									const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
+
+									// Apply forces to nodes
+									nodeA.vx += force * dx;
+									nodeA.vy += force * dy;
+									nodeB.vx -= force * dx;
+									nodeB.vy -= force * dy;
+								}
+							}
+						}
+					};
+				}
+
+
+				// Create links
+				const link = svg.append("g")
+					.selectAll(".link")
+					.data(links)
+					.enter().append("line")
+					.attr("class", "link");
+
+				// Create nodes with initial positions
+				const node = svg.append("g")
+					.selectAll(".node")
+					.data(Object.keys(nodeMessages).map(id => ({
+						id,
+						group: nodeClass[id] || "default",
+						x: Math.random() * width,
+						y: Math.random() * height
+					})))
+					.enter().append("g")
+					.attr("class", "node")
+					.call(d3.drag()
+						.on("start", dragStart)
+						.on("drag", dragged)
+						.on("end", dragEnd));
+
+				node.on("click", (event, d) => {
+					nodeClick(d.id, nodeMessages, nodeClass, nodeScheme);
+				});
+
+				node.append("circle")
+					.attr("r", 10)
+					.attr("class", d => nodeClass[d.id])
+
+
+				node.append("text")
+					.attr("dx", 0)
+					.attr("dy", ".35em")
+					.attr("text-anchor", "middle")
+					//.attr("anchor", "center")
+					.text(d => d.id);
+
+				simulation.nodes(node.data())
+					.on("tick", ticked);
+
+				simulation.force("link").links(links);
+
+				function ticked() {
+					link
+						.attr("x1", d => d.source.x)
+						.attr("y1", d => d.source.y)
+						.attr("x2", d => d.target.x)
+						.attr("y2", d => d.target.y);
+
+					node
+						.attr("transform", d => `translate(${d.x},${d.y})`);
+				}
+
+				function dragStart(event, d) {
+					if (!event.active) simulation.alphaTarget(0.3).restart();
+					d.fx = d.x;
+					d.fy = d.y;
+				}
+
+				function dragged(event, d) {
+					d.fx = event.x;
+					d.fy = event.y;
+				}
+
+				function dragEnd(event, d) {
+					if (!event.active) simulation.alphaTarget(0);
+					d.fx = null;
+					d.fy = null;
+				}
+			});
+        </script>
+    </body>
+</html>
