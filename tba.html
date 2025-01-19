@@ -5,20 +5,70 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Graph-Style Site Map</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
-		<link rel="stylesheet" type="text/css" href="css\log.css"/>
         
     </head>
     <body>
-        <div id="graph-container"></div>
-        <div class="textcot">
-            <h3 id="title"></h3>
-            <p id="node-info">
-            </p>
-        </div>
-        <div id="schemes"></div>
-
+		<div id="dictionary-scheme">
+			<div id="graph-container"></div>
+			<div class="textcot">
+				<h3 id="scheme-title"></h3>
+				<p id="node-info">
+				</p>
+			</div>
+			<div id="schemes"></div>
+		</div>
+		<div id="main">
+			<h3 id="title"></h3>
+			<p id="tba-txt">
+			</p>
+		</div>
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
+        <script>
+			tba_base_txt = "";
+
+			/*
+			// Initialization function using Promises
+			window.initializeAllDicts = function () {
+				return loadDictionary('/pgmr/nodeMessages.txt')
+					.then(fullDict => {
+						window.messages = extractMsgs(fullDict);
+						//console.log("Messages initialized:", window.messages);
+						window.classes = extractClss(fullDict);
+						//console.log("classes initialized:", window.classes);
+						window.images = extractImgs(fullDict);
+						//console.log("images initialized:", window.images);
+					})
+					.catch(error => {
+						console.error("Error initializing messages:", error.message);
+					});
+			};*/
+
+			function loadTba() {
+				const filePath = "/pgmr/tbaTxt.txt"
+				return fetch(filePath)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+						}
+						return response.text();
+					})
+					.then(text => {
+						tba_base_txt = text.replaceAll("\n", "<br/>");
+						return tba_base_txt;
+					})
+					.catch(error => {
+						console.error("Error loading TBA:", error.message);
+						return {};
+					});
+			}
+			
+			loadTba().then(() => {
+				document.getElementById('tba-txt').textContent = tba_base_txt;				
+			}
+			
+		</script>
+		
         <script>
 			// definitions
             const width = document.getElementById("graph-container").offsetWidth;

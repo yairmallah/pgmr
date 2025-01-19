@@ -1,0 +1,81 @@
+#graph-container {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 20%;
+  height: 20%;
+  border: 1px solid #000000;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
+}
+svg{
+  overflow-y: visible;
+  overflow-x: visible;
+}
+#schemes {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 20%;
+  padding:0px 15px 0px 7px;
+  height: 17%;
+  border: 1px solid #000000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
+}
+.textcot{
+  position: absolute;
+  top: 27%;
+  left: 2%;
+  width: 20%; /* Set fixed width */
+  height: 43%; /* Set fixed height */
+  border: 1px solid #000;
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.node circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+    opacity: 0.5
+}
+
+.node text {
+    font-size: 4px;
+    fill: #fff;
+}
+.link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+.scheme-text{
+    font-style: italic;
+    font-size: 6px;
+}
+.scheme-img{
+    width: 100%;
+}
+text {
+    opacity: 0.8;
+    cursor: pointer;
+}
+g :hover {
+    z-index: 4;
+    opacity: 1;
+    color: rgba(255, 255, 255, 1)
+    scale: 2.5
+}
+circle :hover {
+    opacity: 1;
+    color: rgba(255, 255, 255, 1)
+}
+.node text :hover {
+    z-index: 4;
+    opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    transform: scale(2.5);
+}
