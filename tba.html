@@ -171,6 +171,7 @@
 							continue;}
 					}
 					const regex = new RegExp(key, "g");
+					console.log(text_par);
 					text_par = text_par.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 				}
 				return text_par;
