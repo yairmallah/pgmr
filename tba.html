@@ -130,7 +130,7 @@
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
 				const infoTitle = document.getElementById('node-title');
-				const node_obj = d3.selectAll(".node").filter(d => d.id === nodeName);
+				const node_obj = d3.selectAll(".node").filter(d => d._group && d._group.g === nodeName);
 				infoTitle.textContent = `${nodeName}`;
 				
 				//text build
