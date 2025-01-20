@@ -130,7 +130,10 @@
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
 				const infoTitle = document.getElementById('node-title');
-				const node_obj = d3.selectAll(".node").filter(d => d._group && d._group.g === nodeName);
+				const node_obj = d3.selectAll(".node").filter(d => {
+					console.log("Inspecting node:", d);
+					return d._group && d._group.g === nodeName; // Adjust based on the debug output
+				});
 				infoTitle.textContent = `${nodeName}`;
 				
 				//text build
@@ -171,21 +174,19 @@
 				scheme.innerHTML = inner;
 				//node position
 				console.log(current_node);
-				console.log("Clicked node:", node_obj.id, "Moving to:", width / 2, height / 2);
+				console.log("Clicked node:", node_obj.id);
 				
 
 				if (current_node != null) {
 					current_node.fx = null;
 					current_node.fy = null;
 				}
-				console.log(current_node);
 
 				// Fix the current node to the center of the canvas
 				node_obj.fx = width / 10;
 				node_obj.fy = height / 10;
 				current_node = node_obj
 				simulation.alpha(1).restart();
-				console.log(current_node);
 			}
 			
 			loadTba().then(() => {
