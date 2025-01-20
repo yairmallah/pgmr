@@ -173,9 +173,11 @@
 					current_node.fx = null;
 					current_node.fy = null;
 				}
+				console.log(current_node);
+				console.log(width);
 
 				// Fix the current node to the center of the canvas
-				node_obj.fx = width / 2;
+				node_obj.fx = width / 10;
 				node_obj.fy = height / 10;
 				current_node = node_obj
 			}
@@ -271,9 +273,7 @@
 						tba_base_txt = tba_base_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
 					document.getElementById('tba-txt').innerHTML = tba_base_txt;
-					console.log(1);
 					nodeClick('ארכיטקטורה'); 
-					console.log(2);
 				
 					const links = [];
 
