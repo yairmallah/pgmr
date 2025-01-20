@@ -120,7 +120,6 @@
 					}
 
 					// Add the current item
-					console.log(prefix, level, prefix.length);
 					html += '<li>'+prefix+'.'+text+'</li>';
 				});
 
@@ -195,7 +194,8 @@
 				
 				console.log(d);
 				
-				/*//centrise node
+				//centrise node
+				if (d!=0)(
 				d.x = width / 2;
 				d.y = height / 2;
 				// Apply smooth transition
@@ -203,7 +203,7 @@
 					.transition()
 					.duration(750)
 					.attr("cx", d.x)
-					.attr("cy", d.y);*/
+					.attr("cy", d.y);}
 			}
 			
 			initializeAllDicts().then(() => {
