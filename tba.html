@@ -165,26 +165,28 @@
 					return text;
 				}
 				
-				async function update_text(text) {
+				// lock sync
+				/*async function update_text(text) {
 					await initializeAllDicts();
 					for (let key in nodeMessages) {
 						const regex = new RegExp(key, "g");
 						text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
 					return text;
-				}
+				}*/
 				
 				initializeAllDicts().then(() => {
 					// define dictionarys
 					nodeMessages = window.messages;
 					nodeClass = window.classes;
 					nodeScheme = window.images;
-					console.log(tba_base_txt);
-					tba_base_txt = update_text(tba_base_txt);
-					console.log(1);
-					console.log(tba_base_txt);
-					document.getElementById('tba-txt').innerHTML = tba_base_txt;
 					
+					// initializations
+					for (let key in nodeMessages) {
+						const regex = new RegExp(key, "g");
+						tba_base_txt = tba_base_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+					}
+					document.getElementById('tba-txt').innerHTML = tba_base_txt;
 					nodeClick('ארכיטקטורה');    
 				
 					const links = [];
