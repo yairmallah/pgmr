@@ -274,6 +274,7 @@
 							for (const node of simulation.nodes()) {
 								node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
 								node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
+								console.log(
 							}
 						};
 					}
@@ -365,7 +366,10 @@
 							.attr("y2", d => d.target.y);
 
 						node
-							.attr("transform", d => `translate(${d.x},${d.y})`);
+							.attr("transform", d => {
+								d.x = Math.max(bounds.xMin, Math.min(bounds.xMax, d.x));
+								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});
+							//.attr("transform", d => `translate(${d.x},${d.y})`);
 					}
 
 					function dragStart(event, d) {
