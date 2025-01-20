@@ -52,7 +52,8 @@ svg{
 .node circle {
     stroke: #fff;
     stroke-width: 1.5px;
-    opacity: 0.5
+    opacity: 0.5;
+	r: 5;
 }
 
 .node text {
