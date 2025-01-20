@@ -171,29 +171,7 @@
 						const regex = new RegExp(key, "g");
 						text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
-					//inject txt to html
-					infoParagraph.innerHTML = text;
-					
-					// set imgs
-					const scheme = document.getElementById('schemes');
-					let inner = "";
-					for (let imgObj in nodeScheme[nodeName]){
-						if (nodeScheme[nodeName][imgObj][0] == ""){
-							break;
-						}
-						inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
-						inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
-					}
-					scheme.innerHTML = inner;
-					
-					// fix position
-					if (current_node != null) {
-						current_node.fx = null;
-						current_node.fx = null
-					}
-					current_node = d3.selectAll(".node").filter(d => d.id === nodeName);
-					current_node.fx = width / 2;
-					current_node.fy = height / 10;
+					return text;
 				}
 				
 				initializeAllDicts().then(() => {
