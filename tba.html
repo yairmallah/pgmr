@@ -165,7 +165,7 @@
 					return text;
 				}
 				
-				/*async function update_text(text) {
+				async function update_text(text) {
 					await initializeAllDicts();
 					for (let key in nodeMessages) {
 						const regex = new RegExp(key, "g");
@@ -194,7 +194,7 @@
 					current_node = d3.selectAll(".node").filter(d => d.id === nodeName);
 					current_node.fx = width / 2;
 					current_node.fy = height / 10;
-				}*/
+				}
 				
 				initializeAllDicts().then(() => {
 					// define dictionarys
