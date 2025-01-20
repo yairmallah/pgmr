@@ -70,10 +70,22 @@
 
 				// Stack to keep track of the current list levels
 				const stack = [];
+				
+				function mapEnglishToHebrew(char) {
+					const englishToHebrew = {
+						a: 'א', b: 'ב', c: 'ג', d: 'ד', e: 'ה', f: 'ו', g: 'ז', h: 'ח',
+						i: 'ט', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ס', p: 'ע',
+						q: 'פ', r: 'צ', s: 'ק', t: 'ר', u: 'ש', v: 'ת', w: 'שׁ', x: 'שׂ',
+						y: 'ץ', z: 'תּ'
+					};
+					return englishToHebrew[char.toLowerCase()] || null;
+				}
 				// Helper function to determine the level based on the prefix
 				function getLevel(prefix) {
 					if (!isNaN(parseInt(prefix, 10))) {
-						return parseInt(prefix, 10); // Numeric levels (e.g., 1, 2, 3)
+						return 1; // Numeric levels (e.g., 1, 2, 3)
+					} else if (prefix >= 'א' && prefix <= 'ת') {
+						return 5; // Alphabetical levels (a-z)
 					} else if (prefix >= 'a' && prefix <= 'z') {
 						return 10; // Alphabetical levels (a-z)
 					} else if (prefix >= 'A' && prefix <= 'Z') {
@@ -82,12 +94,16 @@
 						return 30; // Other prefixes
 					}
 				}
+				
 
 				// Iterate over the input strings
 				strings.forEach(str => {
 					// Split the string into prefix and text
-					const [prefix, text] = str.split('.');
-
+					var [prefix, text] = str.split('.');
+					
+					if (prefix.length == 1 && !(prefix == 'i' || prefix == 'x' || prefix == 'v') && isNaN(parseInt(prefix, 10))){
+						prefix = mapEnglishToHebrew(prefix);}
+					
 					// Determine the numeric or alphabetical order of the prefix
 					const level = getLevel(prefix);
 
@@ -96,7 +112,7 @@
 						html += '</ul>';
 						stack.pop();
 					}
-
+					
 					// Add a new list if necessary
 					if (stack.length === 0 || stack[stack.length - 1].level < level) {
 						html += '<ul>';
@@ -104,7 +120,7 @@
 					}
 
 					// Add the current item
-					console.log(prefix, level);
+					console.log(prefix, level, prefix.length);
 					html += '<li>'+prefix+'.'+text+'</li>';
 				});
 
