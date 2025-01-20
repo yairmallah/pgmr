@@ -12,7 +12,7 @@
 		<div id="dictionary-scheme">
 			<div id="graph-container"></div>
 			<div class="textcot">
-				<h3 id="scheme-title"></h3>
+				<h3 id="node-title"></h3>
 				<p id="node-info">
 				</p>
 			</div>
@@ -153,9 +153,9 @@
 			
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
-				const infoTitle = document.getElementById('title');
+				const infoTitle = document.getElementById('node-title');
 				infoTitle.textContent = `${nodeName}`;
-				
+				//build text
 				const infoParagraph = document.getElementById('node-info');
 				let text = nodeMessages[nodeName];
 				for (let key in nodeMessages) {
@@ -178,7 +178,10 @@
 					const regex = new RegExp(key, "g");
 					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 				}
+				//inject txt to html
 				infoParagraph.innerHTML = text;
+				
+				// set imgs
 				const scheme = document.getElementById('schemes');
 				let inner = "";
 				for (let imgObj in nodeScheme[nodeName]){
@@ -189,6 +192,16 @@
 					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
 				}
 				scheme.innerHTML = inner;
+				
+				//centrise node
+				d.x = width / 2;
+				d.y = height / 2;
+				// Apply smooth transition
+				d3.select(d)
+					.transition()
+					.duration(750)
+					.attr("cx", d.x)
+					.attr("cy", d.y);
 			}
 			
 			initializeAllDicts().then(() => {
@@ -312,7 +325,7 @@
 						.on("end", dragEnd));
 
 				node.on("click", (event, d) => {
-					nodeClick(d.id, nodeMessages, nodeClass, nodeScheme);
+					nodeClick(d.id, nodeMessages, nodeClass, nodeScheme, d);
 				});
 
 				node.append("circle")
