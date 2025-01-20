@@ -115,6 +115,46 @@
 				return html;
 			}
 			
+			async function nodeClick(nodeName) {
+				await initializeAllDicts();
+				const infoTitle = document.getElementById('title');
+				infoTitle.textContent = `${nodeName}`;
+				
+				const infoParagraph = document.getElementById('node-info');
+				let text = nodeMessages[nodeName];
+				for (let key in nodeMessages) {
+					if (problem_words.includes(key)){
+						if (key=="הר" && !mountain_con.includes(nodeName)) {
+							continue;}
+						if (key=="קו") {
+							if (line_con.includes(nodeName)) {
+								let regex = "קו " 
+								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								continue;}
+							continue;}
+						if (key=="לב") {
+							if (heart_con.includes(nodeName)) {
+								let regex = "לב " 
+								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								continue;}
+							continue;}
+					}
+					const regex = new RegExp(key, "g");
+					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+				}
+				infoParagraph.innerHTML = text;
+				const scheme = document.getElementById('schemes');
+				let inner = "";
+				for (let imgObj in nodeScheme[nodeName]){
+					if (nodeScheme[nodeName][imgObj][0] == ""){
+						break;
+					}
+					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
+					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
+				}
+				scheme.innerHTML = inner;
+			}
+			
 			loadTba().then(() => {
 				tba_base_txt = generateIndentedList(tba_base_txt);
 				document.getElementById('tba-txt').innerHTML = tba_base_txt;				
@@ -181,7 +221,7 @@
 					nodeClass = window.classes;
 					nodeScheme = window.images;
 					
-					function nodeClick(nodeName) {
+					/*function nodeClick(nodeName) {
 						const infoTitle = document.getElementById('node-title');
 						infoTitle.textContent = `${nodeName}`;
 						//build text
@@ -210,7 +250,7 @@
 						}
 						console.log(text);
 						return text;
-					}
+					}*/
 					
 					// initializations
 					for (let key in nodeMessages) {
