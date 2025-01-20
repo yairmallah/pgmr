@@ -187,6 +187,7 @@
 						//build text
 						const infoParagraph = document.getElementById('node-info');
 						let text = nodeMessages[nodeName];
+						console.log(text);
 						for (let key in nodeMessages) {
 							if (problem_words.includes(key)){
 								if (key=="הר" && !mountain_con.includes(nodeName)) {
@@ -207,6 +208,7 @@
 							const regex = new RegExp(key, "g");
 							text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 						}
+						console.log(text);
 						return text;
 					}
 					
