@@ -27,6 +27,17 @@
         <script src="dictionarysGen.js"></script>
         <script>
 			var tba_base_txt = [];
+			const width = document.getElementById("graph-container").offsetWidth;
+			const height = document.getElementById("graph-container").offsetHeight;
+				
+			var nodeMessages = window.messages;
+			var nodeClass = window.classes;
+			var nodeScheme = window.images;
+			var current_node = null;
+			const line_con = ["גבול", "מסילה", "לב"]
+			const mountain_con = ["מעיין"]
+			const heart_con = []
+			const problem_words = ["לב", "הר", "קו"]
 
 			function loadTba() {
 				const filePath = "/pgmr/tbaTxt.txt"
@@ -162,18 +173,6 @@
 			
 				// SECTION 2 - scheme
 				// definitions
-				const width = document.getElementById("graph-container").offsetWidth;
-				const height = document.getElementById("graph-container").offsetHeight;
-				
-				var nodeMessages = window.messages;
-				var nodeClass = window.classes;
-				var nodeScheme = window.images;
-				var current_node = null;
-				const line_con = ["גבול", "מסילה", "לב"]
-				const mountain_con = ["מעיין"]
-				const heart_con = []
-				const problem_words = ["לב", "הר", "קו"]
-				
 				
 				/*async function nodeClick(nodeName) {
 					await initializeAllDicts();
