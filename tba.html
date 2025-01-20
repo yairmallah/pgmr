@@ -145,6 +145,7 @@
 			var nodeMessages = window.messages;
 			var nodeClass = window.classes;
 			var nodeScheme = window.images;
+			var current_node = null;
 			const line_con = ["גבול", "מסילה", "לב"]
 			const mountain_con = ["מעיין"]
 			const heart_con = []
@@ -216,8 +217,6 @@
 				
 				tba_txter = document.getElementById('tba-txt');
 				tba_txter.innerHTML = update_text_hiperlinks(tba_txter, null);
-				
-				let current_node = null;
 				
 				nodeClick('ארכיטקטורה');    
 			
