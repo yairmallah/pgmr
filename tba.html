@@ -179,6 +179,7 @@
 				if (current_node != null) {
 					current_node.fx = null;
 					current_node.fy = null;
+					
 				}
 
 				// Fix the current node to the center of the canvas
@@ -274,8 +275,8 @@
 					}
 
 					const bounds = { 
-						xMin: 5, xMax: width - 5, 
-						yMin: 5, yMax: height - 5 
+						xMin: 8, xMax: width - 8, 
+						yMin: 8, yMax: height - 8 
 					};
 
 					const svg = d3.select("#graph-container").append("svg")
