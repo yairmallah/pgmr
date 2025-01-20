@@ -152,9 +152,6 @@
 			
 			async function update_text_hiperlinks(text_par) {
 				await initializeAllDicts();
-				//build text
-				const infoParagraph = document.getElementById('node-info');
-				let text = nodeMessages[nodeName];
 				for (let key in nodeMessages) {
 					if (problem_words.includes(key)){
 						if (key=="הר" && !mountain_con.includes(nodeName)) {
