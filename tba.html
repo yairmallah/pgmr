@@ -180,6 +180,7 @@
 				node_obj.fx = width / 10;
 				node_obj.fy = height / 10;
 				current_node = node_obj
+				simulation.alpha(1).restart();
 			}
 			
 			loadTba().then(() => {
