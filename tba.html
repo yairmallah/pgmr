@@ -130,8 +130,12 @@
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
 				const infoTitle = document.getElementById('node-title');
-				const node_obj = d3.selectAll(".node").filter(d => {
+				let node_obj = null;
+				let lemp node_obj = d3.selectAll(".node").filter(d => {
 					console.log("Inspecting node:", d);
+					if d.id == nodeName{
+						node_obj = d;
+					}
 					return d._group && d._group.g === nodeName; // Adjust based on the debug output
 				});
 				infoTitle.textContent = `${nodeName}`;
