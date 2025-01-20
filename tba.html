@@ -149,11 +149,8 @@
 			const mountain_con = ["מעיין"]
 			const heart_con = []
 			const problem_words = ["לב", "הר", "קו"]
-			
-			async function nodeClick(nodeName) {
+			async function update_text_hiperlinks(text_par) {
 				await initializeAllDicts();
-				const infoTitle = document.getElementById('node-title');
-				infoTitle.textContent = `${nodeName}`;
 				//build text
 				const infoParagraph = document.getElementById('node-info');
 				let text = nodeMessages[nodeName];
@@ -164,19 +161,31 @@
 						if (key=="קו") {
 							if (line_con.includes(nodeName)) {
 								let regex = "קו " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								text_par = text_par.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
 								continue;}
 							continue;}
 						if (key=="לב") {
 							if (heart_con.includes(nodeName)) {
 								let regex = "לב " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
+								text_par = text_par.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
 								continue;}
 							continue;}
 					}
 					const regex = new RegExp(key, "g");
-					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+					text_par = text_par.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 				}
+				return text_par;
+			}
+			
+			
+			async function nodeClick(nodeName) {
+				await initializeAllDicts();
+				const infoTitle = document.getElementById('node-title');
+				infoTitle.textContent = `${nodeName}`;
+				//build text
+				const infoParagraph = document.getElementById('node-info');
+				let text = nodeMessages[nodeName];
+				text = update_text_hiperlinks(text);
 				//inject txt to html
 				infoParagraph.innerHTML = text;
 				
