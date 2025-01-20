@@ -149,6 +149,7 @@
 			const mountain_con = ["מעיין"]
 			const heart_con = []
 			const problem_words = ["לב", "הר", "קו"]
+			
 			async function update_text_hiperlinks(text_par) {
 				await initializeAllDicts();
 				//build text
@@ -176,7 +177,6 @@
 				}
 				return text_par;
 			}
-			
 			
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
@@ -216,6 +216,10 @@
 				nodeMessages = window.messages;
 				nodeClass = window.classes;
 				nodeScheme = window.images;
+				
+				tba_txter = document.getElementById('tba-txt');
+				tba_txter.innerHTML = update_text_hiperlinks(tba_txter);
+				
 				let current_node = null;
 				
 				nodeClick('ארכיטקטורה');    
