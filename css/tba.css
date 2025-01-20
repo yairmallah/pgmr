@@ -11,8 +11,8 @@
 }
 #main {
   position: absolute;
-  top: 5%;
-  left: 25%; /* 25, 70, 89*/
+  top: 2%;
+  left: 28%; /* 25, 70, 89*/
   width: 70%;
   height: 89%;
   border: 1px solid #000000;
@@ -26,11 +26,11 @@ svg{
 }
 #schemes {
   position: absolute;
-  top: 71%;
+  top: 73%;
   left: 2%;
   width: 20%;
   padding:0px 15px 0px 7px;
-  height: 22%;
+  height: 24%;
   border: 1px solid #000000;
   overflow-y: auto;
   overflow-x: hidden;
