@@ -128,9 +128,11 @@
 			
 			async function nodeClick(nodeName) {
 				await initializeAllDicts();
-				const infoTitle = document.getElementById('title');
+				const infoTitle = document.getElementById('node-title');
+				const node_obj = d3.selectAll(".node").filter(d => d.id === nodeName);
 				infoTitle.textContent = `${nodeName}`;
 				
+				//text build
 				const infoParagraph = document.getElementById('node-info');
 				let text = nodeMessages[nodeName];
 				for (let key in nodeMessages) {
@@ -153,7 +155,9 @@
 					const regex = new RegExp(key, "g");
 					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 				}
+				//text injection
 				infoParagraph.innerHTML = text;
+				//scheme injection
 				const scheme = document.getElementById('schemes');
 				let inner = "";
 				for (let imgObj in nodeScheme[nodeName]){
@@ -164,6 +168,16 @@
 					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
 				}
 				scheme.innerHTML = inner;
+				//node position
+				if (current_node != null) {
+					current_node.fx = null;
+					current_node.fy = null;
+				}
+
+				// Fix the current node to the center of the canvas
+				node_obj.fx = width / 2;
+				node_obj.fy = height / 10;
+				current_node = node_obj
 			}
 			
 			loadTba().then(() => {
