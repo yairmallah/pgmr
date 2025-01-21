@@ -299,7 +299,7 @@
 						.force("charge", d3.forceManyBody().strength(-0.1))
 						.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
 						.force("bounds", forceBounds(bounds))
-						.force("collide", d3.forceCollide(15).strength(0.5));
+						.force("collide", d3.forceCollide(7).strength(0.5));
 					function forceSameClassAttraction(strength) {
 						return (alpha) => {
 							const nodes = simulation.nodes();
