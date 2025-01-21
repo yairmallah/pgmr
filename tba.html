@@ -89,6 +89,16 @@
 						return 30; // Other prefixes
 					}
 				}
+				function getPrefix(prefix) {
+					if (!isNaN(parseInt(prefix, 10))) {
+						return "decimal";
+						return "hebrew";
+					} else if (prefix >= 'i' && prefix <= 'Z') {
+						return "lower-roman";
+					} else {
+						return "hebrew";
+					}
+				}
 				
 
 				// Iterate over the input strings
@@ -110,17 +120,17 @@
 					
 					// Add a new list if necessary
 					if (stack.length === 0 || stack[stack.length - 1].level < level) {
-						html += '<ul>';
+						html += '<ol style="list-style-type:' + getPrefix(prefix) + ';">';
 						stack.push({ level });
 					}
 
 					// Add the current item
-					html += '<li>'+prefix+'.'+text+'</li>';
+					html += '<li>'+text+'</li>';
 				});
 
 				// Close any remaining open lists
 				while (stack.length > 0) {
-					html += '</ul>';
+					html += '</ol>';
 					stack.pop();
 				}
 
