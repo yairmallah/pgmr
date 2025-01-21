@@ -120,7 +120,7 @@
 					
 					// Add a new list if necessary
 					if (stack.length === 0 || stack[stack.length - 1].level < level) {
-						html += '<ol style="list-style-type:' + getPrefix(prefix) + ';">';
+						html += '<ul>'//'<ol style="list-style-type:' + getPrefix(prefix) + ';">';
 						stack.push({ level });
 					}
 
@@ -130,7 +130,7 @@
 
 				// Close any remaining open lists
 				while (stack.length > 0) {
-					html += '</ol>';
+					html += '</ul>'//'</ol>';
 					stack.pop();
 				}
 
