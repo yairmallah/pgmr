@@ -2,7 +2,7 @@
   position: absolute;
   top: 5%;
   left: 2%;
-  width: 40%;
+  width: 65%;
   height: 89%;
   border: 1px solid #000000;
   overflow-y: visible;
@@ -16,10 +16,10 @@ svg{
 #schemes {
   position: absolute;
   top: 5%;
-  left: 65%;
-  width: 30%;
+  left: 69%;
+  width: 29%;
   padding:0px 15px 0px 7px;
-  height: 89%;
+  height: 50%;
   border: 1px solid #000000;
   overflow-y: auto;
   overflow-x: hidden;
@@ -27,10 +27,10 @@ svg{
 }
 .textcot{
   position: absolute;
-  top: 5%;
-  left: 45%;
-  width: 15%; /* Set fixed width */
-  height: 89%; /* Set fixed height */
+  top: 3%;
+  left: 69%;
+  width: 29%; /* Set fixed width */
+  height: 44%; /* Set fixed height */
   border: 1px solid #000;
   padding: 15px;
   overflow-y: auto;
