@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         isDragging = false;
         navButton.style.cursor = "grab";
+		subMenu.classList.toggle("hidden");
     });
 
     // Toggle Submenu
