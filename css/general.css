@@ -97,6 +97,15 @@ b {
     text-align: center;
 	font-family: 'Courier New', monospace;
 }
+#subMenu {
+    position: absolute;
+    top: 0;
+    right: 60px; /* Moves menu to the left of the button */
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    display: none;
+}
 .navItem {
     /*width: 100px;*/
     height: 20px;
