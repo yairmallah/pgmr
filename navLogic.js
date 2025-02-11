@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isDragging) {
             localStorage.setItem("navX", navContainer.style.left.replace("px", ""));
             localStorage.setItem("navY", navContainer.style.top.replace("px", ""));
+			subMenu.classList.toggle("hidden");
         }
         isDragging = false;
         navButton.style.cursor = "grab";
-		subMenu.classList.toggle("hidden");
     });
 
     // Toggle Submenu
