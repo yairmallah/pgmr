@@ -1,41 +1,63 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const button = document.getElementById("navButton");
+    const navContainer = document.createElement("div");
+    navContainer.id = "navContainer";
+    navContainer.innerHTML = `
+        <button id="navButton">☰</button>
+        <div id="subMenu" class="hidden">
+            <button class="navItem" data-link="index.html">Home</button>
+            <button class="navItem" data-link="about.html">About</button>
+            <button class="navItem" data-link="contact.html">Contact</button>
+        </div>
+    `;
+    document.body.appendChild(navContainer);
+
+    const navButton = document.getElementById("navButton");
+    const subMenu = document.getElementById("subMenu");
+    const navItems = document.querySelectorAll(".navItem");
 
     // Load position from localStorage
-    let posX = localStorage.getItem("navButtonX") || 50;
-    let posY = localStorage.getItem("navButtonY") || 50;
-    button.style.left = `${posX}px`;
-    button.style.top = `${posY}px`;
+    let posX = localStorage.getItem("navX") || 50;
+    let posY = localStorage.getItem("navY") || 50;
+    navContainer.style.position = "fixed";
+    navContainer.style.left = `${posX}px`;
+    navContainer.style.top = `${posY}px`;
 
     let offsetX, offsetY, isDragging = false;
 
-    button.addEventListener("mousedown", (e) => {
+    navButton.addEventListener("mousedown", (e) => {
         isDragging = true;
-        offsetX = e.clientX - button.offsetLeft;
-        offsetY = e.clientY - button.offsetTop;
-        button.style.cursor = "grabbing";
+        offsetX = e.clientX - navContainer.offsetLeft;
+        offsetY = e.clientY - navContainer.offsetTop;
+        navButton.style.cursor = "grabbing";
     });
 
     document.addEventListener("mousemove", (e) => {
         if (isDragging) {
             let newX = e.clientX - offsetX;
             let newY = e.clientY - offsetY;
-            button.style.left = `${newX}px`;
-            button.style.top = `${newY}px`;
+            navContainer.style.left = `${newX}px`;
+            navContainer.style.top = `${newY}px`;
         }
     });
 
     document.addEventListener("mouseup", () => {
         if (isDragging) {
-            localStorage.setItem("navButtonX", button.style.left.replace("px", ""));
-            localStorage.setItem("navButtonY", button.style.top.replace("px", ""));
+            localStorage.setItem("navX", navContainer.style.left.replace("px", ""));
+            localStorage.setItem("navY", navContainer.style.top.replace("px", ""));
         }
         isDragging = false;
-        button.style.cursor = "grab";
+        navButton.style.cursor = "grab";
     });
 
-    // Navigation Function
-    button.addEventListener("click", () => {
-        window.location.href = "index.html"; // Change this to the desired page
+    // Toggle Submenu
+    navButton.addEventListener("click", () => {
+        subMenu.classList.toggle("hidden");
+    });
+
+    // Navigation for sub-items
+    navItems.forEach(item => {
+        item.addEventListener("click", function () {
+            window.location.href = this.getAttribute("data-link");
+        });
     });
 });
