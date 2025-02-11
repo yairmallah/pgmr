@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle Submenu
     navButton.addEventListener("click", () => {
         subMenu.classList.toggle("hidden");
+		//subMenu.style.right = "60px";
     });
 
     // Navigation for sub-items
