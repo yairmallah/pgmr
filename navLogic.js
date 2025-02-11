@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("mousemove", (e) => {
-        if (isDragging && !isDragging) {
+        if (isDragging) {
             let newX = e.clientX - offsetX;
             let newY = e.clientY - offsetY;
-            button.style.left = `${newX}px`;
+            button.style.left = "500px"//`${newX}px`;
             button.style.top = `${newY}px`;
         }
     });
