@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
+        if (isDragging && !isDragging) {
             let newX = e.clientX - offsetX;
             let newY = e.clientY - offsetY;
             button.style.left = `${newX}px`;
