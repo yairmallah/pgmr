@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="navItem" data-link="index.html">Home</button>
             <button class="navItem" data-link="log.html">מילון</button>
             <button class="navItem" data-link="tba.html">תב"ע</button>
+
+			<table>
+					<tr>
+						<td><button class="navItem" data-link="index.html">בית</button></td>
+					</tr>
+					<tr>
+						<td><button class="navItem" data-link="log.html">מילון</button></td>
+						<td><button class="navItem" data-link="tba.html">תב"ע</button></td>
+					</tr>
+				</table>
         </div>
     `;
     document.body.appendChild(navContainer);
