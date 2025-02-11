@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <button id="navButton">☰</button>
         <div id="subMenu" class="hidden">
             <button class="navItem" data-link="index.html">Home</button>
-            <button class="navItem" data-link="about.html">About</button>
-            <button class="navItem" data-link="contact.html">Contact</button>
+            <button class="navItem" data-link="log.html">מילון</button>
+            <button class="navItem" data-link="tba.html">תב"ע</button>
         </div>
     `;
     document.body.appendChild(navContainer);
