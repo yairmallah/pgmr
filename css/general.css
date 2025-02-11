@@ -81,7 +81,7 @@ b {
     cursor: pointer;
     color: inherit;
 }
-#navButton {
+/*#navButton {
     position: fixed;
     top: 50px;
     left: 50px;
@@ -95,4 +95,4 @@ b {
     font-size: 24px;
     text-align: center;
 	font-family: 'Courier New', monospace;
-}
+}*/
