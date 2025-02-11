@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isDragging) {
             let newX = e.clientX - offsetX;
             let newY = e.clientY - offsetY;
-            button.style.left = "500px"//`${newX}px`;
-			console.log("in");
+            button.style.left = `${newX}px`;
             button.style.top = `${newY}px`;
         }
     });
