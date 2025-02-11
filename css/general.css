@@ -60,6 +60,10 @@ background: #999;
     color: #e5ff80
 }
 
+.hidden {
+	visibility: hidden;
+}
+
 h3 {
     position: relative;
     color: #FFFFFF;
