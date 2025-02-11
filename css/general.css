@@ -81,3 +81,17 @@ b {
     cursor: pointer;
     color: inherit;
 }
+#navButton {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: grab;
+    font-size: 24px;
+    text-align: center;
+}
