@@ -4,10 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     navContainer.innerHTML = `
         <button id="navButton">☰</button>
         <div id="subMenu" class="hidden">
-            <button class="navItem" data-link="index.html">Home</button>
-            <button class="navItem" data-link="log.html">מילון</button>
-            <button class="navItem" data-link="tba.html">תב"ע</button>
-
 			<table>
 					<tr>
 						<td><button class="navItem" data-link="index.html">בית</button></td>
