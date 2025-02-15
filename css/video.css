@@ -20,9 +20,9 @@ html, body {
 }
 
 #video {
-    max-width: 65%; /* Ensures video does not get too large */
-    height: auto; /* Adjusts height automatically */
-    width: 100%; /* Scales properly */
+    width: 100%; /* Make it responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent inline spacing issues */
 }
 
 .legend {
