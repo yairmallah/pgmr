@@ -11,8 +11,15 @@ html, body {
     width: 100%;
     height: 100vh; /* Full height of the viewport */
 
-#video {
+#videoWrapper {
+    display: flex;
+    justify-content: center; /* Centers video inside */
+    align-items: center;
     flex: 1; /* Takes remaining space */
+    max-width: 65%; /* Controls the video width */
+}
+
+#video {
     max-width: 65%; /* Ensures video does not get too large */
     height: auto; /* Adjusts height automatically */
     width: 100%; /* Scales properly */
