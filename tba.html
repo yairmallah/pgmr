@@ -17,7 +17,6 @@
 				<p id="node-info">
 				</p>
 			</div>
-			<div id="schemes"></div>
 		</div>
 		<div id="main">
 			<h3 id="title"></h3>
@@ -176,7 +175,7 @@
 				//text injection
 				infoParagraph.innerHTML = text;
 				//scheme injection
-				const scheme = document.getElementById('schemes');
+				/*const scheme = document.getElementById('schemes');
 				let inner = "";
 				for (let imgObj in nodeScheme[nodeName]){
 					if (nodeScheme[nodeName][imgObj][0] == ""){
@@ -185,7 +184,7 @@
 					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
 					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
 				}
-				scheme.innerHTML = inner;
+				scheme.innerHTML = inner;*/
 				//node position
 				if (current_node != null) {
 					current_node.fx = null;
