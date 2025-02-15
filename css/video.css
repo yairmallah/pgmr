@@ -12,10 +12,12 @@ html, body {
     height: 100vh; /* Full height of the viewport */
 
 #video {
-	height: 97%
-	flex: 1; /* Takes up remaining space */
-    /*max-width: 65%; /* Limits video width */
-    object-fit: cover; /* Ensures video fills its area properly */
+	flex: 1; /* Takes remaining space */
+    max-width: 65%; /* Ensures video does not get too large */
+    aspect-ratio: 1 / 1; /* Keeps the video square */
+    object-fit: cover; /* Ensures video fills its space */
+    width: 100%; /* Ensures it scales properly */
+    height: auto; /* Makes it adjust */
 }
 
 .legend {
