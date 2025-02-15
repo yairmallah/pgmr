@@ -38,10 +38,10 @@ svg{
 }
 .textcot{
   position: absolute;
-  top: 85/*27*/%;
-  left: 2%;
-  width: 98%/*20%; /* Set fixed width */;
-  height: 13/*43*/%; /* Set fixed height */
+  top: 85%;/*27*/
+  left: 5%;
+  width: 90%;/*20%*/
+  height: 13%;/*43*/
   border: 1px solid #000;
   padding: 15px;
   overflow-y: auto;
