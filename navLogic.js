@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const navContainer = document.createElement("div");
     navContainer.id = "navContainer";
     navContainer.innerHTML = `
-        <button id="navButton">☰</button>
+        <button id="navButton"></button>
         <div id="subMenu" class="hidden">
 			<table>
 					<tr>
