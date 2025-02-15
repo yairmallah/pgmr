@@ -92,7 +92,8 @@ b {
 	background-image:url("https://yairmallah.github.io/pgmr/imgs/nav%20schame.gif");
 	background-size: 100% 100%;
     background-repeat: no-repeat;
-	background: #222;
+    background-position: center;
+	/*background: #222;*/
     color: white;
     border: none;
     border-radius: 5%;
