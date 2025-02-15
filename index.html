@@ -58,15 +58,17 @@
     </head>
     <body>
         <div id="graph-container"></div>
-        <script src="dictionarys.js"></script>
         <script src="https://d3js.org/d3.v7.min.js"></script>
+		<script src="dictionarysGen.js"></script>
         <script>
             const width = document.getElementById("graph-container").offsetWidth;
             const height = document.getElementById("graph-container").offsetHeight;
 
            
             const links = [];
-
+			var nodeMessages = window.messages;
+			var nodeClass = window.classes;
+			var nodeScheme = window.images;
             // Generate links if messages share a common word
             const nodesKeys = Object.keys(nodeMessages);
             for (let i = 0; i < nodesKeys.length; i++) {
