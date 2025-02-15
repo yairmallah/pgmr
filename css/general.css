@@ -86,8 +86,8 @@ b {
     color: inherit;
 }
 #navButton {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background: #222;
     color: white;
     border: none;
@@ -100,13 +100,13 @@ b {
 #subMenu {
     position: absolute;
     top: 0;
-    right: 60px; /* Moves menu to the left of the button */
-    background: rgba(0, 0, 0, 0.8);
+    right: 40px; /* Moves menu to the left of the button */
+    background: rgba(34, 34, 34, 0.8);
     border-radius: 8px;
     padding: 10px;
 }
 .navItem {
-    /*width: 100px;*/
+    width: 100px; /*navigation buttons!!*/
     height: 20px;
 	background: #111;
     color: white;
