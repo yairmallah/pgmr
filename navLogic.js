@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <div id="subMenu" class="hidden">
 			<table>
 					<tr>
-						<td><button class="navItem" data-link="index.html">בית</button></td>
 						<td><button class="navItem" data-link="video.html">סימולציה</button></td>
+						<td><button class="navItem" data-link="index.html">בית</button></td>
 					</tr>
 					<tr>
 						<td><button class="navItem" data-link="log.html">מילון</button></td>
