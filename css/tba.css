@@ -14,7 +14,7 @@
   top: 1%;
   left: 28%; /* 25, 70, 89*/
   width: 70%;
-  height: 82%;
+  height: 79%;
   border: 1px solid #000000;
   overflow-y: auto;
   overflow-x: hidden;
@@ -42,7 +42,7 @@ svg{
 }
 .textcot{
   position: absolute;
-  top: 85%;/*27*/
+  top: 83%;/*27*/
   left: 5%;
   width: 90%;/*20%*/
   height: 13%;/*43*/
