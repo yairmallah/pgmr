@@ -14,7 +14,7 @@ html, body {
 #video {
 	height: 97%
 	flex: 1; /* Takes up remaining space */
-    max-width: 65%; /* Limits video width */
+    /*max-width: 65%; /* Limits video width */
     object-fit: cover; /* Ensures video fills its area properly */
 }
 
