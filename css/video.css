@@ -12,12 +12,10 @@ html, body {
     height: 100vh; /* Full height of the viewport */
 
 #video {
-	flex: 1; /* Takes remaining space */
+    flex: 1; /* Takes remaining space */
     max-width: 65%; /* Ensures video does not get too large */
-    aspect-ratio: 1 / 1; /* Keeps the video square */
-    object-fit: cover; /* Ensures video fills its space */
-    width: 100%; /* Ensures it scales properly */
-    height: auto; /* Makes it adjust */
+    height: auto; /* Adjusts height automatically */
+    width: 100%; /* Scales properly */
 }
 
 .legend {
@@ -46,7 +44,8 @@ html, body {
     border-radius: 2px;
 }
 #scheme-code {
-    flex: 1; /* Takes up remaining space */
-    max-width: 35%; /* Limits the right panel */
+    flex: 1; /* Takes remaining space */
+    max-width: 35%; /* Ensures text panel stays proportional */
     border: none; /* Removes iframe border */
+    height: 100vh; /* Ensures full height */
 }
