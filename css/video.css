@@ -27,3 +27,8 @@
     height: 20px;
     border-radius: 2px;
 }
+#scheme-code {
+    flex: 1; /* Takes up remaining space */
+    max-width: 35%; /* Limits the right panel */
+    border: none; /* Removes iframe border */
+}
