@@ -17,7 +17,9 @@ html, body {
     height: auto; /* Adjusts height automatically */
     width: 100%; /* Scales properly */
 }
-
+video::-webkit-media-controls-panel {
+    width: 100% !important;
+}
 .legend {
     font-size: 15px;
 	position: absolute;
