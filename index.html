@@ -64,173 +64,177 @@
             const width = document.getElementById("graph-container").offsetWidth;
             const height = document.getElementById("graph-container").offsetHeight;
 
-			console.log("in1");
             const links = [];
 			var nodeMessages = window.messages;
 			var nodeClass = window.classes;
 			var nodeScheme = window.images;
-			console.log(nodeMessages);
-            // Generate links if messages share a common word
-            const nodesKeys = Object.keys(nodeMessages);
-            for (let i = 0; i < nodesKeys.length; i++) {
-                for (let j = 0; j < nodesKeys.length; j++) {
-                    const source = nodesKeys[i];
-                    if (source=="הר"){
-                        continue;}
-                    const target = nodesKeys[j];
-                    const targetWords = nodeMessages[target];
+			initializeAllDicts().then(() => {
+				// define dictionarys
+				nodeMessages = window.messages;
+				nodeClass = window.classes;
+				nodeScheme = window.images;
+				// Generate links if messages share a common word
+				const nodesKeys = Object.keys(nodeMessages);
+				for (let i = 0; i < nodesKeys.length; i++) {
+					for (let j = 0; j < nodesKeys.length; j++) {
+						const source = nodesKeys[i];
+						if (source=="הר"){
+							continue;}
+						const target = nodesKeys[j];
+						const targetWords = nodeMessages[target];
 
-                    if (targetWords.includes(source)) {
-                        links.push({ source, target });
-                    }
-                    //const sorceWords = nodeMessages[source];
-                    //for (const ward of targetWords) {
-                    //    if (sorceWords.includes(ward)) {
-                    //        links.push({ source, target });
-                    //        break;
-                    //    }
-                    //}
-                }
-            }
-            const lincs = [];
-            // Generate lincs if messages share a common word
-            for (let i = 0; i < nodesKeys.length; i++) {
-                for (let j = 0; j < nodesKeys.length; j++) {
-                    const target = nodesKeys[j];
-                    const targetWords = nodeMessages[target];
-                    const source = nodesKeys[i];
-                    const sourceWords = nodeMessages[source];
-                    for (const ward of targetWords) {
-                        if (sourceWords.includes(ward)) {
-                            lincs.push({ source, target });
-                            break;
-                        }
-                    }
-                }
-            }
+						if (targetWords.includes(source)) {
+							links.push({ source, target });
+						}
+						//const sorceWords = nodeMessages[source];
+						//for (const ward of targetWords) {
+						//    if (sorceWords.includes(ward)) {
+						//        links.push({ source, target });
+						//        break;
+						//    }
+						//}
+					}
+				}
+				const lincs = [];
+				// Generate lincs if messages share a common word
+				for (let i = 0; i < nodesKeys.length; i++) {
+					for (let j = 0; j < nodesKeys.length; j++) {
+						const target = nodesKeys[j];
+						const targetWords = nodeMessages[target];
+						const source = nodesKeys[i];
+						const sourceWords = nodeMessages[source];
+						for (const ward of targetWords) {
+							if (sourceWords.includes(ward)) {
+								lincs.push({ source, target });
+								break;
+							}
+						}
+					}
+				}
 
-            const svg = d3.select("#graph-container").append("svg")
-                .attr("width", "100%")
-                .attr("height", "100%");
-            // Define the simulation with forces
-            const simulation = d3.forceSimulation()
-                .force("link", d3.forceLink().id(d => d.id).distance(180))
-                .force("linc", d3.forceLink().id(d => d.id).distance(50))
-                .force("linc", d3.forceLink().id(d => d.id).strength(0.000001))
-                .force("charge", d3.forceManyBody().strength(-1))
-                .force("center", d3.forceCenter(width / 2, height / 2))
-                .force("collide", d3.forceCollide(30));
-            function forceSameClassAttraction(strength) {
-                return (alpha) => {
-                    const nodes = simulation.nodes();
-                    for (let i = 0; i < nodes.length; i++) {
-                        for (let j = i + 1; j < nodes.length; j++) {
-                            const nodeA = nodes[i];
-                            const nodeB = nodes[j];
-                            // Apply attraction only for nodes of the same class
-                            if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
-                                const dx = nodeB.x - nodeA.x;
-                                const dy = nodeB.y - nodeA.y;
-                                const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
+				const svg = d3.select("#graph-container").append("svg")
+					.attr("width", "100%")
+					.attr("height", "100%");
+				// Define the simulation with forces
+				const simulation = d3.forceSimulation()
+					.force("link", d3.forceLink().id(d => d.id).distance(180))
+					.force("linc", d3.forceLink().id(d => d.id).distance(50))
+					.force("linc", d3.forceLink().id(d => d.id).strength(0.000001))
+					.force("charge", d3.forceManyBody().strength(-1))
+					.force("center", d3.forceCenter(width / 2, height / 2))
+					.force("collide", d3.forceCollide(30));
+				function forceSameClassAttraction(strength) {
+					return (alpha) => {
+						const nodes = simulation.nodes();
+						for (let i = 0; i < nodes.length; i++) {
+							for (let j = i + 1; j < nodes.length; j++) {
+								const nodeA = nodes[i];
+								const nodeB = nodes[j];
+								// Apply attraction only for nodes of the same class
+								if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
+									const dx = nodeB.x - nodeA.x;
+									const dy = nodeB.y - nodeA.y;
+									const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
 
-                                // Strength of the attraction
-                                const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
+									// Strength of the attraction
+									const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
 
-                                // Apply forces to nodes
-                                nodeA.vx += force * dx;
-                                nodeA.vy += force * dy;
-                                nodeB.vx -= force * dx;
-                                nodeB.vy -= force * dy;
-                            }
-                        }
-                    }
-                };
-            }
-
-
-            // Create links
-            const link = svg.append("g")
-                .selectAll(".link")
-                .data(links)
-                .enter().append("line")
-                .attr("class", "link");
-
-            const linc = svg.append("g")
-                .selectAll(".linc")
-                .data(lincs)
-                .enter().append("line")
-                .attr("class", "linc");
-
-            // Create nodes with initial positions
-            const node = svg.append("g")
-                .selectAll(".node")
-                .data(Object.keys(nodeMessages).map(id => ({
-                    id,
-                    group: nodeClass[id] || "default",
-                    x: Math.random() * width,
-                    y: Math.random() * height
-                })))
-                .enter().append("g")
-                .attr("class", "node")
-                .call(d3.drag()
-                    .on("start", dragStart)
-                    .on("drag", dragged)
-                    .on("end", dragEnd));
-
-            node.on("click", (event, d) => {
-                window.location.replace("https://yairmallah.github.io/pgmr/log");
-            });
-
-            node.append("circle")
-                .attr("class", d => nodeClass[d.id])
+									// Apply forces to nodes
+									nodeA.vx += force * dx;
+									nodeA.vy += force * dy;
+									nodeB.vx -= force * dx;
+									nodeB.vy -= force * dy;
+								}
+							}
+						}
+					};
+				}
 
 
-            node.append("text")
-                .attr("dx", 0)
-                .attr("dy", ".35em")
-                .attr("text-anchor", "middle")
-				.attr("class", d => "b"+nodeClass[d.id])
-                //.attr("anchor", "center")
-                .text(d => d.id);
+				// Create links
+				const link = svg.append("g")
+					.selectAll(".link")
+					.data(links)
+					.enter().append("line")
+					.attr("class", "link");
 
-            simulation.nodes(node.data())
-                .on("tick", ticked);
+				const linc = svg.append("g")
+					.selectAll(".linc")
+					.data(lincs)
+					.enter().append("line")
+					.attr("class", "linc");
 
-            simulation.force("link").links(links);
-            simulation.force("linc").links(lincs);
+				// Create nodes with initial positions
+				const node = svg.append("g")
+					.selectAll(".node")
+					.data(Object.keys(nodeMessages).map(id => ({
+						id,
+						group: nodeClass[id] || "default",
+						x: Math.random() * width,
+						y: Math.random() * height
+					})))
+					.enter().append("g")
+					.attr("class", "node")
+					.call(d3.drag()
+						.on("start", dragStart)
+						.on("drag", dragged)
+						.on("end", dragEnd));
+
+				node.on("click", (event, d) => {
+					window.location.replace("https://yairmallah.github.io/pgmr/log");
+				});
+
+				node.append("circle")
+					.attr("class", d => nodeClass[d.id])
 
 
-            function ticked() {
-                link
-                    .attr("x1", d => d.source.x)
-                    .attr("y1", d => d.source.y)
-                    .attr("x2", d => d.target.x)
-                    .attr("y2", d => d.target.y);
-                node
-                    .attr("transform", d => `translate(${d.x},${d.y})`);
-                linc
-                    .attr("x1", d => d.source.x)
-                    .attr("y1", d => d.source.y)
-                    .attr("x2", d => d.target.x)
-                    .attr("y2", d => d.target.y);
-            }
+				node.append("text")
+					.attr("dx", 0)
+					.attr("dy", ".35em")
+					.attr("text-anchor", "middle")
+					.attr("class", d => "b"+nodeClass[d.id])
+					//.attr("anchor", "center")
+					.text(d => d.id);
 
-            function dragStart(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            }
+				simulation.nodes(node.data())
+					.on("tick", ticked);
 
-            function dragged(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
-            }
+				simulation.force("link").links(links);
+				simulation.force("linc").links(lincs);
 
-            function dragEnd(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            }
+
+				function ticked() {
+					link
+						.attr("x1", d => d.source.x)
+						.attr("y1", d => d.source.y)
+						.attr("x2", d => d.target.x)
+						.attr("y2", d => d.target.y);
+					node
+						.attr("transform", d => `translate(${d.x},${d.y})`);
+					linc
+						.attr("x1", d => d.source.x)
+						.attr("y1", d => d.source.y)
+						.attr("x2", d => d.target.x)
+						.attr("y2", d => d.target.y);
+				}
+
+				function dragStart(event, d) {
+					if (!event.active) simulation.alphaTarget(0.3).restart();
+					d.fx = d.x;
+					d.fy = d.y;
+				}
+
+				function dragged(event, d) {
+					d.fx = event.x;
+					d.fy = event.y;
+				}
+
+				function dragEnd(event, d) {
+					if (!event.active) simulation.alphaTarget(0);
+					d.fx = null;
+					d.fy = null;
+				}
+			}
         </script>
     </body>
 </html>
