@@ -10,7 +10,12 @@
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
 }
 #wmain{
-	  background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif");
+  background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif");
+  position: absolute;
+  top: 1%;
+  left: 28%; /* 25, 70, 89*/
+  width: 70%;
+  height: 79%;
 }
 #main {
   position: absolute;
