@@ -16,6 +16,8 @@
   left: 28%; /* 25, 70, 89*/
   width: 70%;
   height: 79%;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }
 #main {
   position: absolute;
