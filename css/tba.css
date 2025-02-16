@@ -18,6 +18,7 @@
   height: 79%;
   background-repeat: no-repeat;
   background-size: 100% auto;
+  background-position: center;
 }
 #main {
   position: absolute;
