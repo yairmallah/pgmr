@@ -41,10 +41,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif") no-repeat center center;
-    background-size: cover;
-    display: none; /* Hidden by default */
-    overflow-y: scroll; /* Allows scrolling to see full image */
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay behind image */
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    overflow: auto; /* Allow scrolling */
+}
+
+/* The Actual Image in Fullscreen Mode */
+#fullscreenImg {
+    max-width: 90%; /* Scale image to fit */
+    max-height: 90vh; /* Ensure it doesn't overflow */
+    display: block;
+    margin: auto; /* Centers the image */
 }
 
 /* Close Button */
