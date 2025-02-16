@@ -23,8 +23,20 @@
 			<p id="tba-txt">
 			</p>
 		</div>
+		<div id="fullscreenImage">
+			<button id="closeBtn" onclick="hideImage()">X</button>
+		</div>
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
+		<script>
+			function showImage() {
+				document.getElementById("fullscreenImage").style.display = "block";
+			}
+
+			function hideImage() {
+				document.getElementById("fullscreenImage").style.display = "none";
+			}
+		</script>
         <script>
 			var tba_base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
