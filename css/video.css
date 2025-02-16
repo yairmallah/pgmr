@@ -19,10 +19,15 @@ html, body {
     flex: 1; /* Takes remaining space */
     max-width: 65%;
 }
+#legend {
+	flex: 1; /* Takes up remaining space */
+    max-width: 35%; /* Limits the right panel */
+    border: none; /* Removes iframe border */
+}
 
 video {
-    /*flex: 1; /* Takes remaining space */
-    /*max-width: 65%; /* Ensures video does not get too large */
+    flex: 1; /* Takes remaining space */
+    max-width: 65%; /* Ensures video does not get too large */
     height: auto; /* Adjusts height automatically */
     width: 100%; /* Scales properly */
     display: block; /* Prevent inline spacing issues */
