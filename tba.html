@@ -31,11 +31,13 @@
         <script src="dictionarysGen.js"></script>
 		<script>
 			function showImage() {
-				document.getElementById("fullscreenImage").style.display = "block";
+				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
+				document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
 			}
 
 			function hideImage() {
-				document.getElementById("fullscreenImage").style.display = "none";
+				document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
+				document.body.style.overflow = "auto"; // Re-enable page scrolling
 			}
 		</script>
         <script>
