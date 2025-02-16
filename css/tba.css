@@ -9,6 +9,9 @@
   overflow-x: hidden;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
 }
+#wmain{
+	  background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif");
+}
 #main {
   position: absolute;
   top: 1%;
@@ -19,7 +22,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
-  background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif");
   background-attachment: fixed;
   background-size: cover;
   display: flex;
