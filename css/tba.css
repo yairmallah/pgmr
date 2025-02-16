@@ -52,7 +52,7 @@
 
 /* The Actual Image in Fullscreen Mode */
 #fullscreenImg {
-    /*max-width: 90%; /* Scale image to fit */
+    max-width: 90%; /* Scale image to fit */
     /*max-height: 90vh; /* Ensure it doesn't overflow */
     display: block;
     margin: auto; /* Centers the image */
