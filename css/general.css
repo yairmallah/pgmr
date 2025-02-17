@@ -103,6 +103,9 @@ b {
 	font-family: 'Courier New', monospace;
 	z-index:5;
 }
+#navContainer {
+	z-index:5;
+}
 #subMenu {
     position: absolute;
     top: 0;
