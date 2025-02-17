@@ -34,7 +34,7 @@
   background-size: cover;
   display: flex;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 #fullscreenImage {
     position: fixed;
