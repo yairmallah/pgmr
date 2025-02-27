@@ -71,19 +71,15 @@ background: #999;
 	font-size: 13px;
 }
 .code pre {
-  white-space: pre-wrap; /* Allow line breaks */
+  display: inline-block; /* Make spans break lines */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  display: block; /* Just in case */
-  padding-left: 2ch; /* Optional, for small indent at the start */
-  text-indent: -2ch; /* Negative indent to align the first line */
 }
 
 .code pre span {
-  display: inline-block; /* Allow spans to break lines */
+  white-space: pre-wrap; /* Preserve line breaks but allow wrapping */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  text-indent: inherit; /* Inherit the indent from <pre> */
 }
 
 .hidden {
