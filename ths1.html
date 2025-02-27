@@ -63,7 +63,7 @@
           const id = "headline-" + i;
 		  console.log(line);
           toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.replaceAll("#", "")+'</a></li>');
-          content += `<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>`;
+          content += '<h${level} id="'+id+'">'+line.replace(/^#+/, "").trim()+'</h'+level+'>';
         } else {
 		console.log("in");
 		console.log(/\{(.+?)\}/g);
