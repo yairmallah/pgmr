@@ -62,7 +62,7 @@
           const level = line.match(/^#+/)[0].length;
           const id = "headline-" + i;
 		  console.log(line);
-          toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.replace.slice(1, -1)+'</a></li>');
+          toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.slice(1, -1)+'</a></li>');
           content += `<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>`;
         } else {
 		console.log("in");
