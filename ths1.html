@@ -49,7 +49,7 @@
 			const problem_words = ["לב", "הר", "קו"]*/
 
 		async function loadArticle() {
-      const response = await fetch("/texts/ths1.txt");
+      const response = await fetch("/pgmr/texts/ths1.txt");
       const text = await response.text();
       const lines = text.split('\n');
       let footnoteIndex = 1;
