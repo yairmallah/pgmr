@@ -60,6 +60,12 @@ background: #999;
 .bmyt{
     color: #e5ff80
 }
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6897bb;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6a8759;}
 
 .hidden {
 	visibility: hidden;
