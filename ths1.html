@@ -49,7 +49,7 @@
 			const problem_words = ["לב", "הר", "קו"]*/
 
 	async function loadArticle() {
-      const response = await fetch("/pgmr/texts/ths1.txt");
+      const response = await fetch("article.txt");
       const text = await response.text();
       const lines = text.split('\n');
       let footnoteIndex = 1;
@@ -57,21 +57,19 @@
       let toc = [];
       let content = "";
 
-      lines.forEach((line, i) => {
+      lines.forEach(function(line, i) {
         if (line.startsWith("#")) {
           const level = line.match(/^#+/)[0].length;
-          const id = `headline-${i}`;
-          toc.push(`<a href="#${id}">${line.replace(/^#+/, "").trim()}</a>`);
-          content += `<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>`;
+          const id = "headline-" + i;
+          toc.push("<a href='#" + id + "'>" + line.replace(/^#+/, "").trim() + "</a>");
+          content += "<h" + level + " id='" + id + "'>" + line.replace(/^#+/, "").trim() + "</h" + level + ">";
         } else {
-          let lineWithFootnotes = line.replace(/\{(.+?)\}/g, (match, text) => {
-            const footnoteId = `footnote-${footnoteIndex}`;
-            footnotes.push(`<div id="${footnoteId}">${footnoteIndex}. ${text}</div>`);
-            return `<sup onclick="scrollToFootnote('${footnoteId}')">[${footnoteIndex++}]</sup>`;
+          let lineWithFootnotes = line.replace(/\{(.+?)\}/g, function(match, text) {
+            const footnoteId = "footnote-" + footnoteIndex;
+            footnotes.push("<div id='" + footnoteId + "'>" + footnoteIndex + ". " + text + "</div>");
+            return "<sup onclick=\"scrollToFootnote('" + footnoteId + "')\">[" + footnoteIndex++ + "]</sup>";
           });
-          content += `<p>${lineWithFootnotes}</p>`;
-		  console.log(lineWithFootnotes);
-		  console.log(content);
+          content += "<p>" + lineWithFootnotes + "</p>";
         }
       });
 
