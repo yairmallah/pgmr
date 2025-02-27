@@ -2,6 +2,7 @@ body{
 	display: grid;
 	grid-template-columns: 27% 73%; /* Two equal sides + one center */
 	grid-template-rows: 100%; /* Full height */
+	gap: 2hv;
 }
 #dictionary-scheme{
 	width: 100%;
@@ -42,7 +43,6 @@ body{
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
   background-attachment: fixed;
   background-size: cover;
-  display: flex;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.85);
   grid-area: 1 / 2;
