@@ -21,7 +21,7 @@ body{
 #wmain{
   background: url("https://yairmallah.github.io/pgmr/imgs/tba.gif");
   position: relative;
-  top: 1%;
+  /*top: 1%;
   left: 28%; /* 25, 70, 89*/
   width: 100%;
   height: 100%;
@@ -32,8 +32,8 @@ body{
 }
 #main {
   position: relative;
-  top: 1%;
-  left: 28%; /* 25, 70, 89*/
+  /*top: 1%;
+  /*left: 28%; /* 25, 70, 89*/
   width: 100%;
   height: 100%;
   border: 1px solid #000000;
