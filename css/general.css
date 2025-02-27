@@ -70,11 +70,20 @@ background: #999;
 	font-family: monospace;
 	font-size: 13px;
 }
-.code :is(span, pre) {
+.code pre {
+  white-space: pre-wrap; /* Allow line breaks */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  white-space: pre-wrap; /* Only affects <pre> */
-  display: inline-block; /* Only affects <span> */
+  display: block; /* Just in case */
+  padding-left: 2ch; /* Optional, for small indent at the start */
+  text-indent: -2ch; /* Negative indent to align the first line */
+}
+
+.code pre span {
+  display: inline-block; /* Allow spans to break lines */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-indent: inherit; /* Inherit the indent from <pre> */
 }
 
 .hidden {
