@@ -61,8 +61,8 @@
         if (line.startsWith("#")) {
           const level = line.match(/^#+/)[0].length;
           const id = "headline-" + i;
-		  console.log(id);
-          toc.push('<li class="level-'+level+'"><a href=#"'+id+'">${line.replace(/^#+/, "").trim()}</a></li>`');
+		  console.log(line);
+          toc.push('<li class="level-'+level+'"><a href="#'+id+'">${line.replace(/^#+/, "").trim()}</a></li>`');
           content += `<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>`;
         } else {
 		console.log("in");
