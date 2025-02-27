@@ -70,6 +70,18 @@ background: #999;
 	font-family: monospace;
 	font-size: 13;
 }
+.code span {
+  display: inline-block; /* Make spans break lines */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.code pre {
+  white-space: pre-wrap; /* Preserve line breaks but allow wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 
 .hidden {
 	visibility: hidden;
