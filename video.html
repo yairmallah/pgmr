@@ -10,6 +10,9 @@
     </head>
     <body>
 		<script src="navLogic.js"></script>
+		<script>
+			
+		</script>
 		<div id="container">
 			<div id="legend">
 				<div class="legend" id="sym">
@@ -37,6 +40,19 @@
 				<source src="imgs\סימולציה.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 			</video>
+			<div id="scheme-code"><div>
+			<script>
+				fetch("simulationcode.html") // Load the other page
+					.then(response => response.text()) // Convert response to text
+					.then(html => {
+						let parser = new DOMParser();
+						let doc = parser.parseFromString(html, "text/html"); // Parse as DOM
+						let targetElement = doc.querySelector("#simulation-code"); // Select specific element
+						if (targetElement) {
+						document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
+						}
+					});
+			</script>
 			<iframe id="scheme-code" src="simulationcode.html" title="simulation code"></iframe>
 		</div>
     </body>
