@@ -64,6 +64,9 @@
           toc.push(`<li class="level-${level}"><a href="#${id}">${line.replace(/^#+/, "").trim()}</a></li>`);
           content += `<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>`;
         } else {
+		console.log("in");
+		console.log(/\{(.+?)\}/g);
+		
           let lineWithFootnotes = line.replace(/\{(.+?)\}/g, function(match, text) {
             const footnoteId = "footnote-" + footnoteIndex;
 			console.log(footnoteIndex);
