@@ -74,6 +74,7 @@ video ::-webkit-media-controls-panel {
 }
 #scheme-code {
     flex: 1; /* Takes up remaining space */
-    max-width: 35%; /* Limits the right panel */
+    width: 100%;
+	height: 100%
     border: none; /* Removes iframe border */
 }
