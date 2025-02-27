@@ -65,7 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Navigation for sub-items
     navItems.forEach(item => {
         item.addEventListener("click", function () {
+			if (window.current_def == null){window.current_def = null;}
+			def = window.current_def
             window.location.href = this.getAttribute("data-link");
+			window.current_def = def
         });
     });
 });
