@@ -28,6 +28,10 @@ html, body {
 	flex: 1; /* Takes up remaining space */
     max-width: 35%; /* Limits the right panel */
     border: none; /* Removes iframe border */
+	position: absolute;
+	position: absolute;
+    bottom: 0;
+    left: 100%;
 }
 
 video {
@@ -42,13 +46,15 @@ video ::-webkit-media-controls-panel {
 }
 .legend {
     font-size: 15px;
-	position: absolute;
+	position: fixed;
     bottom: 20px;
     left: 20px;
     background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
     color: white;
     padding: 10px;
     border-radius: 8px;
+	right: calc(50% - 50vh); /* Align to vid right side */
+	bottom: calc(50% - (50vh / 2)); /* Align to vid bottom side */		
 }
 
 .legend table {
@@ -69,4 +75,7 @@ video ::-webkit-media-controls-panel {
     flex: 1; /* Takes up remaining space */
     max-width: 35%; /* Limits the right panel */
     border: none; /* Removes iframe border */
+	position:fixed;
+	right: calc(50% - 50vh); /* Align to vid right side */
+	top: calc(50% - (50vh / 2)); /* Align to vid top side */
 }
