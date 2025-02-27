@@ -27,7 +27,7 @@ html, body {
 
 video {
     flex: 1; /* Takes remaining space */
-    max-width: 65%; /* Ensures video does not get too large */
+    max-width: 100vh; /* Ensures video does not get too large */
     height: auto; /* Adjusts height automatically */
     width: 100%; /* Scales properly */
     display: block; /* Prevent inline spacing issues */
