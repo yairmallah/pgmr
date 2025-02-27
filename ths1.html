@@ -70,6 +70,7 @@
             return `<sup onclick="scrollToFootnote('${footnoteId}')">[${footnoteIndex++}]</sup>`;
           });
           content += `<p>${lineWithFootnotes}</p>`;
+		  console.log(lineWithFootnotes);
         }
       });
 
