@@ -66,6 +66,8 @@
         } else {
           let lineWithFootnotes = line.replace(/\{(.+?)\}/g, function(match, text) {
             const footnoteId = "footnote-" + footnoteIndex;
+			console.log(footnoteIndex);
+			console.log(footnoteIndex);
             footnotes.push(`<div id="${footnoteId}">${footnoteIndex}. ${text}</div>`);
             return `<sup onclick="scrollToFootnote('${footnoteId}')">[${footnoteIndex++}]</sup>`;
           });
