@@ -11,6 +11,11 @@ html, body {
     width: 100%;
     height: 100vh; /* Full height of the viewport */
 }
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+}
 
 #videoWrapper {
     display: flex;
