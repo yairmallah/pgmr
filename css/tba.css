@@ -2,7 +2,7 @@ body{
 	display: grid;
 	grid-template-columns: 27% 73%; /* Two equal sides + one center */
 	grid-template-rows: 100%; /* Full height */
-	gap: 2hv;
+	gap: 2vh;
 }
 #dictionary-scheme{
 	width: 100%;
