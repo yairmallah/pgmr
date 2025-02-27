@@ -38,6 +38,7 @@
 			const problem_words = ["לב", "הר", "קו"]
 			
 			async function nodeClick(nodeName) {
+				sessionStorage.setItem("def", nodeName);
 				await initializeAllDicts();
 				const infoTitle = document.getElementById('title');
 				infoTitle.textContent = `${nodeName}`;
@@ -82,8 +83,9 @@
 				nodeMessages = window.messages;
 				nodeClass = window.classes;
 				nodeScheme = window.images;
-				
-				nodeClick('ארכיטקטורה', nodeMessages, nodeClass, nodeScheme);    
+				let def = sessionStorage.getItem("def");
+				if (!def){ def = 'ארכיטקטורה' }
+				nodeClick(def, nodeMessages, nodeClass, nodeScheme);    
 			
 				const links = [];
 
