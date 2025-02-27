@@ -3,9 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>תב"ע</title>
+        <title>טקסט1</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
-		<link rel="stylesheet" type="text/css" href="css\tba.css"/>
         
     </head>
     <body>
@@ -18,16 +17,10 @@
 				</p>
 			</div>
 		</div>
-		<div id="wmain"></div>
 		<div id="main">
-			<h3 id="title"></h3>
-			<p id="tba-txt">
-			</p>
 		</div>
-	    <div id="fullscreenImage">
-			<img id="fullscreenImg" src="https://yairmallah.github.io/pgmr/imgs/tba.gif" alt="Expanded View">
-			<button id="closeBtn" onclick="hideImage()">X</button>
-		</div>
+		<div id="footnotes"></div>
+		<div id="toc"></div>
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
 		<script>
@@ -42,7 +35,7 @@
 			}
 		</script>
         <script>
-			var tba_base_txt = [];
+			/*var base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
 			const height = document.getElementById("graph-container").offsetHeight;
 			var nodeMessages = window.messages;
@@ -53,10 +46,53 @@
 			const line_con = ["גבול", "מסילה", "לב"]
 			const mountain_con = ["מעיין"]
 			const heart_con = []
-			const problem_words = ["לב", "הר", "קו"]
+			const problem_words = ["לב", "הר", "קו"]*/
 
-			function loadTba() {
-				const filePath = "/pgmr/tbaTxt.txt"
+		async function loadArticle() {
+			const response = await fetch("/pgmr/texts/ths1.txt");
+			const text = await response.text();
+			const lines = text.split('\n');
+			let footnoteIndex = 1;
+			let footnotes = [];
+			let toc = [];
+			let content = "";
+
+			lines.forEach((line, i) => {
+			if (line.startsWith("#")) {
+			  const level = line.match(/^#+/)[0].length;
+			  const id = 'headline-${i}';
+			  toc.push('<a href="#${id}">${line.replace(/^#+/, "").trim()}</a>');
+			  content += '<h${level} id="${id}">${line.replace(/^#+/, "").trim()}</h${level}>';
+			} else {
+			  let lineWithFootnotes = line.replace(/\{(.+?)\}/g, (match, text) => {
+				const footnoteId = 'footnote-${footnoteIndex}';
+				footnotes.push('<div id="${footnoteId}">${footnoteIndex}. ${text}</div>');
+				return '<sup onclick="scrollToFootnote(`'+footnoteId+'`)">[${footnoteIndex++}]</sup>';
+				});
+				content += '<p>${lineWithFootnotes}</p>';
+			}
+			});
+
+			document.getElementById("main").innerHTML = content;
+			document.getElementById("footnotes").innerHTML = footnotes.join("\n");
+			document.getElementById("toc").innerHTML = toc.join("\n");
+			}
+
+			function scrollToFootnote(id) {
+			  const note = document.getElementById(id);
+				if (note) {
+					const offset = note.offsetTop - document.getElementById("mainText").scrollTop;
+					document.getElementById("footnotes").scrollTop = offset;
+				}
+			}
+
+			loadArticle();
+
+
+/*
+			function loadTxt() {
+				//address!!
+				const filePath = "/pgmr/texts/ths1.txt"
 				return fetch(filePath)
 					.then(response => {
 						if (!response.ok) {
@@ -65,8 +101,8 @@
 						return response.text();
 					})
 					.then(text => {
-						tba_base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
-						return tba_base_txt;
+						base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
+						return base_txt;
 					})
 					.catch(error => {
 						console.error("Error loading TBA:", error.message);
@@ -189,17 +225,6 @@
 				}
 				//text injection
 				infoParagraph.innerHTML = text;
-				//scheme injection
-				/*const scheme = document.getElementById('schemes');
-				let inner = "";
-				for (let imgObj in nodeScheme[nodeName]){
-					if (nodeScheme[nodeName][imgObj][0] == ""){
-						break;
-					}
-					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
-					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
-				}
-				scheme.innerHTML = inner;*/
 				//node position
 				if (current_node != null) {
 					current_node.fx = null;
@@ -216,8 +241,8 @@
 				simulation.alpha(1).restart();
 			}
 			
-			loadTba().then(() => {
-				tba_base_txt = generateIndentedList(tba_base_txt);
+			loadTxt().then(() => {
+				base_txt = generateIndentedList(tba_base_txt);
 				document.getElementById('tba-txt').innerHTML = tba_base_txt;				
 			
 			
@@ -392,7 +417,7 @@
 						node
 							.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
 								/*d.x = Math.max(bounds.xMin, Math.min(bounds.xMax, d.x));
-								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*/
+								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*//*
 							//.attr("transform", d => `translate(${d.x},${d.y})`);
 					}
 
@@ -413,7 +438,7 @@
 						d.fy = null;
 					}
 				});
-			});
+			});*/
         </script>
     </body>
 </html>
