@@ -68,7 +68,7 @@ background: #999;
 .s5 { color: #6a8759;}
 .code{
 	font-family: monospace;
-	font-size: 13;
+	font-size: 13px;
 }
 .code span {
   display: inline-block; /* Make spans break lines */
