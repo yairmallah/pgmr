@@ -66,6 +66,10 @@ background: #999;
 .s3 { color: #6897bb;}
 .s4 { color: #629755; font-style: italic;}
 .s5 { color: #6a8759;}
+.code{
+	font-family: monospace;
+	font-size: 13;
+}
 
 .hidden {
 	visibility: hidden;
