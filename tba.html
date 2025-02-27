@@ -45,7 +45,6 @@
 			var tba_base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
 			const height = document.getElementById("graph-container").offsetHeight;
-				
 			var nodeMessages = window.messages;
 			var nodeClass = window.classes;
 			var nodeScheme = window.images;
@@ -213,6 +212,7 @@
 				node_obj.fx = width / 10;
 				node_obj.fy = height / 10;
 				current_node = node_obj
+				sessionStorage.setItem("def", current_node.id);
 				simulation.alpha(1).restart();
 			}
 			
@@ -238,7 +238,9 @@
 						tba_base_txt = tba_base_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
 					document.getElementById('tba-txt').innerHTML = tba_base_txt;
-					nodeClick('ארכיטקטורה'); 
+					let def = sessionStorage.getItem("def");
+					if (!def){ def = 'ארכיטקטורה' }
+					nodeClick(def); 
 				
 					const links = [];
 
