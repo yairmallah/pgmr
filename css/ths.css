@@ -56,6 +56,8 @@ body{
 	overflow-y: auto;
 	direction: rtl;
 }
+#toc a{
+	color: #fff;
 #toc ul {
 	list-style: none;
 	padding-right: 0;
