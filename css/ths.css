@@ -29,8 +29,8 @@ body{
   background-attachment: fixed;
   background-size: cover;
   z-index: 1;
-  background-color: rgba(1, 1, 1, 1);
-  margin: 5vh;
+  background-color: #fff;
+  padding: 5vh;
   color: #000;
   grid-area: 1 / 2;
 }
@@ -48,6 +48,7 @@ body{
 }
 #main p{
 	text-align: justify;
+	color: #000;
 }
 #main sup{
 	cursor: pointer;
