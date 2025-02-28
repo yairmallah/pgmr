@@ -47,9 +47,13 @@ body{
 	overflow-y: auto;
 	direction: rtl;
 	font-size: 13px;
+	opacity: 0.7;
 }
 #footnotes p{
 	margin-bottom: 20px;
+}
+#footnotes .selected{
+	opacity:1;
 }
 #toc {
 	position: relative;
