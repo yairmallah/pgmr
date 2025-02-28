@@ -35,7 +35,7 @@
 			}
 		</script>
         <script>
-			/*var base_txt = [];
+			var base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
 			const height = document.getElementById("graph-container").offsetHeight;
 			var nodeMessages = window.messages;
@@ -43,11 +43,11 @@
 			var nodeScheme = window.images;
 			var current_node = null;
 			var simulation = null;
-			const line_con = ["גבול", "מסילה", "לב"]
-			const mountain_con = ["מעיין"]
-			const heart_con = []
-			const problem_words = ["לב", "הר", "קו"]*/
-			txt_add= "/pgmr/texts/ths1.txt"
+			const line_con = ["גבול", "מסילה", "לב"];
+			const mountain_con = ["מעיין"];
+			const heart_con = [];
+			const problem_words = ["לב", "הר", "קו"];
+			txt_add= "/pgmr/texts/ths1.txt";
 			async function loadArticle() {
 				function extract_footnotes(txt_l, current_index, del="$"){
 					txt_l = txt_l.split("$");
@@ -82,12 +82,6 @@
 					toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.replaceAll("#", "")+'</a></li>');
 					content += '<h'+level+' id="'+id+'">'+line.replace(/^#+/, "").trim()+'</h'+level+'>';
 				} else {
-				/*let lineWithFootnotes = line.replace(/\{(.+?)\}/g, "ggggggggggga"function(match, text) {
-					console.log("in");
-					const footnoteId = "footnote-" + footnoteIndex;			
-					footnotes.push('<div id="'+footnoteId+'">'+footnoteIndex+'. '+text+'</div>');
-					return '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(footnoteIndex++)+']</sup>';
-				  });*/
 				  let extruction_output = extract_footnotes(line, footnoteIndex);
 				  content += '<p>'+extruction_output[0]+'</p>';
 				  footnotes = footnotes.concat(extruction_output[1]);
@@ -107,108 +101,6 @@
 					const offset = note.offsetTop - document.getElementById("main").scrollTop;
 					document.getElementById("footnotes").scrollTop = offset;
 				}
-			}
-
-			loadArticle();
-
-
-/*
-			function loadTxt() {
-				//address!!
-				const filePath = "/pgmr/texts/ths1.txt"
-				return fetch(filePath)
-					.then(response => {
-						if (!response.ok) {
-							throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
-						}
-						return response.text();
-					})
-					.then(text => {
-						base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
-						return base_txt;
-					})
-					.catch(error => {
-						console.error("Error loading TBA:", error.message);
-						return {};
-					});
-			}
-			
-			function generateIndentedList(strings) {
-				// Create a container for the nested structure
-				let html = '';
-
-				// Stack to keep track of the current list levels
-				const stack = [];
-				
-				function mapEnglishToHebrew(char) {
-					const englishToHebrew = {
-						a: 'א', b: 'ב', c: 'ג', d: 'ד', e: 'ה', f: 'ו', g: 'ז', h: 'ח',
-						i: 'ט', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ס', p: 'ע',
-						q: 'פ', r: 'צ', s: 'ק', t: 'ר', u: 'ש', v: 'ת', w: 'שׁ', x: 'שׂ',
-						y: 'ץ', z: 'תּ'
-					};
-					return englishToHebrew[char.toLowerCase()] || null;
-				}
-				// Helper function to determine the level based on the prefix
-				function getLevel(prefix) {
-					if (!isNaN(parseInt(prefix, 10))) {
-						return 1; // Numeric levels (e.g., 1, 2, 3)
-					} else if (prefix >= 'א' && prefix <= 'ת') {
-						return 5; // Alphabetical levels (a-z)
-					} else if (prefix >= 'a' && prefix <= 'z') {
-						return 10; // Alphabetical levels (a-z)
-					} else if (prefix >= 'A' && prefix <= 'Z') {
-						return 20; // Uppercase alphabetical levels (A-Z)
-					} else {
-						return 30; // Other prefixes
-					}
-				}
-				function getPrefix(prefix) {
-					if (!isNaN(parseInt(prefix, 10))) {
-						return "decimal";
-						return "hebrew";
-					} else if (prefix >= 'i' && prefix <= 'Z') {
-						return "lower-roman";
-					} else {
-						return "hebrew";
-					}
-				}
-				
-
-				// Iterate over the input strings
-				strings.forEach(str => {
-					// Split the string into prefix and text
-					var [prefix, text] = str.split('.');
-					
-					if (prefix.length == 1 && !(prefix == 'i' || prefix == 'x' || prefix == 'v') && isNaN(parseInt(prefix, 10))){
-						prefix = mapEnglishToHebrew(prefix);}
-					
-					// Determine the numeric or alphabetical order of the prefix
-					const level = getLevel(prefix);
-
-					// Pop the stack until we find the correct parent level
-					while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-						html += '</ul>';
-						stack.pop();
-					}
-					
-					// Add a new list if necessary
-					if (stack.length === 0 || stack[stack.length - 1].level < level) {
-						html += "<ul>";//'<ol style="list-style-type:' + getPrefix(prefix) + ';">'
-						stack.push({ level });
-					}
-
-					// Add the current item
-					html += '<li>'+text+'</li>';
-				});
-
-				// Close any remaining open lists
-				while (stack.length > 0) {
-					html += '</ul>'//'</ol>';
-					stack.pop();
-				}
-
-				return html;
 			}
 			
 			async function nodeClick(nodeName) {
@@ -264,14 +156,10 @@
 				simulation.alpha(1).restart();
 			}
 			
-			loadTxt().then(() => {
-				base_txt = generateIndentedList(tba_base_txt);
-				document.getElementById('tba-txt').innerHTML = tba_base_txt;				
-			
+			loadArticle().then(() => {	
 			
 				// SECTION 2 - scheme
 				// definitions
-				
 				
 				initializeAllDicts().then(() => {
 					// define dictionarys
@@ -279,13 +167,13 @@
 					nodeClass = window.classes;
 					nodeScheme = window.images;
 					
-					
+					main_txt = document.getElementById("main").innerHTML;
 					// initializations
 					for (let key in nodeMessages) {
 						const regex = new RegExp(key, "g");
-						tba_base_txt = tba_base_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+						main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
-					document.getElementById('tba-txt').innerHTML = tba_base_txt;
+					document.getElementById('tba-txt').innerHTML = main_txt;
 					let def = sessionStorage.getItem("def");
 					if (!def){ def = 'ארכיטקטורה' }
 					nodeClick(def); 
@@ -440,7 +328,7 @@
 						node
 							.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
 								/*d.x = Math.max(bounds.xMin, Math.min(bounds.xMax, d.x));
-								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*//*
+								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*/
 							//.attr("transform", d => `translate(${d.x},${d.y})`);
 					}
 
