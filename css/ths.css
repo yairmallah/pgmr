@@ -38,7 +38,14 @@ body{
 	position: relative;
 	width: 100%;
 	height: 100%;
-	border: 1px solid #000000;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#toc {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
 	overflow-y: auto;
 }
 #toc ul {
