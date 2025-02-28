@@ -71,7 +71,7 @@
 			console.log(footnoteIndex);
 			console.log(footnoteIndex);
 			footnotes.push('<div id="'+footnoteId+'">'+footnoteIndex+'. '+text+'</div>');
-			return '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(footnoteIndex++)+']</sup>`;
+			return '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(footnoteIndex++)+']</sup>';
 		  });
 		  content += '<p>'+lineWithFootnotes+'</p>';
 		}
