@@ -133,17 +133,17 @@ b {
     top: 0;
     right: 55px;
     background: rgba(34, 34, 34, 0.8);
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 4px;
+    padding: 4px;
 }
 .navItem {
-    width: 100px; /*navigation buttons!!*/
-    height: 22px;
+    width: 105px; /*navigation buttons!!*/
+    height: 25px;
 	padding: 5px;
 	background: #111;
     color: white;
     border: none;
-    border-radius: 5%;
+    border-radius: 5px;
     cursor: grab;
     font-size: 20px;
     text-align: center;
