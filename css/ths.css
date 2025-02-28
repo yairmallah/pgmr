@@ -45,6 +45,8 @@ body{
 	direction: rtl;
 	font-size: 13px;
 }
+#footnotes p{
+	margin-bottom: 20px;
 #toc {
 	position: relative;
 	width: 100%;
