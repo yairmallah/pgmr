@@ -52,6 +52,9 @@ body{
 #footnotes p{
 	margin-bottom: 20px;
 }
+#footnotes p :hover{
+	opacity:1;
+}
 #footnotes .selected{
 	opacity:1;
 }
