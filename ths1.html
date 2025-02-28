@@ -173,7 +173,7 @@
 						const regex = new RegExp(key, "g");
 						main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
-					document.getElementById('tba-txt').innerHTML = main_txt;
+					document.getElementById('main').innerHTML = main_txt;
 					let def = sessionStorage.getItem("def");
 					if (!def){ def = 'ארכיטקטורה' }
 					nodeClick(def); 
