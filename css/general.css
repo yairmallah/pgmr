@@ -137,8 +137,8 @@ b {
     padding: 10px;
 }
 .navItem {
-    /*width: 100px; /*navigation buttons!!
-    height: 22px;*/
+    width: 100px; /*navigation buttons!!*/
+    height: 22px;
 	padding: 5px;
 	background: #111;
     color: white;
