@@ -30,7 +30,7 @@ body{
   background-size: cover;
   z-index: 1;
   background-color: #fff;
-  padding: 5vh;
+  padding: 0 5vh;
   color: #000;
   grid-area: 1 / 2;
 }
