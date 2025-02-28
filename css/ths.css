@@ -57,7 +57,9 @@ body{
 	direction: rtl;
 }
 #toc a{
-	color: #fff;
+	color: inherit;
+	text-decoration: none;
+}
 #toc ul {
 	list-style: none;
 	padding-right: 0;
