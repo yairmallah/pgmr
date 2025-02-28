@@ -49,6 +49,14 @@
 			const problem_words = ["לב", "הר", "קו"];
 			txt_add= "/pgmr/texts/ths1.txt";
 			async function loadArticle() {
+				const response = await fetch(txt_add);
+				const text = await response.text();
+				const lines = text.split('\n');
+				let footnoteIndex = 1;
+				let footnotes = [];
+				let toc = [];
+				let content = "";
+				let footnotePositions = [];
 				function extract_footnotes(txt_l, current_index, del="$"){
 					txt_l = txt_l.split("$");
 					flag = 1;
@@ -59,6 +67,7 @@
 							const footnoteId = "footnote-" + current_index;			
 							footnotes.push('<div id="'+footnoteId+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
 							ftxt += '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
+							footnotePositions.push({ id: footnoteId, index: current_index, text: txt_l[i] });
 							flag = 1;
 						}else{
 							ftxt += txt_l[i];
@@ -67,13 +76,6 @@
 					}
 					return [ftxt, ftn, current_index];
 				}
-				const response = await fetch(txt_add);
-				const text = await response.text();
-				const lines = text.split('\n');
-				let footnoteIndex = 1;
-				let footnotes = [];
-				let toc = [];
-				let content = "";
 				// todo: footnotes have paragraphs
 				lines.forEach(function(line, i) {
 				if (line.startsWith("#")) {
@@ -82,16 +84,18 @@
 					toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.replaceAll("#", "")+'</a></li>');
 					content += '<h'+level+' id="'+id+'">'+line.replace(/^#+/, "").trim()+'</h'+level+'>';
 				} else {
-				  let extruction_output = extract_footnotes(line, footnoteIndex);
-				  content += '<p>'+extruction_output[0]+'</p>';
-				  footnotes = footnotes.concat(extruction_output[1]);
-				  footnoteIndex = extruction_output[2];
+					let extruction_output = extract_footnotes(line, footnoteIndex);
+					content += '<p>'+extruction_output[0]+'</p>';
+					footnotes = footnotes.concat(extruction_output[1]);
+					footnoteIndex = extruction_output[2];
 				}
 				});
 
 				document.getElementById("main").innerHTML = content;
 				document.getElementById("footnotes").innerHTML = footnotes.join("\n");
 				document.getElementById("toc").innerHTML = '<ul>'+toc.join("\n")+'</ul>';
+				positionFootnotes();
+				document.getElementById("main").addEventListener("scroll", positionFootnotes);
 			}
 
 			function scrollToFootnote(id) {
@@ -102,6 +106,19 @@
 					const offset = note.offsetTop - document.getElementById("main").scrollTop;
 					document.getElementById("footnotes").scrollTop = offset;
 				}
+			}
+			function positionFootnotes() {
+				const mainText = document.getElementById("main");
+				const footnotes = document.querySelectorAll(".footnotes div");
+				const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
+
+				footnotes.forEach(function(note) {
+					const ref = document.querySelector(`sup[onclick="scrollToFootnote('${note.id}')"]`);
+					if (ref) {
+						const offset = ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top;
+						note.style.top = `${offset / scaleFactor}px`;
+					}
+				});
 			}
 			function selectFootnote(id) {
 				document.querySelectorAll("#footnotes div").forEach(function(div) {
