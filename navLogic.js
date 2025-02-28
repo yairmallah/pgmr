@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 						<td><button class="navItem" data-link="log.html">מילון</button></td>
 						<td><button class="navItem" data-link="tba.html">תב"ע</button></td>
 					</tr>
+					<tr>
+						<td><button class="navItem" data-link="turb.html">אורבניזם</button></td>
+					</tr>
 				</table>
         </div>
     `;
