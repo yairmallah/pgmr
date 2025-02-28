@@ -62,6 +62,7 @@ body{
 #footnotes div{
 	margin-bottom: 20px;
 	opacity: 0.7;
+	transition: opacity 0.3s;
 }
 #footnotes div :hover{
 	opacity:1;
