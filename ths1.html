@@ -48,24 +48,24 @@
 			const heart_con = []
 			const problem_words = ["לב", "הר", "קו"]*/
 			txt_add= "/pgmr/texts/ths1.txt"
-			async function loadArticle() {
-				function extract_footnotes(txt_l, current_index, del="$"){
-					txt_l = txt_l.split("$");
-					flag = 1;
-					ftn = [];
-					ftxt = "";
-					for (let i = 0; i < txt_l.length; i++){
-						if (flag == 0) {
-							const footnoteId = "footnote-" + current_index;			
-							footnotes.push('<div id="'+footnoteId+'">'+current_index+'. '+txt_l[i]+'</div>');
-							ftxt += '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
-							flag = 1;
-						}else{
-							ftxt += txt_l[i];
-						}
+			function extract_footnotes(txt_l, current_index, del="$"){
+				txt_l = txt_l.split("$");
+				flag = 1;
+				ftn = [];
+				ftxt = "";
+				for (let i = 0; i < txt_l.length; i++){
+					if (flag == 0) {
+						const footnoteId = "footnote-" + current_index;			
+						footnotes.push('<div id="'+footnoteId+'">'+current_index+'. '+txt_l[i]+'</div>');
+						ftxt += '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
+						flag = 1;
+					}else{
+						ftxt += txt_l[i];
 					}
-					return ftxt, ftn, current_index;
 				}
+				return ftxt, ftn, current_index;
+			}
+			async function loadArticle() {
 				const response = await fetch(txt_add);
 				const text = await response.text();
 				const lines = text.split('\n');
