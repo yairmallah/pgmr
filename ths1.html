@@ -170,7 +170,7 @@
 					main_txt = document.getElementById("main").innerHTML;
 					// initializations
 					for (let key in nodeMessages) {
-						const regex = new RegExp(`(\\b|\\s|^)([הבמכ]?)(${key})(ים|ות|ה|ת)?(?=\\s|$|[.,!?])`, 'g');
+						const regex = new RegExp(`(\\b|\\s|^)([ושהבמכ]?)(${key})(ים|ות|ה|ת)?(?=\\s|$|[.,!?])`, 'g');
 						main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 						return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
 						//const regex = new RegExp(`\\b(?:ה|ב|מ|כ)?${key}(?:ים|ות|ה|ת|ות)?\\b`, 'g');
