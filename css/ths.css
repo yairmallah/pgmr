@@ -57,7 +57,7 @@ body{
 }
 #toc ul {
 	list-style: none;
-	padding-left: 0;
+	padding-right: 0;
 }
 #toc li.level-1 {
 	font-weight: bold;
