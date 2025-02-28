@@ -50,12 +50,10 @@
 			txt_add= "/pgmr/texts/ths1.txt"
 			async function loadArticle() {
 				function extract_footnotes(txt_l, current_index, del="$"){
-					console.log("in");
 					txt_l = txt_l.split("$");
 					flag = 1;
 					ftn = [];
 					ftxt = "";
-					console.log(txt_l.length, txt_l);
 					for (let i = 0; i < txt_l.length; i++){
 						if (flag == 0) {
 							const footnoteId = "footnote-" + current_index;			
@@ -103,10 +101,10 @@
 			}
 
 			function scrollToFootnote(id) {
-				console.log("aiaiai");
+				console.log(id);
 				const note = document.getElementById(id);
 				if (note) {
-					const offset = note.offsetTop - document.getElementById("mainText").scrollTop;
+					const offset = note.offsetTop - document.getElementById("main").scrollTop;
 					document.getElementById("footnotes").scrollTop = offset;
 				}
 			}
