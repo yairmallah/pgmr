@@ -53,6 +53,22 @@ body{
 #main sup{
 	cursor: pointer;
 }
+#main .bterm{
+	color: #7fff7f
+}
+#main .bmath{
+	color: #ff8080
+}
+#main .bspc{
+	color: #e680ff
+}
+#main .bmus{
+	color: #80b3ff
+}
+#main .bmyt{
+	color: #e5ff80
+}
+
 #footnotes {
 	position: relative;
 	width: 100%;
