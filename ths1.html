@@ -57,7 +57,7 @@
 					for (let i = 0; i < txt_l.length; i++){
 						if (flag == 0) {
 							const footnoteId = "footnote-" + current_index;			
-							footnotes.push('<div id="'+footnoteId+'">'+current_index+'. '+txt_l[i]+'</div>');
+							footnotes.push('<div id="'+footnoteId+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
 							ftxt += '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
 							flag = 1;
 						}else{
