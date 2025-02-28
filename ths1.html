@@ -108,6 +108,7 @@
 				}
 			}
 			function positionFootnotes() {
+				console.log("in");
 				const mainText = document.getElementById("main");
 				const footnotes = document.querySelectorAll(".footnotes div");
 				const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
@@ -116,6 +117,7 @@
 					const ref = document.querySelector(`sup[onclick="scrollToFootnote('${note.id}')"]`);
 					if (ref) {
 						const offset = ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top;
+						console.log(note, offset);
 						note.style.top = `${offset / scaleFactor}px`;
 					}
 				});
