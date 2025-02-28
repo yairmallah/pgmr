@@ -31,6 +31,7 @@ body{
   z-index: 1;
   background-color: rgba(1, 1, 1, 1);
   margin: 5vh;
+  color: #000;
   grid-area: 1 / 2;
 }
 #main h1{
