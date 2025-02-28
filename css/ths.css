@@ -49,7 +49,7 @@ body{
 	font-size: 13px;
 	opacity: 0.7;
 }
-#footnote{
+#footnotes div{
 	margin-bottom: 20px;
 }
 #footnotes div :hover{
