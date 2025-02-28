@@ -59,14 +59,17 @@ body{
 	list-style: none;
 	padding-left: 0;
 }
-#toc li {
-	: 0.2em 0;
-}
 #toc li.level-1 {
 	font-weight: bold;
 }
 #toc li.level-2 {
-	padding-left: 1em;
+	padding-right: 1em;
+}
+#toc li.level-3 {
+	padding-right: 2em;
+}
+#toc li.level-4 {
+	padding-right: 3em;
 }
 #fullscreenImage {
     position: fixed;
