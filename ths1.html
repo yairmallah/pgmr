@@ -63,7 +63,7 @@
 						ftxt += txt_l[i];
 					}
 				}
-				return ftxt, ftn, current_index;
+				return [ftxt, ftn, current_index];
 			}
 			async function loadArticle() {
 				const response = await fetch(txt_add);
