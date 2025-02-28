@@ -96,10 +96,20 @@
 
 			function scrollToFootnote(id) {
 				console.log(id);
+				selectFootnote(id);
 				const note = document.getElementById(id);
 				if (note) {
 					const offset = note.offsetTop - document.getElementById("main").scrollTop;
 					document.getElementById("footnotes").scrollTop = offset;
+				}
+			}
+			function selectFootnote(id) {
+				document.querySelectorAll("#footnotes div").forEach(function(div) {
+					div.classList.remove("selected");
+				});
+				const note = document.getElementById(id);
+				if (note) {
+					note.classList.add("selected");
 				}
 			}
 			
