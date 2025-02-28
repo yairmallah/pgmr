@@ -58,13 +58,13 @@ body{
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	direction: rtl;
 	font-size: 13px;
 }
 #footnotes div{
 	margin-bottom: 20px;
 	opacity: 0.7;
 	transition: opacity 0.3s;
+	direction: rtl;
 }
 #footnotes div:hover{
 	opacity:1;
