@@ -47,6 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
             let newY = e.clientY - offsetY;
             navContainer.style.left = `${newX}px`;
             navContainer.style.top = `${newY}px`;
+			
+			// adj sub menu position
+			let buttonRect = navButton.getBoundingClientRect();
+			let windowHeight = window.innerHeight;
+			let windowWidth = window.innerWidth;
+			// Check if the menu will overflow the bottom
+			if (buttonRect.bottom + subMenu.offsetHeight > windowHeight) {
+				subMenu.style.top = "auto";
+				subMenu.style.bottom = "0"; // Flip up
+			} else {
+				subMenu.style.top = "0";
+				subMenu.style.bottom = "auto";
+			}
         }
     });
 
@@ -54,6 +67,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isDragging) {
             localStorage.setItem("navX", navContainer.style.left.replace("px", ""));
             localStorage.setItem("navY", navContainer.style.top.replace("px", ""));
+			// adj sub menu position
+			let buttonRect = navButton.getBoundingClientRect();
+			let windowHeight = window.innerHeight;
+			let windowWidth = window.innerWidth;
+			// Check if the menu will overflow the bottom
+			if (buttonRect.bottom + subMenu.offsetHeight > windowHeight) {
+				subMenu.style.top = "auto";
+				subMenu.style.bottom = "0"; // Flip up
+			} else {
+				subMenu.style.top = "0";
+				subMenu.style.bottom = "auto";
+			}
         }
         isDragging = false;
         navButton.style.cursor = "grab";
@@ -63,18 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     navButton.addEventListener("click", () => {
         subMenu.classList.toggle("hidden");
 		//subMenu.style.right = "60px";
-		let buttonRect = navButton.getBoundingClientRect();
-		let windowHeight = window.innerHeight;
-		let windowWidth = window.innerWidth;
-
-		// Check if the menu will overflow the bottom
-		if (buttonRect.bottom + subMenu.offsetHeight > windowHeight) {
-			subMenu.style.top = "auto";
-			subMenu.style.bottom = "0"; // Flip up
-		} else {
-			subMenu.style.top = "0";
-			subMenu.style.bottom = "auto";
-		}
     });
 
     // Navigation for sub-items
