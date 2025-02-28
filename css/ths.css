@@ -64,7 +64,7 @@ body{
 	opacity: 0.7;
 	transition: opacity 0.3s;
 }
-#footnotes div :hover{
+#footnotes div:hover{
 	opacity:1;
 }
 #footnotes .selected{
