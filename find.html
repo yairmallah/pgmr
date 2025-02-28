@@ -9,23 +9,14 @@
     body { margin: 0; background: black; overflow: hidden; }
     circle { fill: white; cursor: pointer; transition: fill 0.3s; }
     line { stroke: white; stroke-width: 2px; opacity: 0.5; }
+    text { fill: white; font-size: 14px; pointer-events: none; text-anchor: middle; } 
+    .wave { fill: #00FFAA; r: 5; opacity: 1; }
   </style>
 </head>
 <body>
 <script>
-  const data = {
-    nodes: [
-      { id: 'index.html', url: 'index.html' },
-      { id: 'style.css', url: 'style.css' },
-      { id: 'script.js', url: 'script.js' },
-      { id: 'about.html', url: 'about.html' }
-    ],
-    links: [
-      { source: 'index.html', target: 'style.css' },
-      { source: 'index.html', target: 'script.js' },
-      { source: 'about.html', target: 'style.css' }
-    ]
-  };
+  const origin = window.location.origin;
+  const data = { nodes: [], links: [] };
 
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -34,52 +25,105 @@
     .attr("width", width)
     .attr("height", height);
 
-  const simulation = d3.forceSimulation(data.nodes)
-    .force("link", d3.forceLink(data.links).id(d => d.id).distance(200))
+  const simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(d => d.id).distance(200))
     .force("charge", d3.forceManyBody().strength(-300))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-  const link = svg.selectAll("line")
-    .data(data.links)
-    .enter().append("line");
+  function updateGraph() {
+    const link = svg.selectAll("line").data(data.links, d => `${d.source.id}-${d.target.id}`);
+    link.enter().append("line")
+      .merge(link);
+    link.exit().remove();
 
-  const node = svg.selectAll("circle")
-    .data(data.nodes)
-    .enter().append("circle")
-    .attr("r", 20)
-    .on("mouseover", handleMouseOver)
-    .on("mouseout", handleMouseOut)
-    .on("click", (e, d) => window.open(d.url, '_blank'));
+    const node = svg.selectAll("g.node").data(data.nodes, d => d.id);
+    const nodeEnter = node.enter().append("g")
+      .attr("class", "node")
+      .on("mouseover", handleMouseOver)
+      .on("mouseout", handleMouseOut)
+      .on("click", (e, d) => window.open(d.url, '_blank'));
 
-  simulation.on("tick", () => {
-    link.attr("x1", d => d.source.x)
+    nodeEnter.append("circle").attr("r", 20);
+    nodeEnter.append("text").text(d => d.id);
+
+    nodeEnter.merge(node);
+    node.exit().remove();
+
+    simulation.nodes(data.nodes).on("tick", () => {
+      svg.selectAll("line")
+        .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
         .attr("x2", d => d.target.x)
         .attr("y2", d => d.target.y);
 
-    node.attr("cx", d => d.x)
-        .attr("cy", d => d.y);
-  });
+      svg.selectAll("g.node")
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
+    });
+
+    simulation.force("link").links(data.links);
+    simulation.alpha(1).restart();
+  }
 
   function handleMouseOver(e, d) {
-    d3.select(this).attr("fill", "#00FFAA");
+    d3.select(this).select("circle").attr("fill", "#00FFAA");
     spreadWave(d);
   }
 
   function handleMouseOut(e, d) {
-    d3.select(this).attr("fill", "white");
+    d3.select(this).select("circle").attr("fill", "white");
   }
 
   function spreadWave(d, depth = 0) {
     if (depth > 3) return;
     const targets = data.links.filter(l => l.source.id === d.id).map(l => l.target);
     targets.forEach(targetId => {
-      const targetNode = node.filter(n => n.id === targetId);
-      targetNode.transition().duration(500).attr("fill", "#00FFAA")
-        .transition().delay(500).attr("fill", "white");
-      spreadWave(targetNode.data()[0], depth + 1);
+      const targetNode = data.nodes.find(n => n.id === targetId);
+      if (targetNode) {
+        const wave = svg.append("circle")
+          .attr("class", "wave")
+          .attr("cx", d.x)
+          .attr("cy", d.y);
+
+        wave.transition()
+          .duration(1000)
+          .attrTween("cx", () => d3.interpolateNumber(d.x, targetNode.x))
+          .attrTween("cy", () => d3.interpolateNumber(d.y, targetNode.y))
+          .on("end", () => {
+            wave.remove();
+            spreadWave(targetNode, depth + 1);
+          });
+      }
     });
   }
+
+  async function crawl(url, depth = 0) {
+    if (depth > 2 || data.nodes.some(n => n.id === url)) return;
+    try {
+      data.nodes.push({ id: url, url });
+      updateGraph();
+      const response = await fetch(url);
+      const text = await response.text();
+      const links = text.match(/(href|src)="(.*?)"/g) || [];
+	  console.log(links);
+      links.map(link => link.match(/"(.*?)"/)[1])
+        .filter(link => link.startsWith("/") || link.startsWith(origin))
+        .forEach(link => {
+          const fullLink = link.startsWith("/") ? origin + link : link;
+          if (!data.nodes.some(n => n.id === fullLink)) {
+            data.nodes.push({ id: fullLink, url: fullLink });
+            data.links.push({ source: url, target: fullLink });
+            crawl(fullLink, depth + 1);
+            updateGraph();
+          }
+        });
+    } catch (e) {
+      console.error("Failed to fetch", url);
+    }
+  }
+
+
+  // Start crawling from index.html
+  crawl('https://yairmallah.github.io/pgmr/navLogic.js');
 </script>
 </body>
 </html>
