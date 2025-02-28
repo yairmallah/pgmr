@@ -222,3 +222,22 @@ circle :hover {
     opacity: 1;
     color: rgba(255, 255, 255, 1);
 }
+/* scrollbar */
+/* width */
+#main::-webkit-scrollbar {
+width: 10px;
+}
+/* Track */
+#main::-webkit-scrollbar-track {
+background: #fff; 
+}
+/* Handle */
+#main::-webkit-scrollbar-thumb {
+background: #ccc; 
+box-shadow: inset 0px 0px 2px 2px #eee;
+}
+/* Handle on hover */
+#main::-webkit-scrollbar-thumb:hover {
+background: #999; 
+}
+/* end scrollbar */
