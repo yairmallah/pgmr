@@ -170,8 +170,11 @@
 					main_txt = document.getElementById("main").innerHTML;
 					// initializations
 					for (let key in nodeMessages) {
-						const regex = new RegExp(`\\b(?:ה|ב|מ|כ)?${key}(?:ים|ות|ה|ת|ות)?\\b`, 'g');
-						main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
+						const regex = new RegExp(`(\\b|\\s|^)([הבמכ]?)(${key})(ים|ות|ה|ת)?(?=\\s|$|[.,!?])`, 'g');
+						text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
+						return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
+						//const regex = new RegExp(`\\b(?:ה|ב|מ|כ)?${key}(?:ים|ות|ה|ת|ות)?\\b`, 'g');
+						//main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
 					document.getElementById('main').innerHTML = main_txt;
 					let def = sessionStorage.getItem("def");
