@@ -33,6 +33,7 @@ body{
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.85);
   grid-area: 1 / 2;
+  direction: rtl;
 }
 #footnotes {
 	position: relative;
@@ -40,6 +41,7 @@ body{
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
+	direction: rtl;
 }
 #toc {
 	position: relative;
@@ -47,6 +49,7 @@ body{
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
+	direction: rtl;
 }
 #toc ul {
 	list-style: none;
