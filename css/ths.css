@@ -31,13 +31,24 @@ body{
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.85);
   grid-area: 1 / 2;
-  direction: rtl;
 }
-#main sup{
-	cursor: pointer;
+#main h1{
+	direction: rtl;
+}
+#main h2{
+	direction: rtl;
+}
+#main h3{
+	direction: rtl;
+}
+#main h4{
+	direction: rtl;
 }
 #main p{
 	text-align: justify;
+}
+#main sup{
+	cursor: pointer;
 }
 #footnotes {
 	position: relative;
