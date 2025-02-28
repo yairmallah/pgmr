@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     navButton.addEventListener("mousedown", (e) => {
         isDragging = true;
+		dragged = false;
         offsetX = e.clientX - navContainer.offsetLeft;
         offsetY = e.clientY - navContainer.offsetTop;
         navButton.style.cursor = "grabbing";
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("mousemove", (e) => {
         if (isDragging) {
+			dragged = true;
             let newX = e.clientX - offsetX;
             let newY = e.clientY - offsetY;
             navContainer.style.left = `${newX}px`;
@@ -82,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         isDragging = false;
         navButton.style.cursor = "grab";
+		if (dragged){subMenu.classList.toggle("hidden");)
     });
 
     // Toggle Submenu
