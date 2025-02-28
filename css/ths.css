@@ -58,19 +58,19 @@ body{
 	cursor: pointer;
 }
 #main .bterm{
-	color: hsl(120, 100%, 50%);
+	color: hsl(120, 100%, 40%);
 }
 #main .bmath{
-	color: hsl(0, 100%, 50%);
+	color: hsl(0, 100%, 40%);
 }
 #main .bspc{
-	color: hsl(288, 100%, 50%);
+	color: hsl(288, 100%, 40%);
 }
 #main .bmus{
-	color: hsl(216, 100%, 50%);
+	color: hsl(216, 100%, 40%);
 }
 #main .bmyt{
-	color: hsl(72, 100%, 50%);
+	color: hsl(72, 100%, 40%);
 }
 
 #footnotes {
