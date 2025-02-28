@@ -173,7 +173,7 @@
 						/*const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|י)?(?=\\s|$|[;.,!?])`, 'g');
 						main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 						return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});*/
-						const regex = new RegExp('key', 'g');
+						const regex = new RegExp(key, 'g');
 						main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
 					}
 					document.getElementById('main').innerHTML = main_txt;
