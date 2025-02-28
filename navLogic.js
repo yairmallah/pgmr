@@ -63,6 +63,18 @@ document.addEventListener("DOMContentLoaded", function () {
     navButton.addEventListener("click", () => {
         subMenu.classList.toggle("hidden");
 		//subMenu.style.right = "60px";
+		let buttonRect = navButton.getBoundingClientRect();
+		let windowHeight = window.innerHeight;
+		let windowWidth = window.innerWidth;
+
+		// Check if the menu will overflow the bottom
+		if (buttonRect.bottom + subMenu.offsetHeight > windowHeight) {
+			subMenu.style.top = "auto";
+			subMenu.style.bottom = "0"; // Flip up
+		} else {
+			subMenu.style.top = "0";
+			subMenu.style.bottom = "auto";
+		}
     });
 
     // Navigation for sub-items
