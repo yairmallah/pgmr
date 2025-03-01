@@ -51,9 +51,7 @@
 const link = svg.selectAll("path")
   .data(graph.links)
   .enter().append("path")
-  .attr("fill", "none")
-  .attr("stroke", "white") // or any color you want
-  .attr("stroke-width", 1.5);
+  .attr("class", d => "path-"+getFileType(d.source.id) +" path-"+getFileType(d.target.id));
 
 
     const node = svg.selectAll("circle")
