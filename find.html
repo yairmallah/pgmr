@@ -6,7 +6,7 @@
   <title>Website Map</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="css\general.css"/>
-	<link rel="stylesheet" type="text/css" href="css\ths.css"/>
+	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
   <style>/*
 svg {
   box-sizing: border-box;
@@ -25,32 +25,6 @@ line {
   shape-rendering: crispEdges;
 }*/
 </style>
-  <style>
-    body {
-      background: black;
-      margin: 0;
-      overflow: hidden;
-    }
-    text {
-      fill: white;
-      font-family: sans-serif;
-    }
-    circle {
-      cursor: pointer;
-      stroke: white;
-      stroke-width: 1px;
-    }
-    circle.html { fill: white; }      /* HTML files */
-    circle.css { fill: lightblue; }   /* CSS files */
-    circle.js { fill: yellow; }       /* JS files */
-    circle.img { fill: orange; }      /* Image files */
-    circle.txt { fill: green; }       /* TXT files */
-    line {
-      stroke: white;
-      stroke-width: 1px;
-      opacity: 0.5;
-    }
-  </style>
 </head>
 <body>
 <script>const json_add= "https://yairmallah.github.io/pgmr/graph.json";</script>
@@ -134,8 +108,7 @@ line {
         graph.links.forEach(link => {
           if (link.source.id === source.id && !visited.has(link.target.id)) {
             const dot = svg.append("circle")
-              .attr("r", 4)
-              .attr("fill", "red")
+			  .attr("class", "wave w"+source.class+)
               .attr("cx", source.x)
               .attr("cy", source.y);
 

@@ -22,3 +22,7 @@ line {
 	stroke-width: 1px;
 	opacity: 0.5;
 }
+.wave{
+	r: 4;
+	fill: hsl(60, 100%, 0%);
+}
