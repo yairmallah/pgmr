@@ -125,8 +125,8 @@ const link = svg.selectAll("path")
 function segmentedPath(source, target, size) {
   const points = [{ x: source.x, y: source.y }];
   let [x, y] = [source.x, source.y];
-  const targetX = Math.round(target.x / size) * size;
-  const targetY = Math.round(target.y / size) * size;
+  const targetX = target.x ;
+  const targetY = target.y ;
 
   while (Math.abs(x - targetX) > 0.1 || Math.abs(y - targetY) > 0.1) {
     let nextX = x, nextY = y;
@@ -152,7 +152,7 @@ function segmentedPath(source, target, size) {
     [x, y] = [nextX, nextY];
 
     // Emergency brake 🔥 (just in case)
-    if (points.length > 100) break;
+    if (points.length > 200) break;
   }
 
   return points;
