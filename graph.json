@@ -269,10 +269,6 @@
       "url": "https://yairmallah.github.io/pgmr/tba.css"
     },
     {
-      "id": "tba.gif",
-      "url": "https://yairmallah.github.io/pgmr/tba.gif"
-    },
-    {
       "id": "ths.css",
       "url": "https://yairmallah.github.io/pgmr/ths.css"
     },
@@ -296,10 +292,6 @@
       "id": "css/main",
       "url": "https://yairmallah.github.io/pgmr/css/main"
     },
-    {
-      "id": "css/tba.gif",
-      "url": "https://yairmallah.github.io/pgmr/css/tba.gif"
-    }
   ],
   "links": [
     {
@@ -584,7 +576,7 @@
     },
     {
       "source": "tba.html",
-      "target": "tba.gif"
+      "target": "imgs/tba.gif"
     },
     {
       "source": "tba.html",
@@ -716,7 +708,7 @@
     },
     {
       "source": "css/tba.css",
-      "target": "css/tba.gif"
+      "target": "imgs/tba.gif"
     },
     {
       "source": "css/tba.css",
@@ -728,7 +720,7 @@
     },
     {
       "source": "css/tba.css",
-      "target": "css/tba.gif"
+      "target": "imgs/tba.gif"
     },
     {
       "source": "css/tba.css",
