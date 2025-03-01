@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Map with Grid</title>
+  <title>Website Map</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>/*
+svg {
+  box-sizing: border-box;
+  border: 1px solid rgb(212, 212, 212);
+}
+
+circle {
+  stroke: rgb(95, 176, 228);
+  stroke-width: 2;
+  fill: rgba(205, 246, 255, 0.3);
+}
+
+line {
+  stroke: rgb(212, 212, 212);
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}*/
+</style>
   <style>
     body {
       background: black;
@@ -20,74 +38,66 @@
       stroke: white;
       stroke-width: 1px;
     }
+    circle.html { fill: white; }      /* HTML files */
+    circle.css { fill: lightblue; }   /* CSS files */
+    circle.js { fill: yellow; }       /* JS files */
+    circle.img { fill: orange; }      /* Image files */
+    circle.txt { fill: green; }       /* TXT files */
     line {
       stroke: white;
       stroke-width: 1px;
       opacity: 0.5;
     }
-    path {
-      stroke: white;
-      stroke-width: 1px;
-      fill: none;
-    }
   </style>
 </head>
 <body>
+<script>const json_add= "https://yairmallah.github.io/pgmr/graph.json";</script>
 <script>
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const gridSize = 80; // Grid size
+  const gridSize = 40;
 
-  function snapToGrid(value, gridSize) {
-    return Math.round(value / gridSize) * gridSize;
+  const areas = {
+    html: { x: width / 3, y: height / 2 },
+    css: { x: width / 6, y: height / 3 },
+    js: { x: (5 * width) / 6, y: height / 3 },
+    img: { x: width / 4, y: (2 * height) / 3 },
+    txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+  };
+
+  function getFileType(filename) {
+    if (filename.endsWith(".html")) return "html";
+    if (filename.endsWith(".css")) return "css";
+    if (filename.endsWith(".js")) return "js";
+    if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
+    if (filename.endsWith(".txt")) return "txt";
+    return "other";
   }
 
-  function breakLink(x1, y1, x2, y2) {
-    const points = [[x1, y1]];
-    let currentX = x1;
-    let currentY = y1;
-
-    while (currentX !== x2 || currentY !== y2) {
-      const nextX = snapToGrid(currentX + Math.sign(x2 - currentX) * gridSize, gridSize);
-      const nextY = snapToGrid(currentY + Math.sign(y2 - currentY) * gridSize, gridSize);
-
-      if (Math.abs(nextX - x2) < Math.abs(nextY - y2)) {
-        currentX = nextX;
-      } else if (Math.abs(nextX - x2) > Math.abs(nextY - y2)) {
-        currentY = nextY;
-      } else {
-        currentX = nextX;
-        currentY = nextY;
-      }
-
-      points.push([currentX, currentY]);
-    }
-
-    return points;
-  }
-
-  d3.json("graph.json").then(graph => {
+  d3.json(json_add).then(graph => {
     const svg = d3.select("body")
       .append("svg")
       .attr("width", width)
       .attr("height", height);
 
-    graph.nodes.forEach(d => {
-      d.x = snapToGrid(Math.random() * width, gridSize);
-      d.y = snapToGrid(Math.random() * height, gridSize);
-    });
+    const simulation = d3.forceSimulation(graph.nodes)
+      .force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
+      .force("charge", d3.forceManyBody().strength(-500))
+      .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
+      .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
+	  .force("grid", forceGrid(gridSize, 1)) // Grid force with weak strength
+	  .alphaDecay(0.01); // Make the simulation continue running slowly
 
-    const link = svg.selectAll("path")
+    const link = svg.selectAll("line")
       .data(graph.links)
-      .enter().append("path")
-      .attr("stroke", "white")
-      .attr("fill", "none");
+      .enter().append("line");
 
     const node = svg.selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
       .attr("r", 10)
-      .attr("fill", "white")
+      .attr("class", d => getFileType(d.id))
+      .on("mouseover", sendWave)
       .on("click", (event, d) => window.open(d.url, "_blank"));
 
     const labels = svg.selectAll("text")
@@ -97,21 +107,124 @@
       .attr("text-anchor", "middle")
       .text(d => d.id);
 
-    function updateLinks() {
-      link.attr("d", d => {
-        const segments = breakLink(d.source.x, d.source.y, d.target.x, d.target.y);
-        return d3.line()(segments);
+    simulation.on("tick", () => {
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+      node
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
+
+      labels
+        .attr("x", d => d.x)
+        .attr("y", d => d.y);
+    });
+
+    function sendWave(event, d) {
+      const visited = new Set();
+      const speed = 1000;
+
+      function propagate(source) {
+        visited.add(source.id);
+        graph.links.forEach(link => {
+          if (link.source.id === source.id && !visited.has(link.target.id)) {
+            const dot = svg.append("circle")
+              .attr("r", 4)
+              .attr("fill", "red")
+              .attr("cx", source.x)
+              .attr("cy", source.y);
+
+            dot.transition()
+              .duration(speed)
+              .attr("cx", link.target.x)
+              .attr("cy", link.target.y)
+              .on("end", () => {
+                dot.remove();
+                propagate(link.target);
+              });
+          }
+        });
+      }
+      propagate(d);
+    }
+	function forceGrid(size, strength) {
+    return (alpha) => {
+      graph.nodes.forEach(d => {
+        const gridX = Math.round(d.x / size) * size;
+        const gridY = Math.round(d.y / size) * size;
+
+        d.vx += (gridX - d.x) * strength * alpha;
+        d.vy += (gridY - d.y) * strength * alpha;
       });
-    }
-
-    function updateNodes() {
-      node.attr("cx", d => d.x).attr("cy", d => d.y);
-      labels.attr("x", d => d.x).attr("y", d => d.y);
-    }
-
-    updateNodes();
-    updateLinks();
+    };
+  }
   });
 </script>
+<script>
+/*var width = 960,
+    height = 500,
+    resolution = 20,
+    r = 15;
+
+var points = d3.range(10).map(function() {
+  return {
+    x: round(Math.random() * width, resolution),
+    y: round(Math.random() * height, resolution)
+  };
+});
+
+var drag = d3.behavior.drag()
+    .origin(function(d) { return d; })
+    .on('drag', dragged);
+
+var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+svg.selectAll('.vertical')
+    .data(d3.range(1, width / resolution))
+  .enter().append('line')
+    .attr('class', 'vertical')
+    .attr('x1', function(d) { return d * resolution; })
+    .attr('y1', 0)
+    .attr('x2', function(d) { return d * resolution; })
+    .attr('y2', height);
+
+svg.selectAll('.horizontal')
+    .data(d3.range(1, height / resolution))
+  .enter().append('line')
+    .attr('class', 'horizontal')
+    .attr('x1', 0)
+    .attr('y1', function(d) { return d * resolution; })
+    .attr('x2', width)
+    .attr('y2', function(d) { return d * resolution; });
+
+var circles = svg.selectAll('circle')
+    .data(points)
+  .enter().append('circle')
+    .attr('cx', function(d) { return d.x; })
+    .attr('cy', function(d) { return d.y; })
+    .attr('r', r)
+    .call(drag);
+
+function dragged(d) {
+  var x = d3.event.x,
+      y = d3.event.y,
+      gridX = round(Math.max(r, Math.min(width - r, x)), resolution),
+      gridY = round(Math.max(r, Math.min(height - r, y)), resolution);
+
+  d3.select(this).attr('cx', d.x = gridX).attr('cy', d.y = gridY);
+}
+
+function round(p, n) {
+  return p % n < n / 2 ? p - (p % n) : p + n - (p % n);
+}*/
+
+</script>
+
 </body>
 </html>
+
