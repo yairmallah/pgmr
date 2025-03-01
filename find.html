@@ -7,24 +7,6 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="css\general.css"/>
 	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
-  <style>/*
-svg {
-  box-sizing: border-box;
-  border: 1px solid rgb(212, 212, 212);
-}
-
-circle {
-  stroke: rgb(95, 176, 228);
-  stroke-width: 2;
-  fill: rgba(205, 246, 255, 0.3);
-}
-
-line {
-  stroke: rgb(212, 212, 212);
-  stroke-width: 1px;
-  shape-rendering: crispEdges;
-}*/
-</style>
 </head>
 <body>
 <script>const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";</script>
@@ -61,12 +43,16 @@ line {
       .force("charge", d3.forceManyBody().strength(-500))
       .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
       .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
-	  .force("grid", forceGrid(gridSize, 1)) // Grid force with weak strength
+	  .force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
 	  .alphaDecay(0.01); // Make the simulation continue running slowly
 
-    const link = svg.selectAll("line")
-      .data(graph.links)
-      .enter().append("line");
+const link = svg.selectAll("path")
+  .data(graph.links)
+  .enter().append("path")
+  .attr("fill", "none")
+  .attr("stroke", "white") // or any color you want
+  .attr("stroke-width", 1.5);
+
 
     const node = svg.selectAll("circle")
       .data(graph.nodes)
@@ -84,11 +70,13 @@ line {
       .text(d => d.id);
 
     simulation.on("tick", () => {
-      link
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+ link.each(function(d) {
+    const path = segmentedPath(d.source, d.target, gridSize);
+    const line = d3.select(this);
+    const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+
+    line.attr("d", dAttr);
+  });
 
       node
         .attr("cx", d => d.x)
@@ -97,7 +85,13 @@ line {
       labels
         .attr("x", d => d.x)
         .attr("y", d => d.y);
+
+		
     });
+	
+	
+	
+	
 
     function sendWave(event, d) {
       const visited = new Set();
@@ -125,6 +119,43 @@ line {
       }
       propagate(d);
     }
+	// 45 deg gen
+function segmentedPath(source, target, size) {
+  const points = [{ x: source.x, y: source.y }];
+  let [x, y] = [source.x, source.y];
+  const targetX = Math.round(target.x / size) * size;
+  const targetY = Math.round(target.y / size) * size;
+
+  while (Math.abs(x - targetX) > 0.1 || Math.abs(y - targetY) > 0.1) {
+    let nextX = x, nextY = y;
+
+    // Move diagonally if needed
+    if (Math.abs(targetX - x) > 0 && Math.abs(targetY - y) > 0) {
+      nextX += Math.sign(targetX - x) * size;
+      nextY += Math.sign(targetY - y) * size;
+    }
+    // Otherwise move straight
+    else if (Math.abs(targetX - x) > 0) {
+      nextX += Math.sign(targetX - x) * size;
+    }
+    else if (Math.abs(targetY - y) > 0) {
+      nextY += Math.sign(targetY - y) * size;
+    }
+
+    // Avoid overshooting the target
+    if (Math.abs(nextX - targetX) >= Math.abs(x - targetX)) nextX = targetX;
+    if (Math.abs(nextY - targetY) >= Math.abs(y - targetY)) nextY = targetY;
+
+    points.push({ x: nextX, y: nextY });
+    [x, y] = [nextX, nextY];
+
+    // Emergency brake 🔥 (just in case)
+    if (points.length > 100) break;
+  }
+
+  return points;
+}
+
 	function forceGrid(size, strength) {
     return (alpha) => {
       graph.nodes.forEach(d => {
@@ -137,67 +168,6 @@ line {
     };
   }
   });
-</script>
-<script>
-/*var width = 960,
-    height = 500,
-    resolution = 20,
-    r = 15;
-
-var points = d3.range(10).map(function() {
-  return {
-    x: round(Math.random() * width, resolution),
-    y: round(Math.random() * height, resolution)
-  };
-});
-
-var drag = d3.behavior.drag()
-    .origin(function(d) { return d; })
-    .on('drag', dragged);
-
-var svg = d3.select('body').append('svg')
-    .attr('width', width)
-    .attr('height', height);
-
-svg.selectAll('.vertical')
-    .data(d3.range(1, width / resolution))
-  .enter().append('line')
-    .attr('class', 'vertical')
-    .attr('x1', function(d) { return d * resolution; })
-    .attr('y1', 0)
-    .attr('x2', function(d) { return d * resolution; })
-    .attr('y2', height);
-
-svg.selectAll('.horizontal')
-    .data(d3.range(1, height / resolution))
-  .enter().append('line')
-    .attr('class', 'horizontal')
-    .attr('x1', 0)
-    .attr('y1', function(d) { return d * resolution; })
-    .attr('x2', width)
-    .attr('y2', function(d) { return d * resolution; });
-
-var circles = svg.selectAll('circle')
-    .data(points)
-  .enter().append('circle')
-    .attr('cx', function(d) { return d.x; })
-    .attr('cy', function(d) { return d.y; })
-    .attr('r', r)
-    .call(drag);
-
-function dragged(d) {
-  var x = d3.event.x,
-      y = d3.event.y,
-      gridX = round(Math.max(r, Math.min(width - r, x)), resolution),
-      gridY = round(Math.max(r, Math.min(height - r, y)), resolution);
-
-  d3.select(this).attr('cx', d.x = gridX).attr('cy', d.y = gridY);
-}
-
-function round(p, n) {
-  return p % n < n / 2 ? p - (p % n) : p + n - (p % n);
-}*/
-
 </script>
 
 </body>
