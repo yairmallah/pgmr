@@ -9,10 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
 </head>
 <body>
+<div id="svg-container"></div>
 <script>const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";</script>
 <script>
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = document.getElementById("svg-container").offsetWidth;
+  const height = document.getElementById("svg-container").offsetHeight;
+  console.log(width, height);
   const gridSize = 40;
 
   const areas = {
@@ -33,7 +35,7 @@
   }
 
   d3.json(json_add).then(graph => {
-    const svg = d3.select("body")
+    const svg = d3.select("#svg-container")
       .append("svg")
       .attr("width", width)
       .attr("height", height);
