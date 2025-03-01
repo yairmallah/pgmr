@@ -108,7 +108,7 @@ line {
         graph.links.forEach(link => {
           if (link.source.id === source.id && !visited.has(link.target.id)) {
             const dot = svg.append("circle")
-			  .attr("class", "wave w"+source.class+)
+			  .attr("class", "wave w"+source.class)
               .attr("cx", source.x)
               .attr("cy", source.y);
 
