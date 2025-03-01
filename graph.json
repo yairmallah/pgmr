@@ -1,0 +1,754 @@
+{
+  "nodes": [
+    {
+      "id": "dictionarys.js",
+      "url": "https://yairmallah.github.io/pgmr/dictionarys.js"
+    },
+    {
+      "id": "dictionarysGen.js",
+      "url": "https://yairmallah.github.io/pgmr/dictionarysGen.js"
+    },
+    {
+      "id": "index.html",
+      "url": "https://yairmallah.github.io/pgmr/index.html"
+    },
+    {
+      "id": "log.html",
+      "url": "https://yairmallah.github.io/pgmr/log.html"
+    },
+    {
+      "id": "main",
+      "url": "https://yairmallah.github.io/pgmr/main"
+    },
+    {
+      "id": "navLogic.js",
+      "url": "https://yairmallah.github.io/pgmr/navLogic.js"
+    },
+    {
+      "id": "nodeMessages.txt",
+      "url": "https://yairmallah.github.io/pgmr/nodeMessages.txt"
+    },
+    {
+      "id": "simulationcode.html",
+      "url": "https://yairmallah.github.io/pgmr/simulationcode.html"
+    },
+    {
+      "id": "tba.html",
+      "url": "https://yairmallah.github.io/pgmr/tba.html"
+    },
+    {
+      "id": "tbaTxt.txt",
+      "url": "https://yairmallah.github.io/pgmr/tbaTxt.txt"
+    },
+    {
+      "id": "test.html",
+      "url": "https://yairmallah.github.io/pgmr/test.html"
+    },
+    {
+      "id": "turb.html",
+      "url": "https://yairmallah.github.io/pgmr/turb.html"
+    },
+    {
+      "id": "video.html",
+      "url": "https://yairmallah.github.io/pgmr/video.html"
+    },
+    {
+      "id": "woods.png",
+      "url": "https://yairmallah.github.io/pgmr/woods.png"
+    },
+    {
+      "id": "css/general.css",
+      "url": "https://yairmallah.github.io/pgmr/css/general.css"
+    },
+    {
+      "id": "css/log.css",
+      "url": "https://yairmallah.github.io/pgmr/css/log.css"
+    },
+    {
+      "id": "css/tba.css",
+      "url": "https://yairmallah.github.io/pgmr/css/tba.css"
+    },
+    {
+      "id": "css/ths.css",
+      "url": "https://yairmallah.github.io/pgmr/css/ths.css"
+    },
+    {
+      "id": "css/video.css",
+      "url": "https://yairmallah.github.io/pgmr/css/video.css"
+    },
+    {
+      "id": "imgs/IMG_0420.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0420.jpg"
+    },
+    {
+      "id": "imgs/IMG_0421.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0421.jpg"
+    },
+    {
+      "id": "imgs/nav schame.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/nav%20schame.gif"
+    },
+    {
+      "id": "imgs/readme",
+      "url": "https://yairmallah.github.io/pgmr/imgs/readme"
+    },
+    {
+      "id": "imgs/tba.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/tba.gif"
+    },
+    {
+      "id": "imgs/אדם.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%93%D7%9D.png"
+    },
+    {
+      "id": "imgs/אידאל.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%99%D7%93%D7%90%D7%9C.gif"
+    },
+    {
+      "id": "imgs/גבול.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%92%D7%91%D7%95%D7%9C.jpg"
+    },
+    {
+      "id": "imgs/מודרניזם.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif"
+    },
+    {
+      "id": "imgs/מושג.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%92.png"
+    },
+    {
+      "id": "imgs/מושג2.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%922.png"
+    },
+    {
+      "id": "imgs/מיתוס.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%99%D7%AA%D7%95%D7%A1.jpg"
+    },
+    {
+      "id": "imgs/מסילה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A1%D7%99%D7%9C%D7%94.jpg"
+    },
+    {
+      "id": "imgs/מרחב.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%91.jpg"
+    },
+    {
+      "id": "imgs/מרחב2.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%912.jpg"
+    },
+    {
+      "id": "imgs/מתמטיקה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94.jpg"
+    },
+    {
+      "id": "imgs/סימולציה.mp4",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%A6%D7%99%D7%94.mp4"
+    },
+    {
+      "id": "imgs/פונקציה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.jpg"
+    },
+    {
+      "id": "imgs/פוסטמודרניזם.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A1%D7%98%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.jpg"
+    },
+    {
+      "id": "imgs/קו_פרקטל.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A7%D7%95_%D7%A4%D7%A8%D7%A7%D7%98%D7%9C.gif"
+    },
+    {
+      "id": "imgs/רדיאלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%93%D7%99%D7%90%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "imgs/רנדומלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "imgs/רקורסיבי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A7%D7%95%D7%A8%D7%A1%D7%99%D7%91%D7%99.gif"
+    },
+    {
+      "id": "texts/urb.txt",
+      "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
+    },
+    {
+      "id": "IMG_0420.jpg",
+      "url": "https://yairmallah.github.io/pgmr/IMG_0420.jpg"
+    },
+    {
+      "id": "IMG_0421.jpg",
+      "url": "https://yairmallah.github.io/pgmr/IMG_0421.jpg"
+    },
+    {
+      "id": "מושג.png",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%95%D7%A9%D7%92.png"
+    },
+    {
+      "id": "מושג2.png",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%95%D7%A9%D7%922.png"
+    },
+    {
+      "id": "מיתוס.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%99%D7%AA%D7%95%D7%A1.jpg"
+    },
+    {
+      "id": "מרחב.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%A8%D7%97%D7%91.jpg"
+    },
+    {
+      "id": "מרחב2.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%A8%D7%97%D7%912.jpg"
+    },
+    {
+      "id": "מתמטיקה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94.jpg"
+    },
+    {
+      "id": "פונקציה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.jpg"
+    },
+    {
+      "id": "general.css",
+      "url": "https://yairmallah.github.io/pgmr/general.css"
+    },
+    {
+      "id": "C:/pgmr",
+      "url": "C:/pgmr"
+    },
+    {
+      "id": "log.css",
+      "url": "https://yairmallah.github.io/pgmr/log.css"
+    },
+    {
+      "id": "אדם.png",
+      "url": "https://yairmallah.github.io/pgmr/%D7%90%D7%93%D7%9D.png"
+    },
+    {
+      "id": "אידאל.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%90%D7%99%D7%93%D7%90%D7%9C.gif"
+    },
+    {
+      "id": "גבול.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%92%D7%91%D7%95%D7%9C.jpg"
+    },
+    {
+      "id": "מודרניזם.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif"
+    },
+    {
+      "id": "מסילה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%A1%D7%99%D7%9C%D7%94.jpg"
+    },
+    {
+      "id": "פוסטמודרניזם.jpg",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A4%D7%95%D7%A1%D7%98%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.jpg"
+    },
+    {
+      "id": "קו_פרקטל.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A7%D7%95_%D7%A4%D7%A8%D7%A7%D7%98%D7%9C.gif"
+    },
+    {
+      "id": "רדיאלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A8%D7%93%D7%99%D7%90%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "רנדומלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "רקורסיבי.gif",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A8%D7%A7%D7%95%D7%A8%D7%A1%D7%99%D7%91%D7%99.gif"
+    },
+    {
+      "id": "pgmr",
+      "url": "https://yairmallah.github.io/pgmr/pgmr"
+    },
+    {
+      "id": "tba.css",
+      "url": "https://yairmallah.github.io/pgmr/tba.css"
+    },
+    {
+      "id": "tba.gif",
+      "url": "https://yairmallah.github.io/pgmr/tba.gif"
+    },
+    {
+      "id": "ths.css",
+      "url": "https://yairmallah.github.io/pgmr/ths.css"
+    },
+    {
+      "id": "urb.txt",
+      "url": "https://yairmallah.github.io/pgmr/urb.txt"
+    },
+    {
+      "id": "video.css",
+      "url": "https://yairmallah.github.io/pgmr/video.css"
+    },
+    {
+      "id": "סימולציה.mp4",
+      "url": "https://yairmallah.github.io/pgmr/%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%A6%D7%99%D7%94.mp4"
+    },
+    {
+      "id": "css/pgmr",
+      "url": "https://yairmallah.github.io/pgmr/css/pgmr"
+    },
+    {
+      "id": "css/main",
+      "url": "https://yairmallah.github.io/pgmr/css/main"
+    },
+    {
+      "id": "css/tba.gif",
+      "url": "https://yairmallah.github.io/pgmr/css/tba.gif"
+    }
+  ],
+  "links": [
+    {
+      "source": "dictionarys.js",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מושג.png"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "dictionarysGen.js",
+      "target": "nodeMessages.txt"
+    },
+    {
+      "source": "index.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "index.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "index.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "index.html",
+      "target": "general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "css/log.css"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "C:/pgmr"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "log.css"
+    },
+    {
+      "source": "log.html",
+      "target": "general.css"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "index.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "log.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "tba.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "turb.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "video.html"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "אדם.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "אידאל.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "גבול.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מודרניזם.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מסילה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "פוסטמודרניזם.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "קו_פרקטל.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רדיאלי.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רנדומלי.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רקורסיבי.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "simulationcode.html",
+      "target": "main"
+    },
+    {
+      "source": "simulationcode.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "tba.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "css/tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "C:/pgmr"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "main"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "tbaTxt.txt"
+    },
+    {
+      "source": "tba.html",
+      "target": "general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.gif"
+    },
+    {
+      "source": "tba.html",
+      "target": "general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "tba.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "test.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "test.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "css/ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "main"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "urb.txt"
+    },
+    {
+      "source": "turb.html",
+      "target": "general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "turb.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "video.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "css/video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "imgs/סימולציה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
+    },
+    {
+      "source": "video.html",
+      "target": "general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "סימולציה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "general.css"
+    },
+    {
+      "source": "css/general.css",
+      "target": "css/pgmr"
+    },
+    {
+      "source": "css/general.css",
+      "target": "css/pgmr"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/main"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/tba.gif"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/pgmr"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/pgmr"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/tba.gif"
+    },
+    {
+      "source": "css/tba.css",
+      "target": "css/pgmr"
+    },
+    {
+      "source": "css/ths.css",
+      "target": "css/main"
+    },
+    {
+      "source": "css/ths.css",
+      "target": "css/main"
+    },
+    {
+      "source": "css/video.css",
+      "target": "css/main"
+    },
+    {
+      "source": "css/video.css",
+      "target": "css/main"
+    }
+  ]
+}

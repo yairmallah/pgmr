@@ -3,127 +3,377 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Graph Visualization</title>
+  <title>Website Map</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
-    body { margin: 0; background: black; overflow: hidden; }
-    circle { fill: white; cursor: pointer; transition: fill 0.3s; }
-    line { stroke: white; stroke-width: 2px; opacity: 0.5; }
-    text { fill: white; font-size: 14px; pointer-events: none; text-anchor: middle; } 
-    .wave { fill: #00FFAA; r: 5; opacity: 1; }
+    body {
+      background: black;
+      margin: 0;
+      overflow: hidden;
+    }
+    text {
+      fill: white;
+      font-family: sans-serif;
+    }
+    circle {
+      fill: white;
+      cursor: pointer;
+    }
+    line {
+      stroke: white;
+      stroke-width: 1px;
+      opacity: 0.5;
+    }
   </style>
 </head>
 <body>
 <script>
-  const origin = window.location.origin;
-  const data = { nodes: [], links: [] };
+  // Paste your JSON data here
+  const graph = {
+  "nodes": [
+    {
+      "id": "dictionarys.js",
+      "url": "https://yairmallah.github.io/pgmr/dictionarys.js"
+    },
+    {
+      "id": "dictionarysGen.js",
+      "url": "https://yairmallah.github.io/pgmr/dictionarysGen.js"
+    },
+    {
+      "id": "index.html",
+      "url": "https://yairmallah.github.io/pgmr/index.html"
+    },
+    {
+      "id": "css/general.css",
+      "url": "https://yairmallah.github.io/pgmr/css/general.css"
+    },
+    {
+      "id": "log.html",
+      "url": "https://yairmallah.github.io/pgmr/log.html"
+    },
+    {
+      "id": "css/log.css",
+      "url": "https://yairmallah.github.io/pgmr/css/log.css"
+    },
+    {
+      "id": "navLogic.js",
+      "url": "https://yairmallah.github.io/pgmr/navLogic.js"
+    },
+    {
+      "id": "C:/pgmr",
+      "url": "C:/pgmr"
+    },
+    {
+      "id": "main",
+      "url": "https://yairmallah.github.io/pgmr/main"
+    },
+    {
+      "id": "nodeMessages.txt",
+      "url": "https://yairmallah.github.io/pgmr/nodeMessages.txt"
+    },
+    {
+      "id": "simulationcode.html",
+      "url": "https://yairmallah.github.io/pgmr/simulationcode.html"
+    },
+    {
+      "id": "tba.html",
+      "url": "https://yairmallah.github.io/pgmr/tba.html"
+    },
+    {
+      "id": "css/tba.css",
+      "url": "https://yairmallah.github.io/pgmr/css/tba.css"
+    },
+    {
+      "id": "tbaTxt.txt",
+      "url": "https://yairmallah.github.io/pgmr/tbaTxt.txt"
+    },
+    {
+      "id": "test.html",
+      "url": "https://yairmallah.github.io/pgmr/test.html"
+    },
+    {
+      "id": "turb.html",
+      "url": "https://yairmallah.github.io/pgmr/turb.html"
+    },
+    {
+      "id": "css/ths.css",
+      "url": "https://yairmallah.github.io/pgmr/css/ths.css"
+    },
+    {
+      "id": "video.html",
+      "url": "https://yairmallah.github.io/pgmr/video.html"
+    },
+    {
+      "id": "css/video.css",
+      "url": "https://yairmallah.github.io/pgmr/css/video.css"
+    },
+    {
+      "id": "imgs/סימולציה.mp4",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%A6%D7%99%D7%94.mp4"
+    },
+    {
+      "id": "woods.png",
+      "url": "https://yairmallah.github.io/pgmr/woods.png"
+    },
+    {
+      "id": "imgs/IMG_0420.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0420.jpg"
+    },
+    {
+      "id": "imgs/IMG_0421.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0421.jpg"
+    },
+    {
+      "id": "imgs/nav schame.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/nav%20schame.gif"
+    },
+    {
+      "id": "imgs/readme",
+      "url": "https://yairmallah.github.io/pgmr/imgs/readme"
+    },
+    {
+      "id": "imgs/tba.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/tba.gif"
+    },
+    {
+      "id": "imgs/אדם.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%93%D7%9D.png"
+    },
+    {
+      "id": "imgs/אידאל.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%99%D7%93%D7%90%D7%9C.gif"
+    },
+    {
+      "id": "imgs/גבול.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%92%D7%91%D7%95%D7%9C.jpg"
+    },
+    {
+      "id": "imgs/מודרניזם.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif"
+    },
+    {
+      "id": "imgs/מושג.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%92.png"
+    },
+    {
+      "id": "imgs/מושג2.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%922.png"
+    },
+    {
+      "id": "imgs/מיתוס.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%99%D7%AA%D7%95%D7%A1.jpg"
+    },
+    {
+      "id": "imgs/מסילה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A1%D7%99%D7%9C%D7%94.jpg"
+    },
+    {
+      "id": "imgs/מרחב.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%91.jpg"
+    },
+    {
+      "id": "imgs/מרחב2.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%912.jpg"
+    },
+    {
+      "id": "imgs/מתמטיקה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94.jpg"
+    },
+    {
+      "id": "imgs/פונקציה.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.jpg"
+    },
+    {
+      "id": "imgs/פוסטמודרניזם.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A1%D7%98%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.jpg"
+    },
+    {
+      "id": "imgs/קו_פרקטל.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A7%D7%95_%D7%A4%D7%A8%D7%A7%D7%98%D7%9C.gif"
+    },
+    {
+      "id": "imgs/רדיאלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%93%D7%99%D7%90%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "imgs/רנדומלי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99.gif"
+    },
+    {
+      "id": "imgs/רקורסיבי.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A7%D7%95%D7%A8%D7%A1%D7%99%D7%91%D7%99.gif"
+    },
+    {
+      "id": "texts/urb.txt",
+      "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
+    }
+  ],
+  "links": [
+    {
+      "source": "index.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "index.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "css/log.css"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "C:/pgmr"
+    },
+    {
+      "source": "tba.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "css/tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "C:/pgmr"
+    },
+    {
+      "source": "test.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "css/ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "video.html",
+      "target": "css/general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "css/video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "imgs/סימולציה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
+    }
+  ]
+}
 
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const svg = d3.select("body").append("svg")
+  const svg = d3.select("body")
+    .append("svg")
     .attr("width", width)
     .attr("height", height);
 
-  const simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(d => d.id).distance(200))
-    .force("charge", d3.forceManyBody().strength(-300))
+  const simulation = d3.forceSimulation(graph.nodes)
+    .force("link", d3.forceLink(graph.links).id(d => d.id).distance(100))
+    .force("charge", d3.forceManyBody().strength(-200))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-  function updateGraph() {
-    const link = svg.selectAll("line").data(data.links, d => `${d.source.id}-${d.target.id}`);
-    link.enter().append("line")
-      .merge(link);
-    link.exit().remove();
+  const link = svg.selectAll("line")
+    .data(graph.links)
+    .enter().append("line");
 
-    const node = svg.selectAll("g.node").data(data.nodes, d => d.id);
-    const nodeEnter = node.enter().append("g")
-      .attr("class", "node")
-      .on("mouseover", handleMouseOver)
-      .on("mouseout", handleMouseOut)
-      .on("click", (e, d) => window.open(d.url, '_blank'));
+  const node = svg.selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+    .attr("r", 10)
+    .on("mouseover", sendWave)
+    .on("click", d => window.open(d.url, "_blank"));
 
-    nodeEnter.append("circle").attr("r", 20);
-    nodeEnter.append("text").text(d => d.id);
+  const labels = svg.selectAll("text")
+    .data(graph.nodes)
+    .enter().append("text")
+    .attr("dy", -15)
+    .attr("text-anchor", "middle")
+    .text(d => d.id);
 
-    nodeEnter.merge(node);
-    node.exit().remove();
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x)
+      .attr("y2", d => d.target.y);
 
-    simulation.nodes(data.nodes).on("tick", () => {
-      svg.selectAll("line")
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+    node
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y);
 
-      svg.selectAll("g.node")
-        .attr("transform", d => `translate(${d.x}, ${d.y})`);
-    });
+    labels
+      .attr("x", d => d.x)
+      .attr("y", d => d.y);
+  });
 
-    simulation.force("link").links(data.links);
-    simulation.alpha(1).restart();
-  }
+  function sendWave(event, d) {
+    const visited = new Set();
+    const speed = 1000; 
 
-  function handleMouseOver(e, d) {
-    d3.select(this).select("circle").attr("fill", "#00FFAA");
-    spreadWave(d);
-  }
+    function propagate(source) {
+      visited.add(source.id);
+      graph.links.forEach(link => {
+        if (link.source.id === source.id && !visited.has(link.target.id)) {
+          const dot = svg.append("circle")
+            .attr("r", 4)
+            .attr("fill", "red")
+            .attr("cx", source.x)
+            .attr("cy", source.y);
 
-  function handleMouseOut(e, d) {
-    d3.select(this).select("circle").attr("fill", "white");
-  }
-
-  function spreadWave(d, depth = 0) {
-    if (depth > 3) return;
-    const targets = data.links.filter(l => l.source.id === d.id).map(l => l.target);
-    targets.forEach(targetId => {
-      const targetNode = data.nodes.find(n => n.id === targetId);
-      if (targetNode) {
-        const wave = svg.append("circle")
-          .attr("class", "wave")
-          .attr("cx", d.x)
-          .attr("cy", d.y);
-
-        wave.transition()
-          .duration(1000)
-          .attrTween("cx", () => d3.interpolateNumber(d.x, targetNode.x))
-          .attrTween("cy", () => d3.interpolateNumber(d.y, targetNode.y))
-          .on("end", () => {
-            wave.remove();
-            spreadWave(targetNode, depth + 1);
-          });
-      }
-    });
-  }
-
-  async function crawl(url, depth = 0) {
-    if (depth > 2 || data.nodes.some(n => n.id === url)) return;
-    try {
-      data.nodes.push({ id: url, url });
-      updateGraph();
-      const response = await fetch(url);
-      const text = await response.text();
-      const links = text.match(/(href|src)="(.*?)"/g) || [];
-	  console.log(links);
-      links.map(link => link.match(/"(.*?)"/)[1])
-        .filter(link => link.startsWith("/") || link.startsWith(origin))
-        .forEach(link => {
-          const fullLink = link.startsWith("/") ? origin + link : link;
-          if (!data.nodes.some(n => n.id === fullLink)) {
-            data.nodes.push({ id: fullLink, url: fullLink });
-            data.links.push({ source: url, target: fullLink });
-            crawl(fullLink, depth + 1);
-            updateGraph();
-          }
-        });
-    } catch (e) {
-      console.error("Failed to fetch", url);
+          dot.transition()
+            .duration(speed)
+            .attr("cx", link.target.x)
+            .attr("cy", link.target.y)
+            .on("end", () => {
+              dot.remove();
+              propagate(link.target);
+            });
+        }
+      });
     }
+    propagate(d);
   }
-
-
-  // Start crawling from index.html
-  crawl('https://yairmallah.github.io/pgmr/navLogic.js');
 </script>
 </body>
 </html>
