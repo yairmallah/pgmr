@@ -95,30 +95,43 @@ const link = svg.selectAll("path")
 
     function sendWave(event, d) {
       const visited = new Set();
-      const speed = 1000;
+      const speed = 1000;// Constant speed per segment
 
       function propagate(source) {
         visited.add(source.id);
         graph.links.forEach(link => {
           if (link.source.id === source.id && !visited.has(link.target.id)) {
+			const path = segmentedPath(link.source, link.target, gridSize);
             const dot = svg.append("circle")
 			  .attr("class", "wave w"+source.class)
-              .attr("cx", source.x)
-              .attr("cy", source.y);
+              .attr("cx", path[0].x)
+              .attr("cy", path[0].y);
 
-            dot.transition()
-              .duration(speed)
-              .attr("cx", link.target.x)
-              .attr("cy", link.target.y)
-              .on("end", () => {
-                dot.remove();
-                propagate(link.target);
-              });
-          }
-        });
-      }
+			function travel(index) {
+			  if (index >= path.length) {
+				dot.remove();
+				propagate(link.target);
+				return;
+			  }
+
+			  dot.transition()
+				.duration(speed)
+				.attr("cx", path[index].x)
+				.attr("cy", path[index].y)
+				.on("end", () => travel(index + 1));
+			}
+
+			travel(1); // Start from second point
+		  }
+		});
+	  }
       propagate(d);
     }
+
+	
+	
+	
+	
 	// 45 deg gen
 function segmentedPath(source, target, size) {
   const points = [{ x: source.x, y: source.y }];
