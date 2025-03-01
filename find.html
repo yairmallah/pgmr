@@ -25,34 +25,42 @@
       stroke-width: 1px;
       opacity: 0.5;
     }
+    path {
+      stroke: white;
+      stroke-width: 1px;
+      fill: none;
+    }
   </style>
 </head>
 <body>
 <script>
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const gridSize = 80; // Grid cell size
+  const gridSize = 80; // Grid size
 
-  // Snap node to grid
   function snapToGrid(value, gridSize) {
     return Math.round(value / gridSize) * gridSize;
   }
 
-  // Break link into 45° segments
   function breakLink(x1, y1, x2, y2) {
     const points = [[x1, y1]];
     let currentX = x1;
     let currentY = y1;
-    const dx = x2 - x1;
-    const dy = y2 - y1;
 
     while (currentX !== x2 || currentY !== y2) {
-      if (Math.abs(dx) > Math.abs(dy)) {
-        currentX += dx > 0 ? gridSize : -gridSize;
+      const nextX = snapToGrid(currentX + Math.sign(x2 - currentX) * gridSize, gridSize);
+      const nextY = snapToGrid(currentY + Math.sign(y2 - currentY) * gridSize, gridSize);
+
+      if (Math.abs(nextX - x2) < Math.abs(nextY - y2)) {
+        currentX = nextX;
+      } else if (Math.abs(nextX - x2) > Math.abs(nextY - y2)) {
+        currentY = nextY;
       } else {
-        currentY += dy > 0 ? gridSize : -gridSize;
+        currentX = nextX;
+        currentY = nextY;
       }
-      points.push([snapToGrid(currentX, gridSize), snapToGrid(currentY, gridSize)]);
+
+      points.push([currentX, currentY]);
     }
 
     return points;
@@ -73,8 +81,7 @@
       .data(graph.links)
       .enter().append("path")
       .attr("stroke", "white")
-      .attr("fill", "none")
-      .attr("stroke-width", 1);
+      .attr("fill", "none");
 
     const node = svg.selectAll("circle")
       .data(graph.nodes)
