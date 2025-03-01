@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Map</title>
+  <title>Website Map with Grid</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     body {
@@ -20,11 +20,6 @@
       stroke: white;
       stroke-width: 1px;
     }
-    circle.html { fill: white; }      /* HTML files */
-    circle.css { fill: lightblue; }   /* CSS files */
-    circle.js { fill: yellow; }       /* JS files */
-    circle.img { fill: orange; }      /* Image files */
-    circle.txt { fill: green; }       /* TXT files */
     line {
       stroke: white;
       stroke-width: 1px;
@@ -36,22 +31,31 @@
 <script>
   const width = window.innerWidth;
   const height = window.innerHeight;
+  const gridSize = 80; // Grid cell size
 
-  const areas = {
-    html: { x: width / 3, y: height / 2 },
-    css: { x: width / 6, y: height / 3 },
-    js: { x: (5 * width) / 6, y: height / 3 },
-    img: { x: width / 4, y: (2 * height) / 3 },
-    txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
-  };
+  // Snap node to grid
+  function snapToGrid(value, gridSize) {
+    return Math.round(value / gridSize) * gridSize;
+  }
 
-  function getFileType(filename) {
-    if (filename.endsWith(".html")) return "html";
-    if (filename.endsWith(".css")) return "css";
-    if (filename.endsWith(".js")) return "js";
-    if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
-    if (filename.endsWith(".txt")) return "txt";
-    return "other";
+  // Break link into 45° segments
+  function breakLink(x1, y1, x2, y2) {
+    const points = [[x1, y1]];
+    let currentX = x1;
+    let currentY = y1;
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+
+    while (currentX !== x2 || currentY !== y2) {
+      if (Math.abs(dx) > Math.abs(dy)) {
+        currentX += dx > 0 ? gridSize : -gridSize;
+      } else {
+        currentY += dy > 0 ? gridSize : -gridSize;
+      }
+      points.push([snapToGrid(currentX, gridSize), snapToGrid(currentY, gridSize)]);
+    }
+
+    return points;
   }
 
   d3.json("graph.json").then(graph => {
@@ -60,22 +64,23 @@
       .attr("width", width)
       .attr("height", height);
 
-    const simulation = d3.forceSimulation(graph.nodes)
-      .force("link", d3.forceLink(graph.links).id(d => d.id).distance(100))
-      .force("charge", d3.forceManyBody().strength(-200))
-      .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
-      .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2));
+    graph.nodes.forEach(d => {
+      d.x = snapToGrid(Math.random() * width, gridSize);
+      d.y = snapToGrid(Math.random() * height, gridSize);
+    });
 
-    const link = svg.selectAll("line")
+    const link = svg.selectAll("path")
       .data(graph.links)
-      .enter().append("line");
+      .enter().append("path")
+      .attr("stroke", "white")
+      .attr("fill", "none")
+      .attr("stroke-width", 1);
 
     const node = svg.selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
       .attr("r", 10)
-      .attr("class", d => getFileType(d.id))
-      .on("mouseover", sendWave)
+      .attr("fill", "white")
       .on("click", (event, d) => window.open(d.url, "_blank"));
 
     const labels = svg.selectAll("text")
@@ -85,49 +90,20 @@
       .attr("text-anchor", "middle")
       .text(d => d.id);
 
-    simulation.on("tick", () => {
-      link
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
-
-      node
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
-
-      labels
-        .attr("x", d => d.x)
-        .attr("y", d => d.y);
-    });
-
-    function sendWave(event, d) {
-      const visited = new Set();
-      const speed = 1000;
-
-      function propagate(source) {
-        visited.add(source.id);
-        graph.links.forEach(link => {
-          if (link.source.id === source.id && !visited.has(link.target.id)) {
-            const dot = svg.append("circle")
-              .attr("r", 4)
-              .attr("fill", "red")
-              .attr("cx", source.x)
-              .attr("cy", source.y);
-
-            dot.transition()
-              .duration(speed)
-              .attr("cx", link.target.x)
-              .attr("cy", link.target.y)
-              .on("end", () => {
-                dot.remove();
-                propagate(link.target);
-              });
-          }
-        });
-      }
-      propagate(d);
+    function updateLinks() {
+      link.attr("d", d => {
+        const segments = breakLink(d.source.x, d.source.y, d.target.x, d.target.y);
+        return d3.line()(segments);
+      });
     }
+
+    function updateNodes() {
+      node.attr("cx", d => d.x).attr("cy", d => d.y);
+      labels.attr("x", d => d.x).attr("y", d => d.y);
+    }
+
+    updateNodes();
+    updateLinks();
   });
 </script>
 </body>
