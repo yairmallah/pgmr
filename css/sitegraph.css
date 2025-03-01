@@ -1,0 +1,24 @@
+body {
+	background: black;
+	margin: 0;
+	overflow: hidden;
+}
+text {
+	fill: white;
+	font-family: sans-serif;
+}
+circle {
+	cursor: pointer;
+	stroke: white;
+	stroke-width: 1px;
+}
+circle.html { fill: white; }      /* HTML files */
+circle.css { fill: lightblue; }   /* CSS files */
+circle.js { fill: yellow; }       /* JS files */
+circle.img { fill: orange; }      /* Image files */
+circle.txt { fill: green; }       /* TXT files */
+line {
+	stroke: white;
+	stroke-width: 1px;
+	opacity: 0.5;
+}
