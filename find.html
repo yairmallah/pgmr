@@ -16,9 +16,15 @@
       font-family: sans-serif;
     }
     circle {
-      fill: white;
       cursor: pointer;
+      stroke: white;
+      stroke-width: 1px;
     }
+    circle.html { fill: white; }      /* HTML files */
+    circle.css { fill: lightblue; }   /* CSS files */
+    circle.js { fill: yellow; }       /* JS files */
+    circle.img { fill: orange; }      /* Image files */
+    circle.txt { fill: green; }       /* TXT files */
     line {
       stroke: white;
       stroke-width: 1px;
@@ -31,17 +37,34 @@
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const svg = d3.select("body")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+  const areas = {
+    html: { x: width / 3, y: height / 2 },
+    css: { x: width / 6, y: height / 3 },
+    js: { x: (5 * width) / 6, y: height / 3 },
+    img: { x: width / 4, y: (2 * height) / 3 },
+    txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+  };
+
+  function getFileType(filename) {
+    if (filename.endsWith(".html")) return "html";
+    if (filename.endsWith(".css")) return "css";
+    if (filename.endsWith(".js")) return "js";
+    if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
+    if (filename.endsWith(".txt")) return "txt";
+    return "other";
+  }
 
   d3.json("graph.json").then(graph => {
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-	const simulation = d3.forceSimulation(graph.nodes)
+    const simulation = d3.forceSimulation(graph.nodes)
       .force("link", d3.forceLink(graph.links).id(d => d.id).distance(100))
       .force("charge", d3.forceManyBody().strength(-200))
-      .force("center", d3.forceCenter(width / 2, height / 2));
+      .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
+      .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2));
 
     const link = svg.selectAll("line")
       .data(graph.links)
@@ -51,6 +74,7 @@
       .data(graph.nodes)
       .enter().append("circle")
       .attr("r", 10)
+      .attr("class", d => getFileType(d.id))
       .on("mouseover", sendWave)
       .on("click", (event, d) => window.open(d.url, "_blank"));
 
