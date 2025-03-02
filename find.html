@@ -138,7 +138,7 @@ function segmentedPath(source, target, size) {
   let [x, y] = [source.x, source.y];
   const targetX = target.x ;
   const targetY = target.y ;
-
+/*
   while (Math.abs(x - targetX) > 0.1 || Math.abs(y - targetY) > 0.1) {
     let nextX = x, nextY = y;
 
@@ -164,8 +164,13 @@ function segmentedPath(source, target, size) {
 
     // Emergency brake 🔥 (just in case)
     if (points.length > 200) break;
-  }
-
+  }*/
+  digLen = Math.min((targetX - x),(targetY - y));
+   nextX = x+ Math.sign(targetX - x) * digLen;
+   nextY = y+ Math.sign(targetY - y) * digLen;
+ points.push({ x: nextX, y: nextY });
+    [x, y] = [nextX, nextY];
+	 points.push({ x: targetX, y: targetY });
   return points;
 }
 
