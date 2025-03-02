@@ -48,7 +48,7 @@
 	const simulation = d3.forceSimulation(graph.nodes)
 		.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
 		.force("charge", d3.forceManyBody().strength(-500))
-		.force("bounds", forceBounds(bounds))
+		//.force("bounds", forceBounds(bounds))
 		/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 		.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
 		.force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
@@ -63,7 +63,7 @@
 	const node = svg.selectAll("circle")
 		.data(graph.nodes)
 		.enter().append("circle")
-		.attr("bounds", d => bounds[getFileType(d.id)])
+		//.attr("bounds", d => bounds[getFileType(d.id)])
 		.attr("class", d => getFileType(d.id))
 		.on("mouseover", sendWave)
 		.on("click", (event, d) => window.open(d.url, "_blank"));
@@ -83,10 +83,9 @@
 			line.attr("d", dAttr);
 		});
 		node
-			alert(d => d.id)
-			.attr("transform", d => `translate(${Math.max(d.bounds.xMin, Math.min(d.bounds.xMax, d.x))},${d.bounds.yMin, Math.min(d.bounds.yMax, d.y)})`);
-			/*.attr("cx", d => d.x)
-			.attr("cy", d => d.y);*/
+			//.attr("transform", d => `translate(${Math.max(d.bounds.xMin, Math.min(d.bounds.xMax, d.x))},${d.bounds.yMin, Math.min(d.bounds.yMax, d.y)})`);
+			.attr("cx", d => d.x)
+			.attr("cy", d => d.y);
 
 		labels
 			.attr("x", d => d.x)
