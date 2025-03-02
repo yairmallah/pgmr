@@ -11,6 +11,7 @@ text {
 circle {
 	cursor: pointer;
 	stroke: white;
+	r:10;
 	stroke-width: 2px;
 }
 circle.html {
@@ -28,11 +29,33 @@ circle.js {
 	r:15;
 	z-index:2;
 }
-circle.img {/* Image files */
+jpg|png|mp4|gif|svg|jpeg|webp
+circle.jpg {/* Image files */
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-}      
+} circle.png {/* Image files */
+	fill: hsla(0, 0%, 70%, 0.8);
+	r:7;
+	z-index:2;
+} circle.img {/* Image files */
+	fill: hsla(0, 0%, 70%, 0.8);
+	r:7;
+	z-index:2;
+} circle.img {/* Image files */
+	fill: hsla(0, 0%, 70%, 0.8);
+	r:7;
+	z-index:2;
+} circle.img {/* Image files */
+	fill: hsla(0, 0%, 70%, 0.8);
+	r:7;
+	z-index:2;
+} 
+circle.mp4 {/* video files */
+	fill: hsla(0, 0%, 70%, 0.8);
+	r:7;
+	z-index:2;
+}    
 circle.txt {/* TXT files */
 	fill: hsla(120, 100%, 90%, 1);
 	r:12;
