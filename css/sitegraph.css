@@ -33,6 +33,10 @@ circle.txt {/* TXT files */
 	fill: hsla(120, 100%, 90%, 1);
 	r:12;
 }
+circle.other {/* others files */
+	fill: hsla(0, 0%, 90%, 1);
+	r:10;
+}
 line {
 	stroke: white;
 	stroke-width: 1px;
