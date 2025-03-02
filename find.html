@@ -166,8 +166,8 @@ function segmentedPath(source, target, size) {
     if (points.length > 200) break;
   }*/
   digLen = Math.min((targetX - x),(targetY - y));
-   nextX = x+ Math.sign(targetX - x) * digLen;
-   nextY = y+ Math.sign(targetY - y) * digLen;
+   nextX = x + (Math.sign(targetX - x) * digLen);
+   nextY = y + (Math.sign(targetY - y) * digLen);
  points.push({ x: nextX, y: nextY });
     [x, y] = [nextX, nextY];
 	 points.push({ x: targetX, y: targetY });
