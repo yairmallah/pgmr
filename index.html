@@ -14,20 +14,24 @@
 <script>
 	const width = document.getElementById("svg-container").offsetWidth;
 	const height = document.getElementById("svg-container").offsetHeight;
-	console.log(width, height);
 	const gridSize = 100;
-	const offs = 10;
+	const offs = 100;
 	const bounds = {
 		html: { xMin: width/3 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height/2 - offs  },
-		css: { xMin: 0 + offs, xMax: width - offs, 
-				yMin: 0 + offs, yMax: height - offs  },
+				
+		css: { xMin: 0 + offs, xMax: width/3 - offs, 
+				yMin: 0 + offs, yMax: height/2 - offs  },
+				
 		js: { xMin: 0 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height - offs  },
+				
 		img: { xMin: 0 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height - offs  },
+				
 		txt: { xMin: 0 + offs, xMax: width - offs, 
-				yMin: 0 + offs, yMax: height - offs  },
+				yMin: height/2 + offs, yMax: height - offs  },
+				
 		other: { xMin: 0 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height - offs  }
 	};
@@ -49,6 +53,13 @@
 	}
 
 	d3.json(json_add).then(graph => {
+		graph.nodes.forEach(d => {
+			d.class = getFileType(d.id);
+			d.bounds = bounds[d.class];
+			d.x = Math.floor(Math.random() * (d.bounds.xMax - d.bounds.xMin + 1)) + d.bounds.xMin;
+			d.y = Math.floor(Math.random() * (d.bounds.yMax - d.bounds.yMin + 1)) + d.bounds.yMin;
+		})
+	
 		const svg = d3.select("#svg-container")
 			.append("svg")
 			.attr("width", width)
@@ -57,7 +68,7 @@
 		const simulation = d3.forceSimulation(graph.nodes)
 			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
 			.force("charge", d3.forceManyBody().strength(-200))
-			//.force("bounds", forceBounds(bounds))
+			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
 			.force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
@@ -72,7 +83,7 @@
 		const node = svg.selectAll("circle")
 			.data(graph.nodes)
 			.enter().append("circle")
-			.attr("class", d => getFileType(d.id))
+			.attr("class", d => d.class)
 			.on("mouseover", sendWave)
 			.on("click", (event, d) => window.open(d.url, "_blank"));
 
@@ -85,11 +96,11 @@
 
 		simulation.on("tick", () => {
 			node
-				.attr("transform", d => 'translate('+Math.max(bounds[getFileType(d.id)].xMin,Math.min(bounds[getFileType(d.id)].xMax, d.x))+','+
-													Math.max(bounds[getFileType(d.id)].yMin,Math.min(bounds[getFileType(d.id)].yMax, d.y))+')')
+				/*.attr("transform", d => 'translate('+Math.max(bounds[getFileType(d.id)].xMin,Math.min(bounds[getFileType(d.id)].xMax, d.x))+','+
+													Math.max(bounds[getFileType(d.id)].yMin,Math.min(bounds[getFileType(d.id)].yMax, d.y))+')');*/
 													
-				/*.attr("cx", d => d.x)
-				.attr("cy", d => d.y);*/
+				.attr("cx", d => d.x)
+				.attr("cy", d => d.y);
 				/*d.x = Math.max(bounds[getFileType(d.id)].xMin, Math.min(bounds[getFileType(d.id)].xMax, d.x));
 				d.y = Math.max(bounds[getFileType(d.id)].yMin, Math.min(bounds[getFileType(d.id)].yMax, d.y));*/
 		
@@ -158,17 +169,16 @@
 		function forceGrid(size, strength) {
 			return (alpha) => {
 				graph.nodes.forEach(d => {
-				const gridX = Math.round(d.x / size) * size;
-				const gridY = Math.round(d.y / size) * size;
-				d.vx += (gridX - d.x) * strength * alpha;
-				d.vy += (gridY - d.y) * strength * alpha;
+					const gridX = Math.round(d.x / size) * size;
+					const gridY = Math.round(d.y / size) * size;
+					d.vx += (gridX - d.x) * strength * alpha;
+					d.vy += (gridY - d.y) * strength * alpha;
 				});
 			};
 		}
-		function forceBounds(bounds) {
+		function forceBounds() {
 			return function(alpha) {
 				for (const node of simulation.nodes()) {
-					console.log(node);
 					node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
 					node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
 				}
