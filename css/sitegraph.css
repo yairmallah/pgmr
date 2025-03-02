@@ -76,13 +76,17 @@ path{
 }
 .wave{
 	r: 4;
-	fill: hsla(72, 50%, 100%,1);
+	fill: hsla(72, 100%, 75%,1);
 	stroke-width: 0px;
 	z-index:1;
 }
+.whtml{
+	filter: drop-shadow(0 0 2px hsla(72, 100%, 75%,0.8));
+}
 .wjs{
-	fill: hsla(72, 100%, 75%,1);
+	filter: drop-shadow(0 0 2px hsla(72, 100%, 75%,0.6));
+	/*fill: hsla(72, 100%, 75%,1);*/
 }
-.wtxt{
+/*.wtxt{
 	fill: hsla(72, 100%, 90%,0.7);
-}
+}*/
