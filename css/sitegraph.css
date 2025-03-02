@@ -29,7 +29,7 @@ circle.js {
 	r:15;
 	z-index:2;
 }
-jpg|png|mp4|gif|svg|jpeg|webp
+/*jpg|png|mp4|gif|svg|jpeg|webp*/
 circle.jpg {/* Image files */
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
