@@ -12,41 +12,42 @@
 <div id="svg-container"></div>
 <script>const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";</script>
 <script>
-  const width = document.getElementById("svg-container").offsetWidth;
-  const height = document.getElementById("svg-container").offsetHeight;
-  console.log(width, height);
-  const gridSize = 40;
+	const width = document.getElementById("svg-container").offsetWidth;
+	const height = document.getElementById("svg-container").offsetHeight;
+	console.log(width, height);
+	const gridSize = 40;
 
-  const areas = {
-    html: { x: width / 3, y: height / 2 },
-    css: { x: width / 6, y: height / 3 },
-    js: { x: (5 * width) / 6, y: height / 3 },
-    img: { x: width / 4, y: (2 * height) / 3 },
-    txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
-  };
+	const areas = {
+		html: { xMin: 10, xMax: width - 10, 
+				yMin: 10, yMax: height - 10  },
+		css: { x: width / 6, y: height / 3 },
+		js: { x: (5 * width) / 6, y: height / 3 },
+		img: { x: width / 4, y: (2 * height) / 3 },
+		txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+	};
 
-  function getFileType(filename) {
-    if (filename.endsWith(".html")) return "html";
-    if (filename.endsWith(".css")) return "css";
-    if (filename.endsWith(".js")) return "js";
-    if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
-    if (filename.endsWith(".txt")) return "txt";
-    return "other";
-  }
+	function getFileType(filename) {
+		if (filename.endsWith(".html")) return "html";
+		if (filename.endsWith(".css")) return "css";
+		if (filename.endsWith(".js")) return "js";
+		if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
+		if (filename.endsWith(".txt")) return "txt";
+		return "other";
+	}
 
-  d3.json(json_add).then(graph => {
-    const svg = d3.select("#svg-container")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+	d3.json(json_add).then(graph => {
+		const svg = d3.select("#svg-container")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
 
-    const simulation = d3.forceSimulation(graph.nodes)
-      .force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
-      .force("charge", d3.forceManyBody().strength(-500))
-      .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
-      .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
-	  .force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
-	  .alphaDecay(0.01); // Make the simulation continue running slowly
+	const simulation = d3.forceSimulation(graph.nodes)
+		.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
+		.force("charge", d3.forceManyBody().strength(-500))
+		/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
+		.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
+		.force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
+		.alphaDecay(0.01); // Make the simulation continue running slowly
 
 const link = svg.selectAll("path")
   .data(graph.links)
@@ -68,24 +69,21 @@ const link = svg.selectAll("path")
       .attr("text-anchor", "middle")
       .text(d => d.id);
 
-    simulation.on("tick", () => {
- link.each(function(d) {
-    const path = segmentedPath(d.source, d.target, gridSize);
-    const line = d3.select(this);
-    const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
-
-    line.attr("d", dAttr);
-  });
-
+	simulation.on("tick", () => {
+		link.each(function(d) {
+			const path = segmentedPath(d.source, d.target, gridSize);
+			const line = d3.select(this);
+			const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+			line.attr("d", dAttr);
+		});
       node
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
+		.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
+        /*.attr("cx", d => d.x)
+        .attr("cy", d => d.y);*/
 
       labels
         .attr("x", d => d.x)
         .attr("y", d => d.y);
-
-		
     });
 	
 	
@@ -132,31 +130,38 @@ const link = svg.selectAll("path")
 	
 	
 	// 45 deg gen
-function segmentedPath(source, target, size) {
-  const points = [{ x: source.x, y: source.y }];
-  let [x, y] = [source.x, source.y];
-  const targetX = target.x ;
-  const targetY = target.y ;
-  digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
-   nextX = x + (Math.sign(targetX - x) * digLen);
-   nextY = y + (Math.sign(targetY - y) * digLen);
- points.push({ x: nextX, y: nextY });
-    [x, y] = [nextX, nextY];
-	 points.push({ x: targetX, y: targetY });
-  return points;
-}
+	function segmentedPath(source, target, size) {
+		const points = [{ x: source.x, y: source.y }];
+		let [x, y] = [source.x, source.y];
+		const targetX = target.x ;
+		const targetY = target.y ;
+		digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
+		nextX = x + (Math.sign(targetX - x) * digLen);
+		nextY = y + (Math.sign(targetY - y) * digLen);
+		points.push({ x: nextX, y: nextY });
+		[x, y] = [nextX, nextY];
+		points.push({ x: targetX, y: targetY });
+		return points;
+	}
 
 	function forceGrid(size, strength) {
-    return (alpha) => {
-      graph.nodes.forEach(d => {
-        const gridX = Math.round(d.x / size) * size;
-        const gridY = Math.round(d.y / size) * size;
-
-        d.vx += (gridX - d.x) * strength * alpha;
-        d.vy += (gridY - d.y) * strength * alpha;
-      });
-    };
-  }
+		return (alpha) => {
+			graph.nodes.forEach(d => {
+			const gridX = Math.round(d.x / size) * size;
+			const gridY = Math.round(d.y / size) * size;
+			d.vx += (gridX - d.x) * strength * alpha;
+			d.vy += (gridY - d.y) * strength * alpha;
+			});
+		};
+	}
+	function forceBounds(bounds) {
+		return function(alpha) {
+			for (const node of simulation.nodes()) {
+				node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
+				node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
+			}
+		};
+	}
   });
 </script>
 
