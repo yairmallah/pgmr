@@ -6,7 +6,7 @@
 }
 text {
 	fill: white;
-	font-family: sans-serif;
+	opacity:0;
 }
 circle {
 	cursor: pointer;
