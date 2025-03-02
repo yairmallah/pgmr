@@ -41,10 +41,6 @@
       "url": "https://yairmallah.github.io/pgmr/tbaTxt.txt"
     },
     {
-      "id": "test.html",
-      "url": "https://yairmallah.github.io/pgmr/test.html"
-    },
-    {
       "id": "turb.html",
       "url": "https://yairmallah.github.io/pgmr/turb.html"
     },
@@ -576,14 +572,6 @@
     {
       "source": "tba.html",
       "target": "pgmr"
-    },
-    {
-      "source": "test.html",
-      "target": "dictionarysGen.js"
-    },
-    {
-      "source": "test.html",
-      "target": "dictionarysGen.js"
     },
     {
       "source": "turb.html",
