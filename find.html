@@ -35,6 +35,8 @@
   }
 
   d3.json(json_add).then(graph => {
+  for (let i=0; i<json_add[nodes].length; i++){
+	if (i > 10){ json_add[nodes].pop();}}
     const svg = d3.select("#svg-container")
       .append("svg")
       .attr("width", width)
