@@ -162,6 +162,7 @@
 			let [x, y] = [source.x, source.y];
 			const targetX = target.x ;
 			const targetY = target.y ;
+			// randomize start
 			if (Math.abs(targetX - x) + 20 > Math.abs(targetY - y)){
 				nextX = x + Math.floor(Math.random() * 20)*Math.sign(targetX - x);
 				nextY = y;
