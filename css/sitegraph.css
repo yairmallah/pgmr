@@ -10,12 +10,12 @@ text {
 }
 circle {
 	cursor: pointer;
-	/*stroke: white;
+	stroke: white;
 	r:10;
-	stroke-width: 2px;*/
-	stroke: lime;
 	stroke-width: 2px;
-	filter: drop-shadow(0 0 2px lime);
+	/*stroke: lime;
+	stroke-width: 2px;
+	filter: drop-shadow(0 0 2px lime);*/
 }
 circle.html {
 	fill: white;
@@ -76,10 +76,10 @@ path{
 }
 .wave{
 	r: 4;
-	fill: hsl(50, 100%, 70%);
+	fill: hsla(50, 50%, 90%,0.8);
 	stroke-width: 0px;
 	z-index:1;
 }
 .wjs{
-	fill: hsl(120, 100%, 70%);
+	fill: hsla(50, 100%, 75%,0.8);
 }
