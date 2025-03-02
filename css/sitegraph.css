@@ -58,6 +58,7 @@ path{
 	r: 4;
 	fill: hsl(50, 100%, 70%);
 	stroke-width: 0px;
+	z-index:1;
 }
 .wtxt{
 	fill: hsl(120, 100%, 70%);
