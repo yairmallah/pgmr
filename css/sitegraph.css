@@ -11,13 +11,29 @@ text {
 circle {
 	cursor: pointer;
 	stroke: white;
-	stroke-width: 1px;
+	stroke-width: 2px;
 }
-circle.html { fill: white; }      /* HTML files */
-circle.css { fill: lightblue; }   /* CSS files */
-circle.js { fill: yellow; }       /* JS files */
-circle.img { fill: orange; }      /* Image files */
-circle.txt { fill: green; }       /* TXT files */
+circle.html {
+	fill: white;/* HTML files */
+	r: 20;
+}
+circle.css { 
+	fill: lightblue;/* CSS files */
+	r: 10;
+}
+circle.js {
+	fill: red; /* JS files */
+	r:15;
+}
+circle.img {/* Image files */
+	fill: #aaa;
+	opacity:0.7
+	r:7;
+}      
+circle.txt {/* TXT files */
+	fill: green;
+	r:12;
+}
 line {
 	stroke: white;
 	stroke-width: 1px;
@@ -31,5 +47,6 @@ path{
 }
 .wave{
 	r: 4;
-	fill: hsl(40, 100%, 70%);
+	fill: hsl(50, 100%, 70%);
+	stroke-width: 0px;
 }

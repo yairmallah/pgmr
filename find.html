@@ -57,7 +57,6 @@ const link = svg.selectAll("path")
     const node = svg.selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
-      .attr("r", 10)
       .attr("class", d => getFileType(d.id))
       .on("mouseover", sendWave)
       .on("click", (event, d) => window.open(d.url, "_blank"));
