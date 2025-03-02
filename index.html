@@ -52,10 +52,13 @@
 		if (filename.endsWith(".html")) return "html";
 		if (filename.endsWith(".css")) return "css";
 		if (filename.endsWith(".js")) return "js";
-		if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
+		if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
 		if (filename.endsWith(".mp4")) return "mp4";
 		if (filename.endsWith(".txt")) return "txt";
 		return "other";
+	}
+	function getFileTypeD(filename) {
+		return filename.split(".").slice(-1)[0];
 	}
 
 	d3.json(json_add).then(graph => {
@@ -90,7 +93,7 @@
 		const node = svg.selectAll("circle")
 			.data(graph.nodes)
 			.enter().append("circle")
-			.attr("class", d => d.class)
+			.attr("class", d => getFileTypeD(d.id))
 			.on("mouseover", sendWave)
 			.on("click", (event, d) => window.open(d.url, "_blank"));
 
@@ -102,14 +105,9 @@
 			.text(d => d.id);
 
 		simulation.on("tick", () => {
-			node
-				/*.attr("transform", d => 'translate('+Math.max(bounds[getFileType(d.id)].xMin,Math.min(bounds[getFileType(d.id)].xMax, d.x))+','+
-													Math.max(bounds[getFileType(d.id)].yMin,Math.min(bounds[getFileType(d.id)].yMax, d.y))+')');*/
-													
+			node									
 				.attr("cx", d => d.x)
 				.attr("cy", d => d.y);
-				/*d.x = Math.max(bounds[getFileType(d.id)].xMin, Math.min(bounds[getFileType(d.id)].xMax, d.x));
-				d.y = Math.max(bounds[getFileType(d.id)].yMin, Math.min(bounds[getFileType(d.id)].yMax, d.y));*/
 		
 			link.each(function(d) {
 				const path = segmentedPath(d.source, d.target, gridSize);
