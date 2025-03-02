@@ -30,28 +30,27 @@ circle.js {
 	z-index:2;
 }
 /*jpg|png|mp4|gif|svg|jpeg|webp*/
-circle.jpg {/* Image files */
+circle.jpg {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.png {/* Image files */
+} circle.png {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.img {/* Image files */
+} circle.img {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.img {/* Image files */
+} circle.img {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.img {/* Image files */
+} circle.img {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} 
-circle.mp4 {/* video files */
+} circle.mp4 {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
