@@ -95,6 +95,14 @@
 			.enter().append("circle")
 			.attr("class", d => getFileTypeD(d.id))
 			.on("mouseover", sendWave)
+			.on("mouseenter", (event, d) => {
+				d3.select(event.currentTarget).attr("stroke-width", 3);
+				svg.select(`text[data-id='${d.id}']`).attr("opacity", 1); // Show text
+			})
+			.on("mouseleave", (event, d) => {
+				d3.select(event.currentTarget).attr("stroke-width", 1);
+				svg.select(`text[data-id='${d.id}']`).attr("opacity", 0); // Hide text
+			});
 			.on("click", (event, d) => window.open(d.url, "_blank"));
 
 		const labels = svg.selectAll("text")
