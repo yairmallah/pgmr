@@ -10,26 +10,28 @@ text {
 }
 circle {
 	cursor: pointer;
-	stroke: white;
+	/*stroke: white;
 	r:10;
+	stroke-width: 2px;*/
+	stroke: lime;
 	stroke-width: 2px;
+	filter: drop-shadow(0 0 5px lime);
 }
 circle.html {
-	fill: white;/* HTML files */
+	fill: white;
 	r: 17;
 	z-index:2;
 }
 circle.css { 
-	fill: hsla(180, 100%, 90%, 1);/* CSS files */
+	fill: hsla(180, 100%, 90%, 1);
 	r: 10;
 	z-index:2;
 }
 circle.js {
-	fill: red; /* JS files */
+	fill: red;
 	r:15;
 	z-index:2;
 }
-/*jpg|png|mp4|gif|svg|jpeg|webp*/
 circle.jpg {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
@@ -38,15 +40,11 @@ circle.jpg {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.img {
+} circle.gif {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
-} circle.img {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
-	z-index:2;
-} circle.img {
+} circle.jpeg {
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 	z-index:2;
@@ -55,12 +53,12 @@ circle.jpg {
 	r:7;
 	z-index:2;
 }    
-circle.txt {/* TXT files */
+circle.txt {
 	fill: hsla(120, 100%, 90%, 1);
 	r:12;
 	z-index:2;
 }
-circle.other {/* others files */
+circle.other {
 	fill: hsla(0, 0%, 0%, 1);
 	r:10;
 	z-index:2;
