@@ -76,10 +76,13 @@ path{
 }
 .wave{
 	r: 4;
-	fill: hsla(50, 50%, 90%,0.8);
+	fill: hsla(72, 50%, 100%,1);
 	stroke-width: 0px;
 	z-index:1;
 }
 .wjs{
-	fill: hsla(50, 100%, 75%,0.8);
+	fill: hsla(72, 100%, 75%,1);
+}
+.wtxt{
+	fill: hsla(72, 100%, 90%,0.7);
 }
