@@ -34,7 +34,7 @@ circle.txt {/* TXT files */
 	r:12;
 }
 circle.other {/* others files */
-	fill: hsla(0, 0%, 90%, 1);
+	fill: hsla(0, 0%, 0%, 1);
 	r:10;
 }
 line {
