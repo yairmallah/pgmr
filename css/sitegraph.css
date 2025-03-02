@@ -15,7 +15,7 @@ circle {
 	stroke-width: 2px;*/
 	stroke: lime;
 	stroke-width: 2px;
-	filter: drop-shadow(0 0 5px lime);
+	filter: drop-shadow(0 0 2px lime);
 }
 circle.html {
 	fill: white;
@@ -70,7 +70,7 @@ line {
 }
 path{
 	stroke: white;
-	stroke-width: 1px;
+	stroke-width: 3px;
 	opacity: 0.5;
 	fill: none;
 }
@@ -80,9 +80,6 @@ path{
 	stroke-width: 0px;
 	z-index:1;
 }
-.wtxt{
-	fill: hsl(120, 100%, 70%);
-}
-.whtml{
+.wjs{
 	fill: hsl(120, 100%, 70%);
 }
