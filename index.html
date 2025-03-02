@@ -93,7 +93,7 @@
 		const node = svg.selectAll("circle")
 			.data(graph.nodes)
 			.enter().append("circle")
-			.attr("class", d => getFileTypeD(d.id))
+			.attr("class", d => getFileTypeD(d.id)+" node")
 			.on("mouseover", sendWave)
 			.on("mouseenter", (event, d) => {
 				console.log(event.currentTarget);
@@ -140,6 +140,7 @@
 			const speed = 1000;// !!Constant speed per segment
 
 			function propagate(source) {
+				
 				visited.add(source.id);
 				graph.links.forEach(link => {
 					if (link.source.id === source.id && !visited.has(link.target.id)) {
@@ -166,6 +167,9 @@
 						travel(1); // Start from second point
 					}
 				});
+				// z-index
+				svg.selectAll("circle.node").raise();
+				svg.selectAll("text").raise();
 			}
 			propagate(d);
 		}
