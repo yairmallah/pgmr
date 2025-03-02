@@ -159,7 +159,8 @@ function segmentedPath(source, target, size) {
     if (Math.abs(nextX - targetX) >= Math.abs(x - targetX)) nextX = targetX;
     if (Math.abs(nextY - targetY) >= Math.abs(y - targetY)) nextY = targetY;
 
-    points.push({ x: nextX, y: nextY });
+    points.push({ x: nextX, y:
+	nextY });
     [x, y] = [nextX, nextY];
 
     // Emergency brake 🔥 (just in case)
