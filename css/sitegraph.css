@@ -15,7 +15,7 @@ circle {
 }
 circle.html {
 	fill: white;/* HTML files */
-	r: 20;
+	r: 17;
 }
 circle.css { 
 	fill: lightblue;/* CSS files */
@@ -26,8 +26,7 @@ circle.js {
 	r:15;
 }
 circle.img {/* Image files */
-	fill: #aaa;
-	opacity:0.7
+	fill: hsla(0, 0%, 70, 0.8);
 	r:7;
 }      
 circle.txt {/* TXT files */
