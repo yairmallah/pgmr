@@ -16,26 +16,32 @@ circle {
 circle.html {
 	fill: white;/* HTML files */
 	r: 17;
+	z-index:2;
 }
 circle.css { 
 	fill: hsla(180, 100%, 90%, 1);/* CSS files */
 	r: 10;
+	z-index:2;
 }
 circle.js {
 	fill: red; /* JS files */
 	r:15;
+	z-index:2;
 }
 circle.img {/* Image files */
 	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
+	z-index:2;
 }      
 circle.txt {/* TXT files */
 	fill: hsla(120, 100%, 90%, 1);
 	r:12;
+	z-index:2;
 }
 circle.other {/* others files */
 	fill: hsla(0, 0%, 0%, 1);
 	r:10;
+	z-index:2;
 }
 line {
 	stroke: white;
