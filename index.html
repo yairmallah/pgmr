@@ -1,239 +1,165 @@
 <!DOCTYPE html>
-<html lang="he">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Graph-Style Site Map</title>
-		<link rel="stylesheet" type="text/css" href="css\general.css"/>
-        <style>
-            #graph-container {
-                width: 100%;
-                margin: 0;
-                height: 100%;
-                overflow: hidden;
-            }
-            .node circle {
-                //stroke: #fff;
-                stroke-width: 1.5px;
-                opacity: 0.2;
-                r: 15;
-            }
-            .node text {
-                font-size: 15px;
-                fill: #fff;
-                text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
-            }
-            .link {
-                stroke: #fff;
-                stroke-opacity: 0.8;
-                stroke-width: 1;
-            }
-            .linc {
-                stroke: #999;
-                stroke-opacity: 0.3;
-            }
-            text {
-                opacity: 0.7;
-              	cursor: pointer;
-            }
-            g :hover {
-                z-index: 4;
-                opacity: 1;
-                color: rgba(255, 255, 255, 1)
-                scale: 2.5
-            }
-            circle :hover {
-                opacity: 1;
-                r: 30;
-                color: rgba(255, 255, 255, 1)
-            }
-            .node text :hover {
-                z-index: 4;
-                opacity: 1;
-                color: rgba(255, 255, 255, 1);
-                transform: scale(2.5);
-            }
-        </style>
-    </head>
-    <body>
-        <div id="graph-container"></div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-		<script src="dictionarysGen.js"></script>
-        <script>
-            const width = document.getElementById("graph-container").offsetWidth;
-            const height = document.getElementById("graph-container").offsetHeight;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Map</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  	<link rel="stylesheet" type="text/css" href="css\general.css"/>
+	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
+</head>
+<body>
+<div id="svg-container"></div>
+<script>const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";</script>
+<script>
+  const width = document.getElementById("svg-container").offsetWidth;
+  const height = document.getElementById("svg-container").offsetHeight;
+  console.log(width, height);
+  const gridSize = 40;
 
-            const links = [];
-			var nodeMessages = window.messages;
-			var nodeClass = window.classes;
-			var nodeScheme = window.images;
-			initializeAllDicts().then(() => {
-				// define dictionarys
-				nodeMessages = window.messages;
-				nodeClass = window.classes;
-				nodeScheme = window.images;
-				// Generate links if messages share a common word
-				const nodesKeys = Object.keys(nodeMessages);
-				for (let i = 0; i < nodesKeys.length; i++) {
-					for (let j = 0; j < nodesKeys.length; j++) {
-						const source = nodesKeys[i];
-						if (source=="הר"){
-							continue;}
-						const target = nodesKeys[j];
-						const targetWords = nodeMessages[target];
+  const areas = {
+    html: { x: width / 3, y: height / 2 },
+    css: { x: width / 6, y: height / 3 },
+    js: { x: (5 * width) / 6, y: height / 3 },
+    img: { x: width / 4, y: (2 * height) / 3 },
+    txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+  };
 
-						if (targetWords.includes(source)) {
-							links.push({ source, target });
-						}
-						//const sorceWords = nodeMessages[source];
-						//for (const ward of targetWords) {
-						//    if (sorceWords.includes(ward)) {
-						//        links.push({ source, target });
-						//        break;
-						//    }
-						//}
-					}
-				}
-				const lincs = [];
-				// Generate lincs if messages share a common word
-				for (let i = 0; i < nodesKeys.length; i++) {
-					for (let j = 0; j < nodesKeys.length; j++) {
-						const target = nodesKeys[j];
-						const targetWords = nodeMessages[target];
-						const source = nodesKeys[i];
-						const sourceWords = nodeMessages[source];
-						for (const ward of targetWords) {
-							if (sourceWords.includes(ward)) {
-								lincs.push({ source, target });
-								break;
-							}
-						}
-					}
-				}
+  function getFileType(filename) {
+    if (filename.endsWith(".html")) return "html";
+    if (filename.endsWith(".css")) return "css";
+    if (filename.endsWith(".js")) return "js";
+    if (filename.match(/\.(jpg|png|gif|svg|jpeg|webp)$/)) return "img";
+    if (filename.endsWith(".txt")) return "txt";
+    return "other";
+  }
 
-				const svg = d3.select("#graph-container").append("svg")
-					.attr("width", "100%")
-					.attr("height", "100%");
-				// Define the simulation with forces
-				const simulation = d3.forceSimulation()
-					.force("link", d3.forceLink().id(d => d.id).distance(180))
-					.force("linc", d3.forceLink().id(d => d.id).distance(50))
-					.force("linc", d3.forceLink().id(d => d.id).strength(0.000001))
-					.force("charge", d3.forceManyBody().strength(-1))
-					.force("center", d3.forceCenter(width / 2, height / 2))
-					.force("collide", d3.forceCollide(30));
-				function forceSameClassAttraction(strength) {
-					return (alpha) => {
-						const nodes = simulation.nodes();
-						for (let i = 0; i < nodes.length; i++) {
-							for (let j = i + 1; j < nodes.length; j++) {
-								const nodeA = nodes[i];
-								const nodeB = nodes[j];
-								// Apply attraction only for nodes of the same class
-								if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
-									const dx = nodeB.x - nodeA.x;
-									const dy = nodeB.y - nodeA.y;
-									const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
+  d3.json(json_add).then(graph => {
+    const svg = d3.select("#svg-container")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-									// Strength of the attraction
-									const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
+    const simulation = d3.forceSimulation(graph.nodes)
+      .force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
+      .force("charge", d3.forceManyBody().strength(-500))
+      .force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
+      .force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
+	  .force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
+	  .alphaDecay(0.01); // Make the simulation continue running slowly
 
-									// Apply forces to nodes
-									nodeA.vx += force * dx;
-									nodeA.vy += force * dy;
-									nodeB.vx -= force * dx;
-									nodeB.vy -= force * dy;
-								}
-							}
-						}
-					};
-				}
+const link = svg.selectAll("path")
+  .data(graph.links)
+  .enter().append("path")
+  .attr("class", d => "path-"+getFileType(d.source.id) +" path-"+getFileType(d.target.id));
 
 
-				// Create links
-				const link = svg.append("g")
-					.selectAll(".link")
-					.data(links)
-					.enter().append("line")
-					.attr("class", "link");
+    const node = svg.selectAll("circle")
+      .data(graph.nodes)
+      .enter().append("circle")
+      .attr("class", d => getFileType(d.id))
+      .on("mouseover", sendWave)
+      .on("click", (event, d) => window.open(d.url, "_blank"));
 
-				const linc = svg.append("g")
-					.selectAll(".linc")
-					.data(lincs)
-					.enter().append("line")
-					.attr("class", "linc");
+    const labels = svg.selectAll("text")
+      .data(graph.nodes)
+      .enter().append("text")
+      .attr("dy", -15)
+      .attr("text-anchor", "middle")
+      .text(d => d.id);
 
-				// Create nodes with initial positions
-				const node = svg.append("g")
-					.selectAll(".node")
-					.data(Object.keys(nodeMessages).map(id => ({
-						id,
-						group: nodeClass[id] || "default",
-						x: Math.random() * width,
-						y: Math.random() * height
-					})))
-					.enter().append("g")
-					.attr("class", "node")
-					.call(d3.drag()
-						.on("start", dragStart)
-						.on("drag", dragged)
-						.on("end", dragEnd));
+    simulation.on("tick", () => {
+ link.each(function(d) {
+    const path = segmentedPath(d.source, d.target, gridSize);
+    const line = d3.select(this);
+    const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
 
-				node.on("click", (event, d) => {
-					window.location.replace("https://yairmallah.github.io/pgmr/log");
-				});
+    line.attr("d", dAttr);
+  });
 
-				node.append("circle")
-					.attr("class", d => nodeClass[d.id])
+      node
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
 
+      labels
+        .attr("x", d => d.x)
+        .attr("y", d => d.y);
 
-				node.append("text")
-					.attr("dx", 0)
-					.attr("dy", ".35em")
-					.attr("text-anchor", "middle")
-					.attr("class", d => "b"+nodeClass[d.id])
-					//.attr("anchor", "center")
-					.text(d => d.id);
+		
+    });
+	
+	
+	
+	
 
-				simulation.nodes(node.data())
-					.on("tick", ticked);
+    function sendWave(event, d) {
+      const visited = new Set();
+      const speed = 1000;// Constant speed per segment
 
-				simulation.force("link").links(links);
-				simulation.force("linc").links(lincs);
+      function propagate(source) {
+        visited.add(source.id);
+        graph.links.forEach(link => {
+          if (link.source.id === source.id && !visited.has(link.target.id)) {
+			const path = segmentedPath(link.source, link.target, gridSize);
+            const dot = svg.append("circle")
+			  .attr("class", "wave w"+source.class)
+              .attr("cx", path[0].x)
+              .attr("cy", path[0].y);
 
+			function travel(index) {
+			  if (index >= path.length) {
+				dot.remove();
+				propagate(link.target);
+				return;
+			  }
 
-				function ticked() {
-					link
-						.attr("x1", d => d.source.x)
-						.attr("y1", d => d.source.y)
-						.attr("x2", d => d.target.x)
-						.attr("y2", d => d.target.y);
-					node
-						.attr("transform", d => `translate(${d.x},${d.y})`);
-					linc
-						.attr("x1", d => d.source.x)
-						.attr("y1", d => d.source.y)
-						.attr("x2", d => d.target.x)
-						.attr("y2", d => d.target.y);
-				}
+			  dot.transition()
+				.duration(speed)
+				.attr("cx", path[index].x)
+				.attr("cy", path[index].y)
+				.on("end", () => travel(index + 1));
+			}
 
-				function dragStart(event, d) {
-					if (!event.active) simulation.alphaTarget(0.3).restart();
-					d.fx = d.x;
-					d.fy = d.y;
-				}
+			travel(1); // Start from second point
+		  }
+		});
+	  }
+      propagate(d);
+    }
 
-				function dragged(event, d) {
-					d.fx = event.x;
-					d.fy = event.y;
-				}
+	
+	
+	
+	
+	// 45 deg gen
+function segmentedPath(source, target, size) {
+  const points = [{ x: source.x, y: source.y }];
+  let [x, y] = [source.x, source.y];
+  const targetX = target.x ;
+  const targetY = target.y ;
+  digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
+   nextX = x + (Math.sign(targetX - x) * digLen);
+   nextY = y + (Math.sign(targetY - y) * digLen);
+ points.push({ x: nextX, y: nextY });
+    [x, y] = [nextX, nextY];
+	 points.push({ x: targetX, y: targetY });
+  return points;
+}
 
-				function dragEnd(event, d) {
-					if (!event.active) simulation.alphaTarget(0);
-					d.fx = null;
-					d.fy = null;
-				}
-			});
-        </script>
-    </body>
+	function forceGrid(size, strength) {
+    return (alpha) => {
+      graph.nodes.forEach(d => {
+        const gridX = Math.round(d.x / size) * size;
+        const gridY = Math.round(d.y / size) * size;
+
+        d.vx += (gridX - d.x) * strength * alpha;
+        d.vy += (gridY - d.y) * strength * alpha;
+      });
+    };
+  }
+  });
+</script>
+
+</body>
 </html>
+
