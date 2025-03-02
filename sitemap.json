@@ -177,10 +177,6 @@
       "url": "https://yairmallah.github.io/pgmr/IMG_0420.jpg"
     },
     {
-      "id": "IMG_0421.jpg",
-      "url": "https://yairmallah.github.io/pgmr/IMG_0421.jpg"
-    },
-    {
       "id": "מושג.png",
       "url": "https://yairmallah.github.io/pgmr/%D7%9E%D7%95%D7%A9%D7%92.png"
     },
@@ -215,10 +211,6 @@
     {
       "id": "C:/pgmr",
       "url": "C:/pgmr"
-    },
-    {
-      "id": "log.css",
-      "url": "https://yairmallah.github.io/pgmr/log.css"
     },
     {
       "id": "אדם.png",
@@ -265,14 +257,6 @@
       "url": "https://yairmallah.github.io/pgmr/pgmr"
     },
     {
-      "id": "tba.css",
-      "url": "https://yairmallah.github.io/pgmr/tba.css"
-    },
-    {
-      "id": "ths.css",
-      "url": "https://yairmallah.github.io/pgmr/ths.css"
-    },
-    {
       "id": "urb.txt",
       "url": "https://yairmallah.github.io/pgmr/urb.txt"
     },
@@ -293,10 +277,6 @@
     {
       "source": "dictionarys.js",
       "target": "IMG_0420.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "IMG_0421.jpg"
     },
     {
       "source": "dictionarys.js",
@@ -380,10 +360,6 @@
     },
     {
       "source": "log.html",
-      "target": "log.css"
-    },
-    {
-      "source": "log.html",
       "target": "general.css"
     },
     {
@@ -410,9 +386,32 @@
       "source": "nodeMessages.txt",
       "target": "IMG_0420.jpg"
     },
+	{
+      "source": "nodeMessages.txt",
+      "target": "imgs/קו_פרקטל.gif"
+    },
+	{
+      "source": "nodeMessages.txt",
+      "target": "imgs/מרחב.jpg"
+    },
+	{
+      "source": "nodeMessages.txt",
+      "target": "imgs/מרחב2.jpg"
+    },
+	{
+      "source": "nodeMessages.txt",
+      "target": "imgs/פוסטמודרניזם.jpg"
+    },
+	{
+      "source": "nodeMessages.txt",
+      "target": "imgs/מושג.png"
+    },{
+      "source": "nodeMessages.txt",
+      "target": "imgs/פונקציה.jpg"
+    },
     {
       "source": "nodeMessages.txt",
-      "target": "IMG_0421.jpg"
+      "target": "imgs/IMG_0421.jpg"
     },
     {
       "source": "nodeMessages.txt",
@@ -485,10 +484,6 @@
     {
       "source": "nodeMessages.txt",
       "target": "IMG_0420.jpg"
-    },
-    {
-      "source": "nodeMessages.txt",
-      "target": "IMG_0421.jpg"
     },
     {
       "source": "nodeMessages.txt",
@@ -568,10 +563,6 @@
     },
     {
       "source": "tba.html",
-      "target": "tba.css"
-    },
-    {
-      "source": "tba.html",
       "target": "imgs/tba.gif"
     },
     {
@@ -625,10 +616,6 @@
     {
       "source": "turb.html",
       "target": "general.css"
-    },
-    {
-      "source": "turb.html",
-      "target": "ths.css"
     },
     {
       "source": "turb.html",
@@ -692,31 +679,7 @@
     },
     {
       "source": "css/tba.css",
-      "target": "css/main"
-    },
-    {
-      "source": "css/tba.css",
       "target": "imgs/tba.gif"
-    },
-    {
-      "source": "css/tba.css",
-      "target": "imgs/tba.gif"
-    },
-    {
-      "source": "css/ths.css",
-      "target": "css/main"
-    },
-    {
-      "source": "css/ths.css",
-      "target": "css/main"
-    },
-    {
-      "source": "css/video.css",
-      "target": "css/main"
-    },
-    {
-      "source": "css/video.css",
-      "target": "css/main"
     }
   ]
 }
