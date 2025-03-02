@@ -58,8 +58,8 @@
 			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
 			.force("charge", d3.forceManyBody().strength(-200))
 			//.force("bounds", forceBounds(bounds))
-			.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
-			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
+			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
+			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
 			.force("grid", forceGrid(gridSize, 0.5)) // Grid force with weak strength
 			.alphaDecay(0.01); // Make the simulation continue running slowly
 
@@ -84,11 +84,14 @@
 			.text(d => d.id);
 
 		simulation.on("tick", () => {
-						node
+			node
 				.attr("transform", d => 'translate('+Math.max(bounds[getFileType(d.id)].xMin,Math.min(bounds[getFileType(d.id)].xMax, d.x))+','+
 													Math.max(bounds[getFileType(d.id)].yMin,Math.min(bounds[getFileType(d.id)].yMax, d.y))+')')
-				;/*.attr("cx", d => d.x)
+													
+				/*.attr("cx", d => d.x)
 				.attr("cy", d => d.y);*/
+				/*d.x = Math.max(bounds[getFileType(d.id)].xMin, Math.min(bounds[getFileType(d.id)].xMax, d.x));
+				d.y = Math.max(bounds[getFileType(d.id)].yMin, Math.min(bounds[getFileType(d.id)].yMax, d.y));*/
 		
 			link.each(function(d) {
 				const path = segmentedPath(d.source, d.target, gridSize);
