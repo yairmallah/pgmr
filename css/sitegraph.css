@@ -29,29 +29,29 @@ circle.css {
 	z-index:2;
 }
 circle.js {
-	fill: red;
+	fill: hsla(0, 100%, 70%, 1);
 	r:15;
 	z-index:2;
 }
 circle.jpg {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
+	fill: hsla(260, 100%, 70%, 0.8);
+	r:8;
 	z-index:2;
 } circle.png {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
+	fill: hsla(280, 100%, 70%, 0.8);
+	r:8;
 	z-index:2;
 } circle.gif {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
+	fill: hsla(290, 100%, 70%, 0.8);
+	r:8;
 	z-index:2;
 } circle.jpeg {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
+	fill: hsla(270, 100%, 70%, 0.8);
+	r:8;
 	z-index:2;
 } circle.mp4 {
-	fill: hsla(0, 0%, 70%, 0.8);
-	r:7;
+	fill: hsla(330, 100%, 70%, 0.8);
+	r:8;
 	z-index:2;
 }    
 circle.txt {
