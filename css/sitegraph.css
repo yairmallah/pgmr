@@ -18,7 +18,7 @@ circle.html {
 	r: 17;
 }
 circle.css { 
-	fill: lightblue;/* CSS files */
+	fill: hsla(180, 100%, 90%, 1);/* CSS files */
 	r: 10;
 }
 circle.js {
@@ -26,11 +26,11 @@ circle.js {
 	r:15;
 }
 circle.img {/* Image files */
-	fill: hsla(0, 0%, 70, 0.8);
+	fill: hsla(0, 0%, 70%, 0.8);
 	r:7;
 }      
 circle.txt {/* TXT files */
-	fill: green;
+	fill: hsla(120, 100%, 90%, 1);
 	r:12;
 }
 line {
