@@ -96,12 +96,16 @@
 			.attr("class", d => getFileTypeD(d.id))
 			.on("mouseover", sendWave)
 			.on("mouseenter", (event, d) => {
-				d3.select(event.currentTarget).attr("stroke-width", 3);
-				svg.select(`text[data-id='${d.id}']`).attr("opacity", 1); // Show text
+				console.log(event.currentTarget);
+				d3.select(event.currentTarget).attr("style", "stroke-width:3");
+				labels.filter(l => l.id === d.id)
+					.transition()
+					.duration(300)
+					.attr("style", "opacity:1"); // Show text
 			})
 			.on("mouseleave", (event, d) => {
-				d3.select(event.currentTarget).attr("stroke-width", 1);
-				svg.select(`text[data-id='${d.id}']`).attr("opacity", 0); // Hide text
+				d3.select(event.currentTarget).attr("style", "");
+				svg.select(labels[d.id]).attr("style", " "); // Hide text
 			})
 			.on("click", (event, d) => window.open(d.url, "_blank"));
 
