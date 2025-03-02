@@ -691,10 +691,6 @@
       "target": "general.css"
     },
     {
-      "source": "css/general.css",
-      "target": "css/pgmr"
-    },
-    {
       "source": "css/tba.css",
       "target": "css/main"
     },
