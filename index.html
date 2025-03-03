@@ -80,7 +80,7 @@
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
-			.force("grid", forceGrid(gridSize, 1)) // Grid force with weak strength
+			.force("grid", forceGrid(gridSize, 3)) // Grid force with weak strength
 			.force('collide', d3.forceCollide(minDistance))
 			//.alphaDecay(0.01); // Make the simulation continue running slowly
 
