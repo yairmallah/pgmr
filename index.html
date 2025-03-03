@@ -18,8 +18,10 @@
 	const minDistance = 30;
 	const offs = 30;
 	const bounds = {
-		html: { xMin: width/3 + offs, xMax: width - offs, 
-				yMin: 0 + offs, yMax: height/2 - offs  },
+		html: { /*xMin: width/3 + offs, xMax: width - offs, 
+				yMin: 0 + offs, yMax: height/2 - offs*/
+				xMin: 0 + offs, xMax: width - offs, 
+				yMin: 0 + offs, yMax: height - offs},
 				
 		css: { xMin: 0 + offs, xMax: width/3 - offs, 
 				yMin: 0 + offs, yMax: height/2 - offs  },
@@ -80,7 +82,7 @@
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
-			.force("grid", forceGrid(gridSize, 3)) // Grid force with weak strength
+			//.force("grid", forceGrid(gridSize, 3)) // Grid force with weak strength
 			.force('collide', d3.forceCollide(minDistance))
 			//.alphaDecay(0.01); // Make the simulation continue running slowly
 
