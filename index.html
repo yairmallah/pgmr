@@ -78,10 +78,8 @@
 
 		const simulation = d3.forceSimulation(graph.nodes)
 			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(100))
-			//.force("charge", d3.forceManyBody().strength(-10))
-			.force("charge", d3.forceManyBody().strength(d => 
-				d.class === "html" ? -300 : -100
-			))
+			.force("charge", d3.forceManyBody().strength(-10))
+			.force("charge_html", manyBodyClass(500, "html"))
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
@@ -161,8 +159,6 @@
 								propagate(link.target);
 								return;
 							}
-							console.log(Math.pow(path[index].y - path[index-1].y,2));
-							console.log(Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5));
 							const nextLength = Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5);
 							dot.transition()
 								.duration(nextLength/speed)//uniform speed
@@ -224,6 +220,26 @@
 					node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
 					node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
 				}
+			};
+		}
+		
+		function manyBodyClass(strength, type) {
+			return (alpha) => {
+				graph.nodes.forEach((node) => {
+					if (node.class === type) {
+						graph.nodes.forEach((other) => {
+							if (other !== node && other.class === type) {
+								const dx = node.x - other.x;
+								const dy = node.y - other.y;
+								const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+								const force = (strength * alpha) / Math.pow(dist, 0.5);
+								console.log("f", force);
+								node.vx += (dx / dist) * force;
+								node.vy += (dy / dist) * force;
+							}
+						});
+					}
+				});
 			};
 		}
 	});
