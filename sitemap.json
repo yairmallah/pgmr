@@ -81,8 +81,8 @@
       "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0421.jpg"
     },
     {
-      "id": "imgs/nav schame.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/nav%20schame.gif"
+      "id": "imgs/navSchame.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/navSchame.gif"
     },
     {
       "id": "imgs/readme",
@@ -624,6 +624,10 @@
     {
       "source": "video.html",
       "target": "css/general.css"
+    },
+	{
+      "source": "css/general.css",
+      "target": "imgs/navSchame.gif"
     },
     {
       "source": "video.html",
