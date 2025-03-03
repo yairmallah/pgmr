@@ -19,17 +19,17 @@ circle {
 	*/filter: drop-shadow(0 0 5px hsl(75,72%,72%));
 }
 circle.html {
-	fill: white;
+	fill: hsla(0, 0%, 95%, 0.8);;
 	r: 17;
 	z-index:2;
 }
 circle.css { 
-	fill: hsla(180, 100%, 90%, 1);
+	fill: hsla(180, 100%, 80%, 0.8);
 	r: 10;
 	z-index:2;
 }
 circle.js {
-	fill: hsla(0, 100%, 70%, 1);
+	fill: hsla(0, 100%, 70%, 0.8);
 	r:15;
 	z-index:2;
 }
@@ -55,7 +55,7 @@ circle.jpg {
 	z-index:2;
 }    
 circle.txt {
-	fill: hsla(120, 100%, 90%, 1);
+	fill: hsla(120, 100%, 90%, 0.8);
 	r:12;
 	z-index:2;
 }
