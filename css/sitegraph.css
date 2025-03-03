@@ -3,6 +3,9 @@
 	height: 98vh;
 	margin: 0;
 	overflow: hidden;
+	background: #000;
+	background-image: linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em);
+	background-size: 50px 50px;
 }
 text {
 	fill: white;
