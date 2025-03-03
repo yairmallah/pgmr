@@ -87,7 +87,8 @@
 		const link = svg.selectAll("path")
 			.data(graph.links)
 			.enter().append("path")
-			.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id));
+			.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
+			.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`);
 
 
 		const node = svg.selectAll("circle")
@@ -220,7 +221,30 @@
 		}
 	});
 </script>
-
+<script>
+	const colors = new Proxy(
+		{
+			html:	{h:40, s:100, l:100, a:1},
+			css:	{h:180, s:100, l:90, a:1},
+			js:		{h:0, s:100, l:70, a:1},
+			jpg:	{h:260, s:100, l:70, a:0.8},
+			png:	{h:280, s:100, l:70, a:0.8},
+			gif:	{h:290, s:100, l:70, a:0.8},
+			jpeg:	{h:270, s:100, l:70, a:0.8},
+			mp4:	{h:330, s:100, l:70, a:0.8},
+			img:	{h:280, s:100, l:70, a:0.8}, 
+			txt:	{h:120, s:100, l:90, a:1},
+			other:	{h:220, s:0, l:0, a:1}
+		},{
+			get(target, key) {
+				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+			}
+	});
+	function decideColor(srcClss, trgClss){
+		return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
+		//path.style.stroke = `hsl(${col}, 100%, 65%)`;
+	}
+</script>
 </body>
 </html>
 
