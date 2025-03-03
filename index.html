@@ -183,7 +183,7 @@
 			const targetX = target.x ;
 			const targetY = target.y ;
 			// randomize start
-			if (Math.abs(targetX - x) + 20 > Math.abs(targetY - y)){
+			/*if (Math.abs(targetX - x) + 20 > Math.abs(targetY - y)){
 				nextX = x + Math.floor(Math.random() * 20)*Math.sign(targetX - x);
 				nextY = y;
 				points.push({ x: nextX, y: nextY });
@@ -193,7 +193,7 @@
 				nextY = y + Math.floor(Math.random() * 20)*Math.sign(targetY - y);
 				points.push({ x: nextX, y: nextY });
 				[x, y] = [nextX, nextY];
-			}
+			}*/
 			digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
 			nextX = x + (Math.sign(targetX - x) * digLen);
 			nextY = y + (Math.sign(targetY - y) * digLen);
