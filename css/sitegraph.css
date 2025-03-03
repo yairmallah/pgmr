@@ -3,14 +3,14 @@ body{
 	background-size: 50px 50px;
 }
 #svg-container {
-	width: 100vh;
+	width: 100vw;
 	height: 100vh;
 	margin: 0;
 	overflow: hidden;
 }
 text {
 	fill: white;
-	opacity:0;
+	display:none;
 	text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 circle {

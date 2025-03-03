@@ -10,17 +10,16 @@
 </head>
 <body>
 <div id="svg-container"></div>
-<script>const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";</script>
 <script>
+const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 	const width = document.getElementById("svg-container").offsetWidth;
 	const height = document.getElementById("svg-container").offsetHeight;
+	console.log("height: ", height, " width: ", width);
 	const gridSize = 50;
 	const minDistance = 30;
-	const offs = 30;
+	offs = 30;
 	const bounds = {
-		html: { /*xMin: width/3 + offs, xMax: width - offs, 
-				yMin: 0 + offs, yMax: height/2 - offs*/
-				xMin: 0 + offs, xMax: width - offs, 
+		html: { xMin: 0 + offs, xMax: width - offs,  
 				yMin: 0 + offs, yMax: height - offs},
 				
 		css: { xMin: 0 + offs, xMax: width/3 - offs, 
@@ -41,6 +40,39 @@
 		other: { xMin: 0 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height - offs  }
 	};
+	if (height >= width*1.2){
+		bounds["html"]= {xMin: 0 + offs, xMax: width - offs,
+						yMin: 0+ offs, yMax:height / 4 - offs};
+		bounds["css"]= {xMin: 0 + offs, xMax: width / 4,
+						yMin: 0+ offs, yMax: height / 4 - offs};
+		bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3 / 4 - offs,
+						yMin: height / 4+ offs, yMax: height / 2 - offs};
+		bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
+						yMin: height / 2+ offs, yMax: height - offs};
+		bounds["mp4"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs,
+						yMin: height / 2+ offs, yMax: height - offs};
+		bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
+						yMin: height / 4+ offs, yMax: height - offs};
+	}else if (width >= height*1.2){
+		bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
+						xMax: width / 3 - offs,		yMax: height*2/3 - offs};
+						
+		bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
+						xMax: width / 3 - offs,		yMax: height - offs};
+						
+		bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
+						xMax: width / 2 - offs,		yMax: height / 3 - offs};
+		
+		bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
+						xMax: width / 2 - offs,		yMax: height - offs};
+						
+		bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+						xMax: width - offs,			yMax: height - offs};
+						
+		bounds["mp4"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+						xMax: width - offs,			yMax: height - offs};
+	}
+
 	const areas = {
 		html: { x: width / 3, y: height / 2 },
 		css: { x: width / 6, y: height / 3 },
@@ -49,6 +81,7 @@
 		mp4: { x: width / 4, y: (2 * height) / 3 },
 		txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
 	};
+
 
 	function getFileType(filename) {
 		if (filename.endsWith(".html")) return "html";
@@ -77,9 +110,9 @@
 			.attr("height", height);
 
 		const simulation = d3.forceSimulation(graph.nodes)
-			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(100))
-			.force("charge", d3.forceManyBody().strength(-10))
-			.force("charge_html", manyBodyClass(500, "html"))
+			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(300))
+			.force("charge", d3.forceManyBody().strength(-100))
+			.force("charge_html", manyBodyClass(1500, "html"))
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
@@ -103,7 +136,7 @@
 				labels.filter(l => l.id === d.id)
 					.transition()
 					.duration(300)
-					.attr("style", "opacity:1");
+					.attr("style", "display:block;");
 			})
 			.on("mouseleave", (event, d) => {
 				labels.filter(l => l.id === d.id)
