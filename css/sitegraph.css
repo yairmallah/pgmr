@@ -17,55 +17,47 @@ circle {
 	stroke: white;
 	r:10;
 	stroke-width: 2px;
+}
+circle.static {
+	filter: drop-shadow(0 0 5px hsl(75,72%,72%));
 	/*stroke: lime;
-	stroke-width: 2px;
-	*/filter: drop-shadow(0 0 5px hsl(75,72%,72%));
+	stroke-width: 2px;*/
 }
 circle.html {
-	fill: hsla(0, 0%, 95%, 0.8);;
-	r: 17;
-	z-index:2;
+	fill: hsla(0, 0%, 95%, 0.8);
+	r: 25;
 }
 circle.css { 
 	fill: hsla(180, 100%, 80%, 0.8);
 	r: 10;
-	z-index:2;
 }
 circle.js {
 	fill: hsla(0, 100%, 70%, 0.8);
 	r:15;
-	z-index:2;
 }
 circle.jpg {
 	fill: hsla(260, 100%, 70%, 0.8);
 	r:8;
-	z-index:2;
 } circle.png {
 	fill: hsla(280, 100%, 70%, 0.8);
 	r:8;
-	z-index:2;
 } circle.gif {
 	fill: hsla(290, 100%, 70%, 0.8);
 	r:8;
-	z-index:2;
 } circle.jpeg {
 	fill: hsla(270, 100%, 70%, 0.8);
 	r:8;
-	z-index:2;
 } circle.mp4 {
 	fill: hsla(330, 100%, 70%, 0.8);
 	r:8;
-	z-index:2;
 }    
 circle.txt {
 	fill: hsla(120, 100%, 90%, 0.8);
 	r:12;
-	z-index:2;
 }
 circle.other {
 	fill: hsla(0, 0%, 0%, 1);
 	r:10;
-	z-index:2;
 }
 line {
 	stroke: white;
@@ -82,7 +74,7 @@ path{
 	r: 4;
 	fill: hsla(72, 100%, 75%,1);
 	stroke-width: 0px;
-	z-index:1;
+	filter: drop-shadow(0 0 2px lime)
 }
 .whtml{
 	/*filter: drop-shadow(0 0 2px hsla(72, 100%, 85%,0.9));*/
