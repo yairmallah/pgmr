@@ -82,10 +82,10 @@ path{
 	z-index:1;
 }
 .whtml{
-	filter: drop-shadow(0 0 2px hsla(72, 100%, 85%,0.9));
+	/*filter: drop-shadow(0 0 2px hsla(72, 100%, 85%,0.9));*/
 }
 .wjs{
-	filter: drop-shadow(0 0 2px hsla(72, 100%, 85%,0.8));
+	/*filter: drop-shadow(0 0 2px hsla(72, 100%, 85%,0.8));*/
 	/*fill: hsla(72, 100%, 75%,1);*/
 }
 /*.wtxt{

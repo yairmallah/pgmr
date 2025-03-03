@@ -75,7 +75,7 @@
 			.attr("height", height);
 
 		const simulation = d3.forceSimulation(graph.nodes)
-			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.2).distance(100))
+			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(100))
 			.force("charge", d3.forceManyBody().strength(-10))
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
@@ -97,7 +97,6 @@
 			.attr("class", d => getFileTypeD(d.id)+" node")
 			.on("mouseover", sendWave)
 			.on("mouseenter", (event, d) => {
-				console.log(event.currentTarget);
 				labels.filter(l => l.id === d.id)
 					.transition()
 					.duration(300)
@@ -138,7 +137,7 @@
 
 		function sendWave(event, d) {
 			const visited = new Set();
-			const speed = 1000;// !!Constant speed per segment
+			const speed = 0.3;
 
 			function propagate(source) {
 				
@@ -157,9 +156,12 @@
 								propagate(link.target);
 								return;
 							}
-
+							console.log(Math.pow(path[index].y - path[index-1].y,2));
+							console.log(Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5));
+							const nextLength = Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5);
 							dot.transition()
-								.duration(speed)
+								.duration(nextLength/speed)//uniform speed
+								.ease(d3.easeLinear)//uniform speed
 								.attr("cx", path[index].x)
 								.attr("cy", path[index].y)
 								.on("end", () => travel(index + 1));
