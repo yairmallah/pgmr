@@ -96,7 +96,7 @@
 		const node = svg.selectAll("circle")
 			.data(graph.nodes)
 			.enter().append("circle")
-			.attr("class", d => getFileTypeD(d.id)+" node")
+			.attr("class", d => getFileTypeD(d.id)+" static")
 			.on("mouseover", sendWave)
 			.on("mouseenter", (event, d) => {
 				labels.filter(l => l.id === d.id)
@@ -173,7 +173,7 @@
 					}
 				});
 				// z-index
-				svg.selectAll("circle.node").raise();
+				svg.selectAll("circle.static").raise();
 				svg.selectAll("text").raise();
 			}
 			propagate(d);
