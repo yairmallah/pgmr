@@ -8,6 +8,17 @@ body{
 	margin: 0;
 	overflow: hidden;
 }
+#display-layout{
+	position:fixed;
+	width:40px;
+	height:40px;
+	background-color: #333;
+	top:5px;
+	left:5px;
+	border-radius: 5%;
+	background-image: linear-gradient(hsla(120, 100%, 100%, 0.8) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 100%, 0.8) .1em, transparent .1em);
+	background-size: 19px 19px;
+}
 .symBg{
 	position:absolute;
 	z-index: -1;
@@ -29,35 +40,62 @@ circle.static {
 	stroke-width: 2px;*/
 }
 circle.html {
-	fill: hsla(0, 0%, 95%, 0.8);
+	fill: hsla(60, 100%, 90%, 0.8);
+	r: 25;
+}circle.htmlM {
+	fill: hsla(0, 0%, 0%, 0.8);
 	r: 25;
 }
 circle.css { 
 	fill: hsla(180, 100%, 80%, 0.8);
 	r: 10;
+}circle.cssM { 
+	fill: hsla(168, 76%, 31%, 0.8);
+	r: 10;
 }
 circle.js {
 	fill: hsla(0, 100%, 70%, 0.8);
+	r:15;
+}circle.jsM {
+	fill: hsla(0, 100%, 27%, 0.8);
 	r:15;
 }
 circle.jpg {
 	fill: hsla(260, 100%, 70%, 0.8);
 	r:8;
+}circle.jpgM {
+	fill: hsla(260, 100%, 20%, 0.8);
+	r:8;
 } circle.png {
 	fill: hsla(280, 100%, 70%, 0.8);
+	r:8;
+} circle.pngM {
+	fill: hsla(280, 100%, 20%, 0.8);
 	r:8;
 } circle.gif {
 	fill: hsla(290, 100%, 70%, 0.8);
 	r:8;
+} circle.gifM {
+	fill: hsla(290, 100%, 20%, 0.8);
+	r:8;
 } circle.jpeg {
 	fill: hsla(270, 100%, 70%, 0.8);
+	r:8;
+} circle.jpegM {
+	fill: hsla(270, 100%, 20%, 0.8);
 	r:8;
 } circle.mp4 {
 	fill: hsla(330, 100%, 70%, 0.8);
 	r:8;
-}    
+} circle.mp4M {
+	fill: hsla(330, 100%, 20%, 0.8);
+	r:8;
+}     
 circle.txt {
 	fill: hsla(120, 100%, 90%, 0.8);
+	r:12;
+}circle.txtM {
+	fill: hsla(120, 100%, 20%, 0.8);
 	r:12;
 }
 circle.other {
