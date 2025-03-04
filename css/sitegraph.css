@@ -18,6 +18,7 @@ body{
 	border-radius: 5%;
 	background-image: linear-gradient(hsla(120, 100%, 100%, 0.8) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 100%, 0.8) .1em, transparent .1em);
 	background-size: 19px 19px;
+	opacity:0.2;
 }
 .symBg{
 	position:absolute;
