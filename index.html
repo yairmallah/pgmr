@@ -73,6 +73,7 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 						xMax: width - offs,			yMax: height - offs};
 	}
 
+
 	const areas = {
 		html: { x: width / 3, y: height / 2 },
 		css: { x: width / 6, y: height / 3 },
@@ -126,6 +127,13 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
 			.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`);
 
+		window.adjacencyMap = new Map();
+		graph.links.forEach(link => {
+			if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
+			adjacencyMap.get(link.source.id).push(link);
+		});
+		const depth = graph.links.length;
+		console.log("graph depth: ", depth);
 
 		const node = svg.selectAll("circle")
 			.data(graph.nodes)
@@ -212,236 +220,129 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 		}*/
 
 
+		function sendWave(event, d) {
+			const waveID = Date.now(); // Unique ID for this wave
+			const visited = new Set();
+			const speed = 0.3;
+			let maxDots = Math.min(depth*2, 250); // Pool size
+			let dotIndex = 0;
 
-/*function sendWave(event, d) {
-    const visited = new Set();
-    const speed = 0.3;
-    const maxDots = 100; // Pool size
-    let dotIndex = 0;
+			// Create a fixed pool of dots
+			if (!window.dotPool) {
+				window.dotPool = Array.from({ length: maxDots }, () =>
+					svg.append("circle")
+						.attr("class", "wave")
+						.attr("r", 2)
+						.style("opacity", 0)
+				);
+			}
 
-    // Build adjacency map once
-    const adjacencyMap = new Map();
-    graph.links.forEach(link => {
-        if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
-        adjacencyMap.get(link.source.id).push(link);
-    });
+			function getDot() {
+				let dot = window.dotPool[dotIndex];
+				const marker = dotIndex;
+				console.log(maxDots);
+				while (dot.activeWave){
+					dotIndex = (dotIndex + 1) % maxDots;
+					if (dotIndex == marker){
+						//push additional dots
+						/*const newDot = svg.append("circle")
+							.attr("class", "wave")
+							.attr("r", 2)
+							.style("opacity", 0);
+						dotPool.push(newDot);
+						dotIndex = maxDots;
+						dot = newDot;*/
+						break;
+					}
+					dot = window.dotPool[dotIndex];
+				}
+				dotIndex = (dotIndex + 1) % maxDots;
+				dot.interrupt(); // Always stop previous animation //??
+				dot.activeWave = waveID;
+				return dot.style("opacity", 1);
+			}
+			
+			function propagate(source) {
+				if (visited.has(source.id)) return;
+				
+				visited.add(source.id);
+				const neighbors = adjacencyMap.get(source.id) || [];
+				neighbors.forEach(link => {
+					if (visited.has(link.target.id)) return;
 
-    // Create a fixed pool of dots
-    if (!window.dotPool) {
-        window.dotPool = Array.from({ length: maxDots }, () =>
-            svg.append("circle")
-                .attr("class", "wave")
-                .attr("r", 2)
-                .style("opacity", 0)
-        );
-    }
+					const path = segmentedPath(link.source, link.target, gridSize);
+					const dot = getDot()
+						.attr("cx", path[0].x)
+						.attr("cy", path[0].y);
+					travel(dot, path, () => {
+						// Add a small delay between nodes to avoid recursive locking
+						setTimeout(() => propagate(link.target), 0);
+					});			
+				});
+				// Z-index
+				svg.selectAll("circle.static").raise();
+				svg.selectAll("text").raise();
+			}
 
-    function getDot() {
-        const dot = window.dotPool[dotIndex];
-        dotIndex = (dotIndex + 1) % maxDots; // Cycle through pool
-        return dot.style("opacity", 1);
-    }
+			function travel(dot, path, onComplete) {
+				const totalLength = path.slice(1).reduce((sum, p, i) => {
+					const dx = p.x - path[i].x;
+					const dy = p.y - path[i].y;
+					return sum + Math.sqrt(dx * dx + dy * dy);
+				}, 0);
 
-    function propagate(source) {
-        visited.add(source.id);
-        const neighbors = adjacencyMap.get(source.id) || [];
+				const interpolator = d3.interpolate(0, totalLength);
 
-        neighbors.forEach(link => {
-            if (!visited.has(link.target.id)) {
-                const path = segmentedPath(link.source, link.target, gridSize);
-                const dot = getDot()
-                    .attr("cx", path[0].x)
-                    .attr("cy", path[0].y);
-
-                travel(dot, path, () => propagate(link.target));
-            }
-        });
-
-        // Ensure nodes stay above waves
-        svg.selectAll("circle.static").raise();
-        svg.selectAll("text").raise();
-    }
-
-    function travel(dot, path, onComplete) {
-        // Calculate the total length of the path
-        const totalLength = path.slice(1).reduce((sum, p, i) => {
-            const dx = p.x - path[i].x, dy = p.y - path[i].y;
-            return sum + Math.sqrt(dx * dx + dy * dy);
-        }, 0);
-
-        const interpolator = d3.interpolate(0, totalLength);
-
-        dot.transition()
-            .duration(totalLength / speed)
-            .ease(d3.easeLinear)
-            .attrTween("cx", function () {
-                return function (t) {
-                    let traveled = interpolator(t);
-                    for (let i = 1; i < path.length; i++) {
-                        const segmentLength = Math.sqrt(
-                            Math.pow(path[i].x - path[i - 1].x, 2) +
-                            Math.pow(path[i].y - path[i - 1].y, 2)
-                        );
-                        if (traveled <= segmentLength) {
-                            const ratio = traveled / segmentLength;
-                            return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
-                        }
-                        traveled -= segmentLength;
-                    }
-                    return path[path.length - 1].x;
-                };
-            })
-            .attrTween("cy", function () {
-                return function (t) {
-                    let traveled = interpolator(t);
-                    for (let i = 1; i < path.length; i++) {
-                        const segmentLength = Math.sqrt(
-                            Math.pow(path[i].x - path[i - 1].x, 2) +
-                            Math.pow(path[i].y - path[i - 1].y, 2)
-                        );
-                        if (traveled <= segmentLength) {
-                            const ratio = traveled / segmentLength;
-                            return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
-                        }
-                        traveled -= segmentLength;
-                    }
-                    return path[path.length - 1].y;
-                };
-            })
-            .on("end", function () {
-                dot.style("opacity", 0);
-                onComplete();
-            });
-    }
-
-    propagate(d);
-}*/
-
-
-
-function sendWave(event, d) {
-    const visited = new Set();
-    const speed = 0.3;
-    const maxDots = 100; // Pool size
-    let dotIndex = 0;
-    const waveID = Date.now(); // Unique ID for this wave
-
-    // Build adjacency map once
-    if (!window.adjacencyMap) {
-        window.adjacencyMap = new Map();
-        graph.links.forEach(link => {
-            if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
-            adjacencyMap.get(link.source.id).push(link);
-        });
-    }
-
-    // Create a fixed pool of dots
-    if (!window.dotPool) {
-        window.dotPool = Array.from({ length: maxDots }, () =>
-            svg.append("circle")
-                .attr("class", "wave")
-                .attr("r", 2)
-                .style("opacity", 0)
-        );
-    }
-
-    function getDot() {
-        const dot = window.dotPool[dotIndex];
-        dotIndex = (dotIndex + 1) % maxDots; // Cycle through pool
-        dot.interrupt(); // Always stop previous animation
-        dot.activeWave = waveID; // Tag dot with this wave's ID
-        return dot.style("opacity", 1);
-    }
-
-    function propagate(source) {
-        if (visited.has(source.id)) return;
-        visited.add(source.id);
-
-        const neighbors = adjacencyMap.get(source.id) || [];
-
-        neighbors.forEach(link => {
-            if (visited.has(link.target.id)) return;
-
-            const path = segmentedPath(link.source, link.target, gridSize);
-            const dot = getDot()
-                .attr("cx", path[0].x)
-                .attr("cy", path[0].y);
-
-            travel(dot, path, () => {
-                // Add a small delay between nodes to avoid recursive locking
-                setTimeout(() => propagate(link.target), 0);
-            });
-        });
-
-        // Z-index
-        svg.selectAll("circle.static").raise();
-        svg.selectAll("text").raise();
-    }
-
-    function travel(dot, path, onComplete) {
-        const totalLength = path.slice(1).reduce((sum, p, i) => {
-            const dx = p.x - path[i].x;
-            const dy = p.y - path[i].y;
-            return sum + Math.sqrt(dx * dx + dy * dy);
-        }, 0);
-
-        const interpolator = d3.interpolate(0, totalLength);
-
-        dot.transition()
-            .duration(totalLength / speed)
-            .ease(d3.easeLinear)
-            .attrTween("cx", function () {
-                return function (t) {
-                    if (dot.activeWave !== waveID) return dot.attr("cx");
-                    let traveled = interpolator(t);
-                    for (let i = 1; i < path.length; i++) {
-                        const segmentLength = Math.sqrt(
-                            Math.pow(path[i].x - path[i - 1].x, 2) +
-                            Math.pow(path[i].y - path[i - 1].y, 2)
-                        );
-                        if (traveled <= segmentLength) {
-                            const ratio = traveled / segmentLength;
-                            return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
-                        }
-                        traveled -= segmentLength;
-                    }
-                    return path[path.length - 1].x;
-                };
-            })
-            .attrTween("cy", function () {
-                return function (t) {
-                    if (dot.activeWave !== waveID) return dot.attr("cy");
-                    let traveled = interpolator(t);
-                    for (let i = 1; i < path.length; i++) {
-                        const segmentLength = Math.sqrt(
-                            Math.pow(path[i].x - path[i - 1].x, 2) +
-                            Math.pow(path[i].y - path[i - 1].y, 2)
-                        );
-                        if (traveled <= segmentLength) {
-                            const ratio = traveled / segmentLength;
-                            return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
-                        }
-                        traveled -= segmentLength;
-                    }
-                    return path[path.length - 1].y;
-                };
-            })
-            .on("end", function () {
-                if (dot.activeWave === waveID) {
-                    dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
-                }
-            });
-    }
-
-    propagate(d);
-}
+				dot.transition()
+					.duration(totalLength / speed)
+					.ease(d3.easeLinear)
+					.attrTween("cx", function () {
+						return function (t) {
+							if (dot.activeWave !== waveID) return dot.attr("cx");
+							let traveled = interpolator(t);
+							for (let i = 1; i < path.length; i++) {
+								const segmentLength = Math.sqrt(
+									Math.pow(path[i].x - path[i - 1].x, 2) +
+									Math.pow(path[i].y - path[i - 1].y, 2)
+								);
+								if (traveled <= segmentLength) {
+									const ratio = traveled / segmentLength;
+									return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
+								}
+								traveled -= segmentLength;
+							}
+							return path[path.length - 1].x;
+						};
+					})
+					.attrTween("cy", function () {
+						return function (t) {
+							if (dot.activeWave !== waveID) return dot.attr("cy");
+							let traveled = interpolator(t);
+							for (let i = 1; i < path.length; i++) {
+								const segmentLength = Math.sqrt(
+									Math.pow(path[i].x - path[i - 1].x, 2) +
+									Math.pow(path[i].y - path[i - 1].y, 2)
+								);
+								if (traveled <= segmentLength) {
+									const ratio = traveled / segmentLength;
+									return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
+								}
+								traveled -= segmentLength;
+							}
+							return path[path.length - 1].y;
+						};
+					})
+					.on("end", function () {
+						if (dot.activeWave === waveID) {
+							dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
+						}
+						dot.activeWave = false;
+					});
+			}
+			propagate(d);
+		}
 
 
-
-
-		
-		
-		
 		// 45 deg gen
 		function segmentedPath(source, target, size) {
 			const points = [{ x: source.x, y: source.y }];
