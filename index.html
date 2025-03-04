@@ -17,7 +17,13 @@
 	<div id="bg-txt" class="symBg hidden"></div>
 </div>
 
-<div id="display-layout"><div>
+<div id="display-layout">
+	<div id="bgc-html" class="smBg"></div>
+	<div id="bgc-css" class="smBg"></div>
+	<div id="bgc-js" class="smBg"></div>
+	<div id="bgc-img" class="smBg"></div>
+	<div id="bgc-txt" class="smBg"></div>
+<div>
 
 <script>
 	offs = 30;
@@ -113,12 +119,22 @@
 				clBackground.style.top = `${bounds[cl].yMin}px`;
 				clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
 			}
+			const clcBackground = document.getElementById("bgc-"+cl);
+			const ch = 40;
+			const cw = 40;
+			if (clcBackground){
+				clcBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
+				clcBackground.style.border = `2px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+				clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
+				clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
+				clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
+				clcBackground.style.height = `${(bounds[cl].yMax-bounds[cl].yMin)/height*ch}px`;
+			}
 		}
 	}
 	layoutButton=document.getElementById("display-layout");
 	layoutButton.addEventListener("click", () => {
 		layouts = document.getElementsByClassName('symBg');
-		console.log(layouts);
 		for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
     });
 </script>

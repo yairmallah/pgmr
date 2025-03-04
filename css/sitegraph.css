@@ -12,17 +12,18 @@ body{
 	position:fixed;
 	width:40px;
 	height:40px;
-	background-color: #333;
 	top:5px;
 	left:5px;
 	border-radius: 5%;
-	background-image: linear-gradient(hsla(120, 100%, 100%, 0.8) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 100%, 0.8) .1em, transparent .1em);
-	background-size: 19px 19px;
 	opacity:0.2;
 }
 .symBg{
 	position:absolute;
 	z-index: -1;
+}
+.smBg{
+	position:absolute;
+	z-index: 1;
 }
 text {
 	fill: white;
