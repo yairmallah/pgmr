@@ -9,15 +9,18 @@
 	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
 </head>
 <body>
-<div id="svg-container"></div>
+<div id="svg-container">
+	<div id="bg-html" class="symBg"></div>
+	<div id="bg-css" class="symBg"></div>
+	<div id="bg-js" class="symBg"></div>
+	<div id="bg-img" class="symBg"></div>
+	<div id="bg-txt" class="symBg"></div>
+</div>
+
 <script>
-const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
+	offs = 30;
 	const width = document.getElementById("svg-container").offsetWidth;
 	const height = document.getElementById("svg-container").offsetHeight;
-	console.log("height: ", height, " width: ", width);
-	const gridSize = 50;
-	const minDistance = 30;
-	offs = 30;
 	const bounds = {
 		html: { xMin: 0 + offs, xMax: width - offs,  
 				yMin: 0 + offs, yMax: height - offs},
@@ -30,16 +33,14 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 				
 		img: { xMin: 0 + offs, xMax: width*9/10 - offs, 
 				yMin: height/1.7 + offs, yMax: height - offs  },
-				
-		mp4: { xMin: 0 + offs, xMax: width*9/10 - offs, 
-				yMin: height/2 + offs, yMax: height - offs  },
-				
+								
 		txt: { xMin: width*9/10 + offs, xMax: width - offs, 
 				yMin: height*2/3 + offs, yMax: height - offs  },
 				
 		other: { xMin: 0 + offs, xMax: width - offs, 
 				yMin: 0 + offs, yMax: height - offs  }
 	};
+	
 	if (height >= width*1.2){
 		bounds["html"]= {xMin: 0 + offs, xMax: width - offs,
 						yMin: 0+ offs, yMax:height / 4 - offs};
@@ -48,8 +49,6 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 		bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3 / 4 - offs,
 						yMin: height / 4+ offs, yMax: height / 2 - offs};
 		bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
-						yMin: height / 2+ offs, yMax: height - offs};
-		bounds["mp4"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs,
 						yMin: height / 2+ offs, yMax: height - offs};
 		bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
 						yMin: height / 4+ offs, yMax: height - offs};
@@ -68,35 +67,76 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 						
 		bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
 						xMax: width - offs,			yMax: height - offs};
-						
-		bounds["mp4"]= {xMin: width /2 + offs,		yMin: 0 + offs,
-						xMax: width - offs,			yMax: height - offs};
 	}
-
 
 	const areas = {
 		html: { x: width / 3, y: height / 2 },
 		css: { x: width / 6, y: height / 3 },
 		js: { x: (5 * width) / 6, y: height / 3 },
 		img: { x: width / 4, y: (2 * height) / 3 },
-		mp4: { x: width / 4, y: (2 * height) / 3 },
 		txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
 	};
+	
+	const colors = new Proxy(
+		{
+			html:	{h:40, s:100, l:100, a:1},
+			css:	{h:180, s:100, l:90, a:1},
+			js:		{h:0, s:100, l:70, a:1},
+			jpg:	{h:260, s:100, l:70, a:0.8},
+			png:	{h:280, s:100, l:70, a:0.8},
+			gif:	{h:290, s:100, l:70, a:0.8},
+			jpeg:	{h:270, s:100, l:70, a:0.8},
+			mp4:	{h:330, s:100, l:70, a:0.8},
+			img:	{h:280, s:100, l:70, a:0.8}, 
+			txt:	{h:120, s:100, l:90, a:1},
+			other:	{h:220, s:0, l:0, a:1}
+		},{
+			get(target, key) {
+				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+			}
+	});
+	function decideColor(srcClss, trgClss){
+		return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
+		//path.style.stroke = `hsl(${col}, 100%, 65%)`;
+	}
+	function setClassesBg(){
+		for (let i = 0; i < Object.keys(bounds).length; i++){
+			const cl = Object.keys(bounds)[i];
+			const clBackground = document.getElementById("bg-"+cl);
+			if (clBackground){
+				clBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
+				clBackground.style.border = `2px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+				clBackground.style.left = `${bounds[cl].xMin}px`;
+				clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
+				clBackground.style.top = `${bounds[cl].yMin}px`;
+				clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
+			}
+		}
+	}
+</script>
 
+
+<script>
+	const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
+
+	console.log("height: ", height, " width: ", width);
+	const gridSize = 50;
+	const minDistance = 30;
+	
+	setClassesBg();
 
 	function getFileType(filename) {
 		if (filename.endsWith(".html")) return "html";
 		if (filename.endsWith(".css")) return "css";
 		if (filename.endsWith(".js")) return "js";
 		if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
-		if (filename.endsWith(".mp4")) return "mp4";
 		if (filename.endsWith(".txt")) return "txt";
 		return "other";
 	}
 	function getFileTypeD(filename) {
 		return filename.split(".").slice(-1)[0];
 	}
-
+	
 	d3.json(json_add).then(graph => {
 		graph.nodes.forEach(d => {
 			d.class = getFileType(d.id);
@@ -110,6 +150,7 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			.attr("width", width)
 			.attr("height", height);
 
+		// alpha dependency, 1 > alpha >= 0.001 (~)
 		const simulation = d3.forceSimulation(graph.nodes)
 			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(300))
 			.force("charge", d3.forceManyBody().strength(-100))
@@ -117,7 +158,7 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			.force("bounds", forceBounds())
 			/*.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))*/
-			//.force("grid", forceGrid(gridSize, 3)) // Grid force with weak strength
+			.force("grid", forceGrid(gridSize, 3)) // Grid force with weak strength
 			.force('collide', d3.forceCollide(minDistance))
 			//.alphaDecay(0.01); // Make the simulation continue running slowly
 
@@ -240,7 +281,6 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			function getDot() {
 				let dot = window.dotPool[dotIndex];
 				const marker = dotIndex;
-				console.log(maxDots);
 				while (dot.activeWave){
 					dotIndex = (dotIndex + 1) % maxDots;
 					if (dotIndex == marker){
@@ -376,8 +416,13 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 				graph.nodes.forEach(d => {
 					const gridX = Math.round(d.x / size) * size;
 					const gridY = Math.round(d.y / size) * size;
-					d.vx += (gridX - d.x) * strength * alpha;
-					d.vy += (gridY - d.y) * strength * alpha;
+					if (alpha > 0.1){
+						d.vx += (gridX - d.x) * strength * alpha;
+						d.vy += (gridY - d.y) * strength * alpha;
+					} else{
+						d.x = gridX * (1 - alpha/1*10) + d.x * alpha/1*10;
+						d.y = gridY * (1 - alpha/1*10) + d.y * alpha/1*10;
+					}
 				});
 			};
 		}
@@ -409,30 +454,6 @@ const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			};
 		}
 	});
-</script>
-<script>
-	const colors = new Proxy(
-		{
-			html:	{h:40, s:100, l:100, a:1},
-			css:	{h:180, s:100, l:90, a:1},
-			js:		{h:0, s:100, l:70, a:1},
-			jpg:	{h:260, s:100, l:70, a:0.8},
-			png:	{h:280, s:100, l:70, a:0.8},
-			gif:	{h:290, s:100, l:70, a:0.8},
-			jpeg:	{h:270, s:100, l:70, a:0.8},
-			mp4:	{h:330, s:100, l:70, a:0.8},
-			img:	{h:280, s:100, l:70, a:0.8}, 
-			txt:	{h:120, s:100, l:90, a:1},
-			other:	{h:220, s:0, l:0, a:1}
-		},{
-			get(target, key) {
-				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
-			}
-	});
-	function decideColor(srcClss, trgClss){
-		return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
-		//path.style.stroke = `hsl(${col}, 100%, 65%)`;
-	}
 </script>
 </body>
 </html>

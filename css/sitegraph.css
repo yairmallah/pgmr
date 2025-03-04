@@ -8,6 +8,10 @@ body{
 	margin: 0;
 	overflow: hidden;
 }
+.symBg{
+	position:absolute;
+	z-index: -1;
+}
 text {
 	fill: white;
 	display:none;
