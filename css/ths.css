@@ -56,6 +56,8 @@ body{
 }
 #main sup{
 	cursor: pointer;
+	font-weight: bolder;
+    font-size: 12px;
 }
 #main .bterm{
 	color: hsl(120, 100%, 40%);
