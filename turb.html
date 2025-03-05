@@ -47,7 +47,7 @@
 			const mountain_con = ["מעיין"];
 			const heart_con = [];
 			const problem_words = ["לב", "הר", "קו"];
-			txt_add= "/pgmr/texts/urb.txt";
+			txt_add= "https://yairmallah.github.io/pgmr/texts/urb.txt";
 			async function loadArticle() {
 				const response = await fetch(txt_add);
 				const text = await response.text();
@@ -65,8 +65,8 @@
 					for (let i = 0; i < txt_l.length; i++){
 						if (flag == 0) {
 							const footnoteId = "footnote-" + current_index;			
-							footnotes.push('<div id="'+current_index+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
-							ftxt += '<sup id="f-'+footnoteId+'" onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
+							footnotes.push('<div id="'+footnoteId+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
+							ftxt += '<sup id="f-'+current_index+'" onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
 							footnotePositions.push({ id: footnoteId, index: current_index, text: txt_l[i] });
 							flag = 1;
 						}else{
@@ -108,22 +108,22 @@
 				}
 			}
 			function positionFootnotes() {
-				console.log("in");
 				const mainText = document.getElementById("main");
-				const footnotes = document.querySelectorAll(".footnotes div");
-				const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
-
+				const footnotes = document.querySelectorAll("#footnotes div");
+				//const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
+				
+				console.log(footnotes);
 				footnotes.forEach(function(note) {
-					const ref = document.querySelector(`sup[onclick="scrollToFootnote('${note.id}')"]`);
+					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
 					console.log(ref);
-					
 					if (ref) {
 						const offset = ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top;
 						console.log(note, offset);
-						note.style.top = `${offset / scaleFactor}px`;
+						note.style.top = `${offset}px`;
 					}
 				});
 			}
+			
 			function selectFootnote(id) {
 				document.querySelectorAll("#footnotes div").forEach(function(div) {
 					div.classList.remove("selected");
