@@ -135,23 +135,15 @@
 			}
 			function positionFootnotes() {
 				const mainText = document.getElementById("main");
-				//document.getElementById("footnotes").style.paddingRight = "10px";
 				const footnotes = document.querySelectorAll("#footnotes div");
-				//const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
 				// footnotes padding!
 				let populatedH = -20;
-				console.log(footnotes);
 				footnotes.forEach(function(note) {
-					//note.style.paddingRight = "5px";
 					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
-					console.log(ref);
 					if (ref) {
 						populatedH += 20;
-						console.log(ref.id, "b: ",ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top> populatedH);
 						const offset = Math.max(ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top, populatedH);
-						console.log(note, offset);
 						note.style.top = `${offset}px`;
-						console.log(ref.id, "gg: ",note.getBoundingClientRect());
 						populatedH = note.getBoundingClientRect().bottom;
 					}
 				});
