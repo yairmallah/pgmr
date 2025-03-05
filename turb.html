@@ -97,7 +97,6 @@
 				document.getElementById("footnotes").innerHTML = footnotes.join("\n");
 				document.getElementById("toc").innerHTML = '<ul>'+toc.join("\n")+'</ul>';
 				positionFootnotes();
-				document.getElementById("main").addEventListener("scroll", (event) => {console.log(event);});
 				
 				let isSyncingMain = false;
 				let isSyncingFootnotes = false;
