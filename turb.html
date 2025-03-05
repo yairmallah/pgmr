@@ -95,10 +95,10 @@
 				document.getElementById("footnotes").innerHTML = footnotes.join("\n");
 				document.getElementById("toc").innerHTML = '<ul>'+toc.join("\n")+'</ul>';
 				positionFootnotes();
-				document.getElementById("main").addEventListener("scroll", positionFootnotes);
+				document.getElementById("main").addEventListener("scroll", scrollFootnoteWithMain);
 			}
 
-			function scrollToFootnote(id) {
+			function scrollToFootnote(event, id) {
 				console.log(id);
 				selectFootnote(id);
 				const note = document.getElementById(id);
@@ -107,19 +107,27 @@
 					document.getElementById("footnotes").scrollTop = offset;
 				}
 			}
+			function scrollFootnoteWithMain() {
+				document.getElementById("footnotes").scrollTop  = document.getElementById("main").scrollTop 
+			}
 			function positionFootnotes() {
 				const mainText = document.getElementById("main");
 				const footnotes = document.querySelectorAll("#footnotes div");
 				//const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
-				
+				// footnotes padding!
+				let populatedH = 10;
 				console.log(footnotes);
 				footnotes.forEach(function(note) {
 					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
 					console.log(ref);
 					if (ref) {
-						const offset = ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top;
+						populatedH += 10;
+						console.log(ref.id, "b: ",ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top> populatedH);
+						const offset = Math.max(ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top, populatedH);
 						console.log(note, offset);
 						note.style.top = `${offset}px`;
+						console.log(ref.id, "gg: ",note.getBoundingClientRect());
+						populatedH = note.getBoundingClientRect().bottom;
 					}
 				});
 			}
