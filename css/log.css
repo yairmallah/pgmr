@@ -42,7 +42,9 @@ svg{
 	overflow-x: hidden;
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.textcot h3{
+	margin-top:0;
+}
 .node circle {
 	stroke: #fff;
 	stroke-width: 1.5px;
@@ -74,15 +76,13 @@ g :hover {
     z-index: 4;
     opacity: 1;
     color: rgba(255, 255, 255, 1);
-    scale: 2.5;
 }
 circle :hover {
     opacity: 1;
-    color: rgba(255, 255, 255, 1)
+    color: rgba(255, 255, 255, 1);
 }
 .node text :hover {
     z-index: 4;
     opacity: 1;
     color: rgba(255, 255, 255, 1);
-    transform: scale(2.5);
 }
