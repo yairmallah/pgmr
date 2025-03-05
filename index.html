@@ -185,8 +185,8 @@
 			.force("charge", d3.forceManyBody().strength(-100))
 			.force("charge_html", manyBodyClass(400, "html"))
 			.force("bounds", forceBounds())
-			.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.2))
-			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.2))
+			.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
+			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
 			.force("grid", forceGrid(gridSize, 3))
 			.force('collide', d3.forceCollide(minDistance))
 
