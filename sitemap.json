@@ -9,10 +9,6 @@
       "url": "https://yairmallah.github.io/pgmr/dictionarysGen.js"
     },
     {
-      "id": "graphi.json",
-      "url": "https://yairmallah.github.io/pgmr/graphi.json"
-    },
-    {
       "id": "index.html",
       "url": "https://yairmallah.github.io/pgmr/index.html"
     },
@@ -224,63 +220,7 @@
     },
     {
       "source": "index.html",
-      "target": "dictionarys.js"
-    },
-    {
-      "source": "index.html",
-      "target": "dictionarysGen.js"
-    },
-    {
-      "source": "index.html",
-      "target": "graphi.json"
-    },
-    {
-      "source": "index.html",
-      "target": "index.html"
-    },
-    {
-      "source": "index.html",
-      "target": "log.html"
-    },
-    {
-      "source": "index.html",
-      "target": "main"
-    },
-    {
-      "source": "index.html",
-      "target": "navLogic.js"
-    },
-    {
-      "source": "index.html",
-      "target": "nodeMessages.txt"
-    },
-    {
-      "source": "index.html",
-      "target": "simulationcode.html"
-    },
-    {
-      "source": "index.html",
       "target": "sitemap.json"
-    },
-    {
-      "source": "index.html",
-      "target": "tba.html"
-    },
-    {
-      "source": "index.html",
-      "target": "tbaTxt.txt"
-    },
-    {
-      "source": "index.html",
-      "target": "turb.html"
-    },
-    {
-      "source": "index.html",
-      "target": "video.html"
-    },
-    {
-      "source": "index.html",
-      "target": "woods.png"
     },
     {
       "source": "index.html",
@@ -288,119 +228,7 @@
     },
     {
       "source": "index.html",
-      "target": "log.css"
-    },
-    {
-      "source": "index.html",
       "target": "sitegraph.css"
-    },
-    {
-      "source": "index.html",
-      "target": "tba.css"
-    },
-    {
-      "source": "index.html",
-      "target": "ths.css"
-    },
-    {
-      "source": "index.html",
-      "target": "video.css"
-    },
-    {
-      "source": "index.html",
-      "target": "IMG_0420.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "IMG_0421.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "navSchame.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "readme"
-    },
-    {
-      "source": "index.html",
-      "target": "tba.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "אדם.png"
-    },
-    {
-      "source": "index.html",
-      "target": "אידאל.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "גבול.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "מודרניזם.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "מושג.png"
-    },
-    {
-      "source": "index.html",
-      "target": "מושג2.png"
-    },
-    {
-      "source": "index.html",
-      "target": "מיתוס.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "מסילה.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "מרחב.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "מרחב2.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "מתמטיקה.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "סימולציה.mp4"
-    },
-    {
-      "source": "index.html",
-      "target": "פונקציה.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "פוסטמודרניזם.jpg"
-    },
-    {
-      "source": "index.html",
-      "target": "קו_פרקטל.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "רדיאלי.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "רנדומלי.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "רקורסיבי.gif"
-    },
-    {
-      "source": "index.html",
-      "target": "urb.txt"
     },
     {
       "source": "log.html",
@@ -517,6 +345,182 @@
     {
       "source": "simulationcode.html",
       "target": "main"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "dictionarys.js"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "index.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "log.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "main"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "nodeMessages.txt"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "simulationcode.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "sitemap.json"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "tba.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "tbaTxt.txt"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "turb.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "video.html"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "woods.png"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "general.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "log.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "sitegraph.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "tba.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "ths.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "video.css"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "navSchame.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "readme"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "tba.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "אדם.png"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "אידאל.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "גבול.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מודרניזם.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מושג.png"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מסילה.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "סימולציה.mp4"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "פוסטמודרניזם.jpg"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "קו_פרקטל.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "רדיאלי.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "רנדומלי.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "רקורסיבי.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "urb.txt"
     },
     {
       "source": "tba.html",
