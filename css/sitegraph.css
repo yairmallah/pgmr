@@ -37,7 +37,7 @@ circle {
 	stroke-width: 2px;
 }
 circle.static {
-	filter: drop-shadow(0 0 5px hsl(75,72%,72%));
+	filter: drop-shadow(0 0 10px hsl(84,100%,59%));
 	/*stroke: lime;
 	stroke-width: 2px;*/
 }
