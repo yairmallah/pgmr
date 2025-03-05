@@ -88,6 +88,7 @@ body{
 	opacity: 0.7;
 	transition: opacity 0.3s;
 	direction: rtl;
+	position: relative;
 }
 #footnotes div:hover{
 	opacity:1;
