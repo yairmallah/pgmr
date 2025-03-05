@@ -25,7 +25,6 @@ svg{
 #schemes {
   position: relative;
   top: 5%;
-  left: 69%;
   width: 28%;
   padding:0px 15px 0px 7px;
   height: 50%;
@@ -37,7 +36,6 @@ svg{
 .textcot{
   position: relative;
   top: 0;
-  left: 69%;
   width: 28%; /* Set fixed width */
   height: 44%; /* Set fixed height */
   border: 1px solid #fff;
