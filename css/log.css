@@ -13,6 +13,9 @@ svg{
   overflow-y: visible;
   overflow-x: visible;
 }
+#not-graph{
+	border: 1px solid #fff;
+}
 #schemes {
   position: absolute;
   top: 47%;
