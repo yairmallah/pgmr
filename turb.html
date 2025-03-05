@@ -121,10 +121,6 @@
 				}
 
 				syncScroll();
-
-				
-
-
 			}
 
 			function scrollToFootnote(id) {
@@ -134,7 +130,6 @@
 				if (note) {
 					const ref = document.getElementById("f-"+id.split("-").slice(-1));
 					const offset =note.offsetTop + document.getElementById("main").scrollTop - ref.offsetTop - ref.parentNode.offsetTop;
-					console.log(note.offsetTop, document.getElementById("main").scrollTop, ref.offsetTop + ref.parentNode.offsetTop);
 					document.getElementById("footnotes").scrollTop = offset;
 				}
 			}
@@ -147,7 +142,7 @@
 				let populatedH = -20;
 				console.log(footnotes);
 				footnotes.forEach(function(note) {
-					note.style.paddingRight = "5px";
+					//note.style.paddingRight = "5px";
 					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
 					console.log(ref);
 					if (ref) {
@@ -420,6 +415,9 @@
 						d.fx = null;
 						d.fy = null;
 					}
+				});
+				requestAnimationFrame(() => {
+					positionFootnotes();
 				});
 			});
         </script>
