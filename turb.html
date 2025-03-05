@@ -21,6 +21,8 @@
 		<div id="main"></div>
 		<div id="footnotes"></div>
 		<div id="toc"></div>
+		<div id="l1" style="position:fixed; height:1px; width:2000px; background-color:red"></div>
+		<div id="l2" style="position:fixed; height:1px; width:2000px; background-color:red"></div>
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
 		<script>
@@ -95,33 +97,61 @@
 				document.getElementById("footnotes").innerHTML = footnotes.join("\n");
 				document.getElementById("toc").innerHTML = '<ul>'+toc.join("\n")+'</ul>';
 				positionFootnotes();
-				document.getElementById("main").addEventListener("scroll", scrollFootnoteWithMain);
+				document.getElementById("main").addEventListener("scroll", (event) => {console.log(event);});
+				
+				let isSyncingMain = false;
+				let isSyncingFootnotes = false;
+
+				function syncScroll() {
+					const mainText = document.getElementById("main");
+					const footnotes = document.getElementById("footnotes");
+
+					mainText.addEventListener("scroll", function() {
+						if (!isSyncingMain) {
+							isSyncingFootnotes = true;
+							const diff = mainText.scrollTop - mainText.dataset.prevScroll;
+							footnotes.scrollTop += diff;
+							mainText.dataset.prevScroll = mainText.scrollTop;
+							isSyncingFootnotes = false;
+						}
+					});
+					// Initialize previous scroll positions
+					mainText.dataset.prevScroll = mainText.scrollTop;
+					footnotes.dataset.prevScroll = footnotes.scrollTop;
+				}
+
+				syncScroll();
+
+				
+
+
 			}
 
-			function scrollToFootnote(event, id) {
+			function scrollToFootnote(id) {
 				console.log(id);
 				selectFootnote(id);
 				const note = document.getElementById(id);
 				if (note) {
-					const offset = note.offsetTop - document.getElementById("main").scrollTop;
+					const ref = document.getElementById("f-"+id.split("-").slice(-1));
+					const offset =note.offsetTop + document.getElementById("main").scrollTop - ref.offsetTop - ref.parentNode.offsetTop;
+					console.log(note.offsetTop, document.getElementById("main").scrollTop, ref.offsetTop + ref.parentNode.offsetTop);
 					document.getElementById("footnotes").scrollTop = offset;
 				}
 			}
-			function scrollFootnoteWithMain() {
-				document.getElementById("footnotes").scrollTop  = document.getElementById("main").scrollTop 
-			}
 			function positionFootnotes() {
 				const mainText = document.getElementById("main");
+				//document.getElementById("footnotes").style.paddingRight = "10px";
 				const footnotes = document.querySelectorAll("#footnotes div");
 				//const scaleFactor = mainText.scrollHeight / document.getElementById("footnotes").scrollHeight;
 				// footnotes padding!
-				let populatedH = 10;
+				let populatedH = -20;
 				console.log(footnotes);
 				footnotes.forEach(function(note) {
+					note.style.paddingRight = "5px";
 					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
 					console.log(ref);
 					if (ref) {
-						populatedH += 10;
+						populatedH += 20;
 						console.log(ref.id, "b: ",ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top> populatedH);
 						const offset = Math.max(ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top, populatedH);
 						console.log(note, offset);
