@@ -66,7 +66,7 @@
 						if (flag == 0) {
 							const footnoteId = "footnote-" + current_index;			
 							footnotes.push('<div id="'+footnoteId+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
-							ftxt += '<sup onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
+							ftxt += '<sup id="f-'+footnoteId+'" onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
 							footnotePositions.push({ id: footnoteId, index: current_index, text: txt_l[i] });
 							flag = 1;
 						}else{
