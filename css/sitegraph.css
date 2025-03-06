@@ -1,25 +1,57 @@
 :root {
-	--html:	40;
-	--css:	180;
-	--js:	0;
-	--jpg:	260;
-	--png:	280;
-	--gif:	290;
-	--jpeg:	270;
-	--mp4:	330;
-	--img:	280;
-	--txt:	120;
-	--other:220;
+	--pathSaturation:100%;
+	--pathLightness:80%;
+	--htmlH:40;
+	--cssH:	180;
+	--jsH:	0;
+	--jpgH:	260;
+	--pngH:	280;
+	--gifH:	290;
+	--jpegH:270;
+	--mp4H:	330;
+	--imgH:	280;
+	--txtH:	120;
+	--otherH:220;
+	--jsonH:220;
+	--htmlStroke:inherit;
+	--cssStroke:inherit;
+	--jsStroke:inherit;
+	--jpgStroke:inherit;
+	--pngStroke:inherit;
+	--gifStroke:inherit;
+	--jpegStroke:inherit;
+	--mp4Stroke:inherit;
+	--imgStroke:inherit;
+	--txtStroke:inherit;
+	--otherStroke:inherit;
+	--jsonStroke:inherit;
+	
+	--waveFill:hsla(72, 100%, 75%,1);
+	--waveStroke:0px;
+	--waveShadow:drop-shadow(0 0 5px hsl(75,72%,72%));
+	
+	--circSaturatin:100%;
+	--circLihgtness:80%;
+	--circStroke:2px;
+	--textColor:white;
+	--textShadow:2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+	--bgBody:#000;
+	--bgImg: linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em);
+	--staticShadow:  drop-shadow(0 0 5px hsl(84,100%,59%));
+		
+	--gridSize: 50px;
 }
 body{
-	background-image: linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em);
-	background-size: 50px 50px;
+	background-image: var(--bgImg);
+	background-size: var(--gridSize) var(--gridSize);
+	background-color: var(--bgBody);
 }
 #svg-container {
 	width: 100vw;
 	height: 100vh;
 	margin: 0;
 	overflow: hidden;
+	stroke: white;
 }
 #display-layout{
 	position:fixed;
@@ -30,6 +62,50 @@ body{
 	border-radius: 5%;
 	opacity:0.7;
 }
+#page-preview-container{
+	position:fixed;
+	top:5%;
+	right: 5vh;
+	height:90%;
+	width:45%;
+	display:none;
+}
+#page-preview-container button{
+	position: absolute;
+	background-color: #333;
+	left:-45px;
+	color:white;
+	border: 1px solid #555;
+	height:35px;
+	width:35px;
+	border-radius: 10px;
+}
+#openBtn{
+	top:45px;
+}
+#closeBtn{
+	top: 0px;
+}
+#page-preview{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	border: 2px solid var(--textColor);
+	border-radius:20px;
+	display:none;
+}
+#code-preview{
+	position:absolute;
+	top:0;
+	left:0;
+	height:95%;
+	width:95%;
+	border: 2px solid var(--textColor);
+	border-radius:20px;
+	display:none;
+}
 .symBg{
 	position:absolute;
 	z-index: -1;
@@ -39,86 +115,77 @@ body{
 	z-index: 1;
 }
 text {
-	fill: white;
+	stroke: var(--textColor);
 	display:none;
-	text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+	text-shadow: var(--textShadow);
 }
 circle {
 	cursor: pointer;
 	stroke: white;
 	r:10;
-	stroke-width: 2px;
+	stroke-width: var(--circStroke);
 }
 circle.static {
-	filter: drop-shadow(0 0 5px hsl(84,100%,59%));
+	filter: var(--staticShadow);
 	/*stroke: lime;
 	stroke-width: 2px;*/
 }
 circle.html {
-	fill: hsla(60, 100%, 90%, 0.8);
-	r: 25;
-}circle.htmlM {
-	fill: hsla(0, 0%, 0%, 0.8);
+	fill: hsla(var(--htmlH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--htmlStroke);
 	r: 25;
 }
 circle.css { 
-	fill: hsla(180, 100%, 80%, 0.8);
-	r: 10;
-}circle.cssM { 
-	fill: hsla(168, 76%, 31%, 0.8);
+	fill: hsla(var(--cssH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--cssStroke);
 	r: 10;
 }
 circle.js {
-	fill: hsla(0, 100%, 70%, 0.8);
-	r:15;
-}circle.jsM {
-	fill: hsla(0, 100%, 27%, 0.8);
+	fill: hsla(var(--jsH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--jsStroke);
 	r:15;
 }
 circle.jpg {
-	fill: hsla(260, 100%, 70%, 0.8);
+	fill: hsla(var(--jpgH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--jpgStroke);
 	r:8;
-}circle.jpgM {
-	fill: hsla(260, 100%, 20%, 0.8);
+}
+circle.png {
+	fill: hsla(var(--pngH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--pngStroke);
 	r:8;
-} circle.png {
-	fill: hsla(280, 100%, 70%, 0.8);
+}circle.gif {
+	fill: hsla(var(--gifH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--gifStroke);
 	r:8;
-} circle.pngM {
-	fill: hsla(280, 100%, 20%, 0.8);
+}
+ circle.jpeg {
+	fill: hsla(var(--jpegH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--jpegStroke);
 	r:8;
-} circle.gif {
-	fill: hsla(290, 100%, 70%, 0.8);
+}
+circle.mp4 {
+	fill: hsla(var(--mp4H), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--mp4Stroke);
 	r:8;
-} circle.gifM {
-	fill: hsla(290, 100%, 20%, 0.8);
-	r:8;
-} circle.jpeg {
-	fill: hsla(270, 100%, 70%, 0.8);
-	r:8;
-} circle.jpegM {
-	fill: hsla(270, 100%, 20%, 0.8);
-	r:8;
-} circle.mp4 {
-	fill: hsla(330, 100%, 70%, 0.8);
-	r:8;
-} circle.mp4M {
-	fill: hsla(330, 100%, 20%, 0.8);
-	r:8;
-}     
+}    
 circle.txt {
-	fill: hsla(120, 100%, 90%, 0.8);
-	r:12;
-}circle.txtM {
-	fill: hsla(120, 100%, 20%, 0.8);
+	fill: hsla(var(--txtH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--txtStroke);
 	r:12;
 }
 circle.other {
-	fill: hsla(0, 0%, 0%, 1);
+	fill: hsla(var(--otherH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--otherStroke);
+	r:10;
+}
+circle.json {
+	fill: hsla(var(--jsonH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	stroke: var(--jsonStroke);
 	r:10;
 }
 line {
-	stroke: white;
+	stroke: var(--textColor);
 	stroke-width: 1px;
 	opacity: 0.7;
 }
@@ -128,22 +195,39 @@ path{
 	opacity: 0.7;
 	fill: none;
 }
-path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--html)), 100%, 65%);}
-path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--css)), 100%, 65%);}
-path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--js)), 100%, 65%);}
-path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpg)), 100%, 65%);}
-path.pathS-png:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--png)), 100%, 65%);}
-path.pathS-gif:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--gif)), 100%, 65%);}
-path.pathS-jpeg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpeg)), 100%, 65%);}
-path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--mp4)), 100%, 65%);}
-path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--txt)), 100%, 65%);}
-path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--other)), 100%, 65%);}
+path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--htmlH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--csshH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jsH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpgH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-png:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--pngH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-gif:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--gifH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-jpeg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpegH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--mp4H)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--txtH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--otherH)), var(--pathSaturation), var(--pathLightness));}
 .wave{
 	r: 4;
-	fill: hsla(72, 100%, 75%,1);
-	stroke-width: 0px;
-	filter: drop-shadow(0 0 5px hsl(75,72%,72%));
+	/*fill: hsla(72, 100%, 75%,1);*/
+	fill:var(--waveFill);
+	stroke-width: var(--waveStroke);
+	filter: var(--waveShadow);
 }
 .wjs{
 	/*fill: hsla(40, 100%, 75%,1);*/
 }
+iframe.code {
+	border: 1px solid #333;
+	background: black;
+}
+
+iframe.code pre {
+	padding: 10px;
+	margin: 0;
+	font-family: monospace;
+	white-space: pre-wrap;
+	color: #00ffcc; /* Default green */
+}
+
+iframe.code .lang-js pre { color: #00ffcc; }
+iframe.code .lang-txt pre { color: #999; }
+iframe.code .lang-py pre { color: #ffcc00; }

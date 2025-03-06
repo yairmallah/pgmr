@@ -8,6 +8,42 @@
   	<link rel="stylesheet" type="text/css" href="css\general.css"/>
 	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
 	<link rel="icon" href="imgs\siteMapThumbnail.png" type="image/png">
+	<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+<script>
+	function setPreviewPage(d){
+		const iframe = document.getElementById("page-preview");
+		const pre = document.getElementById("code-preview");
+		iframe.src = d.url;
+		pre.dataset.url = d.url;
+		document.getElementById("page-preview-container").style.display = "block";
+		if (!d.url.endsWith(".html")) {
+			pre.classList = "lang-"+d.url.split(".").slice(-1);
+			fetch(d.url)
+				.then((res) => res.text())
+				.then((code) => {
+					pre.textContent = code;
+					Prism.highlightElement(pre);
+				})
+			iframe.style.display = "none";
+			pre.style.display = "block";
+		}
+		else{
+			pre.style.display = "none";
+			iframe.style.display = "block";
+		}
+	}
+	
+	function hidePreview(){
+		document.getElementById("page-preview-container").style.display = "none";
+	}
+	function openPreview(){
+		url = document.getElementById("page-preview").src;
+		window.open(url, "_blank");
+	}
+</script>
 </head>
 <body>
 <div id="svg-container">
@@ -24,13 +60,109 @@
 	<div id="bgc-js" class="smBg"></div>
 	<div id="bgc-img" class="smBg"></div>
 	<div id="bgc-txt" class="smBg"></div>
-<div>
-
+</div>
+<div id="page-preview-container">
+	<iframe id="page-preview" src="none" title="page preview"></iframe>
+	<pre id="code-preview" class="language-js" data-url="https://yairmallah.github.io/pgmr/dictionarysGen.js"></pre>
+	<button id="closeBtn" onclick="hidePreview()">[X]</button>
+	<button id="openBtn" onclick="openPreview()"><span class="open">[↗]</span>
+</button>
+</div>
+<script>
+	const gridSize = 50;
+	const colors = new Proxy(
+		{
+			html:	{h:40, s:100, l:100, a:1},
+			css:	{h:180, s:100, l:90, a:1},
+			js:		{h:0, s:100, l:70, a:1},
+			jpg:	{h:260, s:100, l:70, a:0.8},
+			png:	{h:280, s:100, l:70, a:0.8},
+			gif:	{h:290, s:100, l:70, a:0.8},
+			jpeg:	{h:270, s:100, l:70, a:0.8},
+			mp4:	{h:330, s:100, l:70, a:0.8},
+			img:	{h:280, s:100, l:70, a:0.8}, 
+			txt:	{h:120, s:100, l:90, a:1},
+			other:	{h:220, s:0, l:0, a:1}
+		},{
+			get(target, key) {
+				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+			}
+	});
+	const darkValues={
+		false: {
+			"--bgBody":"hsl(50, 50%, 95%)",
+			"--bgImg": "unset",
+			"--staticShadow":  "unset",
+			"--circSaturatin":"0%",
+			"--circLihgtness":"90%",
+			"--textColor":"#000",
+			"--textShadow":"none",
+			"--circStroke":"3.5px",
+			"--waveFill":"hsla(240, 100%, 30%,1)",
+			"--waveStroke":"1.5px",
+			"--waveShadow":"none",
+			"--pathSaturation":"100%",
+			"--pathLightness":"45%",
+			"--htmlStroke":`hsl(${colors["html"].h}, 100%, 65%)`,
+			"--cssStroke":`hsl(${colors["css"].h}, 100%, 65%)`,
+			"--jsStroke":`hsl(${colors["js"].h}, 100%, 65%)`,
+			"--jpgStroke":`hsl(${colors["jpg"].h}, 100%, 65%)`,
+			"--pngStroke":`hsl(${colors["png"].h}, 100%, 65%)`,
+			"--gifStroke":`hsl(${colors["gif"].h}, 100%, 65%)`,
+			"--jpegStroke":`hsl(${colors["jpeg"].h}, 100%, 65%)`,
+			"--mp4Stroke":`hsl(${colors["mp4"].h}, 100%, 65%)`,
+			"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
+			"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
+			"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
+			"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
+			
+			"--gridSize": gridSize+"px"
+		},
+		true: {
+			"--bgBody":"#000",
+			"--bgImg": "linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
+			"--staticShadow":  "drop-shadow(0 0 5px hsl(84,100%,59%))",
+			"--circSaturatin":"100%",
+			"--circLihgtness":"80%",
+			"--textColor":"white",
+			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
+			"--circStroke":"2px",
+			"--waveFill":"hsla(72, 100%, 75%,1)",
+			"--waveStroke":"0px",
+			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
+			"--pathSaturation":"100%",
+			"--pathLightness":"80%",
+			"--htmlStroke":"inherit",
+			"--cssStroke":"inherit",
+			"--jsStroke":"inherit",
+			"--jpgStroke":"inherit",
+			"--pngStroke":"inherit",
+			"--gifStroke":"inherit",
+			"--jpegStroke":"inherit",
+			"--mp4Stroke":"inherit",
+			"--imgStroke":"inherit",
+			"--txtStroke":"inherit",
+			"--otherStroke":"inherit",
+			"--jsonStroke":"inherit",
+			
+			"--gridSize": gridSize+"px"
+		}
+		
+	};
+	var darkMdoe = true;
+	const toggleMode=()=>{
+		darkMdoe = !darkMdoe;
+		Object.keys(darkValues[darkMdoe]).forEach(varMode => {
+			const root = document.documentElement;
+			root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
+		});
+	};
+	toggleMode();
+</script>
 <script>
 	const offs = 30;
 	const width = document.getElementById("svg-container").offsetWidth;
 	const height = document.getElementById("svg-container").offsetHeight;
-	const darkMdoe = false;
 	const bounds = {
 		html: { xMin: 0 + offs, xMax: width - offs,  
 				yMin: 0 + offs, yMax: height - offs},
@@ -92,27 +224,8 @@
 		areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
 	}
 	
-	const colors = new Proxy(
-		{
-			html:	{h:40, s:100, l:100, a:1},
-			css:	{h:180, s:100, l:90, a:1},
-			js:		{h:0, s:100, l:70, a:1},
-			jpg:	{h:260, s:100, l:70, a:0.8},
-			png:	{h:280, s:100, l:70, a:0.8},
-			gif:	{h:290, s:100, l:70, a:0.8},
-			jpeg:	{h:270, s:100, l:70, a:0.8},
-			mp4:	{h:330, s:100, l:70, a:0.8},
-			img:	{h:280, s:100, l:70, a:0.8}, 
-			txt:	{h:120, s:100, l:90, a:1},
-			other:	{h:220, s:0, l:0, a:1}
-		},{
-			get(target, key) {
-				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
-			}
-	});
 	function decideColor(srcClss, trgClss){
 		return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
-		//path.style.stroke = `hsl(${col}, 100%, 65%)`;
 	}
 	function setClassesBg(){
 		for (let i = 0; i < Object.keys(bounds).length; i++){
@@ -149,9 +262,7 @@
 
 <script>
 	const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
-
 	console.log("height: ", height, " width: ", width);
-	const gridSize = 50;
 	const minDistance = 30;
 	
 	setClassesBg();
@@ -200,10 +311,9 @@
 		
 		//decideColor alternative
 		document.querySelectorAll('path').forEach(el => {
-			console.log(el.source);
 			const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
 			const rangeId = Math.floor(Math.random()*(colors[clsId[1]].h - colors[clsId[0]].h));
-			el.style.setProperty('--index', rangeId); // Start from 1
+			el.style.setProperty('--index', rangeId);
 		});
 
 
@@ -232,7 +342,7 @@
 					.duration(300)
 					.attr("style", " ");
 			})
-			.on("click", (event, d) => window.open(d.url, "_blank"));
+			.on("click", (event, d) => setPreviewPage(d))/*window.open(d.url, "_blank"))*/;
 
 		const labels = svg.selectAll("text")
 			.data(graph.nodes)
@@ -494,6 +604,20 @@
 		}
 	});
 </script>
+
+<script>
+/*document.querySelectorAll(".language-js").forEach((el) => {
+const url = el.dataset.url;
+
+fetch(url)
+.then((res) => res.text())
+.then((code) => {
+el.textContent = code;
+Prism.highlightElement(el);
+});
+});*/
+</script>
+
 </body>
 </html>
 
