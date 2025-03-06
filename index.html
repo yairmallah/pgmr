@@ -17,7 +17,7 @@
 		const iframe = document.getElementById("page-preview");
 		const pre = document.getElementById("code-preview");
 		document.getElementById("page-preview-container").style.display = "block";
-		if (!d.url.endsWith(/\.(jpg|png|mp4|html|gif|svg|jpeg|webp)$/)) {
+		if (!((d.url.endsWith(".html"))||(d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
 			pre.dataset.url = d.url;
 			pre.classList = "lang-"+d.url.split(".").slice(-1);
 			fetch(d.url)
