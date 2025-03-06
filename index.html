@@ -19,7 +19,7 @@
 		iframe.src = d.url;
 		pre.dataset.url = d.url;
 		document.getElementById("page-preview-container").style.display = "block";
-		if (!d.url.endsWith(".html")) {
+		if ((!d.url.endsWith(/\.(jpg|png|mp4|html|gif|svg|jpeg|webp)$/))&&) {
 			pre.classList = "lang-"+d.url.split(".").slice(-1);
 			fetch(d.url)
 				.then((res) => res.text())
@@ -605,18 +605,6 @@
 	});
 </script>
 
-<script>
-/*document.querySelectorAll(".language-js").forEach((el) => {
-const url = el.dataset.url;
-
-fetch(url)
-.then((res) => res.text())
-.then((code) => {
-el.textContent = code;
-Prism.highlightElement(el);
-});
-});*/
-</script>
 
 </body>
 </html>
