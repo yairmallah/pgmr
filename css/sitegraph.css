@@ -1,3 +1,16 @@
+:root {
+	--html:	40;
+	--css:	180;
+	--js:	0;
+	--jpg:	260;
+	--png:	280;
+	--gif:	290;
+	--jpeg:	270;
+	--mp4:	330;
+	--img:	280;
+	--txt:	120;
+	--other:220;
+}
 body{
 	background-image: linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em);
 	background-size: 50px 50px;
@@ -115,6 +128,16 @@ path{
 	opacity: 0.7;
 	fill: none;
 }
+path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--html)), 100%, 65%);}
+path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--css)), 100%, 65%);}
+path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--js)), 100%, 65%);}
+path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpg)), 100%, 65%);}
+path.pathS-png:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--png)), 100%, 65%);}
+path.pathS-gif:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--gif)), 100%, 65%);}
+path.pathS-jpeg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpeg)), 100%, 65%);}
+path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--mp4)), 100%, 65%);}
+path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--txt)), 100%, 65%);}
+path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--other)), 100%, 65%);}
 .wave{
 	r: 4;
 	fill: hsla(72, 100%, 75%,1);

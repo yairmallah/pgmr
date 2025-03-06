@@ -190,12 +190,21 @@
 			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
 			.force("grid", forceGrid(gridSize, 3))
 			.force('collide', d3.forceCollide(minDistance))
-
+		
 		const link = svg.selectAll("path")
 			.data(graph.links)
 			.enter().append("path")
 			.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
-			.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`);
+			/*.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`)*/;
+		
+		//decideColor alternative
+		document.querySelectorAll('path').forEach(el => {
+			console.log(el.source);
+			const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
+			const rangeId = Math.floor(Math.random()*(colors[clsId[1]].h - colors[clsId[0]].h));
+			el.style.setProperty('--index', rangeId); // Start from 1
+		});
+
 
 		window.adjacencyMap = new Map();
 		graph.links.forEach(link => {
