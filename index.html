@@ -69,6 +69,10 @@
 	<div id="bgc-img" class="smBg"></div>
 	<div id="bgc-txt" class="smBg"></div>
 </div>
+<div id="darkButton">
+	<div id="toggle-light"><div>
+	<div id="toggle-dark"><div>
+</div>
 <div id="page-preview-container">
 	<div id="page-preview-wrapper">
 		<iframe id="page-preview" src="" title="page preview"></iframe>
@@ -168,7 +172,16 @@
 			root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
 		});
 	};
-	toggleMode();
+	var lightButton=document.getElementById("togge-light");
+	lightButton.addEventListener("click", () => {
+		darkMdoe = false;
+		toggleMode();
+    });
+	var darkButton=document.getElementById("togge-dark");
+	darkButton.addEventListener("click", () => {
+		darkMdoe = true;
+		toggleMode();
+    });
 </script>
 <script>
 	const offs = 30;
