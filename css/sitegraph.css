@@ -58,10 +58,10 @@ svg{
 }
 #display-layout{
 	position:fixed;
-	width:40px;
-	height:40px;
-	top:5px;
-	left:5px;
+	width:calc(var(--gridSize)*8/10);
+	height:calc(var(--gridSize)*8/10);
+	top:calc(var(--gridSize)/10);
+	left:calc(var(--gridSize)/10);
 	border-radius: 5%;
 	opacity:0.7;
 }
