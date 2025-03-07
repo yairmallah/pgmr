@@ -28,12 +28,19 @@
 				})
 			iframe.style.display = "none";
 			pre.style.display = "block";
+			if (d.url.endsWith(".txt")){ 
+				pre.style.direction = "rtl";
+				pre.style.textAlign = "right";
+			}
+			else {
+				pre.style.direction = "ltr";
+				pre.style.textAlign = "left";
+			}
 		}
 		else{
 			iframe.src = d.url;
 			pre.style.display = "none";
 			iframe.style.display = "block";
-			console.log(iframe);
 		}
 	}
 	
@@ -185,16 +192,16 @@
 	};
 	
 	if (height >= width*1.2){
-		bounds["html"]= {xMin: 0 + offs, xMax: width - offs,
-						yMin: 0+ offs, yMax:height / 4 - offs};
-		bounds["css"]= {xMin: 0 + offs, xMax: width / 4,
-						yMin: 0+ offs, yMax: height / 4 - offs};
-		bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3 / 4 - offs,
-						yMin: height / 4+ offs, yMax: height / 2 - offs};
+		bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
+						yMin: 0+ offs, yMax:height / 3 - offs};
+		bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
+						yMin: 0+ offs, yMax: height * 5/9 - offs};
+		bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
+						yMin: height / 3+ offs, yMax: height* 5/9 - offs};
 		bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
-						yMin: height / 2+ offs, yMax: height - offs};
+						yMin: height * 5 / 9 + offs, yMax: height - offs};
 		bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
-						yMin: height / 4+ offs, yMax: height - offs};
+						yMin: height / 3 + offs, yMax: height - offs};
 	}else if (width >= height*1.2){
 		bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
 						xMax: width / 3 - offs,		yMax: height*2/3 - offs};
