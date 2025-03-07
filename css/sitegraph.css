@@ -75,6 +75,7 @@ svg{
 	overflow:hidden;
 	border: 2px solid var(--textColor);
 	opacity:0.7;
+	rotate: 0 0 1 30deg;
 }
 #toggle-dark{
 	height:50%;
