@@ -70,8 +70,8 @@
 	<div id="bgc-txt" class="smBg"></div>
 </div>
 <div id="dark-button">
-	<div id="toggle-light"><div>
-	<div id="toggle-dark"><div>
+	<div id="toggle-light" onclick="toggleMode(false)"><div>
+	<div id="toggle-dark" onclick="toggleMode(true)"><div>
 </div>
 <div id="page-preview-container">
 	<div id="page-preview-wrapper">
@@ -165,23 +165,13 @@
 	};
 	
 	var darkMdoe = true;
-	const toggleMode=()=>{
-		darkMdoe = !darkMdoe;
+	const toggleMode=(isDark)=>{
+		darkMdoe = isDark;
 		Object.keys(darkValues[darkMdoe]).forEach(varMode => {
 			const root = document.documentElement;
 			root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
 		});
 	};
-	var lightButton=document.getElementById("togge-light");
-	lightButton.addEventListener("click", () => {
-		darkMdoe = false;
-		toggleMode();
-    });
-	var darkButton=document.getElementById("togge-dark");
-	darkButton.addEventListener("click", () => {
-		darkMdoe = true;
-		toggleMode();
-    });
 </script>
 <script>
 	const offs = 30;
