@@ -53,6 +53,9 @@ body{
 	overflow: hidden;
 	stroke: white;
 }
+svg{
+	overflow:visible;
+}
 #display-layout{
 	position:fixed;
 	width:40px;
