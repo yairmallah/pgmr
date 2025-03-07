@@ -57,7 +57,10 @@
 		document.getElementById("page-preview-container").style.display = "none";
 	}
 	function openPreview(){
-		url = document.getElementById("page-preview").src;
+		if (document.getElementById("code-preview").style.display == "block") url = document.getElementById("code-preview").dataset.url;
+		if (document.getElementById("page-preview").style.display == "block") url = document.getElementById("page-preview").src;
+		if (document.getElementById("img-preview").style.display == "block") url = document.getElementById("img-preview").src;
+		console.log(url);
 		window.open(url, "_blank");
 	}
 </script>
