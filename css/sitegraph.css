@@ -73,6 +73,17 @@ svg{
 	width:45%;
 	display:none;
 }
+#page-preview-wrapper{
+	overflow:hidden;
+	border-radius:20px;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
 #page-preview-container button{
 	position: absolute;
 	background-color: #333;
@@ -90,25 +101,19 @@ svg{
 	top: 0px;
 }
 #page-preview{
-	position:absolute;
 	background-color: #444;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
 	border: 2px solid var(--textColor);
-	border-radius:20px;
 	display:none;
+	height: 100%;
+	width: 100%;
 }
 #code-preview{
-	position:absolute;
-	top:0;
-	left:0;
-	height:95%;
-	width:95%;
 	border: 2px solid var(--textColor);
-	border-radius:20px;
 	display:none;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding:0;
 }
 .symBg{
 	position:absolute;

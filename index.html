@@ -70,8 +70,10 @@
 	<div id="bgc-txt" class="smBg"></div>
 </div>
 <div id="page-preview-container">
-	<iframe id="page-preview" src="" title="page preview"></iframe>
-	<pre id="code-preview" class="language-js" data-url=""></pre>
+	<div id="page-preview-wrapper">
+		<iframe id="page-preview" src="" title="page preview"></iframe>
+		<pre id="code-preview" class="language-js" data-url=""></pre>
+	</div>
 	<button id="closeBtn" onclick="hidePreview()">[X]</button>
 	<button id="openBtn" onclick="openPreview()"><span class="open">[↗]</span>
 </button>
@@ -266,8 +268,6 @@
 		for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
     });
 </script>
-
-
 <script>
 	const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 	console.log("height: ", height, " width: ", width);
