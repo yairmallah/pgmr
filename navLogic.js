@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				subMenu.style.top = "0";
 				subMenu.style.bottom = "auto";
 			}
-			if (buttonRect.left + subMenu.offsetWidth > windowWidth) {
+			if (buttonRect.left - subMenu.offsetWidth < 0) {
+				console.log("dd");
 				subMenu.style.left = "auto";
-				subMenu.style.right = subMenu.offsetWidth + "px"; // Flip up
+				subMenu.style.right = subMenu.offsetWidth + 5 + "px"; // Flip up
 			} else {
 				subMenu.style.left = navButton.offsetWidth+ "px";
 				subMenu.style.right = "auto";
