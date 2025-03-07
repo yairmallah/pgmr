@@ -1,6 +1,6 @@
 :root {
 	--pathSaturation:100%;
-	--pathLightness:80%;
+	--pathLightness:90%;
 	--htmlH:40;
 	--cssH:	180;
 	--jsH:	0;
@@ -31,7 +31,7 @@
 	--waveShadow:drop-shadow(0 0 5px hsl(75,72%,72%));
 	
 	--circSaturatin:100%;
-	--circLihgtness:80%;
+	--circLihgtness:65%;
 	--circStroke:2px;
 	--textColor:white;
 	--textShadow:2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
