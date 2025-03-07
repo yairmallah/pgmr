@@ -95,6 +95,7 @@ svg{
 	display:none;
 }
 #page-preview-wrapper{
+	background-color: #222;
 	overflow:hidden;
 	border-radius:10px;
 	width:100%;
@@ -123,7 +124,6 @@ svg{
 	top: 0px;
 }
 #page-preview{
-	background-color: #222;
 	display:none;
 	aspect-ratio: 16 / 9;
 	transform: scale(0.5);
@@ -143,8 +143,8 @@ svg{
 }
 #img-preview{
 	display:none;
-	height: 100%;
-	width: 100%;
+	max-height: 100%;
+	max-width: 100%;
 	margin: auto;
 	padding:0;
 }
