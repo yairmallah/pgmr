@@ -16,8 +16,15 @@
 	function setPreviewPage(d){
 		const iframe = document.getElementById("page-preview");
 		const pre = document.getElementById("code-preview");
+		const image = document.getElementById("img-preview");
 		document.getElementById("page-preview-container").style.display = "block";
-		if (!((d.url.endsWith(".html"))||(d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
+		if (d.url.endsWith(".html")){
+			iframe.src = d.url;
+			pre.style.display = "none";
+			iframe.style.display = "block";
+			image.style.display = "none";
+		}
+		else if (!((d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
 			pre.dataset.url = d.url;
 			pre.classList = "lang-"+d.url.split(".").slice(-1);
 			fetch(d.url)
@@ -28,6 +35,7 @@
 				})
 			iframe.style.display = "none";
 			pre.style.display = "block";
+			image.style.display = "none";
 			if (d.url.endsWith(".txt")){ 
 				pre.style.direction = "rtl";
 				pre.style.textAlign = "right";
@@ -37,10 +45,11 @@
 				pre.style.textAlign = "left";
 			}
 		}
-		else{
-			iframe.src = d.url;
+		else {
+			image.src = d.url;
 			pre.style.display = "none";
-			iframe.style.display = "block";
+			iframe.style.display = "none";
+			image.style.display = "block";
 		}
 	}
 	
@@ -69,15 +78,19 @@
 		<div id="bgc-img" class="smBg"></div>
 		<div id="bgc-txt" class="smBg"></div>
 	</div>
+	
 	<div id="dark-button">
 		<div id="toggle-light" onclick="toggleMode(false)"></div>
 		<div id="toggle-dark" onclick="toggleMode(true)"></div>
 	</div>
+	
 	<div id="page-preview-container">
 		<div id="page-preview-wrapper">
 			<iframe id="page-preview" src="" title="page preview"></iframe>
 			<pre id="code-preview" class="language-js" data-url=""></pre>
+			<img id="img-preview" src=""></img>
 		</div>
+		
 		<button id="closeBtn" onclick="hidePreview()">[X]</button>
 		<button id="openBtn" onclick="openPreview()">
 			<span class="open">[↗]</span>
