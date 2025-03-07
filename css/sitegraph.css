@@ -133,12 +133,6 @@ svg{
 	/*pointer-events: none;*/
 	width: 200%;
 }
-#page-preview:hover {
-  transform: scale(1);
-  transform-origin: auto;
-  pointer-events: auto; /* Reactivates clicks on hover */
-  transition: 0.2s ease-out;
-}
 #code-preview{
 	display:none;
 	height: 100%;
