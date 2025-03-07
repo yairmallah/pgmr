@@ -33,6 +33,7 @@
 			iframe.src = d.url;
 			pre.style.display = "none";
 			iframe.style.display = "block";
+			console.log(iframe);
 		}
 	}
 	
@@ -62,8 +63,8 @@
 	<div id="bgc-txt" class="smBg"></div>
 </div>
 <div id="page-preview-container">
-	<iframe id="page-preview" src="none" title="page preview"></iframe>
-	<pre id="code-preview" class="language-js" data-url="none"></pre>
+	<iframe id="page-preview" src="" title="page preview"></iframe>
+	<pre id="code-preview" class="language-js" data-url=""></pre>
 	<button id="closeBtn" onclick="hidePreview()">[X]</button>
 	<button id="openBtn" onclick="openPreview()"><span class="open">[↗]</span>
 </button>
