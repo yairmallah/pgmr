@@ -123,7 +123,7 @@ svg{
 	top: 0px;
 }
 #page-preview{
-	background-color: #444;
+	background-color: #222;
 	display:none;
 	aspect-ratio: 16 / 9;
 	transform: scale(0.5);
@@ -140,6 +140,13 @@ svg{
 	margin: 0;
 	padding:0;
 	font-size:13px;
+}
+#img-preview{
+	display:none;
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	padding:0;
 }
 .symBg{
 	position:absolute;
