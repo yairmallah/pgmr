@@ -63,13 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				subMenu.style.bottom = "auto";
 			}
 			if (buttonRect.left - subMenu.offsetWidth < 0) {
-				subMenu.style.left = navButton.offsetWidth+ "px";
+				subMenu.style.left = navButton.offsetWidth + 5 + "px";
 				subMenu.style.right = "auto";
 				
 
 			} else {
 				subMenu.style.left = "auto";
-				subMenu.style.right = subMenu.offsetWidth + 5 + "px"; // Flip up
+				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
 			}
         }
     });
