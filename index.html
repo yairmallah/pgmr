@@ -53,571 +53,573 @@
 	}
 </script>
 </head>
-<body>
-<div id="svg-container">
-	<div id="bg-html" class="symBg hidden"></div>
-	<div id="bg-css" class="symBg hidden"></div>
-	<div id="bg-js" class="symBg hidden"></div>
-	<div id="bg-img" class="symBg hidden"></div>
-	<div id="bg-txt" class="symBg hidden"></div>
-</div>
-
-<div id="display-layout">
-	<div id="bgc-html" class="smBg"></div>
-	<div id="bgc-css" class="smBg"></div>
-	<div id="bgc-js" class="smBg"></div>
-	<div id="bgc-img" class="smBg"></div>
-	<div id="bgc-txt" class="smBg"></div>
-</div>
-<div id="dark-button">
-	<div id="toggle-light" onclick="toggleMode(false)"><div>
-	<div id="toggle-dark" onclick="toggleMode(true)"><div>
-</div>
-<div id="page-preview-container">
-	<div id="page-preview-wrapper">
-		<iframe id="page-preview" src="" title="page preview"></iframe>
-		<pre id="code-preview" class="language-js" data-url=""></pre>
+	<body>
+	<div id="svg-container">
+		<div id="bg-html" class="symBg hidden"></div>
+		<div id="bg-css" class="symBg hidden"></div>
+		<div id="bg-js" class="symBg hidden"></div>
+		<div id="bg-img" class="symBg hidden"></div>
+		<div id="bg-txt" class="symBg hidden"></div>
 	</div>
-	<button id="closeBtn" onclick="hidePreview()">[X]</button>
-	<button id="openBtn" onclick="openPreview()"><span class="open">[↗]</span>
-</button>
-</div>
-<script>
-	const gridSize = 50;
-	const colors = new Proxy(
-		{
-			html:	{h:40, s:100, l:100, a:1},
-			css:	{h:180, s:100, l:90, a:1},
-			js:		{h:0, s:100, l:70, a:1},
-			jpg:	{h:260, s:100, l:70, a:0.8},
-			png:	{h:280, s:100, l:70, a:0.8},
-			gif:	{h:290, s:100, l:70, a:0.8},
-			jpeg:	{h:270, s:100, l:70, a:0.8},
-			mp4:	{h:330, s:100, l:70, a:0.8},
-			img:	{h:280, s:100, l:70, a:0.8}, 
-			txt:	{h:120, s:100, l:90, a:1},
-			other:	{h:220, s:0, l:0, a:1}
-		},{
-			get(target, key) {
-				return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+
+	<div id="display-layout">
+		<div id="bgc-html" class="smBg"></div>
+		<div id="bgc-css" class="smBg"></div>
+		<div id="bgc-js" class="smBg"></div>
+		<div id="bgc-img" class="smBg"></div>
+		<div id="bgc-txt" class="smBg"></div>
+	</div>
+	<div id="dark-button">
+		<div id="toggle-light" onclick="toggleMode(false)"></div>
+		<div id="toggle-dark" onclick="toggleMode(true)"></div>
+	</div>
+	<div id="page-preview-container">
+		<div id="page-preview-wrapper">
+			<iframe id="page-preview" src="" title="page preview"></iframe>
+			<pre id="code-preview" class="language-js" data-url=""></pre>
+		</div>
+		<button id="closeBtn" onclick="hidePreview()">[X]</button>
+		<button id="openBtn" onclick="openPreview()">
+			<span class="open">[↗]</span>
+		</button>
+	</div>
+	<script>
+		const gridSize = 50;
+		const colors = new Proxy(
+			{
+				html:	{h:40, s:100, l:100, a:1},
+				css:	{h:180, s:100, l:90, a:1},
+				js:		{h:0, s:100, l:70, a:1},
+				jpg:	{h:260, s:100, l:70, a:0.8},
+				png:	{h:280, s:100, l:70, a:0.8},
+				gif:	{h:290, s:100, l:70, a:0.8},
+				jpeg:	{h:270, s:100, l:70, a:0.8},
+				mp4:	{h:330, s:100, l:70, a:0.8},
+				img:	{h:280, s:100, l:70, a:0.8}, 
+				txt:	{h:120, s:100, l:90, a:1},
+				other:	{h:220, s:0, l:0, a:1}
+			},{
+				get(target, key) {
+					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+				}
+		});
+		const darkValues={
+			false: {
+				"--bgBody":"hsl(50, 50%, 95%)",
+				"--bgImg": "unset",
+				"--staticShadow":  "unset",
+				"--circSaturatin":"0%",
+				"--circLihgtness":"90%",
+				"--textColor":"#000",
+				"--textShadow":"none",
+				"--circStroke":"3.5px",
+				"--waveFill":"hsla(240, 100%, 30%,1)",
+				"--waveStroke":"1.5px",
+				"--waveShadow":"none",
+				"--pathSaturation":"100%",
+				"--pathLightness":"45%",
+				"--htmlStroke":`hsl(${colors["html"].h}, 100%, 65%)`,
+				"--cssStroke":`hsl(${colors["css"].h}, 100%, 65%)`,
+				"--jsStroke":`hsl(${colors["js"].h}, 100%, 65%)`,
+				"--jpgStroke":`hsl(${colors["jpg"].h}, 100%, 65%)`,
+				"--pngStroke":`hsl(${colors["png"].h}, 100%, 65%)`,
+				"--gifStroke":`hsl(${colors["gif"].h}, 100%, 65%)`,
+				"--jpegStroke":`hsl(${colors["jpeg"].h}, 100%, 65%)`,
+				"--mp4Stroke":`hsl(${colors["mp4"].h}, 100%, 65%)`,
+				"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
+				"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
+				"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
+				"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
+				
+				"--gridSize": gridSize+"px"
+			},
+			true: {
+				"--bgBody":"#000",
+				"--bgImg": "linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
+				"--staticShadow":  "drop-shadow(0 0 5px hsl(84,100%,59%))",
+				"--circSaturatin":"100%",
+				"--circLihgtness":"65%",
+				"--textColor":"white",
+				"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
+				"--circStroke":"2px",
+				"--waveFill":"hsla(72, 100%, 75%,1)",
+				"--waveStroke":"0px",
+				"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
+				"--pathSaturation":"100%",
+				"--pathLightness":"90%",
+				"--htmlStroke":"inherit",
+				"--cssStroke":"inherit",
+				"--jsStroke":"inherit",
+				"--jpgStroke":"inherit",
+				"--pngStroke":"inherit",
+				"--gifStroke":"inherit",
+				"--jpegStroke":"inherit",
+				"--mp4Stroke":"inherit",
+				"--imgStroke":"inherit",
+				"--txtStroke":"inherit",
+				"--otherStroke":"inherit",
+				"--jsonStroke":"inherit",
+				
+				"--gridSize": gridSize+"px"
 			}
-	});
-	const darkValues={
-		false: {
-			"--bgBody":"hsl(50, 50%, 95%)",
-			"--bgImg": "unset",
-			"--staticShadow":  "unset",
-			"--circSaturatin":"0%",
-			"--circLihgtness":"90%",
-			"--textColor":"#000",
-			"--textShadow":"none",
-			"--circStroke":"3.5px",
-			"--waveFill":"hsla(240, 100%, 30%,1)",
-			"--waveStroke":"1.5px",
-			"--waveShadow":"none",
-			"--pathSaturation":"100%",
-			"--pathLightness":"45%",
-			"--htmlStroke":`hsl(${colors["html"].h}, 100%, 65%)`,
-			"--cssStroke":`hsl(${colors["css"].h}, 100%, 65%)`,
-			"--jsStroke":`hsl(${colors["js"].h}, 100%, 65%)`,
-			"--jpgStroke":`hsl(${colors["jpg"].h}, 100%, 65%)`,
-			"--pngStroke":`hsl(${colors["png"].h}, 100%, 65%)`,
-			"--gifStroke":`hsl(${colors["gif"].h}, 100%, 65%)`,
-			"--jpegStroke":`hsl(${colors["jpeg"].h}, 100%, 65%)`,
-			"--mp4Stroke":`hsl(${colors["mp4"].h}, 100%, 65%)`,
-			"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
-			"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
-			"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
-			"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
 			
-			"--gridSize": gridSize+"px"
-		},
-		true: {
-			"--bgBody":"#000",
-			"--bgImg": "linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
-			"--staticShadow":  "drop-shadow(0 0 5px hsl(84,100%,59%))",
-			"--circSaturatin":"100%",
-			"--circLihgtness":"65%",
-			"--textColor":"white",
-			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
-			"--circStroke":"2px",
-			"--waveFill":"hsla(72, 100%, 75%,1)",
-			"--waveStroke":"0px",
-			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
-			"--pathSaturation":"100%",
-			"--pathLightness":"90%",
-			"--htmlStroke":"inherit",
-			"--cssStroke":"inherit",
-			"--jsStroke":"inherit",
-			"--jpgStroke":"inherit",
-			"--pngStroke":"inherit",
-			"--gifStroke":"inherit",
-			"--jpegStroke":"inherit",
-			"--mp4Stroke":"inherit",
-			"--imgStroke":"inherit",
-			"--txtStroke":"inherit",
-			"--otherStroke":"inherit",
-			"--jsonStroke":"inherit",
+		};
+		
+		var darkMdoe = true;
+		const toggleMode=(isDark)=>{
+			darkMdoe = isDark;
+			Object.keys(darkValues[darkMdoe]).forEach(varMode => {
+				const root = document.documentElement;
+				root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
+			});
+		};
+	</script>
+
+	<script>
+		const offs = 30;
+		const width = document.getElementById("svg-container").offsetWidth;
+		const height = document.getElementById("svg-container").offsetHeight;
+		const bounds = {
+			html: { xMin: 0 + offs, xMax: width - offs,  
+					yMin: 0 + offs, yMax: height - offs},
+					
+			css: { xMin: 0 + offs, xMax: width/3 - offs, 
+					yMin: 0 + offs, yMax: height/2 - offs  },
+					
+			js: { xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
+					yMin: height/2 + offs, yMax: height*8/15 - offs  },
+					
+			img: { xMin: 0 + offs, xMax: width*9/10 - offs, 
+					yMin: height/1.7 + offs, yMax: height - offs  },
+									
+			txt: { xMin: width*9/10 + offs, xMax: width - offs, 
+					yMin: height*2/3 + offs, yMax: height - offs  },
+					
+			other: { xMin: 0 + offs, xMax: width - offs, 
+					yMin: 0 + offs, yMax: height - offs  }
+		};
+		
+		if (height >= width*1.2){
+			bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
+							yMin: 0+ offs, yMax:height / 3 - offs};
+			bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
+							yMin: 0+ offs, yMax: height * 5/9 - offs};
+			bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
+							yMin: height / 3+ offs, yMax: height* 5/9 - offs};
+			bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
+							yMin: height * 5 / 9 + offs, yMax: height - offs};
+			bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
+							yMin: height / 3 + offs, yMax: height - offs};
+		}else if (width >= height*1.2){
+			bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
+							xMax: width / 3 - offs,		yMax: height*2/3 - offs};
+							
+			bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
+							xMax: width / 3 - offs,		yMax: height - offs};
+							
+			bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
+							xMax: width / 2 - offs,		yMax: height / 3 - offs};
 			
-			"--gridSize": gridSize+"px"
+			bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
+							xMax: width / 2 - offs,		yMax: height - offs};
+							
+			bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+							xMax: width - offs,			yMax: height - offs};
+		}
+
+		const areas = {
+			html: { x: width / 3, y: height / 2 },
+			css: { x: width / 6, y: height / 3 },
+			js: { x: (5 * width) / 6, y: height / 3 },
+			img: { x: width / 4, y: (2 * height) / 3 },
+			txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+		};
+		for (let i = 0; i < Object.keys(areas).length; i++){
+			const bound = bounds[Object.keys(areas)[i]];
+			areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
+			areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
 		}
 		
-	};
-	
-	var darkMdoe = true;
-	const toggleMode=(isDark)=>{
-		darkMdoe = isDark;
-		Object.keys(darkValues[darkMdoe]).forEach(varMode => {
-			const root = document.documentElement;
-			root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
-		});
-	};
-</script>
-<script>
-	const offs = 30;
-	const width = document.getElementById("svg-container").offsetWidth;
-	const height = document.getElementById("svg-container").offsetHeight;
-	const bounds = {
-		html: { xMin: 0 + offs, xMax: width - offs,  
-				yMin: 0 + offs, yMax: height - offs},
-				
-		css: { xMin: 0 + offs, xMax: width/3 - offs, 
-				yMin: 0 + offs, yMax: height/2 - offs  },
-				
-		js: { xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
-				yMin: height/2 + offs, yMax: height*8/15 - offs  },
-				
-		img: { xMin: 0 + offs, xMax: width*9/10 - offs, 
-				yMin: height/1.7 + offs, yMax: height - offs  },
-								
-		txt: { xMin: width*9/10 + offs, xMax: width - offs, 
-				yMin: height*2/3 + offs, yMax: height - offs  },
-				
-		other: { xMin: 0 + offs, xMax: width - offs, 
-				yMin: 0 + offs, yMax: height - offs  }
-	};
-	
-	if (height >= width*1.2){
-		bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
-						yMin: 0+ offs, yMax:height / 3 - offs};
-		bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
-						yMin: 0+ offs, yMax: height * 5/9 - offs};
-		bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
-						yMin: height / 3+ offs, yMax: height* 5/9 - offs};
-		bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
-						yMin: height * 5 / 9 + offs, yMax: height - offs};
-		bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
-						yMin: height / 3 + offs, yMax: height - offs};
-	}else if (width >= height*1.2){
-		bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
-						xMax: width / 3 - offs,		yMax: height*2/3 - offs};
-						
-		bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
-						xMax: width / 3 - offs,		yMax: height - offs};
-						
-		bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
-						xMax: width / 2 - offs,		yMax: height / 3 - offs};
-		
-		bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
-						xMax: width / 2 - offs,		yMax: height - offs};
-						
-		bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
-						xMax: width - offs,			yMax: height - offs};
-	}
-
-	const areas = {
-		html: { x: width / 3, y: height / 2 },
-		css: { x: width / 6, y: height / 3 },
-		js: { x: (5 * width) / 6, y: height / 3 },
-		img: { x: width / 4, y: (2 * height) / 3 },
-		txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
-	};
-	for (let i = 0; i < Object.keys(areas).length; i++){
-		const bound = bounds[Object.keys(areas)[i]];
-		areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
-		areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
-	}
-	
-	function decideColor(srcClss, trgClss){
-		return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
-	}
-	function setClassesBg(){
-		for (let i = 0; i < Object.keys(bounds).length; i++){
-			const cl = Object.keys(bounds)[i];
-			const clBackground = document.getElementById("bg-"+cl);
-			if (clBackground){
-				clBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
-				clBackground.style.border = `2px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
-				clBackground.style.left = `${bounds[cl].xMin}px`;
-				clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
-				clBackground.style.top = `${bounds[cl].yMin}px`;
-				clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
-			}
-			const clcBackground = document.getElementById("bgc-"+cl);
-			const ch = 40;
-			const cw = 40;
-			if (clcBackground){
-				clcBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
-				clcBackground.style.border = `0.5px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
-				clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
-				clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
-				clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
-				clcBackground.style.height = `${(bounds[cl].yMax-bounds[cl].yMin)/height*ch}px`;
+		function decideColor(srcClss, trgClss){
+			return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
+		}
+		function setClassesBg(){
+			for (let i = 0; i < Object.keys(bounds).length; i++){
+				const cl = Object.keys(bounds)[i];
+				const clBackground = document.getElementById("bg-"+cl);
+				if (clBackground){
+					clBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
+					clBackground.style.border = `2px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+					clBackground.style.left = `${bounds[cl].xMin}px`;
+					clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
+					clBackground.style.top = `${bounds[cl].yMin}px`;
+					clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
+				}
+				const clcBackground = document.getElementById("bgc-"+cl);
+				const ch = 40;
+				const cw = 40;
+				if (clcBackground){
+					clcBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
+					clcBackground.style.border = `0.5px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+					clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
+					clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
+					clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
+					clcBackground.style.height = `${(bounds[cl].yMax-bounds[cl].yMin)/height*ch}px`;
+				}
 			}
 		}
-	}
-	layoutButton=document.getElementById("display-layout");
-	layoutButton.addEventListener("click", () => {
-		layouts = document.getElementsByClassName('symBg');
-		for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
-    });
-</script>
-<script>
-	const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
-	console.log("height: ", height, " width: ", width);
-	const minDistance = 30;
-	
-	setClassesBg();
-
-	function getFileType(filename) {
-		if (filename.endsWith(".html")) return "html";
-		if (filename.endsWith(".css")) return "css";
-		if (filename.endsWith(".js")) return "js";
-		if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
-		if (filename.endsWith(".txt")) return "txt";
-		return "other";
-	}
-	function getFileTypeD(filename) {
-		return filename.split(".").slice(-1)[0];
-	}
-	
-	d3.json(json_add).then(graph => {
-		graph.nodes.forEach(d => {
-			d.class = getFileType(d.id);
-			d.bounds = bounds[d.class];
-			d.x = Math.floor(Math.random() * (d.bounds.xMax - d.bounds.xMin + 1)) + d.bounds.xMin;
-			d.y = Math.floor(Math.random() * (d.bounds.yMax - d.bounds.yMin + 1)) + d.bounds.yMin;
-		})
-	
-		const svg = d3.select("#svg-container")
-			.append("svg")
-			.attr("width", width)
-			.attr("height", height);
-
-		// alpha dependency, 1 > alpha >= 0.001 (~)
-		const simulation = d3.forceSimulation(graph.nodes)
-			.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(300))
-			.force("charge", d3.forceManyBody().strength(-100))
-			.force("charge_html", manyBodyClass(400, "html"))
-			.force("bounds", forceBounds())
-			.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
-			.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
-			.force("grid", forceGrid(gridSize, 3))
-			.force('collide', d3.forceCollide(minDistance))
-		
-		const link = svg.selectAll("path")
-			.data(graph.links)
-			.enter().append("path")
-			.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
-			/*.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`)*/;
-		
-		//decideColor alternative
-		document.querySelectorAll('path').forEach(el => {
-			const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
-			const rangeId = Math.floor(Math.random()*(colors[clsId[1]].h - colors[clsId[0]].h));
-			el.style.setProperty('--index', rangeId);
+		layoutButton=document.getElementById("display-layout");
+		layoutButton.addEventListener("click", () => {
+			layouts = document.getElementsByClassName('symBg');
+			for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
 		});
+	</script>
 
-
-		window.adjacencyMap = new Map();
-		graph.links.forEach(link => {
-			if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
-			adjacencyMap.get(link.source.id).push(link);
-		});
-		const depth = graph.links.length;
-		console.log("graph depth: ", depth);
-
-		const node = svg.selectAll("circle")
-			.data(graph.nodes)
-			.enter().append("circle")
-			.attr("class", d => getFileTypeD(d.id)+" static")
-			.on("mouseover", sendWave)
-			.on("mouseenter", (event, d) => {
-				labels.filter(l => l.id === d.id)
-					.transition()
-					.duration(300)
-					.attr("style", "display:block;");
-			})
-			.on("mouseleave", (event, d) => {
-				labels.filter(l => l.id === d.id)
-					.transition()
-					.duration(300)
-					.attr("style", " ");
-			})
-			.on("click", (event, d) => setPreviewPage(d))/*window.open(d.url, "_blank"))*/;
-
-		const labels = svg.selectAll("text")
-			.data(graph.nodes)
-			.enter().append("text")
-			.attr("dy", -15)
-			.attr("text-anchor", "middle")
-			.text(d => d.id);
-
-		simulation.on("tick", () => {
-			node									
-				.attr("cx", d => d.x)
-				.attr("cy", d => d.y);
+	<script>
+		const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
+		console.log("height: ", height, " width: ", width);
+		const minDistance = 30;
 		
-			link.each(function(d) {
-				const path = segmentedPath(d.source, d.target, gridSize);
-				const line = d3.select(this);
-				const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
-				line.attr("d", dAttr);
+		setClassesBg();
+
+		function getFileType(filename) {
+			if (filename.endsWith(".html")) return "html";
+			if (filename.endsWith(".css")) return "css";
+			if (filename.endsWith(".js")) return "js";
+			if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
+			if (filename.endsWith(".txt")) return "txt";
+			return "other";
+		}
+		function getFileTypeD(filename) {
+			return filename.split(".").slice(-1)[0];
+		}
+		
+		d3.json(json_add).then(graph => {
+			graph.nodes.forEach(d => {
+				d.class = getFileType(d.id);
+				d.bounds = bounds[d.class];
+				d.x = Math.floor(Math.random() * (d.bounds.xMax - d.bounds.xMin + 1)) + d.bounds.xMin;
+				d.y = Math.floor(Math.random() * (d.bounds.yMax - d.bounds.yMin + 1)) + d.bounds.yMin;
+			})
+		
+			const svg = d3.select("#svg-container")
+				.append("svg")
+				.attr("width", width)
+				.attr("height", height);
+
+			// alpha dependency, 1 > alpha >= 0.001 (~)
+			const simulation = d3.forceSimulation(graph.nodes)
+				.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(300))
+				.force("charge", d3.forceManyBody().strength(-100))
+				.force("charge_html", manyBodyClass(400, "html"))
+				.force("bounds", forceBounds())
+				.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
+				.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
+				.force("grid", forceGrid(gridSize, 3))
+				.force('collide', d3.forceCollide(minDistance))
+			
+			const link = svg.selectAll("path")
+				.data(graph.links)
+				.enter().append("path")
+				.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
+				/*.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`)*/;
+			
+			//decideColor alternative
+			document.querySelectorAll('path').forEach(el => {
+				const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
+				const rangeId = Math.floor(Math.random()*(colors[clsId[1]].h - colors[clsId[0]].h));
+				el.style.setProperty('--index', rangeId);
 			});
 
-			labels
-				.attr("x", d => d.x)
-				.attr("y", d => d.y);
-		});
-		
 
-		/*function sendWave(event, d) {
-			const visited = new Set();
-			const speed = 0.3;
+			window.adjacencyMap = new Map();
+			graph.links.forEach(link => {
+				if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
+				adjacencyMap.get(link.source.id).push(link);
+			});
+			const depth = graph.links.length;
+			console.log("graph depth: ", depth);
 
-			function propagate(source) {
-				
-				visited.add(source.id);
-				graph.links.forEach(link => {
-					if (link.source.id === source.id && !visited.has(link.target.id)) {
-						const path = segmentedPath(link.source, link.target, gridSize);
-						const dot = svg.append("circle")
-							.attr("class", "wave w"+source.class)
-							.attr("cx", path[0].x)
-							.attr("cy", path[0].y);
+			const node = svg.selectAll("circle")
+				.data(graph.nodes)
+				.enter().append("circle")
+				.attr("class", d => getFileTypeD(d.id)+" static")
+				.on("mouseover", sendWave)
+				.on("mouseenter", (event, d) => {
+					labels.filter(l => l.id === d.id)
+						.transition()
+						.duration(300)
+						.attr("style", "display:block;");
+				})
+				.on("mouseleave", (event, d) => {
+					labels.filter(l => l.id === d.id)
+						.transition()
+						.duration(300)
+						.attr("style", " ");
+				})
+				.on("click", (event, d) => setPreviewPage(d))/*window.open(d.url, "_blank"))*/;
 
-						function travel(index) {
-							if (index >= path.length) {
-								dot.remove();
-								propagate(link.target);
-								return;
-							}
-							const nextLength = Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5);
-							dot.transition()
-								.duration(nextLength/speed)//uniform speed
-								.ease(d3.easeLinear)//uniform speed
-								.attr("cx", path[index].x)
-								.attr("cy", path[index].y)
-								.on("end", () => travel(index + 1));
-						}
+			const labels = svg.selectAll("text")
+				.data(graph.nodes)
+				.enter().append("text")
+				.attr("dy", -15)
+				.attr("text-anchor", "middle")
+				.text(d => d.id);
 
-						travel(1); // Start from second point
-					}
+			simulation.on("tick", () => {
+				node									
+					.attr("cx", d => d.x)
+					.attr("cy", d => d.y);
+			
+				link.each(function(d) {
+					const path = segmentedPath(d.source, d.target, gridSize);
+					const line = d3.select(this);
+					const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+					line.attr("d", dAttr);
 				});
-				// z-index
-				svg.selectAll("circle.static").raise();
-				svg.selectAll("text").raise();
-			}
-			propagate(d);
-		}*/
+
+				labels
+					.attr("x", d => d.x)
+					.attr("y", d => d.y);
+			});
+			
+
+			/*function sendWave(event, d) {
+				const visited = new Set();
+				const speed = 0.3;
+
+				function propagate(source) {
+					
+					visited.add(source.id);
+					graph.links.forEach(link => {
+						if (link.source.id === source.id && !visited.has(link.target.id)) {
+							const path = segmentedPath(link.source, link.target, gridSize);
+							const dot = svg.append("circle")
+								.attr("class", "wave w"+source.class)
+								.attr("cx", path[0].x)
+								.attr("cy", path[0].y);
+
+							function travel(index) {
+								if (index >= path.length) {
+									dot.remove();
+									propagate(link.target);
+									return;
+								}
+								const nextLength = Math.pow(Math.pow(path[index].y - path[index-1].y,2)+Math.pow(path[index].x - path[index-1].x,2), 0.5);
+								dot.transition()
+									.duration(nextLength/speed)//uniform speed
+									.ease(d3.easeLinear)//uniform speed
+									.attr("cx", path[index].x)
+									.attr("cy", path[index].y)
+									.on("end", () => travel(index + 1));
+							}
+
+							travel(1); // Start from second point
+						}
+					});
+					// z-index
+					svg.selectAll("circle.static").raise();
+					svg.selectAll("text").raise();
+				}
+				propagate(d);
+			}*/
 
 
-		function sendWave(event, d) {
-			const waveID = Date.now(); // Unique ID for this wave
-			const visited = new Set();
-			const speed = 0.3;
-			let maxDots = Math.min(depth*2, 250); // Pool size
-			let dotIndex = 0;
+			function sendWave(event, d) {
+				const waveID = Date.now(); // Unique ID for this wave
+				const visited = new Set();
+				const speed = 0.3;
+				let maxDots = Math.min(depth*2, 250); // Pool size
+				let dotIndex = 0;
 
-			// Create a fixed pool of dots
-			if (!window.dotPool) {
-				window.dotPool = Array.from({ length: maxDots }, () =>
-					svg.append("circle")
-						.attr("class", "wave")
-						.attr("r", 2)
-						.style("opacity", 0)
-				);
-			}
-
-			function getDot() {
-				let dot = window.dotPool[dotIndex];
-				const marker = dotIndex;
-				while (dot.activeWave){
-					dotIndex = (dotIndex + 1) % maxDots;
-					if (dotIndex == marker){
-						//push additional dots
-						/*const newDot = svg.append("circle")
+				// Create a fixed pool of dots
+				if (!window.dotPool) {
+					window.dotPool = Array.from({ length: maxDots }, () =>
+						svg.append("circle")
 							.attr("class", "wave")
 							.attr("r", 2)
-							.style("opacity", 0);
-						dotPool.push(newDot);
-						dotIndex = maxDots;
-						dot = newDot;*/
-						break;
-					}
-					dot = window.dotPool[dotIndex];
+							.style("opacity", 0)
+					);
 				}
-				dotIndex = (dotIndex + 1) % maxDots;
-				dot.interrupt(); // Always stop previous animation //??
-				dot.activeWave = waveID;
-				return dot.style("opacity", 1);
+
+				function getDot() {
+					let dot = window.dotPool[dotIndex];
+					const marker = dotIndex;
+					while (dot.activeWave){
+						dotIndex = (dotIndex + 1) % maxDots;
+						if (dotIndex == marker){
+							//push additional dots
+							/*const newDot = svg.append("circle")
+								.attr("class", "wave")
+								.attr("r", 2)
+								.style("opacity", 0);
+							dotPool.push(newDot);
+							dotIndex = maxDots;
+							dot = newDot;*/
+							break;
+						}
+						dot = window.dotPool[dotIndex];
+					}
+					dotIndex = (dotIndex + 1) % maxDots;
+					dot.interrupt(); // Always stop previous animation //??
+					dot.activeWave = waveID;
+					return dot.style("opacity", 1);
+				}
+				
+				function propagate(source) {
+					if (visited.has(source.id)) return;
+					
+					visited.add(source.id);
+					const neighbors = adjacencyMap.get(source.id) || [];
+					neighbors.forEach(link => {
+						if (visited.has(link.target.id)) return;
+
+						const path = segmentedPath(link.source, link.target, gridSize);
+						const dot = getDot()
+							.attr("cx", path[0].x)
+							.attr("cy", path[0].y);
+						travel(dot, path, () => {
+							// Add a small delay between nodes to avoid recursive locking
+							setTimeout(() => propagate(link.target), 0);
+						});			
+					});
+					// Z-index
+					svg.selectAll("circle.static").raise();
+					svg.selectAll("text").raise();
+				}
+
+				function travel(dot, path, onComplete) {
+					const totalLength = path.slice(1).reduce((sum, p, i) => {
+						const dx = p.x - path[i].x;
+						const dy = p.y - path[i].y;
+						return sum + Math.sqrt(dx * dx + dy * dy);
+					}, 0);
+
+					const interpolator = d3.interpolate(0, totalLength);
+
+					dot.transition()
+						.duration(totalLength / speed)
+						.ease(d3.easeLinear)
+						.attrTween("cx", function () {
+							return function (t) {
+								if (dot.activeWave !== waveID) return dot.attr("cx");
+								let traveled = interpolator(t);
+								for (let i = 1; i < path.length; i++) {
+									const segmentLength = Math.sqrt(
+										Math.pow(path[i].x - path[i - 1].x, 2) +
+										Math.pow(path[i].y - path[i - 1].y, 2)
+									);
+									if (traveled <= segmentLength) {
+										const ratio = traveled / segmentLength;
+										return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
+									}
+									traveled -= segmentLength;
+								}
+								return path[path.length - 1].x;
+							};
+						})
+						.attrTween("cy", function () {
+							return function (t) {
+								if (dot.activeWave !== waveID) return dot.attr("cy");
+								let traveled = interpolator(t);
+								for (let i = 1; i < path.length; i++) {
+									const segmentLength = Math.sqrt(
+										Math.pow(path[i].x - path[i - 1].x, 2) +
+										Math.pow(path[i].y - path[i - 1].y, 2)
+									);
+									if (traveled <= segmentLength) {
+										const ratio = traveled / segmentLength;
+										return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
+									}
+									traveled -= segmentLength;
+								}
+								return path[path.length - 1].y;
+							};
+						})
+						.on("end", function () {
+							if (dot.activeWave === waveID) {
+								dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
+							}
+							dot.activeWave = false;
+						});
+				}
+				propagate(d);
+			}
+
+
+			// 45 deg gen
+			function segmentedPath(source, target, size) {
+				const points = [{ x: source.x, y: source.y }];
+				let [x, y] = [source.x, source.y];
+				const targetX = target.x ;
+				const targetY = target.y ;
+				// randomize start
+				const psdRnd = (str) => Math.abs([...str].reduce((a, c) => a + c.charCodeAt(0), 0)) % 1000;
+				if (Math.abs(targetX - x) + 50 > Math.abs(targetY - y)){
+					nextX = x + Math.floor((Math.PI*psdRnd(source.id)*psdRnd(target.id) %1)  * 50)*Math.sign(targetX - x);
+					nextY = y;
+					points.push({ x: nextX, y: nextY });
+					[x, y] = [nextX, nextY];
+				} else if (Math.abs(targetX - x) <  50 + Math.abs(targetY - y)){
+					nextX = x;
+					nextY = y + Math.floor((Math.PI*psdRnd(source.id)*psdRnd(target.id) %1) * 50)*Math.sign(targetY - y);
+					points.push({ x: nextX, y: nextY });
+					[x, y] = [nextX, nextY];
+				}
+				digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
+				nextX = x + (Math.sign(targetX - x) * digLen);
+				nextY = y + (Math.sign(targetY - y) * digLen);
+				points.push({ x: nextX, y: nextY });
+				[x, y] = [nextX, nextY];
+				points.push({ x: targetX, y: targetY });
+				return points;
+			}
+
+			function forceGrid(size, strength) {
+				return (alpha) => {
+					graph.nodes.forEach(d => {
+						const gridX = Math.round(d.x / size) * size;
+						const gridY = Math.round(d.y / size) * size;
+						if (alpha > 0.1){
+							d.vx += (gridX - d.x) * strength * alpha;
+							d.vy += (gridY - d.y) * strength * alpha;
+						} else{
+							d.x = gridX * (1 - alpha/1*10) + d.x * alpha/1*10;
+							d.y = gridY * (1 - alpha/1*10) + d.y * alpha/1*10;
+						}
+					});
+				};
+			}
+			function forceBounds() {
+				return function(alpha) {
+					for (const node of simulation.nodes()) {
+						node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
+						node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
+					}
+				};
 			}
 			
-			function propagate(source) {
-				if (visited.has(source.id)) return;
-				
-				visited.add(source.id);
-				const neighbors = adjacencyMap.get(source.id) || [];
-				neighbors.forEach(link => {
-					if (visited.has(link.target.id)) return;
-
-					const path = segmentedPath(link.source, link.target, gridSize);
-					const dot = getDot()
-						.attr("cx", path[0].x)
-						.attr("cy", path[0].y);
-					travel(dot, path, () => {
-						// Add a small delay between nodes to avoid recursive locking
-						setTimeout(() => propagate(link.target), 0);
-					});			
-				});
-				// Z-index
-				svg.selectAll("circle.static").raise();
-				svg.selectAll("text").raise();
-			}
-
-			function travel(dot, path, onComplete) {
-				const totalLength = path.slice(1).reduce((sum, p, i) => {
-					const dx = p.x - path[i].x;
-					const dy = p.y - path[i].y;
-					return sum + Math.sqrt(dx * dx + dy * dy);
-				}, 0);
-
-				const interpolator = d3.interpolate(0, totalLength);
-
-				dot.transition()
-					.duration(totalLength / speed)
-					.ease(d3.easeLinear)
-					.attrTween("cx", function () {
-						return function (t) {
-							if (dot.activeWave !== waveID) return dot.attr("cx");
-							let traveled = interpolator(t);
-							for (let i = 1; i < path.length; i++) {
-								const segmentLength = Math.sqrt(
-									Math.pow(path[i].x - path[i - 1].x, 2) +
-									Math.pow(path[i].y - path[i - 1].y, 2)
-								);
-								if (traveled <= segmentLength) {
-									const ratio = traveled / segmentLength;
-									return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
+			function manyBodyClass(strength, type) {
+				return (alpha) => {
+					graph.nodes.forEach((node) => {
+						if (node.class === type) {
+							graph.nodes.forEach((other) => {
+								if (other !== node && other.class === type) {
+									const dx = node.x - other.x;
+									const dy = node.y - other.y;
+									const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+									const force = (strength * alpha) / Math.pow(dist, 0.5);
+									node.vx += (dx / dist) * force;
+									node.vy += (dy / dist) * force;
 								}
-								traveled -= segmentLength;
-							}
-							return path[path.length - 1].x;
-						};
-					})
-					.attrTween("cy", function () {
-						return function (t) {
-							if (dot.activeWave !== waveID) return dot.attr("cy");
-							let traveled = interpolator(t);
-							for (let i = 1; i < path.length; i++) {
-								const segmentLength = Math.sqrt(
-									Math.pow(path[i].x - path[i - 1].x, 2) +
-									Math.pow(path[i].y - path[i - 1].y, 2)
-								);
-								if (traveled <= segmentLength) {
-									const ratio = traveled / segmentLength;
-									return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
-								}
-								traveled -= segmentLength;
-							}
-							return path[path.length - 1].y;
-						};
-					})
-					.on("end", function () {
-						if (dot.activeWave === waveID) {
-							dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
+							});
 						}
-						dot.activeWave = false;
 					});
+				};
 			}
-			propagate(d);
-		}
+		});
+	</script>
 
-
-		// 45 deg gen
-		function segmentedPath(source, target, size) {
-			const points = [{ x: source.x, y: source.y }];
-			let [x, y] = [source.x, source.y];
-			const targetX = target.x ;
-			const targetY = target.y ;
-			// randomize start
-			const psdRnd = (str) => Math.abs([...str].reduce((a, c) => a + c.charCodeAt(0), 0)) % 1000;
-			if (Math.abs(targetX - x) + 50 > Math.abs(targetY - y)){
-				nextX = x + Math.floor((Math.PI*psdRnd(source.id)*psdRnd(target.id) %1)  * 50)*Math.sign(targetX - x);
-				nextY = y;
-				points.push({ x: nextX, y: nextY });
-				[x, y] = [nextX, nextY];
-			} else if (Math.abs(targetX - x) <  50 + Math.abs(targetY - y)){
-				nextX = x;
-				nextY = y + Math.floor((Math.PI*psdRnd(source.id)*psdRnd(target.id) %1) * 50)*Math.sign(targetY - y);
-				points.push({ x: nextX, y: nextY });
-				[x, y] = [nextX, nextY];
-			}
-			digLen = Math.min(Math.abs(targetX - x),Math.abs(targetY - y));
-			nextX = x + (Math.sign(targetX - x) * digLen);
-			nextY = y + (Math.sign(targetY - y) * digLen);
-			points.push({ x: nextX, y: nextY });
-			[x, y] = [nextX, nextY];
-			points.push({ x: targetX, y: targetY });
-			return points;
-		}
-
-		function forceGrid(size, strength) {
-			return (alpha) => {
-				graph.nodes.forEach(d => {
-					const gridX = Math.round(d.x / size) * size;
-					const gridY = Math.round(d.y / size) * size;
-					if (alpha > 0.1){
-						d.vx += (gridX - d.x) * strength * alpha;
-						d.vy += (gridY - d.y) * strength * alpha;
-					} else{
-						d.x = gridX * (1 - alpha/1*10) + d.x * alpha/1*10;
-						d.y = gridY * (1 - alpha/1*10) + d.y * alpha/1*10;
-					}
-				});
-			};
-		}
-		function forceBounds() {
-			return function(alpha) {
-				for (const node of simulation.nodes()) {
-					node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
-					node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
-				}
-			};
-		}
-		
-		function manyBodyClass(strength, type) {
-			return (alpha) => {
-				graph.nodes.forEach((node) => {
-					if (node.class === type) {
-						graph.nodes.forEach((other) => {
-							if (other !== node && other.class === type) {
-								const dx = node.x - other.x;
-								const dy = node.y - other.y;
-								const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-								const force = (strength * alpha) / Math.pow(dist, 0.5);
-								node.vx += (dx / dist) * force;
-								node.vy += (dy / dist) * force;
-							}
-						});
-					}
-				});
-			};
-		}
-	});
-</script>
-
-
-</body>
+	</body>
 </html>
 
