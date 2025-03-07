@@ -90,9 +90,8 @@ svg{
 #page-preview-container{
 	position:fixed;
 	top:5%;
-	right: 5vh;
-	height:90%;
-	width:45%;
+	width:50%;
+	aspect-ratio: 16 / 9; 
 	display:none;
 }
 #page-preview-wrapper{
@@ -126,8 +125,19 @@ svg{
 #page-preview{
 	background-color: #444;
 	display:none;
-	height: 100%;
-	width: 100%;
+	aspect-ratio: 16 / 9;
+	transform: scale(0.5);
+	transform-origin: top left;
+	border: 1px solid #333;
+	overflow: hidden;
+	/*pointer-events: none;*/
+	width: 200%;
+}
+#page-preview:hover {
+  transform: scale(1);
+  transform-origin: auto;
+  pointer-events: auto; /* Reactivates clicks on hover */
+  transition: 0.2s ease-out;
 }
 #code-preview{
 	display:none;
