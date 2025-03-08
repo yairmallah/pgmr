@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const navButton = document.getElementById("navButton");
     const subMenu = document.getElementById("subMenu");
     const navItems = document.querySelectorAll(".navItem");
-
+	var dragged = false;
     // Load position from localStorage
     let posX = localStorage.getItem("navX") || 50;
     let posY = localStorage.getItem("navY") || 50;
