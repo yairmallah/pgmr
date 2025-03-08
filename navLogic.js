@@ -1,54 +1,54 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const navContainer = document.createElement("div");
-    navContainer.id = "navContainer";
-    navContainer.innerHTML = `
-        <button id="navButton"></button>
-        <div id="subMenu" class="hidden">
+	const navContainer = document.createElement("div");
+	navContainer.id = "navContainer";
+	navContainer.innerHTML = `
+		<button id="navButton"></button>
+		<div id="subMenu" class="hidden">
 			<table>
-					<tr>
-						<td><button class="navItem" data-link="video.html">סימולציה</button></td>
-						<td><button class="navItem" data-link="index.html">בית</button></td>
-					</tr>
-					<tr>
-						<td><button class="navItem" data-link="log.html">מילון</button></td>
-						<td><button class="navItem" data-link="tba.html">תב"ע</button></td>
-					</tr>
-					<tr>
-						<td><button class="navItem" data-link="turb.html">אורבניזם</button></td>
-					</tr>
-				</table>
-        </div>
-    `;
-    document.body.appendChild(navContainer);
+				<tr>
+					<td><button class="navItem" data-link="video.html">סימולציה</button></td>
+					<td><button class="navItem" data-link="index.html">בית</button></td>
+				</tr>
+				<tr>
+					<td><button class="navItem" data-link="log.html">מילון</button></td>
+					<td><button class="navItem" data-link="tba.html">תב"ע</button></td>
+				</tr>
+				<tr>
+					<td><button class="navItem" data-link="turb.html">אורבניזם</button></td>
+				</tr>
+			</table>
+		</div>
+	`;
+	document.body.appendChild(navContainer);
 
-    const navButton = document.getElementById("navButton");
-    const subMenu = document.getElementById("subMenu");
-    const navItems = document.querySelectorAll(".navItem");
+	const navButton = document.getElementById("navButton");
+	const subMenu = document.getElementById("subMenu");
+	const navItems = document.querySelectorAll(".navItem");
 	var dragged = false;
-    // Load position from localStorage
-    let posX = localStorage.getItem("navX") || 50;
-    let posY = localStorage.getItem("navY") || 50;
-    navContainer.style.position = "fixed";
-    navContainer.style.left = `${posX}px`;
-    navContainer.style.top = `${posY}px`;
+	// Load position from localStorage
+	let posX = localStorage.getItem("navX") || 50;
+	let posY = localStorage.getItem("navY") || 50;
+	navContainer.style.position = "fixed";
+	navContainer.style.left = `${posX}px`;
+	navContainer.style.top = `${posY}px`;
 
-    let offsetX, offsetY, isDragging = false;
+	let offsetX, offsetY, isDragging = false;
 
-    navButton.addEventListener("mousedown", (e) => {
-        isDragging = true;
+	navButton.addEventListener("mousedown", (e) => {
+		isDragging = true;
 		dragged = false;
-        offsetX = e.clientX - navContainer.offsetLeft;
-        offsetY = e.clientY - navContainer.offsetTop;
-        navButton.style.cursor = "grabbing";
-    });
+		offsetX = e.clientX - navContainer.offsetLeft;
+		offsetY = e.clientY - navContainer.offsetTop;
+		navButton.style.cursor = "grabbing";
+	});
 
-    document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
+	document.addEventListener("mousemove", (e) => {
+		if (isDragging) {
 			dragged = true;
-            let newX = e.clientX - offsetX;
-            let newY = e.clientY - offsetY;
-            navContainer.style.left = `${newX}px`;
-            navContainer.style.top = `${newY}px`;
+			let newX = e.clientX - offsetX;
+			let newY = e.clientY - offsetY;
+			navContainer.style.left = `${newX}px`;
+			navContainer.style.top = `${newY}px`;
 			
 			// adj sub menu position
 			let buttonRect = navButton.getBoundingClientRect();
@@ -69,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				subMenu.style.left = "auto";
 				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
 			}
-        }
-    });
+		}
+	});
 
-    document.addEventListener("mouseup", () => {
-        if (isDragging) {
-            localStorage.setItem("navX", navContainer.style.left.replace("px", ""));
-            localStorage.setItem("navY", navContainer.style.top.replace("px", ""));
+	document.addEventListener("mouseup", () => {
+		if (isDragging) {
+			localStorage.setItem("navX", navContainer.style.left.replace("px", ""));
+			localStorage.setItem("navY", navContainer.style.top.replace("px", ""));
 			// adj sub menu position
 			let buttonRect = navButton.getBoundingClientRect();
 			let windowHeight = window.innerHeight;
@@ -95,23 +95,23 @@ document.addEventListener("DOMContentLoaded", function () {
 				subMenu.style.left = "auto";
 				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
 			}
-        }
-        isDragging = false;
-        navButton.style.cursor = "grab";
+		}
+		isDragging = false;
+		navButton.style.cursor = "grab";
 		if (dragged){subMenu.classList.toggle("hidden");}
 		dragged = false;
-    });
+	});
 
-    // Toggle Submenu
-    navButton.addEventListener("click", () => {
-        subMenu.classList.toggle("hidden");
+	// Toggle Submenu
+	navButton.addEventListener("click", () => {
+		subMenu.classList.toggle("hidden");
 		//subMenu.style.right = "60px";
-    });
+	});
 
-    // Navigation for sub-items
-    navItems.forEach(item => {
-        item.addEventListener("click", function () {
-            window.location.href = this.getAttribute("data-link");
-        });
-    });
+	// Navigation for sub-items
+	navItems.forEach(item => {
+		item.addEventListener("click", function () {
+			window.location.href = this.getAttribute("data-link");
+		});
+	});
 });
