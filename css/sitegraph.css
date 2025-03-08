@@ -148,6 +148,13 @@ svg{
 	margin: auto;
 	padding:0;
 }
+#vid-preview{
+	display:none;
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+	padding:0;
+}
 .symBg{
 	position:absolute;
 	z-index: -1;
