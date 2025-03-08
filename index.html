@@ -25,9 +25,7 @@
 		document.getElementById("page-preview-container").style.display = "block";
 		if (d.url.endsWith(".html")){
 			iframe.src = d.url;
-			pre.style.display = "none";
 			iframe.style.display = "block";
-			image.style.display = "none";
 		}
 		else if (!((d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
 			pre.dataset.url = d.url;
@@ -38,9 +36,7 @@
 					pre.textContent = code;
 					Prism.highlightElement(pre);
 				})
-			iframe.style.display = "none";
 			pre.style.display = "block";
-			image.style.display = "none";
 			if (d.url.endsWith(".txt")){ 
 				pre.style.direction = "rtl";
 				pre.style.textAlign = "right";
