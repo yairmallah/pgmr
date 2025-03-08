@@ -65,8 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (buttonRect.left - subMenu.offsetWidth < 0) {
 				subMenu.style.left = navButton.offsetWidth + 5 + "px";
 				subMenu.style.right = "auto";
-				
-
 			} else {
 				subMenu.style.left = "auto";
 				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
@@ -89,6 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			} else {
 				subMenu.style.top = "0";
 				subMenu.style.bottom = "auto";
+			}
+			if (buttonRect.left - subMenu.offsetWidth < 0) {
+				subMenu.style.left = navButton.offsetWidth + 5 + "px";
+				subMenu.style.right = "auto";
+			} else {
+				subMenu.style.left = "auto";
+				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
 			}
         }
         isDragging = false;
