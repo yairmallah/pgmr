@@ -60,6 +60,7 @@
 		if (document.getElementById("code-preview").style.display == "block") url = document.getElementById("code-preview").dataset.url;
 		if (document.getElementById("page-preview").style.display == "block") url = document.getElementById("page-preview").src;
 		if (document.getElementById("img-preview").style.display == "block") url = document.getElementById("img-preview").src;
+		if (document.getElementById("vid-preview").style.display == "block") url = document.getElementById("vid-src").src;
 		console.log(url);
 		window.open(url, "_blank");
 	}
@@ -92,6 +93,10 @@
 			<iframe id="page-preview" src="" title="page preview"></iframe>
 			<pre id="code-preview" class="language-js" data-url=""></pre>
 			<img id="img-preview" src=""></img>
+			<video id="vid-preview" controls>
+				<source id="vid-src" src="" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
 		</div>
 		
 		<button id="closeBtn" onclick="hidePreview()">[X]</button>
