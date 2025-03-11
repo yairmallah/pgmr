@@ -338,6 +338,7 @@
 				.force("bounds", forceBounds())
 				.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
 				.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
+				.force("boycottExt", boycottExt())
 				.force("grid", forceGrid(gridSize, 3))
 				.force('collide', d3.forceCollide(minDistance))
 			
@@ -639,6 +640,25 @@
 						}
 					});
 				};
+			}
+			function boycottExt() {
+				if (height > width){
+					return (alpha) => {
+						graph.nodes.forEach((node) => {
+							if (node.external === 1) {
+								node.x = width - offs;
+							}
+						});
+					};
+				} else {
+					return (alpha) => {
+						graph.nodes.forEach((node) => {
+							if (node.external === 1) {
+								node.y = height - offs;
+							}
+						});
+					};
+				}
 			}
 		});
 	</script>
