@@ -245,7 +245,7 @@ path{
 	fill: none;
 }
 path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--htmlH)), var(--pathSaturation), var(--pathLightness));}
-path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--csshH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--cssH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jsH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpgH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-png:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--pngH)), var(--pathSaturation), var(--pathLightness));}
