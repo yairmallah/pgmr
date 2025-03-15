@@ -41,7 +41,7 @@
 			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
 		</script>
 		<script type="module">
-			import { loadArticle, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
+			import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
 			import { initializeGraph, nodeClick } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
 
 			loadArticle().then(() => {
