@@ -63,3 +63,19 @@ export function selectFootnote(id) {
         note.classList.add("selected");
     }
 }
+
+export function positionFootnotes() {
+	const mainText = document.getElementById("main");
+	const footnotes = document.querySelectorAll("#footnotes div");
+	// footnotes padding!
+	let populatedH = -20;
+	footnotes.forEach(function(note) {
+		const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
+		if (ref) {
+			populatedH += 20;
+			const offset = Math.max(ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top, populatedH);
+			note.style.top = `${offset}px`;
+			populatedH = note.getBoundingClientRect().bottom;
+		}
+	});
+}
