@@ -17,7 +17,7 @@ export async function loadArticle() {
         if (flag === 0) {
             const footnoteId = "footnote-" + currentIndex;
             newFootnotes.push(`<div id="${footnoteId}" onclick="window.selectFootnote('${footnoteId}')">${currentIndex}. ${txt_l[i]}</div>`);
-            ftxt += `<sup id="f-${currentIndex}" onclick="scrollToFootnote('${footnoteId}')">[${currentIndex++}]</sup>`;
+            ftxt += `<sup id="f-${currentIndex}" onclick="window.scrollToFootnote('${footnoteId}')">[${currentIndex++}]</sup>`;
             flag = 1;
         } else {
             ftxt += txt_l[i];
