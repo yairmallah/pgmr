@@ -241,8 +241,8 @@ export async function scanForDefinitions(txt){
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
-}
-					/*
+		
+							/*
 					main_txt = document.getElementById("main").innerHTML;
 					// initializations
 					for (let key in nodeMessages) {
@@ -256,3 +256,6 @@ export async function scanForDefinitions(txt){
 					nodeClick(def); 
 					*/
 					
+		
+		
+}
