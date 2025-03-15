@@ -8,23 +8,24 @@ export async function loadArticle() {
     let content = "";
     
     function extractFootnotes(txt_l, currentIndex) {
-        txt_l = txt_l.split("$");
-        let flag = 1;
-        let ftxt = "";
+    txt_l = txt_l.split("$");
+    let flag = 1;
+    let ftxt = "";
+    let newFootnotes = [];  // Use a new array
 
-        for (let i = 0; i < txt_l.length; i++) {
-            if (flag === 0) {
-                const footnoteId = "footnote-" + currentIndex;
-                footnotes.push(`<div id="${footnoteId}" onclick="selectFootnote('${footnoteId}')">${currentIndex}. ${txt_l[i]}</div>`);
-                ftxt += `<sup id="f-${currentIndex}" onclick="scrollToFootnote('${footnoteId}')">[${currentIndex++}]</sup>`;
-                flag = 1;
-            } else {
-                ftxt += txt_l[i];
-                flag = 0;
-            }
+    for (let i = 0; i < txt_l.length; i++) {
+        if (flag === 0) {
+            const footnoteId = "footnote-" + currentIndex;
+            newFootnotes.push(`<div id="${footnoteId}" onclick="selectFootnote('${footnoteId}')">${currentIndex}. ${txt_l[i]}</div>`);
+            ftxt += `<sup id="f-${currentIndex}" onclick="scrollToFootnote('${footnoteId}')">[${currentIndex++}]</sup>`;
+            flag = 1;
+        } else {
+            ftxt += txt_l[i];
+            flag = 0;
         }
-        return [ftxt, footnotes, currentIndex];
     }
+    return [ftxt, newFootnotes, currentIndex];  // Ensure an array is returned
+}
 
     lines.forEach((line, i) => {
         if (line.startsWith("#")) {
