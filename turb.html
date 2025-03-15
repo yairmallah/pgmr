@@ -34,7 +34,28 @@
 				document.body.style.overflow = "auto"; // Re-enable page scrolling
 			}
 		</script>
-        <script>
+        
+		
+		
+		<script>
+			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
+		</script>
+		    <script type="module">
+			import { loadArticle } from "./articleImporter.js";
+			import { initializeGraph, nodeClick } from "./dictionaryScheme.js";
+
+        loadArticle().then(() => {
+            initializeGraph();
+            let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+            nodeClick(def);
+        });
+    </script>
+
+		
+		
+		<script>
+		const a = 9;
+		a = 8;
 			var base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
 			const height = document.getElementById("graph-container").offsetHeight;
@@ -410,5 +431,7 @@
 				});
 			});
         </script>
-    </body>
+    
+	
+	</body>
 </html>
