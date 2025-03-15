@@ -200,7 +200,7 @@
       "id": "prism-markup.min.js",
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js",
       "external": 1
-    },
+    }
   ],
   "links": [
     {
