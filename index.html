@@ -73,6 +73,7 @@
 	<div id="svg-container">
 		<div id="bg-html" class="symBg hidden"></div>
 		<div id="bg-css" class="symBg hidden"></div>
+		<div id="bg-js" class="symBg hidden"></div>
 		<div id="bg-img" class="symBg hidden"></div>
 		<div id="bg-txt" class="symBg hidden"></div>
 	</div>
@@ -332,7 +333,7 @@
 
 			// alpha dependency, 1 > alpha >= 0.001 (~)
 			const simulation = d3.forceSimulation(graph.nodes)
-				.force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.6).distance(300))
+				.force("link", d3.forceLink(graph.links).id(d => d.id).strength(1).distance(300))
 				.force("charge", d3.forceManyBody().strength(-100))
 				.force("charge_html", manyBodyClass(400, "html"))
 				.force("bounds", forceBounds())
