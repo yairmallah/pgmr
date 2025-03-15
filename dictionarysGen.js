@@ -4,7 +4,7 @@ window.images = {};
 
 // Initialization function using Promises
 window.initializeAllDicts = function () {
-    return loadDictionary('/pgmr/nodeMessages.txt')
+    return loadDictionary('https://yairmallah.github.io/pgmr/nodeMessages.txt')
         .then(fullDict => {
             window.messages = extractMsgs(fullDict);
 			//console.log("Messages initialized:", window.messages);
