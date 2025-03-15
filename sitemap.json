@@ -17,10 +17,6 @@
       "url": "https://yairmallah.github.io/pgmr/log.html"
     },
     {
-      "id": "main",
-      "url": "https://yairmallah.github.io/pgmr/main"
-    },
-    {
       "id": "navLogic.js",
       "url": "https://yairmallah.github.io/pgmr/navLogic.js"
     },
@@ -95,10 +91,6 @@
     {
       "id": "navSchameD.gif",
       "url": "https://yairmallah.github.io/pgmr/imgs/navSchameD.gif"
-    },
-    {
-      "id": "readme",
-      "url": "https://yairmallah.github.io/pgmr/imgs/readme"
     },
     {
       "id": "siteMapThumbnail.png",
@@ -209,11 +201,6 @@
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js",
       "external": 1
     },
-    {
-      "id": "pgmr",
-      "url": "C:/pgmr",
-      "external": 1
-    }
   ],
   "links": [
     {
@@ -326,10 +313,6 @@
     },
     {
       "source": "log.html",
-      "target": "pgmr"
-    },
-    {
-      "source": "log.html",
       "target": "dictionarysGen.js"
     },
     {
@@ -439,10 +422,6 @@
     {
       "source": "nodeMessages.txt",
       "target": "רקורסיבי.gif"
-    },
-    {
-      "source": "simulationcode.html",
-      "target": "main"
     },
     {
       "source": "sitemap.json",
@@ -638,15 +617,7 @@
     },
     {
       "source": "tba.html",
-      "target": "pgmr"
-    },
-    {
-      "source": "tba.html",
       "target": "dictionarysGen.js"
-    },
-    {
-      "source": "tba.html",
-      "target": "main"
     },
     {
       "source": "tba.html",
@@ -691,10 +662,6 @@
     {
       "source": "turb.html",
       "target": "dictionarysGen.js"
-    },
-    {
-      "source": "turb.html",
-      "target": "main"
     },
     {
       "source": "turb.html",
@@ -758,19 +725,7 @@
     },
     {
       "source": "tba.css",
-      "target": "main"
-    },
-    {
-      "source": "tba.css",
       "target": "tba.gif"
-    },
-    {
-      "source": "ths.css",
-      "target": "main"
-    },
-    {
-      "source": "video.css",
-      "target": "main"
     }
   ]
 }
