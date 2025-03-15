@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>אורבניזם</title>
+		<link rel="stylesheet" type="text/css" href="css\general.css"/>
+		<link rel="stylesheet" type="text/css" href="css\ths.css"/>
+        
+    </head>
+    <body>
+		<script src="navLogic.js"></script>
+		<div id="dictionary-scheme">
+			<div id="graph-container"></div>
+			<div class="textcot">
+				<h3 id="node-title"></h3>
+				<p id="node-info">
+				</p>
+			</div>
+		</div>
+		<div id="main"></div>
+		<div id="footnotes"></div>
+		<div id="toc"></div>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="dictionarysGen.js"></script>
+		<script>
+			function showImage() {
+				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
+				document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
+			}
+
+			function hideImage() {
+				document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
+				document.body.style.overflow = "auto"; // Re-enable page scrolling
+			}
+		</script>
+        
+		
+		
+		<script>
+			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
+		</script>
+		<script type="module">
+			import { loadArticle } from "https://yairmallah.github.io/pgmr/articleImporter.js";
+			import { initializeGraph, nodeClick } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
+
+			loadArticle().then(() => {
+				initializeGraph();
+				let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+				nodeClick(def);
+			});
+		</script>
+
+	
+	</body>
+</html>
