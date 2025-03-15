@@ -48,6 +48,9 @@
 				initializeGraph();
 				let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
 				nodeClick(def);
+				requestAnimationFrame(() => {
+					positionFootnotes();
+				});
 			});
 		</script>
 
