@@ -2,7 +2,7 @@ var nodeMessages = window.messages;
 var nodeClass = window.classes;
 var nodeScheme = window.images;
 
-export async function initializeGraph() {
+/*export async function initializeGraph() {
     await initializeAllDicts();
 
     const width = document.getElementById("graph-container").offsetWidth;
@@ -29,6 +29,182 @@ export async function initializeGraph() {
     }
 
     simulation.nodes(node.data()).on("tick", ticked);
+}*/
+
+export async function initializeGraph(){
+	    await initializeAllDicts();
+
+    const width = document.getElementById("graph-container").offsetWidth;
+    const height = document.getElementById("graph-container").offsetHeight;
+	
+	
+	
+	// Generate links if messages share a common word
+	const nodesKeys = Object.keys(nodeMessages);
+	for (let i = 0; i < nodesKeys.length; i++) {
+		const source = nodesKeys[i];
+		if (problem_words.includes(source)){
+			if (source=="הר"){
+				for (let j = 0; j < mountain_con.length; j++) {
+					const target = mountain_con[j];
+					const targetWords = nodeMessages[target];
+					if (targetWords.includes(source)) {
+						links.push({ source, target });
+					}
+				}
+			}
+			if (source=="קו"){
+				for (let j = 0; j < line_con.length; j++) {
+					const target = line_con[j];
+					const targetWords = nodeMessages[target];
+					if (targetWords.includes(source)) {
+						links.push({ source, target });
+					}
+				}
+			}
+			if (source=="לב"){
+				for (let j = 0; j < heart_con.length; j++) {
+					const target = heart_con[j];
+					const targetWords = nodeMessages[target];
+					if (targetWords.includes(source)) {
+						links.push({ source, target });
+					}
+				}
+			}
+		}
+		else{
+			for (let j = 0; j < nodesKeys.length; j++) {
+				const target = nodesKeys[j];
+				if (source=="הר" && !mountain_con.includes(target)) {
+					continue;}
+				if (source=="קו" && !line_con.includes(target)) {
+					continue;}
+				if (source=="לב" && !heart_con.includes(target)) {
+					continue;}
+				const targetWords = nodeMessages[target];
+				if (targetWords.includes(source)) {
+					links.push({ source, target });
+				}
+			}
+		}
+	}
+	
+	function forceBounds(bounds) {
+		return function(alpha) {
+			for (const node of simulation.nodes()) {
+				node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
+				node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
+			}
+		};
+	}
+
+	const bounds = { 
+		xMin: 10, xMax: width - 10, 
+		yMin: 10, yMax: height - 10 
+	};
+
+	const svg = d3.select("#graph-container").append("svg")
+		.attr("width", "100%")
+		.attr("height", "100%");
+	// Define the simulation with forces
+	simulation = d3.forceSimulation()
+		.force("link", d3.forceLink().id(d => d.id).distance(40).strength(2))
+		.force("charge", d3.forceManyBody().strength(-0.1))
+		.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
+		.force("bounds", forceBounds(bounds))
+		.force("collide", d3.forceCollide(20).strength(0.5));
+	function forceSameClassAttraction(strength) {
+		return (alpha) => {
+			const nodes = simulation.nodes();
+			for (let i = 0; i < nodes.length; i++) {
+				for (let j = i + 1; j < nodes.length; j++) {
+					const nodeA = nodes[i];
+					const nodeB = nodes[j];
+					// Apply attraction only for nodes of the same class
+					if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
+						const dx = nodeB.x - nodeA.x;
+						const dy = nodeB.y - nodeA.y;
+						const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
+
+						// Strength of the attraction
+						const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
+
+						// Apply forces to nodes
+						nodeA.vx += force * dx;
+						nodeA.vy += force * dy;
+						nodeB.vx -= force * dx;
+						nodeB.vy -= force * dy;
+					}
+				}
+			}
+		};
+	}
+
+
+	// Create links
+	const link = svg.append("g")
+		.selectAll(".link")
+		.data(links)
+		.enter().append("line")
+		.attr("class", "link");
+
+	// Create nodes with initial positions
+	const node = svg.append("g")
+		.selectAll(".node")
+		.data(Object.keys(nodeMessages).map(id => ({
+			id,
+			group: nodeClass[id] || "default",
+			x: Math.random() * width,
+			y: Math.random() * height
+		})))
+		.enter().append("g")
+		.attr("class", "node")
+		.call(d3.drag()
+			.on("start", dragStart)
+			.on("drag", dragged)
+			.on("end", dragEnd));
+
+	node.on("click", function(event, d){
+		nodeClick(d.id, d);
+
+	});
+
+	node.append("circle")
+		.attr("class", d => nodeClass[d.id])
+
+	simulation.nodes(node.data())
+		.on("tick", ticked);
+
+	simulation.force("link").links(links);
+
+	function ticked() {
+		link
+			.attr("x1", d => d.source.x)
+			.attr("y1", d => d.source.y)
+			.attr("x2", d => d.target.x)
+			.attr("y2", d => d.target.y);
+
+		node
+			.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
+			//.attr("transform", d => `translate(${d.x},${d.y})`);
+	}
+
+	function dragStart(event, d) {
+		if (!event.active) simulation.alphaTarget(0.3).restart();
+		d.fx = d.x;
+		d.fy = d.y;
+	}
+
+	function dragged(event, d) {
+		d.fx = event.x;
+		d.fy = event.y;
+	}
+
+	function dragEnd(event, d) {
+		if (!event.active) simulation.alphaTarget(0);
+		d.fx = null;
+		d.fy = null;
+	}
 }
 
 export async function nodeClick(nodeName) {
@@ -78,7 +254,7 @@ export async function scanForDefinitions(txt){
 					let def = sessionStorage.getItem("def");
 					if (!def){ def = 'ארכיטקטורה' }
 					nodeClick(def); 
-				
+					*/
 					const links = [];
 
 					// Generate links if messages share a common word
