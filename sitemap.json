@@ -17,6 +17,10 @@
       "url": "https://yairmallah.github.io/pgmr/log.html"
     },
     {
+      "id": "main",
+      "url": "https://yairmallah.github.io/pgmr/main"
+    },
+    {
       "id": "navLogic.js",
       "url": "https://yairmallah.github.io/pgmr/navLogic.js"
     },
@@ -87,6 +91,18 @@
     {
       "id": "navSchame.gif",
       "url": "https://yairmallah.github.io/pgmr/imgs/navSchame.gif"
+    },
+    {
+      "id": "navSchameD.gif",
+      "url": "https://yairmallah.github.io/pgmr/imgs/navSchameD.gif"
+    },
+    {
+      "id": "readme",
+      "url": "https://yairmallah.github.io/pgmr/imgs/readme"
+    },
+    {
+      "id": "siteMapThumbnail.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/siteMapThumbnail.png"
     },
     {
       "id": "tba.gif",
@@ -167,6 +183,36 @@
     {
       "id": "urb.txt",
       "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
+    },
+    {
+      "id": "d3.v7.min.js",
+      "url": "https:/d3js.org/d3.v7.min.js",
+      "external": 1
+    },
+    {
+      "id": "prism-tomorrow.min.css",
+      "url": "https:/cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css",
+      "external": 1
+    },
+    {
+      "id": "prism.min.js",
+      "url": "https:/cdn.jsdelivr.net/npm/prismjs/prism.min.js",
+      "external": 1
+    },
+    {
+      "id": "prism-javascript.min.js",
+      "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js",
+      "external": 1
+    },
+    {
+      "id": "prism-markup.min.js",
+      "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js",
+      "external": 1
+    },
+    {
+      "id": "pgmr",
+      "url": "C:/pgmr",
+      "external": 1
     }
   ],
   "links": [
@@ -212,6 +258,38 @@
     },
     {
       "source": "index.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "index.html",
+      "target": "general.css"
+    },
+    {
+      "source": "index.html",
+      "target": "sitegraph.css"
+    },
+    {
+      "source": "index.html",
+      "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-tomorrow.min.css"
+    },
+    {
+      "source": "index.html",
+      "target": "prism.min.js"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-javascript.min.js"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-markup.min.js"
+    },
+    {
+      "source": "index.html",
       "target": "sitemap.json"
     },
     {
@@ -221,6 +299,34 @@
     {
       "source": "index.html",
       "target": "sitegraph.css"
+    },
+    {
+      "source": "index.html",
+      "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "log.html",
+      "target": "general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "log.css"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "pgmr"
     },
     {
       "source": "log.html",
@@ -333,6 +439,10 @@
     {
       "source": "nodeMessages.txt",
       "target": "רקורסיבי.gif"
+    },
+    {
+      "source": "simulationcode.html",
+      "target": "main"
     },
     {
       "source": "sitemap.json",
@@ -504,7 +614,39 @@
     },
     {
       "source": "tba.html",
+      "target": "general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.gif"
+    },
+    {
+      "source": "tba.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "tba.html",
       "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "pgmr"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "main"
     },
     {
       "source": "tba.html",
@@ -528,7 +670,31 @@
     },
     {
       "source": "turb.html",
+      "target": "general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "turb.html",
       "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "main"
     },
     {
       "source": "turb.html",
@@ -545,6 +711,26 @@
     {
       "source": "turb.html",
       "target": "urb.txt"
+    },
+    {
+      "source": "video.html",
+      "target": "general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "סימולציה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
     },
     {
       "source": "video.html",
@@ -565,6 +751,26 @@
     {
       "source": "video.html",
       "target": "סימולציה.mp4"
+    },
+    {
+      "source": "general.css",
+      "target": "navSchame.gif"
+    },
+    {
+      "source": "tba.css",
+      "target": "main"
+    },
+    {
+      "source": "tba.css",
+      "target": "tba.gif"
+    },
+    {
+      "source": "ths.css",
+      "target": "main"
+    },
+    {
+      "source": "video.css",
+      "target": "main"
     }
   ]
 }
