@@ -189,11 +189,6 @@
       "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
     },
     {
-      "id": "pgmr",
-      "url": "C:/pgmr",
-      "external": 1
-    },
-    {
       "id": "d3.v7.min.js",
       "url": "https:/d3js.org/d3.v7.min.js",
       "external": 1
@@ -220,10 +215,6 @@
     }
   ],
   "links": [
-    {
-      "source": "dicter.js",
-      "target": "pgmr"
-    },
     {
       "source": "dictionarys.js",
       "target": "IMG_0420.jpg"
@@ -331,10 +322,6 @@
     {
       "source": "log.html",
       "target": "dictionarysGen.js"
-    },
-    {
-      "source": "log.html",
-      "target": "pgmr"
     },
     {
       "source": "log.html",
