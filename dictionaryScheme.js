@@ -160,13 +160,14 @@ export async function nodeClick(nodeName) {
 
 	infoTitle.textContent = `${nodeName}`;
 	const infoParagraph = document.getElementById('node-info');
-	let text = nodeMessages[nodeName];
-
-	for (let key in nodeMessages) {
+	infoParagraph.innerHTML = nodeMessages[nodeName];
+	//let text = nodeMessages[nodeName];
+	scanForDefinitions(infoParagraph);
+	/*for (let key in nodeMessages) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
-	}
+	}*/
 
 	infoParagraph.innerHTML = text;
 	
