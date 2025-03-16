@@ -13,6 +13,8 @@
 	--circLightness:25%;
 	--txtLightness:75%;
 	
+	--linkColor:#999;
+	
 	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
 	--navSubMenu:34;
 	--navItem:#111;
@@ -83,6 +85,10 @@ background: var(--scrollbarHover);
 }
 .bmyt{
     color: hsl(var(--mytH), 100%, var(--txtLightness));
+}
+.link {
+    stroke: var(--linkColor);
+    stroke-opacity: 0.6;
 }
 .s0 { color: #cc7832;}
 .s1 { color: #a9b7c6;}
