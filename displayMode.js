@@ -1,21 +1,3 @@
-const colors = new Proxy(
-	{
-		html:	{h:40, s:100, l:100, a:1},
-		css:	{h:180, s:100, l:90, a:1},
-		js:		{h:0, s:100, l:70, a:1},
-		jpg:	{h:260, s:100, l:70, a:0.8},
-		png:	{h:280, s:100, l:70, a:0.8},
-		gif:	{h:290, s:100, l:70, a:0.8},
-		jpeg:	{h:270, s:100, l:70, a:0.8},
-		mp4:	{h:330, s:100, l:70, a:0.8},
-		img:	{h:280, s:100, l:70, a:0.8}, 
-		txt:	{h:120, s:100, l:90, a:1},
-		other:	{h:220, s:0, l:0, a:1}
-	},{
-		get(target, key) {
-			return key in target ? target[key] : {h:220, s:0, l:0, a:1};
-		}
-});
 const darkValues={
 	false: {
 		"--bgBody":"hsl(50, 50%, 95%)",
@@ -42,7 +24,7 @@ const darkValues={
 		"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
 		"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
 		"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
-		"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
+		"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`
 	},
 	true: {
 		"--bgBody":"#000",
@@ -69,7 +51,7 @@ const darkValues={
 		"--imgStroke":"inherit",
 		"--txtStroke":"inherit",
 		"--otherStroke":"inherit",
-		"--jsonStroke":"inherit",
+		"--jsonStroke":"inherit"
 	}
 	
 };
