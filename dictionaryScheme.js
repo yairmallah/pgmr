@@ -6,6 +6,9 @@ var nodeMessages = window.messages;
 var nodeClass = window.classes;
 var nodeScheme = window.images;
 
+const width = document.getElementById("graph-container").offsetWidth;
+const height = document.getElementById("graph-container").offsetHeight;
+
 var current_node = null;
 
 /*export async function initializeGraph() {
@@ -43,8 +46,6 @@ export async function initializeGraph(){
 	nodeClass = window.classes;
 	nodeScheme = window.images;
 
-	const width = document.getElementById("graph-container").offsetWidth;
-	const height = document.getElementById("graph-container").offsetHeight;
 	const links = [];
 	// Generate links if messages share a common word
 	const nodesKeys = Object.keys(nodeMessages);
