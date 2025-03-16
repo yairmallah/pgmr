@@ -68,8 +68,7 @@
 			window.open(url, "_blank");
 		}
 	</script>
-	<script src="displayMode.js"></script>
-	<script>
+	<script type="module" src="displayMode.js">
 		const specificColors = new Proxy(
 			{
 				html:	{h:40, s:100, l:100, a:1},
@@ -88,6 +87,7 @@
 					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
 				}
 		});
+		window.colors = specificColors;
 		Object.assign(darkValues[false],{
 			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
 			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
@@ -221,15 +221,15 @@
 		}
 		
 		function decideColor(srcClss, trgClss){
-			return Math.floor(Math.random()*(specificColors[srcClss].h - specificColors[trgClss].h)) + specificColors[trgClss].h;
+			return Math.floor(Math.random()*(window.colors[srcClss].h - window.colors[trgClss].h)) + window.colors[trgClss].h;
 		}
 		function setClassesBg(){
 			for (let i = 0; i < Object.keys(bounds).length; i++){
 				const cl = Object.keys(bounds)[i];
 				const clBackground = document.getElementById("bg-"+cl);
 				if (clBackground){
-					clBackground.style.backgroundColor = `hsla(${specificColors[cl].h}, 100%, 65%, 0.4)`;
-					clBackground.style.border = `2px solid hsla(${specificColors[cl].h}, 100%, 65%, 1)`;
+					clBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
+					clBackground.style.border = `2px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
 					clBackground.style.left = `${bounds[cl].xMin}px`;
 					clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
 					clBackground.style.top = `${bounds[cl].yMin}px`;
@@ -239,8 +239,8 @@
 				const ch = gridSize*8/10;
 				const cw = gridSize*8/10;
 				if (clcBackground){
-					clcBackground.style.backgroundColor = `hsla(${specificColors[cl].h}, 100%, 65%, 0.4)`;
-					clcBackground.style.border = `0.5px solid hsla(${specificColors[cl].h}, 100%, 65%, 1)`;
+					clcBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
+					clcBackground.style.border = `0.5px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
 					clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
 					clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
 					clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
@@ -308,7 +308,7 @@
 			//decideColor alternative
 			document.querySelectorAll('path').forEach(el => {
 				const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
-				const rangeId = Math.floor(Math.random()*(specificColors[clsId[1]].h - specificColors[clsId[0]].h));
+				const rangeId = Math.floor(Math.random()*(window.colors[clsId[1]].h - window.colors[clsId[0]].h));
 				el.style.setProperty('--index', rangeId);
 			});
 
