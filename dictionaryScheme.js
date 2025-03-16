@@ -22,12 +22,6 @@ export async function initializeGraph(){
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
-			if (source == "ארכיטקטורה"){
-				if (target == "בירוקרטיה"){
-					console.log(regex.test(targetWords));
-					console.log(targetWords);
-				}
-			}
 			if (regex.test(targetWords)) {
 				links.push({ source, target });
 			}
@@ -190,9 +184,13 @@ export async function scanForDefinitions(txtElement){
 	await initializeAllDicts();
 	let txt = txtElement.innerHTML;
 	for (let key in nodeMessages) {
-		const regex = new RegExp(`(\\b|>|\\s|^)([המכלבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?<])`, 'g');
+		const regex = new RegExp(`(\\b|\\s|^|>)([המכלבשו]?)(` + key + `)(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?<])`, 'g');
+
 		txt = txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-		return before+`<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`;});
+			const cleanBefore = before === '>' ? '>' : before; // keep > outside
+			const wordPart = `${prefix}${base}${suffix}`;
+			return `${cleanBefore}<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${wordPart}</b>`;
+		});
 	}
 	txtElement.innerHTML = txt;
 }
