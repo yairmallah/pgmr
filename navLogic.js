@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			window.location.href = this.getAttribute("data-link");
 		});
 	});
-	TdarkButton.addEventListener("click", () => {dispMode.toggleMode(false)});
-	TlightButton.addEventListener("click", () => {dispMode.toggleMode(true)});
+	TdarkButton.addEventListener("click", () => {dispMode.toggleMode(true)});
+	TlightButton.addEventListener("click", () => {dispMode.toggleMode(false)});
 	
 });
