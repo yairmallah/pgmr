@@ -1,8 +1,20 @@
 {
   "nodes": [
     {
+      "id": "articleImporter.js",
+      "url": "https://yairmallah.github.io/pgmr/articleImporter.js"
+    },
+    {
+      "id": "dicter.js",
+      "url": "https://yairmallah.github.io/pgmr/dicter.js"
+    },
+    {
       "id": "dictionarys.js",
       "url": "https://yairmallah.github.io/pgmr/dictionarys.js"
+    },
+    {
+      "id": "dictionaryScheme.js",
+      "url": "https://yairmallah.github.io/pgmr/dictionaryScheme.js"
     },
     {
       "id": "dictionarysGen.js",
@@ -177,6 +189,11 @@
       "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
     },
     {
+      "id": "pgmr",
+      "url": "C:/pgmr",
+      "external": 1
+    },
+    {
       "id": "d3.v7.min.js",
       "url": "https:/d3js.org/d3.v7.min.js",
       "external": 1
@@ -203,6 +220,10 @@
     }
   ],
   "links": [
+    {
+      "source": "dicter.js",
+      "target": "pgmr"
+    },
     {
       "source": "dictionarys.js",
       "target": "IMG_0420.jpg"
@@ -310,6 +331,10 @@
     {
       "source": "log.html",
       "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "pgmr"
     },
     {
       "source": "log.html",
@@ -513,6 +538,14 @@
     },
     {
       "source": "sitemap.json",
+      "target": "navSchameD.gif"
+    },
+    {
+      "source": "sitemap.json",
+      "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "sitemap.json",
       "target": "tba.gif"
     },
     {
@@ -617,6 +650,10 @@
     },
     {
       "source": "tba.html",
+      "target": "dictionaryScheme.js"
+    },
+    {
+      "source": "tba.html",
       "target": "dictionarysGen.js"
     },
     {
@@ -649,15 +686,23 @@
     },
     {
       "source": "turb.html",
-      "target": "navLogic.js"
-    },
-    {
-      "source": "turb.html",
       "target": "d3.v7.min.js"
     },
     {
       "source": "turb.html",
       "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "articleImporter.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionaryScheme.js"
     },
     {
       "source": "turb.html",
