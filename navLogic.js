@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				</tr>
 			</table>
 		</div>
+		<div id="dark-button">
+			<div id="toggle-light" onclick="toggleMode(false)"></div>
+			<div id="toggle-dark" onclick="toggleMode(true)"></div>
+		</div>
 	`;
 	document.body.appendChild(navContainer);
 
