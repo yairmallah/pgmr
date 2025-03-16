@@ -88,15 +88,6 @@ export async function initializeGraph(){
 			}
 		}
 	}
-	
-	function forceBounds(bounds) {
-		return function(alpha) {
-			for (const node of simulation.nodes()) {
-				node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
-				node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
-			}
-		};
-	}
 
 	const bounds = { 
 		xMin: 10, xMax: width - 10, 
@@ -113,6 +104,17 @@ export async function initializeGraph(){
 		.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
 		.force("bounds", forceBounds(bounds))
 		.force("collide", d3.forceCollide(20).strength(0.5));
+		
+	function forceBounds(bounds) {
+		return function(alpha) {
+			for (const node of simulation.nodes()) {
+				node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
+				node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
+			}
+		};
+	}
+		
+		
 	function forceSameClassAttraction(strength) {
 		return (alpha) => {
 			const nodes = simulation.nodes();
