@@ -44,6 +44,7 @@ export async function initializeGraph(){
 	const links = [];
 	// Generate links if messages share a common word
 	const nodesKeys = Object.keys(nodeMessages);
+	console.log(nodesKeys);
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
 		if (problem_words.includes(source)){
