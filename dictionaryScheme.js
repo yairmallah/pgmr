@@ -52,7 +52,7 @@ export async function initializeGraph(){
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
-			if (targetWords.includes(regex)) {
+			if (regex.test(targetWords)) {
 				links.push({ source, target });
 			}
 		}
