@@ -102,7 +102,7 @@ export async function initializeGraph(){
 		.attr("width", "100%")
 		.attr("height", "100%");
 	// Define the simulation with forces
-	simulation = d3.forceSimulation()
+	const simulation = d3.forceSimulation()
 		.force("link", d3.forceLink().id(d => d.id).distance(40).strength(2))
 		.force("charge", d3.forceManyBody().strength(-0.1))
 		.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
