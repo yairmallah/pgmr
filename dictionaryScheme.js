@@ -22,8 +22,6 @@ export async function initializeGraph(){
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
-			if (source == "בירוקרטיה") console.log("in");
-			if (target == "ארכיטקטורה") {console.log("Vin"); console.log(regex.test(targetWords));}
 			if (regex.test(targetWords)) {
 				links.push({ source, target });
 			}
