@@ -15,7 +15,7 @@ export const darkValues={
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchame.gif")',
 		"--navSubMenu":221,
-		"--navItem":"#eee",
+		"--navItem":"#f1edd8",
 
 		"--scrollbarColor":"#ccc",
 		"--scrollbarHover":"#666"
