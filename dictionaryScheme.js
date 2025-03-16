@@ -169,11 +169,13 @@ export async function nodeClick(nodeName) {
 	if (current_node != null) {
 		current_node.fx = null;
 		current_node.fy = null;
+		current_node.select("circle").style("opacity", "");
 		console.log(current_node);
 	}
 	// Fix the current node
 	node_obj.fx = width / 10;
 	node_obj.fy = height / 10;
+	node_obj.select("circle").style("opacity", "1");
 	current_node = node_obj
 	sessionStorage.setItem("def", current_node.id);
 	window.dictionarySchemeSimulation.alpha(1).restart();
