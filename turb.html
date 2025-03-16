@@ -8,6 +8,17 @@
 		<link rel="stylesheet" type="text/css" href="css\ths.css"/>
 		<script src="https://d3js.org/d3.v7.min.js"></script>
 		<script src="dictionarysGen.js"></script>
+		<script type="module">
+			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
+			Object.assign(darkValues[false],{
+				"--invBG":"black",
+				"--invTXT":"white"
+			});
+			Object.assign(darkValues[true],{
+				"--invBG":"hsla(50, 50%, 95%, 0.85)",
+				"--invTXT":"black"
+			});
+		</script>
 		<script type="module" src="navLogic.js"></script>
     </head>
     <body>
