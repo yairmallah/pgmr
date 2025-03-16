@@ -165,8 +165,8 @@ b {
 	position:absolute;
 	width:40px;
 	height:40px;
-	top:-40px;
-	left:0;
+	top:-50px;
+	left:5;
 	border-radius: 50%;
 	overflow:hidden;
 	border: 2px solid var(--textColor);
