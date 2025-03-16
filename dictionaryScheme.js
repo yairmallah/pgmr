@@ -162,24 +162,13 @@ export async function nodeClick(nodeName) {
 	infoTitle.textContent = `${nodeName}`;
 	const infoParagraph = document.getElementById('node-info');
 	infoParagraph.innerHTML = nodeMessages[nodeName];
-	//let text = nodeMessages[nodeName];
 	scanForDefinitions(infoParagraph);
-	/*for (let key in nodeMessages) {
-		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
-		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
-	}*/
 
-	//infoParagraph.innerHTML = text;
-	
-	
-	
 	//node position
 	if (current_node != null) {
 		current_node.fx = null;
 		current_node.fy = null;
 		console.log(current_node);
-
 	}
 	// Fix the current node
 	node_obj.fx = width / 10;
