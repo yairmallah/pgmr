@@ -22,7 +22,11 @@ export async function initializeGraph(){
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			if (source == "מזיקה"){
-				if (target == "בירוקרטיה"
+				if (target == "בירוקרטיה"){
+					console.log(regex.test(targetWords));
+					console.log(targetWords);
+				}
+			}
 			const targetWords = nodeMessages[target];
 			if (regex.test(targetWords)) {
 				links.push({ source, target });
