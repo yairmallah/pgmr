@@ -37,9 +37,12 @@ var nodeScheme = window.images;
 
 export async function initializeGraph(){
 	await initializeAllDicts();
+	nodeMessages = window.messages;
+	nodeClass = window.classes;
+	nodeScheme = window.images;
 
-    const width = document.getElementById("graph-container").offsetWidth;
-    const height = document.getElementById("graph-container").offsetHeight;
+	const width = document.getElementById("graph-container").offsetWidth;
+	const height = document.getElementById("graph-container").offsetHeight;
 	console.log("in");
 	const links = [];
 	// Generate links if messages share a common word
