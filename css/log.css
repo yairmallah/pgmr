@@ -1,3 +1,7 @@
+:root{
+	--textColor:white;
+}
+
 #graph-container {
 	position: absolute;
 	top: 5%;
@@ -48,9 +52,8 @@ svg{
 }
 
 .node text {
-    font-size: 15x;
-    font-size: 15x;
-    fill: #fff;
+    font-size: 15px;
+    fill: var(--textColor);
 }
 .link {
     stroke: #999;
