@@ -41,8 +41,129 @@
 				document.body.style.overflow = "auto"; // Re-enable page scrolling
 			}
 		</script>
-        <script>
+		
+		<script type="module">
+			const filePath = "https://yairmallah.github.io/pgmr/tbaTxt.txt"
 			var tba_base_txt = [];
+			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";		
+
+			function loadTba() {
+				
+				return fetch(filePath)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+						}
+						return response.text();
+					})
+					.then(text => {
+						tba_base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
+						return tba_base_txt;
+					})
+					.catch(error => {
+						console.error("Error loading TBA:", error.message);
+						return {};
+					});
+			}
+			
+			function generateIndentedList(strings) {
+				// Create a container for the nested structure
+				let html = '';
+
+				// Stack to keep track of the current list levels
+				const stack = [];
+				
+				function mapEnglishToHebrew(char) {
+					const englishToHebrew = {
+						a: 'א', b: 'ב', c: 'ג', d: 'ד', e: 'ה', f: 'ו', g: 'ז', h: 'ח',
+						i: 'ט', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ס', p: 'ע',
+						q: 'פ', r: 'צ', s: 'ק', t: 'ר', u: 'ש', v: 'ת', w: 'שׁ', x: 'שׂ',
+						y: 'ץ', z: 'תּ'
+					};
+					return englishToHebrew[char.toLowerCase()] || null;
+				}
+				// Helper function to determine the level based on the prefix
+				function getLevel(prefix) {
+					if (!isNaN(parseInt(prefix, 10))) {
+						return 1; // Numeric levels (e.g., 1, 2, 3)
+					} else if (prefix >= 'א' && prefix <= 'ת') {
+						return 5; // Alphabetical levels (a-z)
+					} else if (prefix >= 'a' && prefix <= 'z') {
+						return 10; // Alphabetical levels (a-z)
+					} else if (prefix >= 'A' && prefix <= 'Z') {
+						return 20; // Uppercase alphabetical levels (A-Z)
+					} else {
+						return 30; // Other prefixes
+					}
+				}
+				function getPrefix(prefix) {
+					if (!isNaN(parseInt(prefix, 10))) {
+						return "decimal";
+						return "hebrew";
+					} else if (prefix >= 'i' && prefix <= 'Z') {
+						return "lower-roman";
+					} else {
+						return "hebrew";
+					}
+				}
+				
+
+				// Iterate over the input strings
+				strings.forEach(str => {
+					// Split the string into prefix and text
+					var [prefix, text] = str.split('.');
+					
+					if (prefix.length == 1 && !(prefix == 'i' || prefix == 'x' || prefix == 'v') && isNaN(parseInt(prefix, 10))){
+						prefix = mapEnglishToHebrew(prefix);}
+					
+					// Determine the numeric or alphabetical order of the prefix
+					const level = getLevel(prefix);
+
+					// Pop the stack until we find the correct parent level
+					while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+						html += '</ul>';
+						stack.pop();
+					}
+					
+					// Add a new list if necessary
+					if (stack.length === 0 || stack[stack.length - 1].level < level) {
+						html += "<ul>";//'<ol style="list-style-type:' + getPrefix(prefix) + ';">'
+						stack.push({ level });
+					}
+
+					// Add the current item
+					html += '<li>'+text+'</li>';
+				});
+
+				// Close any remaining open lists
+				while (stack.length > 0) {
+					html += '</ul>'//'</ol>';
+					stack.pop();
+				}
+
+				return html;
+			}
+			
+			loadTba().then(() => {
+				tba_base_txt = generateIndentedList(tba_base_txt);
+				document.getElementById('tba-txt').innerHTML = tba_base_txt;	
+				initializeAllDicts().then(() => {
+						initializeGraph();
+						let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+						nodeClick(def);
+					scanForDefinitions(document.getElementById("tba-txt"));
+					});
+				});
+			
+			
+			
+			
+		</script>
+		
+		
+		
+        <script>
+			/*var tba_base_txt = [];
 			const width = document.getElementById("graph-container").offsetWidth;
 			const height = document.getElementById("graph-container").offsetHeight;
 			var nodeMessages = window.messages;
@@ -56,7 +177,7 @@
 			const problem_words = ["לב", "הר", "קו"]
 
 			function loadTba() {
-				const filePath = "/pgmr/tbaTxt.txt"
+				const filePath = "https://yairmallah.github.io/pgmr/tbaTxt.txt"
 				return fetch(filePath)
 					.then(response => {
 						if (!response.ok) {
@@ -199,7 +320,7 @@
 					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
 					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
 				}
-				scheme.innerHTML = inner;*/
+				scheme.innerHTML = inner;*//*
 				//node position
 				if (current_node != null) {
 					current_node.fx = null;
@@ -392,7 +513,7 @@
 						node
 							.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
 								/*d.x = Math.max(bounds.xMin, Math.min(bounds.xMax, d.x));
-								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*/
+								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*//*
 							//.attr("transform", d => `translate(${d.x},${d.y})`);
 					}
 
@@ -413,7 +534,7 @@
 						d.fy = null;
 					}
 				});
-			});
+			});*/
         </script>
     </body>
 </html>
