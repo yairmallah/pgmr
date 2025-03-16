@@ -56,7 +56,7 @@ background: var(--scrollbarHover);
     fill: hsl(var(--termH), 100%, var(--circLightness));
 }
 .bterm{
-    color: hsl(var(--termH), 50%, var(--txtLightness));
+    color: hsl(var(--termH), 100%, var(--txtLightness));
 }
 .math{
     fill: hsl(var(--mathH), 100%, var(--circLightness));
@@ -65,10 +65,10 @@ background: var(--scrollbarHover);
     color: hsl(var(--mathH), 100%, var(--txtLightness));
 }
 .spc{
-    fill: hsl(var(--mathH), 100%, var(--circLightness));
+    fill: hsl(var(--spcH), 100%, var(--circLightness));
 }
 .bspc{
-    color: hsl(var(--mathH), 100%, var(--txtLightness));
+    color: hsl(var(--spcH), 100%, var(--txtLightness));
 }
 .mus{
     fill: hsl(var(--musH), 100%, var(--circLightness));
