@@ -16,6 +16,7 @@ export const darkValues={
 		
 		"--circLightness":"75%",
 		"--txtLightness":"42%",
+		"--linkColor":"#bbb",
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchame.gif")',
 		"--navSubMenu":221,
@@ -41,6 +42,7 @@ export const darkValues={
 		
 		"--circLightness":"25%",
 		"--txtLightness":"75%",
+		"--linkColor":"#999",
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif")',
 		"--navSubMenu":34,
