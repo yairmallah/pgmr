@@ -18,10 +18,12 @@ export async function initializeGraph(){
 	const nodesKeys = Object.keys(nodeMessages);
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
-		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		const regex = new RegExp(`(\\b|\\s|^)([המלכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
+			if (source == "בירוקרטיה") console.log("in");
+			if (target == "ארכיטקטורה") {console.log("Vin"); console.log(regex.test(targetWords));}
 			if (regex.test(targetWords)) {
 				links.push({ source, target });
 			}
