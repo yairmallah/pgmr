@@ -5,7 +5,7 @@
 	--bgLightness:0;
 	
 	--mathH:0;
-	--termH:144;
+	--termH:120;
 	--spcH:288;
 	--musH:216;
 	--mytH:72;
@@ -62,25 +62,25 @@ background: var(--scrollbarHover);
     fill: hsl(var(--mathH), 100%, var(--circLightness));
 }
 .bmath{
-    color: #ff8080
+    color: hsl(var(--mathH), 100%, var(--txtLightness));
 }
 .spc{
-    fill: #660080
+    fill: hsl(var(--mathH), 100%, var(--circLightness));
 }
 .bspc{
-    color: #e680ff
+    color: hsl(var(--mathH), 100%, var(--txtLightness));
 }
 .mus{
-    fill: #003380
+    fill: hsl(var(--musH), 100%, var(--circLightness));
 }
 .bmus{
-    color: #80b3ff
+    color: hsl(var(--musH), 100%, var(--txtLightness));
 }
 .myt{
-    fill: #668000
+    fill: hsl(var(--mytH), 100%, var(--circLightness));
 }
 .bmyt{
-    color: #e5ff80
+    color: hsl(var(--mytH), 100%, var(--txtLightness));
 }
 .s0 { color: #cc7832;}
 .s1 { color: #a9b7c6;}
