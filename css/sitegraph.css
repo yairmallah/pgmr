@@ -29,10 +29,10 @@
 	
 	--waveFill:hsla(72, 100%, 75%,1);
 	--waveStroke:0px;
-	--waveShadow:drop-shadow(0 0 5px hsl(75,72%,72%));
+	--waveShadow:drop-shadow(0 0 14px hsl(84,100%,79%)) drop-shadow(0 0 26px hsl(84,100%,79%));
 	
 	--circSaturatin:100%;
-	--circLihgtness:65%;
+	--circLihgtness:55%;
 	--circStroke:2px;
 	--textColor:white;
 	--textShadow:2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
