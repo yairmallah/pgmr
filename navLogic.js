@@ -111,7 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		isDragging = false;
 		navButton.style.cursor = "grab";
-		if (dragged){subMenu.classList.toggle("hidden");}
+		if (dragged){
+			subMenu.classList.toggle("hidden");
+			darkButton.classList.toggle("hidden");
+		}
 		dragged = false;
 	});
 
