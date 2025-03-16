@@ -15,6 +15,7 @@
 	
 	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
 	--navSubMenu:34;
+	--navItem:#111;
 	
 	--scrollbarColor:#333;
 	--scrollbarHover:#999;
@@ -162,7 +163,7 @@ b {
 .navItem {
     width: 105px; /*navigation buttons!!*/
     height: 25px;
-	background: #111;
+	background: var(--navItem);
     color: var(--textColor);
     border: none;
     border-radius: 5px;
