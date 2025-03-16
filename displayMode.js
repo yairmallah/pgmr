@@ -32,9 +32,8 @@ export const darkValues={
 	
 };
 
-export var darkMdoe = true;
 export const toggleMode=(isDark)=>{
-	darkMdoe = isDark;
+	let darkMdoe = isDark;
 	Object.keys(darkValues[darkMdoe]).forEach(varMode => {
 		const root = document.documentElement;
 		root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
