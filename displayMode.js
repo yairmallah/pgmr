@@ -1,4 +1,3 @@
-const gridSize = 50;
 const colors = new Proxy(
 	{
 		html:	{h:40, s:100, l:100, a:1},
@@ -44,8 +43,6 @@ const darkValues={
 		"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
 		"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
 		"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
-		
-		"--gridSize": gridSize+"px"
 	},
 	true: {
 		"--bgBody":"#000",
@@ -73,8 +70,6 @@ const darkValues={
 		"--txtStroke":"inherit",
 		"--otherStroke":"inherit",
 		"--jsonStroke":"inherit",
-		
-		"--gridSize": gridSize+"px"
 	}
 	
 };

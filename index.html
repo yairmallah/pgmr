@@ -105,7 +105,7 @@
 		</button>
 	</div>
 	<script>
-		const gridSize = 50;
+		/*const gridSize = 50;
 		const colors = new Proxy(
 			{
 				html:	{h:40, s:100, l:100, a:1},
@@ -193,10 +193,13 @@
 				const root = document.documentElement;
 				root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
 			});
-		};
+		};*/
 	</script>
+	<script src="displayMode.js"></script>
 
 	<script id="layout-setup">
+		const gridSize = 50;
+		root.style.setProperty('gridSize', gridSize+'px');
 		const offs = 30;
 		const width = document.getElementById("svg-container").offsetWidth;
 		const height = document.getElementById("svg-container").offsetHeight;
