@@ -43,17 +43,18 @@ export async function initializeGraph(){
 
 	const width = document.getElementById("graph-container").offsetWidth;
 	const height = document.getElementById("graph-container").offsetHeight;
-	console.log("in");
 	const links = [];
 	// Generate links if messages share a common word
 	const nodesKeys = Object.keys(nodeMessages);
-	console.log(nodesKeys);
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		const targetWords = nodeMessages[target];
-		if (targetWords.includes(regex)) {
-			links.push({ source, target });
+		for (let j = 0; j < nodesKeys.length; j++) {
+			const target = nodesKeys[j];
+			if (targetWords.includes(regex)) {
+				links.push({ source, target });
+			}
 		}
 		/*if (problem_words.includes(source)){
 			if (source=="הר"){
