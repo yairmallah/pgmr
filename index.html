@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Map</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  	<link rel="stylesheet" type="text/css" href="css\general.css"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Website Map</title>
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css\general.css"/>
 	<link rel="stylesheet" type="text/css" href="css\sitegraph.css"/>
 	<link rel="icon" href="imgs\siteMapThumbnail.png" type="image/png">
 	<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-<script>
-	function setPreviewPage(d){
-		const iframe = document.getElementById("page-preview");
-		const pre = document.getElementById("code-preview");
-		const image = document.getElementById("img-preview");
-		const vid = document.getElementById("vid-preview");
-		pre.style.display = "none";
-		iframe.style.display = "none";
-		image.style.display = "none";
-		vid.style.display = "none";
-		document.getElementById("page-preview-container").style.display = "block";
-		if (d.url.endsWith(".html")){
-			iframe.src = d.url;
-			iframe.style.display = "block";
-		}
-		else if (!((d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
-			pre.dataset.url = d.url;
-			pre.classList = "lang-"+d.url.split(".").slice(-1);
-			fetch(d.url)
-				.then((res) => res.text())
-				.then((code) => {
-					pre.textContent = code;
-					Prism.highlightElement(pre);
-				})
-			pre.style.display = "block";
-			if (d.url.endsWith(".txt")){ 
-				pre.style.direction = "rtl";
-				pre.style.textAlign = "right";
+	<script>
+		function setPreviewPage(d){
+			const iframe = document.getElementById("page-preview");
+			const pre = document.getElementById("code-preview");
+			const image = document.getElementById("img-preview");
+			const vid = document.getElementById("vid-preview");
+			pre.style.display = "none";
+			iframe.style.display = "none";
+			image.style.display = "none";
+			vid.style.display = "none";
+			document.getElementById("page-preview-container").style.display = "block";
+			if (d.url.endsWith(".html")){
+				iframe.src = d.url;
+				iframe.style.display = "block";
+			}
+			else if (!((d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
+				pre.dataset.url = d.url;
+				pre.classList = "lang-"+d.url.split(".").slice(-1);
+				fetch(d.url)
+					.then((res) => res.text())
+					.then((code) => {
+						pre.textContent = code;
+						Prism.highlightElement(pre);
+					})
+				pre.style.display = "block";
+				if (d.url.endsWith(".txt")){ 
+					pre.style.direction = "rtl";
+					pre.style.textAlign = "right";
+				}
+				else {
+					pre.style.direction = "ltr";
+					pre.style.textAlign = "left";
+				}
+			}
+			else if (d.url.endsWith(".mp4")){
+				document.getElementById("vid-src").src = d.url;
+				vid.style.display = "block";
 			}
 			else {
-				pre.style.direction = "ltr";
-				pre.style.textAlign = "left";
+				image.src = d.url;
+				image.style.display = "block";
 			}
 		}
-		else if (d.url.endsWith(".mp4")){
-			document.getElementById("vid-src").src = d.url;
-			vid.style.display = "block";
+		
+		function hidePreview(){
+			document.getElementById("page-preview-container").style.display = "none";
 		}
-		else {
-			image.src = d.url;
-			image.style.display = "block";
+		function openPreview(){
+			if (document.getElementById("code-preview").style.display == "block") url = document.getElementById("code-preview").dataset.url;
+			if (document.getElementById("page-preview").style.display == "block") url = document.getElementById("page-preview").src;
+			if (document.getElementById("img-preview").style.display == "block") url = document.getElementById("img-preview").src;
+			if (document.getElementById("vid-preview").style.display == "block") url = document.getElementById("vid-src").src;
+			console.log(url);
+			window.open(url, "_blank");
 		}
-	}
-	
-	function hidePreview(){
-		document.getElementById("page-preview-container").style.display = "none";
-	}
-	function openPreview(){
-		if (document.getElementById("code-preview").style.display == "block") url = document.getElementById("code-preview").dataset.url;
-		if (document.getElementById("page-preview").style.display == "block") url = document.getElementById("page-preview").src;
-		if (document.getElementById("img-preview").style.display == "block") url = document.getElementById("img-preview").src;
-		if (document.getElementById("vid-preview").style.display == "block") url = document.getElementById("vid-src").src;
-		console.log(url);
-		window.open(url, "_blank");
-	}
-</script>
+	</script>
 </head>
 	<body>
 	<div id="svg-container">
@@ -77,7 +77,6 @@
 		<div id="bg-img" class="symBg hidden"></div>
 		<div id="bg-txt" class="symBg hidden"></div>
 	</div>
-
 	<div id="display-layout">
 		<div id="bgc-html" class="smBg"></div>
 		<div id="bgc-css" class="smBg"></div>
@@ -85,12 +84,10 @@
 		<div id="bgc-img" class="smBg"></div>
 		<div id="bgc-txt" class="smBg"></div>
 	</div>
-	
 	<div id="dark-button">
 		<div id="toggle-light" onclick="toggleMode(false)"></div>
 		<div id="toggle-dark" onclick="toggleMode(true)"></div>
 	</div>
-	
 	<div id="page-preview-container">
 		<div id="page-preview-wrapper">
 			<iframe id="page-preview" src="" title="page preview"></iframe>
@@ -280,8 +277,8 @@
 					clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
 				}
 				const clcBackground = document.getElementById("bgc-"+cl);
-				const ch = 40;
-				const cw = 40;
+				const ch = gridSize*8/10;
+				const cw = gridSize*8/10;
 				if (clcBackground){
 					clcBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
 					clcBackground.style.border = `0.5px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
