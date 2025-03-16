@@ -245,7 +245,7 @@ export async function nodeClick(nodeName) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
-		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${key}</b>`);
+		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`);
 	}
 
 	infoParagraph.innerHTML = text;
@@ -269,13 +269,15 @@ export async function nodeClick(nodeName) {
 }
 window.nodeClick = nodeClick;
 
-export async function scanForDefinitions(txt){
+export async function scanForDefinitions(txtElement){
 	await initializeAllDicts();
+	let txt = txtElement.innerHTML;
 	for (let key in nodeMessages) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
-		main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-		return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
+		txt = txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
+		return before+`<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`;});
 	}
+	txtElement.innerHTML = txt;
 							
 					/*main_txt = document.getElementById("main").innerHTML;
 					// initializations
