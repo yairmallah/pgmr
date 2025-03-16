@@ -12,10 +12,10 @@ export const darkValues={
 		"--waveStroke":"1.5px",
 		"--waveShadow":"none",
 		"--pathSaturation":"100%",
-		"--pathLightness":"45%"
+		"--pathLightness":"45%",
 
-		"--scrollbarColor":"#ccc";
-		"--scrollbarHover":"#666";
+		"--scrollbarColor":"#ccc",
+		"--scrollbarHover":"#666"
 	},
 	true: {
 		"--bgBody":"#000",
@@ -30,10 +30,10 @@ export const darkValues={
 		"--waveStroke":"0px",
 		"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
 		"--pathSaturation":"100%",
-		"--pathLightness":"90%"
+		"--pathLightness":"90%",
 		
-		"--scrollbarColor":"#333";
-		"--scrollbarHover":"#999";
+		"--scrollbarColor":"#333",
+		"--scrollbarHover":"#999"
 	}
 	
 };
