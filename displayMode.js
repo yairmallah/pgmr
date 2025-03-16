@@ -13,6 +13,9 @@ export const darkValues={
 		"--waveShadow":"none",
 		"--pathSaturation":"100%",
 		"--pathLightness":"45%",
+		
+		"--circLightness":"75%",
+		"--txtLightness":"25%",
 
 		"--scrollbarColor":"#ccc",
 		"--scrollbarHover":"#666"
@@ -32,6 +35,9 @@ export const darkValues={
 		"--pathSaturation":"100%",
 		"--pathLightness":"90%",
 		
+		"--circLightness":"25%",
+		"--txtLightness":"75%",
+		
 		"--scrollbarColor":"#333",
 		"--scrollbarHover":"#999"
 	}
@@ -39,9 +45,9 @@ export const darkValues={
 };
 
 export const toggleMode=(isDark)=>{
-	let darkMdoe = isDark;
-	Object.keys(darkValues[darkMdoe]).forEach(varMode => {
+	Object.keys(darkValues[isDark]).forEach(varMode => {
 		const root = document.documentElement;
-		root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
+		root.style.setProperty(varMode, darkValues[isDark][varMode]);
 	});
+	sessionStorage.setItem("isDark", isDark);
 };
