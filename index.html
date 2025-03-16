@@ -123,6 +123,8 @@
 		});
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
 		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+		let isDark = sessionStorage.getItem("isDark") || true;
+		toggleMode(isDark);
 	</script>
 </head>
 	<body>
