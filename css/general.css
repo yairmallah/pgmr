@@ -80,6 +80,7 @@ background: var(--scrollbarHover);
 .s4 { color: #629755; font-style: italic;}
 .s5 { color: #6a8759;}
 .code{
+	background-color: black;
 	font-family: monospace;
 	font-size: 13px;
 }
