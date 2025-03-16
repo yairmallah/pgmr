@@ -169,7 +169,7 @@ export async function nodeClick(nodeName) {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
 	}*/
 
-	infoParagraph.innerHTML = text;
+	//infoParagraph.innerHTML = text;
 	
 	
 	
