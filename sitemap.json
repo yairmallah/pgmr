@@ -257,6 +257,10 @@
     },
     {
       "source": "index.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "index.html",
       "target": "general.css"
     },
     {
@@ -266,6 +270,22 @@
     {
       "source": "index.html",
       "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-tomorrow.min.css"
+    },
+    {
+      "source": "index.html",
+      "target": "prism.min.js"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-javascript.min.js"
+    },
+    {
+      "source": "index.html",
+      "target": "prism-markup.min.js"
     },
     {
       "source": "index.html",
