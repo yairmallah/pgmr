@@ -7,12 +7,7 @@ export const darkValues={
 		"--circLihgtness":"90%",
 		"--textColor":"#000",
 		"--textShadow":"none",
-		"--circStroke":"3.5px",
-		"--waveFill":"hsla(240, 100%, 30%,1)",
-		"--waveStroke":"1.5px",
-		"--waveShadow":"none",
-		"--pathSaturation":"100%",
-		"--pathLightness":"45%",
+		"--circStroke":"rgba(0, 0, 0, 0.7)"
 		
 		"--circLightness":"75%",
 		"--txtLightness":"42%",
@@ -33,12 +28,7 @@ export const darkValues={
 		"--circLihgtness":"65%",
 		"--textColor":"white",
 		"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
-		"--circStroke":"2px",
-		"--waveFill":"hsla(72, 100%, 75%,1)",
-		"--waveStroke":"0px",
-		"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
-		"--pathSaturation":"100%",
-		"--pathLightness":"90%",
+		"--circStroke":"white",
 		
 		"--circLightness":"25%",
 		"--txtLightness":"75%",
