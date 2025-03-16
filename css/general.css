@@ -168,7 +168,7 @@ b {
     position: absolute;
     top: 0;
     right: 55px;
-    background: rgba(var(--navSubMenu), var(--navSubMenu), var(--navSubMenu), 0.8);
+    background: rgba(calc(var(--navSubMenu)), calc(0.98*var(--navSubMenu)), calc(0.9*var(--navSubMenu)), 0.8);
     border-radius: 4px;
     padding: 4px;
 }
