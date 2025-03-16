@@ -174,6 +174,13 @@ export async function nodeClick(nodeName) {
 	// Fix the current node
 	node_obj.fx = width / 10;
 	node_obj.fy = height / 10;
+	d3.selectAll(".node").each(function(d) {
+		if (d == node_obj){
+			d3.select(this).select("circle").style("opacity", "1");
+		} else {
+			d3.select(this).select("circle").style("opacity", "");
+		}
+	});
 	current_node = node_obj
 	sessionStorage.setItem("def", current_node.id);
 	window.dictionarySchemeSimulation.alpha(1).restart();
