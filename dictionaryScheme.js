@@ -30,9 +30,10 @@ export async function initializeGraph(){
 		}
 	}
 
+	const offs = 15;
 	const bounds = { 
-		xMin: 10, xMax: width - 10, 
-		yMin: 10, yMax: height - 10 
+		xMin: offs, xMax: width - offs, 
+		yMin: offs, yMax: height - offs 
 	};
 
 	const svg = d3.select("#graph-container").append("svg")
