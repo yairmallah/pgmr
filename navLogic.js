@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			</table>
 		</div>
 		<div id="dark-button" class="hidden">
-			<div id="toggle-light" onclick="toggleMode(false)"></div>
-			<div id="toggle-dark" onclick="toggleMode(true)"></div>
+			<div id="toggle-light"></div>
+			<div id="toggle-dark"></div>
 		</div>
 	`;
 	document.body.appendChild(navContainer);
@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	const subMenu = document.getElementById("subMenu");
 	const navItems = document.querySelectorAll(".navItem");
 	const darkButton = document.getElementById("dark-button");
+	const TlightButton = document.getElementById("toggle-light");
+	const TdarkButton = document.getElementById("toggle-dark");
 	var dragged = false;
 	// Load position from localStorage
 	let posX = localStorage.getItem("navX") || 50;
@@ -131,4 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			window.location.href = this.getAttribute("data-link");
 		});
 	});
+	TdarkButton.addEventListener("click", () => {dispMode.toggleMode(false)});
+	TlightButton.addEventListener("click", () => {dispMode.toggleMode(true)});
+	
 });
