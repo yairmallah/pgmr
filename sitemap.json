@@ -214,5 +214,362 @@
       "external": 1
     }
   ],
-  "links": []
+  "links": [
+    {
+      "source": "dictionarys.js",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מושג.png"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "dictionarys.js",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "dictionarysGen.js",
+      "target": "nodeMessages.txt"
+    },
+    {
+      "source": "index.html",
+      "target": "general.css"
+    },
+    {
+      "source": "index.html",
+      "target": "sitegraph.css"
+    },
+    {
+      "source": "index.html",
+      "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "index.html",
+      "target": "displayMode.js"
+    },
+    {
+      "source": "index.html",
+      "target": "sitemap.json"
+    },
+    {
+      "source": "index.html",
+      "target": "general.css"
+    },
+    {
+      "source": "index.html",
+      "target": "sitegraph.css"
+    },
+    {
+      "source": "index.html",
+      "target": "siteMapThumbnail.png"
+    },
+    {
+      "source": "log.html",
+      "target": "general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "log.css"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "log.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "log.html",
+      "target": "general.css"
+    },
+    {
+      "source": "log.html",
+      "target": "log.css"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "displayMode.js"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "index.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "log.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "tba.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "turb.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "video.html"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0420.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "IMG_0421.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "אדם.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "אידאל.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "גבול.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מודרניזם.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מושג2.png"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מיתוס.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מסילה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מרחב2.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "מתמטיקה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "פונקציה.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "פוסטמודרניזם.jpg"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "קו_פרקטל.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רדיאלי.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רנדומלי.gif"
+    },
+    {
+      "source": "nodeMessages.txt",
+      "target": "רקורסיבי.gif"
+    },
+    {
+      "source": "tba.html",
+      "target": "general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.gif"
+    },
+    {
+      "source": "tba.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionaryScheme.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "tba.html",
+      "target": "tbaTxt.txt"
+    },
+    {
+      "source": "tba.html",
+      "target": "general.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.css"
+    },
+    {
+      "source": "tba.html",
+      "target": "tba.gif"
+    },
+    {
+      "source": "turb.html",
+      "target": "general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "d3.v7.min.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "articleImporter.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionaryScheme.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "general.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "ths.css"
+    },
+    {
+      "source": "turb.html",
+      "target": "urb.txt"
+    },
+    {
+      "source": "video.html",
+      "target": "general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "סימולציה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
+    },
+    {
+      "source": "video.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "video.html",
+      "target": "simulationcode.html"
+    },
+    {
+      "source": "video.html",
+      "target": "general.css"
+    },
+    {
+      "source": "video.html",
+      "target": "video.css"
+    },
+    {
+      "source": "video.html",
+      "target": "סימולציה.mp4"
+    },
+    {
+      "source": "general.css",
+      "target": "navSchameD.gif"
+    },
+    {
+      "source": "tba.css",
+      "target": "tba.gif"
+    }
+  ]
 }
