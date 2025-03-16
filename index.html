@@ -105,7 +105,14 @@
 			"--imgStroke":`hsl(${specificColors["img"].h}, 100%, 65%)`,
 			"--txtStroke":`hsl(${specificColors["txt"].h}, 100%, 65%)`,
 			"--otherStroke":`hsl(${specificColors["other"].h}, 100%, 65%)`,
-			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`
+			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,
+			
+			"--circStroke":"3.5px",
+			"--waveFill":"hsla(240, 100%, 30%,1)",
+			"--waveStroke":"1.5px",
+			"--waveShadow":"none",
+			"--pathSaturation":"100%",
+			"--pathLightness":"45%",
 		});
 		Object.assign(darkValues[true],{
 			"--htmlStroke":"inherit",
@@ -119,7 +126,14 @@
 			"--imgStroke":"inherit",
 			"--txtStroke":"inherit",
 			"--otherStroke":"inherit",
-			"--jsonStroke":"inherit"
+			"--jsonStroke":"inherit",
+			
+			"--circStroke":"2px",
+			"--waveFill":"hsla(72, 100%, 75%,1)",
+			"--waveStroke":"0px",
+			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
+			"--pathSaturation":"100%",
+			"--pathLightness":"90%",
 		});
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
 		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
