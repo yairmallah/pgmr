@@ -239,12 +239,10 @@ export async function nodeClick(nodeName) {
     let text = nodeMessages[nodeName];
 
     for (let key in nodeMessages) {
-        if (problem_words.includes(key)) {
-            if (key === "הר" && !mountain_con.includes(nodeName)) continue;
-            if (key === "קו" && !line_con.includes(nodeName)) continue;
-            if (key === "לב" && !heart_con.includes(nodeName)) continue;
-        }
-        text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='nodeClick("${key}")'>${key}</b>`);
+		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
+		return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
+        //text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='nodeClick("${key}")'>${key}</b>`);
     }
     
     infoParagraph.innerHTML = text;
