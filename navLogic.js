@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		</div>
 	`;
 	document.body.appendChild(navContainer);
-
+	console.log(dispMode.darkValues);
 	const navButton = document.getElementById("navButton");
 	const subMenu = document.getElementById("subMenu");
 	const navItems = document.querySelectorAll(".navItem");
