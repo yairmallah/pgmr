@@ -16,6 +16,8 @@ export const darkValues={
 		
 		"--circLightness":"75%",
 		"--txtLightness":"25%",
+		
+		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchame.gif")',
 
 		"--scrollbarColor":"#ccc",
 		"--scrollbarHover":"#666"
@@ -37,6 +39,8 @@ export const darkValues={
 		
 		"--circLightness":"25%",
 		"--txtLightness":"75%",
+		
+		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif")',
 		
 		"--scrollbarColor":"#333",
 		"--scrollbarHover":"#999"
