@@ -50,7 +50,12 @@ export async function initializeGraph(){
 	console.log(nodesKeys);
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
-		if (problem_words.includes(source)){
+		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		const targetWords = nodeMessages[target];
+		if (targetWords.includes(regex)) {
+			links.push({ source, target });
+		}
+		/*if (problem_words.includes(source)){
 			if (source=="הר"){
 				for (let j = 0; j < mountain_con.length; j++) {
 					const target = mountain_con[j];
@@ -93,7 +98,7 @@ export async function initializeGraph(){
 					links.push({ source, target });
 				}
 			}
-		}
+		}*/
 	}
 
 	const bounds = { 
