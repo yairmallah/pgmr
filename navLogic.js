@@ -132,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			window.location.href = this.getAttribute("data-link");
 		});
 	});
+	let isDark = sessionStorage.getItem("isDark") || true;
+	dispMode.toggleMode(isDark);
 	TdarkButton.addEventListener("click", () => {dispMode.toggleMode(true)});
 	TlightButton.addEventListener("click", () => {dispMode.toggleMode(false)});
 	
