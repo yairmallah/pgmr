@@ -161,3 +161,25 @@ b {
     text-align: center;
 	font-family: 'Courier New', monospace;
 }
+#dark-button{
+	position:absolute;
+	width:40px;
+	height:40px;
+	top:-40px;
+	left:0;
+	border-radius: 50%;
+	overflow:hidden;
+	border: 2px solid var(--textColor);
+	opacity:0.7;
+	rotate: 0 0 1 45deg;
+}
+#toggle-dark{
+	height:50%;
+	width:100%;
+	background-color:#000;
+}
+#toggle-light{
+	height:50%;
+	width:100%;
+	background-color:#fff;
+}
