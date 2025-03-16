@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 			
 			if (buttonRect.top < darkButton.offsetWidth) {
-				subMenu.style.top = "50px";
+				darkButton.style.top = "50px";
 			} else {
-				subMenu.style.top = "-50px";
+				darkButton.style.top = "-50px";
 			}
 		}
 	});
