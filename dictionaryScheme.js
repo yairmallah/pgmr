@@ -146,7 +146,7 @@ export async function initializeGraph(){
 		};
 	}
 
-
+	console.log(links);
 	// Create links
 	const link = svg.append("g")
 		.selectAll(".link")
