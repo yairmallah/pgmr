@@ -21,6 +21,8 @@ export async function initializeGraph(){
 		const regex = new RegExp(`(\\b|\\s|^)([המלכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
+			if (source == "מזיקה"){
+				if (target == "בירוקרטיה"
 			const targetWords = nodeMessages[target];
 			if (regex.test(targetWords)) {
 				links.push({ source, target });
@@ -169,13 +171,11 @@ export async function nodeClick(nodeName) {
 	if (current_node != null) {
 		current_node.fx = null;
 		current_node.fy = null;
-		current_node.select("circle").style("opacity", "");
 		console.log(current_node);
 	}
 	// Fix the current node
 	node_obj.fx = width / 10;
 	node_obj.fy = height / 10;
-	node_obj.select("circle").style("opacity", "1");
 	current_node = node_obj
 	sessionStorage.setItem("def", current_node.id);
 	window.dictionarySchemeSimulation.alpha(1).restart();
