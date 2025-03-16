@@ -1,7 +1,3 @@
-//import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-
-
-
 var nodeMessages = window.messages;
 var nodeClass = window.classes;
 var nodeScheme = window.images;
@@ -10,35 +6,6 @@ const width = document.getElementById("graph-container").offsetWidth;
 const height = document.getElementById("graph-container").offsetHeight;
 
 var current_node = null;
-
-/*export async function initializeGraph() {
-    await initializeAllDicts();
-
-    const width = document.getElementById("graph-container").offsetWidth;
-    const height = document.getElementById("graph-container").offsetHeight;
-    
-    const svg = d3.select("#graph-container").append("svg")
-        .attr("width", "100%")
-        .attr("height", "100%");
-
-    const simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(d => d.id).distance(40).strength(2))
-        .force("charge", d3.forceManyBody().strength(-0.1))
-        .force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
-        .force("collide", d3.forceCollide(20).strength(0.5));
-
-    function ticked() {
-        link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
-
-        node.attr("transform", d => `translate(${d.x}, ${d.y})`);
-    }
-
-    simulation.nodes(node.data()).on("tick", ticked);
-}*/
 
 export async function initializeGraph(){
 	await initializeAllDicts();
@@ -59,50 +26,6 @@ export async function initializeGraph(){
 				links.push({ source, target });
 			}
 		}
-		/*if (problem_words.includes(source)){
-			if (source=="הר"){
-				for (let j = 0; j < mountain_con.length; j++) {
-					const target = mountain_con[j];
-					const targetWords = nodeMessages[target];
-					if (targetWords.includes(source)) {
-						links.push({ source, target });
-					}
-				}
-			}
-			if (source=="קו"){
-				for (let j = 0; j < line_con.length; j++) {
-					const target = line_con[j];
-					const targetWords = nodeMessages[target];
-					if (targetWords.includes(source)) {
-						links.push({ source, target });
-					}
-				}
-			}
-			if (source=="לב"){
-				for (let j = 0; j < heart_con.length; j++) {
-					const target = heart_con[j];
-					const targetWords = nodeMessages[target];
-					if (targetWords.includes(source)) {
-						links.push({ source, target });
-					}
-				}
-			}
-		}
-		else{
-			for (let j = 0; j < nodesKeys.length; j++) {
-				const target = nodesKeys[j];
-				if (source=="הר" && !mountain_con.includes(target)) {
-					continue;}
-				if (source=="קו" && !line_con.includes(target)) {
-					continue;}
-				if (source=="לב" && !heart_con.includes(target)) {
-					continue;}
-				const targetWords = nodeMessages[target];
-				if (targetWords.includes(source)) {
-					links.push({ source, target });
-				}
-			}
-		}*/
 	}
 
 	const bounds = { 
@@ -158,7 +81,6 @@ export async function initializeGraph(){
 		};
 	}
 
-	console.log(links);
 	// Create links
 	const link = svg.append("g")
 		.selectAll(".link")
@@ -204,7 +126,6 @@ export async function initializeGraph(){
 
 		node
 			.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
-			//.attr("transform", d => `translate(${d.x},${d.y})`);
 	}
 
 	function dragStart(event, d) {
@@ -245,7 +166,6 @@ export async function nodeClick(nodeName) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
-		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`);
 	}
 
 	infoParagraph.innerHTML = text;
@@ -260,7 +180,7 @@ export async function nodeClick(nodeName) {
 
 	}
 
-	// Fix the current node to the center of the canvas
+	// Fix the current node
 	node_obj.fx = width / 10;
 	node_obj.fy = height / 10;
 	current_node = node_obj
@@ -278,20 +198,4 @@ export async function scanForDefinitions(txtElement){
 		return before+`<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`;});
 	}
 	txtElement.innerHTML = txt;
-							
-					/*main_txt = document.getElementById("main").innerHTML;
-					// initializations
-					for (let key in nodeMessages) {
-						const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
-						main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-						return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
-					}
-					document.getElementById('main').innerHTML = main_txt;
-					let def = sessionStorage.getItem("def");
-					if (!def){ def = 'ארכיטקטורה' }
-					nodeClick(def); 
-					*/
-					
-		
-		
 }
