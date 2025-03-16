@@ -18,7 +18,7 @@ export async function initializeGraph(){
 	const nodesKeys = Object.keys(nodeMessages);
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
-		const regex = new RegExp(`(\\b|\\s|^)([המלכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		const regex = new RegExp(`(\\b|>|\\s|^)([המלכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?<])`, 'g');
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
@@ -190,7 +190,7 @@ export async function scanForDefinitions(txtElement){
 	await initializeAllDicts();
 	let txt = txtElement.innerHTML;
 	for (let key in nodeMessages) {
-		const regex = new RegExp(`(\\b|\\s|^)([המכלבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		const regex = new RegExp(`(\\b|>|\\s|^)([המכלבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?<])`, 'g');
 		txt = txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+`<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`;});
 	}
