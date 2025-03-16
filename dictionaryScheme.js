@@ -36,12 +36,11 @@ var nodeScheme = window.images;
 }*/
 
 export async function initializeGraph(){
-	    await initializeAllDicts();
+	await initializeAllDicts();
 
     const width = document.getElementById("graph-container").offsetWidth;
     const height = document.getElementById("graph-container").offsetHeight;
-	
-	
+	console.log("in");
 	const links = [];
 	// Generate links if messages share a common word
 	const nodesKeys = Object.keys(nodeMessages);
