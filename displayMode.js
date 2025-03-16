@@ -25,7 +25,7 @@ export const darkValues={
 		"--bgImg": "linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
 		"--staticShadow":  "drop-shadow(0 0 14px hsl(84,100%,79%)) drop-shadow(0 0 26px hsl(84,100%,79%))",
 		"--circSaturatin":"100%",
-		"--circLihgtness":"65%",
+		"--circLihgtness":"55%",
 		"--textColor":"white",
 		"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
 		"--circStroke":"white",
