@@ -188,10 +188,6 @@ svg{
     font-size: 4px;
     fill: #fff;
 }
-.link {
-    stroke: #999;
-    stroke-opacity: 0.6;
-}
 .scheme-text{
     font-style: italic;
     font-size: 6px;
