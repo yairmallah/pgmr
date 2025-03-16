@@ -4,6 +4,15 @@
 	--bgBody:#000;
 	--bgLightness:0;
 	
+	--mathH:0;
+	--termH:144;
+	--spcH:288;
+	--musH:216;
+	--mytH:72;
+	
+	--circLightness:25%;
+	--txtLightness:75%;
+	
 	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
 	
 	--scrollbarColor:#333;
@@ -44,13 +53,13 @@ background: var(--scrollbarHover);
 /* end scrollbar */
 
 .term{
-    fill: #008033
+    fill: hsl(var(--termH), 100%, var(--circLightness));
 }
 .bterm{
-    color: #7fff7f
+    color: hsl(var(--termH), 50%, var(--txtLightness));
 }
 .math{
-    fill: #800000
+    fill: hsl(var(--mathH), 100%, var(--circLightness));
 }
 .bmath{
     color: #ff8080
