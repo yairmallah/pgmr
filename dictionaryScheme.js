@@ -49,9 +49,9 @@ export async function initializeGraph(){
 	for (let i = 0; i < nodesKeys.length; i++) {
 		const source = nodesKeys[i];
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
-		const targetWords = nodeMessages[target];
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
+			const targetWords = nodeMessages[target];
 			if (targetWords.includes(regex)) {
 				links.push({ source, target });
 			}
