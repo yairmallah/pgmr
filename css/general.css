@@ -41,7 +41,7 @@ box-shadow: inset 0px 0px 2px 2px var(--scrollbarShadow);
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: var(----scrollbarHover); 
+background: var(--scrollbarHover); 
 }
 /* end scrollbar */
 
