@@ -13,6 +13,9 @@ export const darkValues={
 		"--waveShadow":"none",
 		"--pathSaturation":"100%",
 		"--pathLightness":"45%"
+
+		"--scrollbarColor":"#ccc";
+		"--scrollbarHover":"#666";
 	},
 	true: {
 		"--bgBody":"#000",
@@ -28,6 +31,9 @@ export const darkValues={
 		"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
 		"--pathSaturation":"100%",
 		"--pathLightness":"90%"
+		
+		"--scrollbarColor":"#333";
+		"--scrollbarHover":"#999";
 	}
 	
 };
