@@ -6,6 +6,8 @@ var nodeMessages = window.messages;
 var nodeClass = window.classes;
 var nodeScheme = window.images;
 
+var current_node = null;
+
 /*export async function initializeGraph() {
     await initializeAllDicts();
 
@@ -223,29 +225,46 @@ export async function initializeGraph(){
 }
 
 export async function nodeClick(nodeName) {
-    await initializeAllDicts();
-    const infoTitle = document.getElementById('node-title');
-    let node_obj = null;
-    
-    d3.selectAll(".node").filter(d => {
-        if (d.id === nodeName) {
-            node_obj = d;
-        }
-        return d._group && d._group.g === nodeName;
-    });
+	await initializeAllDicts();
+	const infoTitle = document.getElementById('node-title');
+	let node_obj = null;
 
-    infoTitle.textContent = `${nodeName}`;
-    const infoParagraph = document.getElementById('node-info');
-    let text = nodeMessages[nodeName];
+	d3.selectAll(".node").filter(d => {
+		if (d.id === nodeName) {
+			node_obj = d;
+		}
+		return d._group && d._group.g === nodeName;
+	});
 
-    for (let key in nodeMessages) {
+	infoTitle.textContent = `${nodeName}`;
+	const infoParagraph = document.getElementById('node-info');
+	let text = nodeMessages[nodeName];
+
+	for (let key in nodeMessages) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
-        //text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='nodeClick("${key}")'>${key}</b>`);
-    }
-    
-    infoParagraph.innerHTML = text;
+		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='nodeClick("${key}")'>${key}</b>`);
+	}
+
+	infoParagraph.innerHTML = text;
+	
+	
+	
+	//node position
+	if (current_node != null) {
+		current_node.fx = null;
+		current_node.fy = null;
+		console.log(current_node);
+
+	}
+
+	// Fix the current node to the center of the canvas
+	node_obj.fx = width / 10;
+	node_obj.fy = height / 10;
+	current_node = node_obj
+	sessionStorage.setItem("def", current_node.id);
+	simulation.alpha(1).restart();
 }
 
 export async function scanForDefinitions(txt){
