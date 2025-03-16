@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="he">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>אורבניזם</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>אורבניזם</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\ths.css"/>
-        
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+		<script src="dictionarysGen.js"></script>
+		<script src="navLogic.js"></script>
     </head>
     <body>
-		<script src="navLogic.js"></script>
 		<div id="dictionary-scheme">
 			<div id="graph-container"></div>
 			<div class="textcot">
@@ -21,8 +22,6 @@
 		<div id="main"></div>
 		<div id="footnotes"></div>
 		<div id="toc"></div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="dictionarysGen.js"></script>
 		<script>
 			function showImage() {
 				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
@@ -34,13 +33,8 @@
 				document.body.style.overflow = "auto"; // Re-enable page scrolling
 			}
 		</script>
-        
-		
-		
-		<script>
-			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
-		</script>
 		<script type="module">
+			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
 			import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
 			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
 			window.scrollToFootnote = scrollToFootnote;
@@ -53,7 +47,7 @@
 					requestAnimationFrame(() => {
 						positionFootnotes();
 					});
-				scanForDefinitions(document.getElementById("main");
+				scanForDefinitions(document.getElementById("main"));
 				});
 			});
 		</script>
@@ -80,7 +74,5 @@
 			}
 			syncScroll();
 		</script>
-
-	
 	</body>
 </html>
