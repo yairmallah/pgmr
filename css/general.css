@@ -14,6 +14,7 @@
 	--txtLightness:75%;
 	
 	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
+	--navSubMenu:34;
 	
 	--scrollbarColor:#333;
 	--scrollbarHover:#999;
@@ -154,7 +155,7 @@ b {
     position: absolute;
     top: 0;
     right: 55px;
-    background: rgba(34, 34, 34, 0.8);
+    background: rgba(var(--navSubMenu), var(--navSubMenu), var(--navSubMenu), 0.8);
     border-radius: 4px;
     padding: 4px;
 }
