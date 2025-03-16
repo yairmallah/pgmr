@@ -21,7 +21,7 @@ export async function initializeGraph(){
 		const regex = new RegExp(`(\\b|\\s|^)([המלכבשו]?)(${source})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
-			if (source == "מזיקה"){
+			if (source == "ארכיטקטורה"){
 				if (target == "בירוקרטיה"){
 					console.log(regex.test(targetWords));
 					console.log(targetWords);
