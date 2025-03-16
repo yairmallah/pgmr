@@ -18,16 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
 				</tr>
 			</table>
 		</div>
-		<div id="dark-button">
+		<div id="dark-button" class="hidden">
 			<div id="toggle-light" onclick="toggleMode(false)"></div>
 			<div id="toggle-dark" onclick="toggleMode(true)"></div>
 		</div>
 	`;
+	import { darkValues, toggleMode } from './displayMode.js';
 	document.body.appendChild(navContainer);
 
 	const navButton = document.getElementById("navButton");
 	const subMenu = document.getElementById("subMenu");
 	const navItems = document.querySelectorAll(".navItem");
+	const darkButton = document,getElementById("dark-button");
 	var dragged = false;
 	// Load position from localStorage
 	let posX = localStorage.getItem("navX") || 50;
@@ -72,6 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			} else {
 				subMenu.style.left = "auto";
 				subMenu.style.right = navButton.offsetWidth + 5 + "px"; // Flip up
+			}
+			
+			if (buttonRect.top < darkButton.offsetWidth) {
+				subMenu.style.top = "auto";
+				subMenu.style.bottom = "0"; // Flip up
+			} else {
+				subMenu.style.top = "0";
+				subMenu.style.bottom = "auto";
 			}
 		}
 	});
