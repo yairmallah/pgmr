@@ -45,9 +45,6 @@ svg{
 	margin-top:0;
 }
 .node circle {
-	stroke: #fff;
-	stroke-width: 1.5px;
-	opacity: 0.5;
 	r: 14;
 }
 
