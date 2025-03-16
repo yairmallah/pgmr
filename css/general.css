@@ -6,7 +6,6 @@
 	
 	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
 	
-	
 	--scrollbarColor:#333;
 	--scrollbarShadow:#111;
 	--scrollbarHover:#999;
@@ -32,7 +31,7 @@ width: 10px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-background: var(--bgBody); 
+/*background: var(--bgBody);*/
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
