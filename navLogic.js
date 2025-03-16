@@ -77,11 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 			
 			if (buttonRect.top < darkButton.offsetWidth) {
-				subMenu.style.top = "auto";
-				subMenu.style.bottom = "0"; // Flip up
+				subMenu.style.top = "50px";
 			} else {
-				subMenu.style.top = "0";
-				subMenu.style.bottom = "auto";
+				subMenu.style.top = "-50px";
 			}
 		}
 	});
