@@ -1,4 +1,4 @@
-const darkValues={
+export const darkValues={
 	false: {
 		"--bgBody":"hsl(50, 50%, 95%)",
 		"--bgImg": "unset",
@@ -32,8 +32,8 @@ const darkValues={
 	
 };
 
-var darkMdoe = true;
-const toggleMode=(isDark)=>{
+export var darkMdoe = true;
+export const toggleMode=(isDark)=>{
 	darkMdoe = isDark;
 	Object.keys(darkValues[darkMdoe]).forEach(varMode => {
 		const root = document.documentElement;
