@@ -43,6 +43,7 @@ export async function initializeGraph(){
 		.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
 		.force("bounds", forceBounds(bounds))
 		.force("collide", d3.forceCollide(20).strength(0.5));
+	window.dictionarySchemeSimulation = simulation;
 		
 	function forceBounds(bounds) {
 		return function(alpha) {
@@ -180,13 +181,12 @@ export async function nodeClick(nodeName) {
 		console.log(current_node);
 
 	}
-
 	// Fix the current node
 	node_obj.fx = width / 10;
 	node_obj.fy = height / 10;
 	current_node = node_obj
 	sessionStorage.setItem("def", current_node.id);
-	//simulation.alpha(1).restart();
+	window.dictionarySchemeSimulation.alpha(1).restart();
 }
 window.nodeClick = nodeClick;
 
