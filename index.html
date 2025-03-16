@@ -113,6 +113,7 @@
 			"--waveShadow":"none",
 			"--pathSaturation":"100%",
 			"--pathLightness":"45%",
+			"--pathOpacity":0.7
 		});
 		Object.assign(darkValues[true],{
 			"--htmlStroke":"inherit",
@@ -134,6 +135,7 @@
 			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
 			"--pathSaturation":"100%",
 			"--pathLightness":"90%",
+			"--pathOpacity":0.7
 		});
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
 		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
