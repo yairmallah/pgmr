@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const navButton = document.getElementById("navButton");
 	const subMenu = document.getElementById("subMenu");
 	const navItems = document.querySelectorAll(".navItem");
-	const darkButton = document,getElementById("dark-button");
+	const darkButton = document.getElementById("dark-button");
 	var dragged = false;
 	// Load position from localStorage
 	let posX = localStorage.getItem("navX") || 50;
