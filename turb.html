@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="he">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>אורבניזם</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>אורבניזם</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\ths.css"/>
-        
+		<script src="https://d3js.org/d3.v7.min.js"></script>
+		<script src="dictionarysGen.js"></script>
+		<script src="navLogic.js"></script>
     </head>
     <body>
-		<script src="navLogic.js"></script>
 		<div id="dictionary-scheme">
 			<div id="graph-container"></div>
 			<div class="textcot">
@@ -21,8 +22,6 @@
 		<div id="main"></div>
 		<div id="footnotes"></div>
 		<div id="toc"></div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="dictionarysGen.js"></script>
 		<script>
 			function showImage() {
 				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
@@ -34,401 +33,46 @@
 				document.body.style.overflow = "auto"; // Re-enable page scrolling
 			}
 		</script>
-        
-		
-		
-		<script>
-			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
-		</script>
 		<script type="module">
-			/*import { loadArticle } from "./articleImporter.js";
-			import { initializeGraph, nodeClick } from "./dictionaryScheme.js";
-
+			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
+			import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
+			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
+			window.scrollToFootnote = scrollToFootnote;
+			window.selectFootnote = selectFootnote;
 			loadArticle().then(() => {
-				initializeGraph();
-				let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
-				nodeClick(def);
-			});*/
-		</script>
-
-		
-		
-		<script>
-			var base_txt = [];
-			const width = document.getElementById("graph-container").offsetWidth;
-			const height = document.getElementById("graph-container").offsetHeight;
-			var nodeMessages = window.messages;
-			var nodeClass = window.classes;
-			var nodeScheme = window.images;
-			var current_node = null;
-			var simulation = null;
-			const line_con = ["גבול", "מסילה", "לב"];
-			const mountain_con = ["מעיין"];
-			const heart_con = [];
-			const problem_words = ["לב", "הר", "קו"];
-			async function loadArticle() {
-				const response = await fetch(window.txt_add);
-				const text = await response.text();
-				const lines = text.split('\n');
-				let footnoteIndex = 1;
-				let footnotes = [];
-				let toc = [];
-				let content = "";
-				let footnotePositions = [];
-				function extract_footnotes(txt_l, current_index, del="$"){
-					txt_l = txt_l.split("$");
-					flag = 1;
-					ftn = [];
-					ftxt = "";
-					for (let i = 0; i < txt_l.length; i++){
-						if (flag == 0) {
-							const footnoteId = "footnote-" + current_index;			
-							footnotes.push('<div id="'+footnoteId+'" onclick="selectFootnote(\''+footnoteId+'\')">'+current_index+'. '+txt_l[i]+'</div>');
-							ftxt += '<sup id="f-'+current_index+'" onclick="scrollToFootnote('+"'"+footnoteId+"'"+')">['+(current_index++)+']</sup>';
-							footnotePositions.push({ id: footnoteId, index: current_index, text: txt_l[i] });
-							flag = 1;
-						}else{
-							ftxt += txt_l[i];
-							flag = 0;
-						}
-					}
-					return [ftxt, ftn, current_index];
-				}
-				// todo: footnotes have paragraphs
-				lines.forEach(function(line, i) {
-				if (line.startsWith("#")) {
-					const level = line.match(/^#+/)[0].length;
-					const id = "headline-" + i;
-					toc.push('<li class="level-'+level+'"><a href="#'+id+'">'+line.replaceAll("#", "")+'</a></li>');
-					content += '<h'+level+' id="'+id+'">'+line.replace(/^#+/, "").trim()+'</h'+level+'>';
-				} else {
-					let extruction_output = extract_footnotes(line, footnoteIndex);
-					content += '<p>'+extruction_output[0]+'</p>';
-					footnotes = footnotes.concat(extruction_output[1]);
-					footnoteIndex = extruction_output[2];
-				}
-				});
-
-				document.getElementById("main").innerHTML = content;
-				document.getElementById("footnotes").innerHTML = footnotes.join("\n");
-				document.getElementById("toc").innerHTML = '<ul>'+toc.join("\n")+'</ul>';
-				positionFootnotes();
-				
-				let isSyncingMain = false;
-				let isSyncingFootnotes = false;
-
-				function syncScroll() {
-					const mainText = document.getElementById("main");
-					const footnotes = document.getElementById("footnotes");
-
-					mainText.addEventListener("scroll", function() {
-						if (!isSyncingMain) {
-							isSyncingFootnotes = true;
-							const diff = mainText.scrollTop - mainText.dataset.prevScroll;
-							footnotes.scrollTop += diff;
-							mainText.dataset.prevScroll = mainText.scrollTop;
-							isSyncingFootnotes = false;
-						}
-					});
-					// Initialize previous scroll positions
-					mainText.dataset.prevScroll = mainText.scrollTop;
-					footnotes.dataset.prevScroll = footnotes.scrollTop;
-				}
-
-				syncScroll();
-			}
-
-			function scrollToFootnote(id) {
-				console.log(id);
-				selectFootnote(id);
-				const note = document.getElementById(id);
-				if (note) {
-					const ref = document.getElementById("f-"+id.split("-").slice(-1));
-					const offset =note.offsetTop + document.getElementById("main").scrollTop - ref.offsetTop - ref.parentNode.offsetTop;
-					document.getElementById("footnotes").scrollTop = offset;
-				}
-			}
-			function positionFootnotes() {
-				const mainText = document.getElementById("main");
-				const footnotes = document.querySelectorAll("#footnotes div");
-				// footnotes padding!
-				let populatedH = -20;
-				footnotes.forEach(function(note) {
-					const ref = document.getElementById(`f-${note.id.split("-").slice(-1)}`);
-					if (ref) {
-						populatedH += 20;
-						const offset = Math.max(ref.getBoundingClientRect().top + mainText.scrollTop - mainText.getBoundingClientRect().top, populatedH);
-						note.style.top = `${offset}px`;
-						populatedH = note.getBoundingClientRect().bottom;
-					}
-				});
-			}
-			
-			function selectFootnote(id) {
-				document.querySelectorAll("#footnotes div").forEach(function(div) {
-					div.classList.remove("selected");
-				});
-				const note = document.getElementById(id);
-				if (note) {
-					note.classList.add("selected");
-				}
-			}
-			
-			async function nodeClick(nodeName) {
-				await initializeAllDicts();
-				const infoTitle = document.getElementById('node-title');
-				let node_obj = null;
-				let temp  = d3.selectAll(".node").filter(d => {
-					if (d.id == nodeName) {
-						node_obj = d;
-					}
-					return d._group && d._group.g === nodeName; // Adjust based on the debug output
-				});
-				infoTitle.textContent = `${nodeName}`;
-				
-				//text build
-				const infoParagraph = document.getElementById('node-info');
-				let text = nodeMessages[nodeName];
-				for (let key in nodeMessages) {
-					if (problem_words.includes(key)){
-						if (key=="הר" && !mountain_con.includes(nodeName)) {
-							continue;}
-						if (key=="קו") {
-							if (line_con.includes(nodeName)) {
-								let regex = "קו " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
-								continue;}
-							continue;}
-						if (key=="לב") {
-							if (heart_con.includes(nodeName)) {
-								let regex = "לב " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
-								continue;}
-							continue;}
-					}
-					const regex = new RegExp(key, "g");
-					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
-				}
-				//text injection
-				infoParagraph.innerHTML = text;
-				//node position
-				if (current_node != null) {
-					current_node.fx = null;
-					current_node.fy = null;
-					console.log(current_node);
-					
-				}
-
-				// Fix the current node to the center of the canvas
-				node_obj.fx = width / 10;
-				node_obj.fy = height / 10;
-				current_node = node_obj
-				sessionStorage.setItem("def", current_node.id);
-				simulation.alpha(1).restart();
-			}
-			
-			loadArticle().then(() => {	
-			
-				// SECTION 2 - scheme
-				// definitions
-				
 				initializeAllDicts().then(() => {
-					// define dictionarys
-					nodeMessages = window.messages;
-					nodeClass = window.classes;
-					nodeScheme = window.images;
-					
-					main_txt = document.getElementById("main").innerHTML;
-					// initializations
-					for (let key in nodeMessages) {
-						const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
-						main_txt = main_txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-						return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
-						/*const regex = new RegExp(key, 'g');
-						main_txt = main_txt.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");*/
-					}
-					document.getElementById('main').innerHTML = main_txt;
-					let def = sessionStorage.getItem("def");
-					if (!def){ def = 'ארכיטקטורה' }
-					nodeClick(def); 
-				
-					const links = [];
-
-					// Generate links if messages share a common word
-					const nodesKeys = Object.keys(nodeMessages);
-					for (let i = 0; i < nodesKeys.length; i++) {
-						const source = nodesKeys[i];
-						if (problem_words.includes(source)){
-							if (source=="הר"){
-								for (let j = 0; j < mountain_con.length; j++) {
-									const target = mountain_con[j];
-									const targetWords = nodeMessages[target];
-									if (targetWords.includes(source)) {
-										links.push({ source, target });
-									}
-								}
-							}
-							if (source=="קו"){
-								for (let j = 0; j < line_con.length; j++) {
-									const target = line_con[j];
-									const targetWords = nodeMessages[target];
-									if (targetWords.includes(source)) {
-										links.push({ source, target });
-									}
-								}
-							}
-							if (source=="לב"){
-								for (let j = 0; j < heart_con.length; j++) {
-									const target = heart_con[j];
-									const targetWords = nodeMessages[target];
-									if (targetWords.includes(source)) {
-										links.push({ source, target });
-									}
-								}
-							}
-						}
-						else{
-							for (let j = 0; j < nodesKeys.length; j++) {
-								const target = nodesKeys[j];
-								if (source=="הר" && !mountain_con.includes(target)) {
-									continue;}
-								if (source=="קו" && !line_con.includes(target)) {
-									continue;}
-								if (source=="לב" && !heart_con.includes(target)) {
-									continue;}
-								const targetWords = nodeMessages[target];
-								if (targetWords.includes(source)) {
-									links.push({ source, target });
-								}
-							}
-						}
-					}
-					
-					function forceBounds(bounds) {
-						return function(alpha) {
-							for (const node of simulation.nodes()) {
-								node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
-								node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
-							}
-						};
-					}
-
-					const bounds = { 
-						xMin: 10, xMax: width - 10, 
-						yMin: 10, yMax: height - 10 
-					};
-
-					const svg = d3.select("#graph-container").append("svg")
-						.attr("width", "100%")
-						.attr("height", "100%");
-					// Define the simulation with forces
-					simulation = d3.forceSimulation()
-						.force("link", d3.forceLink().id(d => d.id).distance(40).strength(2))
-						.force("charge", d3.forceManyBody().strength(-0.1))
-						.force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
-						.force("bounds", forceBounds(bounds))
-						.force("collide", d3.forceCollide(20).strength(0.5));
-					function forceSameClassAttraction(strength) {
-						return (alpha) => {
-							const nodes = simulation.nodes();
-							for (let i = 0; i < nodes.length; i++) {
-								for (let j = i + 1; j < nodes.length; j++) {
-									const nodeA = nodes[i];
-									const nodeB = nodes[j];
-									// Apply attraction only for nodes of the same class
-									if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
-										const dx = nodeB.x - nodeA.x;
-										const dy = nodeB.y - nodeA.y;
-										const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
-
-										// Strength of the attraction
-										const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
-
-										// Apply forces to nodes
-										nodeA.vx += force * dx;
-										nodeA.vy += force * dy;
-										nodeB.vx -= force * dx;
-										nodeB.vy -= force * dy;
-									}
-								}
-							}
-						};
-					}
-
-
-					// Create links
-					const link = svg.append("g")
-						.selectAll(".link")
-						.data(links)
-						.enter().append("line")
-						.attr("class", "link");
-
-					// Create nodes with initial positions
-					const node = svg.append("g")
-						.selectAll(".node")
-						.data(Object.keys(nodeMessages).map(id => ({
-							id,
-							group: nodeClass[id] || "default",
-							x: Math.random() * width,
-							y: Math.random() * height
-						})))
-						.enter().append("g")
-						.attr("class", "node")
-						.call(d3.drag()
-							.on("start", dragStart)
-							.on("drag", dragged)
-							.on("end", dragEnd));
-
-					node.on("click", function(event, d){
-						nodeClick(d.id, d);
-
+					initializeGraph();
+					let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+					nodeClick(def);
+					requestAnimationFrame(() => {
+						positionFootnotes();
 					});
-
-					node.append("circle")
-						.attr("class", d => nodeClass[d.id])
-
-					simulation.nodes(node.data())
-						.on("tick", ticked);
-
-					simulation.force("link").links(links);
-
-					function ticked() {
-						link
-							.attr("x1", d => d.source.x)
-							.attr("y1", d => d.source.y)
-							.attr("x2", d => d.target.x)
-							.attr("y2", d => d.target.y);
-
-						node
-							.attr("transform", d => `translate(${Math.max(bounds.xMin, Math.min(bounds.xMax, d.x))},${bounds.yMin, Math.min(bounds.yMax, d.y)})`);
-								/*d.x = Math.max(bounds.xMin, Math.min(bounds.xMax, d.x));
-								d.y = Math.max(bounds.yMin, Math.min(bounds.yMax, d.y));});*/
-							//.attr("transform", d => `translate(${d.x},${d.y})`);
-					}
-
-					function dragStart(event, d) {
-						if (!event.active) simulation.alphaTarget(0.3).restart();
-						d.fx = d.x;
-						d.fy = d.y;
-					}
-
-					function dragged(event, d) {
-						d.fx = event.x;
-						d.fy = event.y;
-					}
-
-					function dragEnd(event, d) {
-						if (!event.active) simulation.alphaTarget(0);
-						d.fx = null;
-						d.fy = null;
-					}
-				});
-				requestAnimationFrame(() => {
-					positionFootnotes();
+				scanForDefinitions(document.getElementById("main"));
 				});
 			});
-        </script>
-    
-	
+		</script>
+		<script>
+			let isSyncingMain = false;
+			let isSyncingFootnotes = false;
+
+			function syncScroll() {
+				const mainText = document.getElementById("main");
+				const footnotes = document.getElementById("footnotes");
+
+				mainText.addEventListener("scroll", function() {
+					if (!isSyncingMain) {
+						isSyncingFootnotes = true;
+						const diff = mainText.scrollTop - mainText.dataset.prevScroll;
+						footnotes.scrollTop += diff;
+						mainText.dataset.prevScroll = mainText.scrollTop;
+						isSyncingFootnotes = false;
+					}
+				});
+				// Initialize previous scroll positions
+				mainText.dataset.prevScroll = mainText.scrollTop;
+				footnotes.dataset.prevScroll = footnotes.scrollTop;
+			}
+			syncScroll();
+		</script>
 	</body>
 </html>
