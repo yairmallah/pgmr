@@ -1,3 +1,5 @@
+import * as dispMode from './displayMode.js';
+
 document.addEventListener("DOMContentLoaded", function () {
 	const navContainer = document.createElement("div");
 	navContainer.id = "navContainer";
@@ -23,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			<div id="toggle-dark" onclick="toggleMode(true)"></div>
 		</div>
 	`;
-	import * as dispMode from './displayMode.js';
 	document.body.appendChild(navContainer);
 
 	const navButton = document.getElementById("navButton");
