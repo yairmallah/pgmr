@@ -15,7 +15,7 @@ export const darkValues={
 		"--pathLightness":"45%",
 		
 		"--circLightness":"75%",
-		"--txtLightness":"25%",
+		"--txtLightness":"42%",
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchame.gif")',
 		"--navSubMenu":221,
