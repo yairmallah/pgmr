@@ -265,7 +265,7 @@ export async function nodeClick(nodeName) {
 	node_obj.fy = height / 10;
 	current_node = node_obj
 	sessionStorage.setItem("def", current_node.id);
-	simulation.alpha(1).restart();
+	//simulation.alpha(1).restart();
 }
 
 export async function scanForDefinitions(txt){
