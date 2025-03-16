@@ -1,3 +1,8 @@
+:root{
+	--invBG:hsla(50, 50%, 95%, 0.85);
+	--invTXT:black;
+}
+
 body{
 	display: grid;
 	grid-template-columns: 27% 39% 14% 14%;
@@ -28,8 +33,8 @@ body{
   background-attachment: fixed;
   background-size: cover;
   z-index: 1;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--invBG);
+  color: var(--invTXT);
   grid-area: 1 / 2;
 }
 #main h1{
@@ -50,7 +55,7 @@ body{
 }
 #main p{
 	text-align: justify;
-	color: #000;
+	color: var(--invTXT);
 	padding: 0 3vw;
 }
 #main sup{
