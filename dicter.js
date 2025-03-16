@@ -1,236 +1,89 @@
-// definitions
-            const width = document.getElementById("graph-container").offsetWidth;
-            const height = document.getElementById("graph-container").offsetHeight;
-			const offs = 15;
-			const bounds = { 
-				xMin: offs, xMax: width - offs, 
-				yMin: offs, yMax: height - offs 
-			};
-			var nodeMessages = window.messages;
-			var nodeClass = window.classes;
-			var nodeScheme = window.images;
-			const line_con = ["גבול", "מסילה", "לב"]
-			const mountain_con = ["מעיין"]
-			const heart_con = []
-			const problem_words = ["לב", "הר", "קו"]
-			
-			async function nodeClick(nodeName) {
-				sessionStorage.setItem("def", nodeName);
-				await initializeAllDicts();
-				const infoTitle = document.getElementById('title');
-				infoTitle.textContent = `${nodeName}`;
-				
-				const infoParagraph = document.getElementById('node-info');
-				let text = nodeMessages[nodeName];
-				for (let key in nodeMessages) {
-					if (problem_words.includes(key)){
-						if (key=="הר" && !mountain_con.includes(nodeName)) {
-							continue;}
-						if (key=="קו") {
-							if (line_con.includes(nodeName)) {
-								let regex = "קו " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
-								continue;}
-							continue;}
-						if (key=="לב") {
-							if (heart_con.includes(nodeName)) {
-								let regex = "לב " 
-								text = text.replaceAll(regex, "<b class='b" + nodeClass[key] +"'onclick='nodeClick(\""+key+"\")'>"+key+"</b> ");
-								continue;}
-							continue;}
-					}
-					const regex = new RegExp(key, "g");
-					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
-				}
-				infoParagraph.innerHTML = text;
-				const scheme = document.getElementById('schemes');
-				let inner = "";
-				for (let imgObj in nodeScheme[nodeName]){
-					if (nodeScheme[nodeName][imgObj][0] == ""){
-						break;
-					}
-					inner += '<img src="/pgmr/' + nodeScheme[nodeName][imgObj][0] + '" class="scheme-img">';
-					inner += '<p class="scheme-text">' + nodeScheme[nodeName][imgObj][1] + '</p>';
-				}
-				scheme.innerHTML = inner;
-			}
-			
-			initializeAllDicts().then(() => {
-				// define dictionarys
-				nodeMessages = window.messages;
-				nodeClass = window.classes;
-				nodeScheme = window.images;
-				let def = sessionStorage.getItem("def");
-				if (!def){ def = 'ארכיטקטורה' }
-				nodeClick(def, nodeMessages, nodeClass, nodeScheme);    
-			
-				const links = [];
+const gridSize = 50;
+const colors = new Proxy(
+	{
+		html:	{h:40, s:100, l:100, a:1},
+		css:	{h:180, s:100, l:90, a:1},
+		js:		{h:0, s:100, l:70, a:1},
+		jpg:	{h:260, s:100, l:70, a:0.8},
+		png:	{h:280, s:100, l:70, a:0.8},
+		gif:	{h:290, s:100, l:70, a:0.8},
+		jpeg:	{h:270, s:100, l:70, a:0.8},
+		mp4:	{h:330, s:100, l:70, a:0.8},
+		img:	{h:280, s:100, l:70, a:0.8}, 
+		txt:	{h:120, s:100, l:90, a:1},
+		other:	{h:220, s:0, l:0, a:1}
+	},{
+		get(target, key) {
+			return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+		}
+});
+const darkValues={
+	false: {
+		"--bgBody":"hsl(50, 50%, 95%)",
+		"--bgImg": "unset",
+		"--staticShadow":  "unset",
+		"--circSaturatin":"0%",
+		"--circLihgtness":"90%",
+		"--textColor":"#000",
+		"--textShadow":"none",
+		"--circStroke":"3.5px",
+		"--waveFill":"hsla(240, 100%, 30%,1)",
+		"--waveStroke":"1.5px",
+		"--waveShadow":"none",
+		"--pathSaturation":"100%",
+		"--pathLightness":"45%",
+		"--htmlStroke":`hsl(${colors["html"].h}, 100%, 65%)`,
+		"--cssStroke":`hsl(${colors["css"].h}, 100%, 65%)`,
+		"--jsStroke":`hsl(${colors["js"].h}, 100%, 65%)`,
+		"--jpgStroke":`hsl(${colors["jpg"].h}, 100%, 65%)`,
+		"--pngStroke":`hsl(${colors["png"].h}, 100%, 65%)`,
+		"--gifStroke":`hsl(${colors["gif"].h}, 100%, 65%)`,
+		"--jpegStroke":`hsl(${colors["jpeg"].h}, 100%, 65%)`,
+		"--mp4Stroke":`hsl(${colors["mp4"].h}, 100%, 65%)`,
+		"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
+		"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
+		"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
+		"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`,
+		
+		"--gridSize": gridSize+"px"
+	},
+	true: {
+		"--bgBody":"#000",
+		"--bgImg": "linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
+		"--staticShadow":  "drop-shadow(0 0 5px hsl(84,100%,59%))",
+		"--circSaturatin":"100%",
+		"--circLihgtness":"65%",
+		"--textColor":"white",
+		"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
+		"--circStroke":"2px",
+		"--waveFill":"hsla(72, 100%, 75%,1)",
+		"--waveStroke":"0px",
+		"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
+		"--pathSaturation":"100%",
+		"--pathLightness":"90%",
+		"--htmlStroke":"inherit",
+		"--cssStroke":"inherit",
+		"--jsStroke":"inherit",
+		"--jpgStroke":"inherit",
+		"--pngStroke":"inherit",
+		"--gifStroke":"inherit",
+		"--jpegStroke":"inherit",
+		"--mp4Stroke":"inherit",
+		"--imgStroke":"inherit",
+		"--txtStroke":"inherit",
+		"--otherStroke":"inherit",
+		"--jsonStroke":"inherit",
+		
+		"--gridSize": gridSize+"px"
+	}
+	
+};
 
-				// Generate links if messages share a common word
-				const nodesKeys = Object.keys(nodeMessages);
-				for (let i = 0; i < nodesKeys.length; i++) {
-					const source = nodesKeys[i];
-					if (problem_words.includes(source)){
-						if (source=="הר"){
-							for (let j = 0; j < mountain_con.length; j++) {
-								const target = mountain_con[j];
-								const targetWords = nodeMessages[target];
-								if (targetWords.includes(source)) {
-									links.push({ source, target });
-								}
-							}
-						}
-						if (source=="קו"){
-							for (let j = 0; j < line_con.length; j++) {
-								const target = line_con[j];
-								const targetWords = nodeMessages[target];
-								if (targetWords.includes(source)) {
-									links.push({ source, target });
-								}
-							}
-						}
-						if (source=="לב"){
-							for (let j = 0; j < heart_con.length; j++) {
-								const target = heart_con[j];
-								const targetWords = nodeMessages[target];
-								if (targetWords.includes(source)) {
-									links.push({ source, target });
-								}
-							}
-						}
-					}
-					else{
-						for (let j = 0; j < nodesKeys.length; j++) {
-							const target = nodesKeys[j];
-							if (source=="הר" && !mountain_con.includes(target)) {
-								continue;}
-							if (source=="קו" && !line_con.includes(target)) {
-								continue;}
-							if (source=="לב" && !heart_con.includes(target)) {
-								continue;}
-							const targetWords = nodeMessages[target];
-							if (targetWords.includes(source)) {
-								links.push({ source, target });
-							}
-						}
-					}
-				}
-
-				function forceSameClassAttraction(strength) {
-					return (alpha) => {
-						const nodes = simulation.nodes();
-						for (let i = 0; i < nodes.length; i++) {
-							for (let j = i + 1; j < nodes.length; j++) {
-								const nodeA = nodes[i];
-								const nodeB = nodes[j];
-								// Apply attraction only for nodes of the same class
-								if (nodeClass[nodeA.id] === nodeClass[nodeB.id]) {
-									const dx = nodeB.x - nodeA.x;
-									const dy = nodeB.y - nodeA.y;
-									const distance = Math.sqrt(dx * dx + dy * dy) || 1; // Avoid division by zero
-
-									// Strength of the attraction
-									const force = (distance - 100) * strength * alpha / distance; // 100 is the desired distance
-
-									// Apply forces to nodes
-									nodeA.vx += force * dx;
-									nodeA.vy += force * dy;
-									nodeB.vx -= force * dx;
-									nodeB.vy -= force * dy;
-								}
-							}
-						}
-					};
-				}
-				
-				function forceBounds(bounds) {
-					return function(alpha) {
-						for (const node of simulation.nodes()) {
-							node.x = Math.max(bounds.xMin, Math.min(bounds.xMax, node.x));
-							node.y = Math.max(bounds.yMin, Math.min(bounds.yMax, node.y));
-						}
-					};
-				}
-
-				const svg = d3.select("#graph-container").append("svg")
-					.attr("width", "100%")
-					.attr("height", "100%");
-				// Define the simulation with forces
-				const simulation = d3.forceSimulation()
-					.force("link", d3.forceLink().id(d => d.id).distance(150).strength(0.5))
-					.force("charge", d3.forceManyBody().strength(-1))
-					.force("center", d3.forceCenter(width / 2, height / 2))
-					.force("bounds", forceBounds(bounds))
-					.force("collide", d3.forceCollide(50));
-
-				// Create links
-				const link = svg.append("g")
-					.selectAll(".link")
-					.data(links)
-					.enter().append("line")
-					.attr("class", "link");
-
-				// Create nodes with initial positions
-				const node = svg.append("g")
-					.selectAll(".node")
-					.data(Object.keys(nodeMessages).map(id => ({
-						id,
-						group: nodeClass[id] || "default",
-						x: Math.random() * width,
-						y: Math.random() * height
-					})))
-					.enter().append("g")
-					.attr("class", "node")
-					.call(d3.drag()
-						.on("start", dragStart)
-						.on("drag", dragged)
-						.on("end", dragEnd));
-
-				node.on("click", (event, d) => {
-					nodeClick(d.id, nodeMessages, nodeClass, nodeScheme);
-				});
-
-				node.append("circle")
-					.attr("class", d => nodeClass[d.id])
-
-
-				node.append("text")
-					.attr("dx", 0)
-					.attr("dy", ".35em")
-					.attr("text-anchor", "middle")
-					//.attr("anchor", "center")
-					.text(d => d.id);
-
-				simulation.nodes(node.data())
-					.on("tick", ticked);
-
-				simulation.force("link").links(links);
-
-				function ticked() {
-					link
-						.attr("x1", d => d.source.x)
-						.attr("y1", d => d.source.y)
-						.attr("x2", d => d.target.x)
-						.attr("y2", d => d.target.y);
-
-					node
-						.attr("transform", d => `translate(${d.x},${d.y})`);
-				}
-
-				function dragStart(event, d) {
-					if (!event.active) simulation.alphaTarget(0.3).restart();
-					d.fx = d.x;
-					d.fy = d.y;
-				}
-
-				function dragged(event, d) {
-					d.fx = event.x;
-					d.fy = event.y;
-				}
-
-				function dragEnd(event, d) {
-					if (!event.active) simulation.alphaTarget(0);
-					d.fx = null;
-					d.fy = null;
-				}
-			});
+var darkMdoe = true;
+const toggleMode=(isDark)=>{
+	darkMdoe = isDark;
+	Object.keys(darkValues[darkMdoe]).forEach(varMode => {
+		const root = document.documentElement;
+		root.style.setProperty(varMode, darkValues[darkMdoe][varMode]);
+	});
+};
