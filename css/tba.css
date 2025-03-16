@@ -1,3 +1,7 @@
+:root{
+	--mainBgColor:hsla(0,0,0,0.85);
+}
+
 body{
 	display: grid;
 	grid-template-columns: 27% 71%; /* Two equal sides + one center */
@@ -42,7 +46,7 @@ body{
   background-attachment: fixed;
   background-size: cover;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: var(--mainBgColor);
   grid-area: 1 / 2;
 }
 #fullscreenImage {
