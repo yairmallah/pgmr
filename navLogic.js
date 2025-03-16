@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			<div id="toggle-dark" onclick="toggleMode(true)"></div>
 		</div>
 	`;
-	import { darkValues, toggleMode } from './displayMode.js';
+	import * as dispMode from './displayMode.js';
 	document.body.appendChild(navContainer);
 
 	const navButton = document.getElementById("navButton");
