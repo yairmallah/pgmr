@@ -22,7 +22,7 @@ export async function initializeGraph(){
 		for (let j = 0; j < nodesKeys.length; j++) {
 			const target = nodesKeys[j];
 			const targetWords = nodeMessages[target];
-			if (regex.test(targetWords)) {
+			if (targetWords.match(regex)) {
 				links.push({ source, target });
 			}
 		}
