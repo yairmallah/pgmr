@@ -183,7 +183,7 @@ export async function scanForDefinitions(txtElement){
 	await initializeAllDicts();
 	let txt = txtElement.innerHTML;
 	for (let key in nodeMessages) {
-		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
+		const regex = new RegExp(`(\\b|\\s|^)([המכלבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		txt = txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
 		return before+`<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${match}</b>`;});
 	}
