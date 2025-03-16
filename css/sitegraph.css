@@ -173,6 +173,7 @@ circle {
 	stroke: white;
 	r:10;
 	stroke-width: var(--circStroke);
+	opacity:1;
 }
 circle.static {
 	filter: var(--staticShadow);
