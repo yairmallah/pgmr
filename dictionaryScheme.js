@@ -244,8 +244,8 @@ export async function nodeClick(nodeName) {
 	for (let key in nodeMessages) {
 		const regex = new RegExp(`(\\b|\\s|^)([המכבשו]?)(${key})(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?])`, 'g');
 		text = text.replace(regex, (match, before, prefix = '', base, suffix = '') => {
-		return before+"<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+match+"</b>";});
-		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='nodeClick("${key}")'>${key}</b>`);
+		return before+"<b class='b" + nodeClass[key] +"' onclick='window.nodeClick(\""+key+"\")'>"+match+"</b>";});
+		//text = text.replace(new RegExp(key, "g"), `<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${key}</b>`);
 	}
 
 	infoParagraph.innerHTML = text;
@@ -267,6 +267,7 @@ export async function nodeClick(nodeName) {
 	sessionStorage.setItem("def", current_node.id);
 	//simulation.alpha(1).restart();
 }
+window.nodeClick = nodeClick;
 
 export async function scanForDefinitions(txt){
 	await initializeAllDicts();
