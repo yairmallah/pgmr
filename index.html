@@ -68,6 +68,54 @@
 			window.open(url, "_blank");
 		}
 	</script>
+	<script>
+		const specificColors = new Proxy(
+			{
+				html:	{h:40, s:100, l:100, a:1},
+				css:	{h:180, s:100, l:90, a:1},
+				js:		{h:0, s:100, l:70, a:1},
+				jpg:	{h:260, s:100, l:70, a:0.8},
+				png:	{h:280, s:100, l:70, a:0.8},
+				gif:	{h:290, s:100, l:70, a:0.8},
+				jpeg:	{h:270, s:100, l:70, a:0.8},
+				mp4:	{h:330, s:100, l:70, a:0.8},
+				img:	{h:280, s:100, l:70, a:0.8}, 
+				txt:	{h:120, s:100, l:90, a:1},
+				other:	{h:220, s:0, l:0, a:1}
+			},{
+				get(target, key) {
+					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+				}
+		});
+		Object.assign(darkValues[false],{
+			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
+			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
+			"--jsStroke":`hsl(${specificColors["js"].h}, 100%, 65%)`,
+			"--jpgStroke":`hsl(${specificColors["jpg"].h}, 100%, 65%)`,
+			"--pngStroke":`hsl(${specificColors["png"].h}, 100%, 65%)`,
+			"--gifStroke":`hsl(${specificColors["gif"].h}, 100%, 65%)`,
+			"--jpegStroke":`hsl(${specificColors["jpeg"].h}, 100%, 65%)`,
+			"--mp4Stroke":`hsl(${specificColors["mp4"].h}, 100%, 65%)`,
+			"--imgStroke":`hsl(${specificColors["img"].h}, 100%, 65%)`,
+			"--txtStroke":`hsl(${specificColors["txt"].h}, 100%, 65%)`,
+			"--otherStroke":`hsl(${specificColors["other"].h}, 100%, 65%)`,
+			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`
+		});
+		Object.assign(darkValues[true],{
+			"--htmlStroke":"inherit",
+			"--cssStroke":"inherit",
+			"--jsStroke":"inherit",
+			"--jpgStroke":"inherit",
+			"--pngStroke":"inherit",
+			"--gifStroke":"inherit",
+			"--jpegStroke":"inherit",
+			"--mp4Stroke":"inherit",
+			"--imgStroke":"inherit",
+			"--txtStroke":"inherit",
+			"--otherStroke":"inherit",
+			"--jsonStroke":"inherit"
+		});
+	</script>
 </head>
 	<body>
 	<div id="svg-container">
@@ -173,15 +221,15 @@
 		}
 		
 		function decideColor(srcClss, trgClss){
-			return Math.floor(Math.random()*(colors[srcClss].h - colors[trgClss].h)) + colors[trgClss].h;
+			return Math.floor(Math.random()*(specificColors[srcClss].h - specificColors[trgClss].h)) + specificColors[trgClss].h;
 		}
 		function setClassesBg(){
 			for (let i = 0; i < Object.keys(bounds).length; i++){
 				const cl = Object.keys(bounds)[i];
 				const clBackground = document.getElementById("bg-"+cl);
 				if (clBackground){
-					clBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
-					clBackground.style.border = `2px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+					clBackground.style.backgroundColor = `hsla(${specificColors[cl].h}, 100%, 65%, 0.4)`;
+					clBackground.style.border = `2px solid hsla(${specificColors[cl].h}, 100%, 65%, 1)`;
 					clBackground.style.left = `${bounds[cl].xMin}px`;
 					clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
 					clBackground.style.top = `${bounds[cl].yMin}px`;
@@ -191,8 +239,8 @@
 				const ch = gridSize*8/10;
 				const cw = gridSize*8/10;
 				if (clcBackground){
-					clcBackground.style.backgroundColor = `hsla(${colors[cl].h}, 100%, 65%, 0.4)`;
-					clcBackground.style.border = `0.5px solid hsla(${colors[cl].h}, 100%, 65%, 1)`;
+					clcBackground.style.backgroundColor = `hsla(${specificColors[cl].h}, 100%, 65%, 0.4)`;
+					clcBackground.style.border = `0.5px solid hsla(${specificColors[cl].h}, 100%, 65%, 1)`;
 					clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
 					clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
 					clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
@@ -260,7 +308,7 @@
 			//decideColor alternative
 			document.querySelectorAll('path').forEach(el => {
 				const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
-				const rangeId = Math.floor(Math.random()*(colors[clsId[1]].h - colors[clsId[0]].h));
+				const rangeId = Math.floor(Math.random()*(specificColors[clsId[1]].h - specificColors[clsId[0]].h));
 				el.style.setProperty('--index', rangeId);
 			});
 
