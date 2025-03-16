@@ -5,10 +5,6 @@
       "url": "https://yairmallah.github.io/pgmr/articleImporter.js"
     },
     {
-      "id": "dictionarys.js",
-      "url": "https://yairmallah.github.io/pgmr/dictionarys.js"
-    },
-    {
       "id": "dictionaryScheme.js",
       "url": "https://yairmallah.github.io/pgmr/dictionaryScheme.js"
     },
@@ -215,42 +211,6 @@
     }
   ],
   "links": [
-    {
-      "source": "dictionarys.js",
-      "target": "IMG_0420.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "IMG_0421.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מושג.png"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מושג2.png"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מיתוס.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מרחב.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מרחב2.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "מתמטיקה.jpg"
-    },
-    {
-      "source": "dictionarys.js",
-      "target": "פונקציה.jpg"
-    },
     {
       "source": "dictionarysGen.js",
       "target": "nodeMessages.txt"
