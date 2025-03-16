@@ -256,6 +256,14 @@
       "target": "nodeMessages.txt"
     },
     {
+      "source": "displayMode.js",
+      "target": "navSchame.gif"
+    },
+    {
+      "source": "displayMode.js",
+      "target": "navSchameD.gif"
+    },
+    {
       "source": "index.html",
       "target": "d3.v7.min.js"
     },
@@ -477,6 +485,10 @@
     },
     {
       "source": "tba.html",
+      "target": "displayMode.js"
+    },
+    {
+      "source": "tba.html",
       "target": "navLogic.js"
     },
     {
@@ -526,6 +538,10 @@
     {
       "source": "turb.html",
       "target": "dictionarysGen.js"
+    },
+    {
+      "source": "turb.html",
+      "target": "displayMode.js"
     },
     {
       "source": "turb.html",
@@ -590,6 +606,10 @@
     {
       "source": "tba.css",
       "target": "tba.gif"
+    },
+    {
+      "source": "video.css",
+      "target": "navSchameD.gif"
     }
   ]
 }
