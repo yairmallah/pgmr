@@ -12,19 +12,7 @@ const darkValues={
 		"--waveStroke":"1.5px",
 		"--waveShadow":"none",
 		"--pathSaturation":"100%",
-		"--pathLightness":"45%",
-		"--htmlStroke":`hsl(${colors["html"].h}, 100%, 65%)`,
-		"--cssStroke":`hsl(${colors["css"].h}, 100%, 65%)`,
-		"--jsStroke":`hsl(${colors["js"].h}, 100%, 65%)`,
-		"--jpgStroke":`hsl(${colors["jpg"].h}, 100%, 65%)`,
-		"--pngStroke":`hsl(${colors["png"].h}, 100%, 65%)`,
-		"--gifStroke":`hsl(${colors["gif"].h}, 100%, 65%)`,
-		"--jpegStroke":`hsl(${colors["jpeg"].h}, 100%, 65%)`,
-		"--mp4Stroke":`hsl(${colors["mp4"].h}, 100%, 65%)`,
-		"--imgStroke":`hsl(${colors["img"].h}, 100%, 65%)`,
-		"--txtStroke":`hsl(${colors["txt"].h}, 100%, 65%)`,
-		"--otherStroke":`hsl(${colors["other"].h}, 100%, 65%)`,
-		"--jsonStroke":`hsl(${colors["json"].h}, 100%, 65%)`
+		"--pathLightness":"45%"
 	},
 	true: {
 		"--bgBody":"#000",
@@ -39,19 +27,7 @@ const darkValues={
 		"--waveStroke":"0px",
 		"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
 		"--pathSaturation":"100%",
-		"--pathLightness":"90%",
-		"--htmlStroke":"inherit",
-		"--cssStroke":"inherit",
-		"--jsStroke":"inherit",
-		"--jpgStroke":"inherit",
-		"--pngStroke":"inherit",
-		"--gifStroke":"inherit",
-		"--jpegStroke":"inherit",
-		"--mp4Stroke":"inherit",
-		"--imgStroke":"inherit",
-		"--txtStroke":"inherit",
-		"--otherStroke":"inherit",
-		"--jsonStroke":"inherit"
+		"--pathLightness":"90%"
 	}
 	
 };
