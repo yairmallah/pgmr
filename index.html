@@ -68,9 +68,9 @@
 			window.open(url, "_blank");
 		}
 	</script>
-	<script type="module" src="https://yairmallah.github.io/pgmr/displayMode.js">
-		console.log("in");
-		const specificColors = new Proxy(
+	
+	<script>
+			const specificColors = new Proxy(
 			{
 				html:	{h:40, s:100, l:100, a:1},
 				css:	{h:180, s:100, l:90, a:1},
@@ -88,7 +88,11 @@
 					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
 				}
 		});
-		window.colors = specificColors;
+				window.colors = specificColors;
+
+	</script>
+	<script type="module">
+		import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		Object.assign(darkValues[false],{
 			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
 			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
@@ -117,6 +121,8 @@
 			"--otherStroke":"inherit",
 			"--jsonStroke":"inherit"
 		});
+		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
+		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
 	</script>
 </head>
 	<body>
@@ -135,8 +141,8 @@
 		<div id="bgc-txt" class="smBg"></div>
 	</div>
 	<div id="dark-button">
-		<div id="toggle-light" onclick="toggleMode(false)"></div>
-		<div id="toggle-dark" onclick="toggleMode(true)"></div>
+		<div id="toggle-light"></div>
+		<div id="toggle-dark"></div>
 	</div>
 	<div id="page-preview-container">
 		<div id="page-preview-wrapper">
