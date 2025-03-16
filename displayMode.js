@@ -7,7 +7,7 @@ export const darkValues={
 		"--circLihgtness":"90%",
 		"--textColor":"#000",
 		"--textShadow":"none",
-		"--circStroke":"rgba(0, 0, 0, 0.7)"
+		"--circStroke":"rgba(0, 0, 0, 0.7)",
 		
 		"--circLightness":"75%",
 		"--txtLightness":"42%",
