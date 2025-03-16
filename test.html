@@ -42,7 +42,7 @@
 		</script>
 		<script type="module">
 			import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
-			import { initializeGraph, nodeClick } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
+			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
 			window.scrollToFootnote = scrollToFootnote;
 			window.selectFootnote = selectFootnote;
 			loadArticle().then(() => {
@@ -53,6 +53,7 @@
 					requestAnimationFrame(() => {
 						positionFootnotes();
 					});
+				scanForDefinitions(document.getElementById("main");
 				});
 			});
 		</script>
