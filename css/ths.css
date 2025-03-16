@@ -162,18 +162,6 @@ svg{
   overflow-y: visible;
   overflow-x: visible;
 }
-#schemes {
-  position: absolute;
-  top: 73%;
-  left: 2%;
-  width: 20%;
-  padding:0px 15px 0px 7px;
-  height: 24%;
-  border: 1px solid #000000;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.0);
-}
 #node-title {
 	margin: 10px;
 }
