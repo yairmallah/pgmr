@@ -178,15 +178,7 @@ svg{
 }
 
 .node circle {
-    stroke: #fff;
-    stroke-width: 1.5px;
-    opacity: 0.5;
 	r: 7;
-}
-
-.node text {
-    font-size: 4px;
-    fill: #fff;
 }
 .scheme-text{
     font-style: italic;
