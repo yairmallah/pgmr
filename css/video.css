@@ -1,24 +1,3 @@
-:root {
-	--circStroke:2px;
-	--textColor:white;
-	--bgBody:#000;
-	--bgLightness:0;
-	
-	--mathH:0;
-	--termH:120;
-	--spcH:288;
-	--musH:216;
-	--mytH:72;
-	
-	--circLightness:25%;
-	--txtLightness:75%;
-	
-	--navButtonImage:url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif");
-	
-	--scrollbarColor:#333;
-	--scrollbarHover:#999;
-}
-
 html, body {
     margin: 0;
     padding: 0;

@@ -93,6 +93,10 @@
 	<script type="module">
 		import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		Object.assign(darkValues[false],{
+			"--textShadow":"none",
+			"--bgImg":"unset",
+			"--circSaturatin":"0%",
+
 			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
 			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
 			"--jsStroke":`hsl(${specificColors["js"].h}, 100%, 65%)`,
@@ -107,6 +111,7 @@
 			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,
 			
 			"--circStroke":"3.5px",
+			"--circLightness":"90%",
 			"--waveFill":"hsla(240, 100%, 30%,1)",
 			"--waveStroke":"1.5px",
 			"--waveShadow":"none",
@@ -115,6 +120,10 @@
 			"--pathOpacity":0.7
 		});
 		Object.assign(darkValues[true],{
+			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
+			"--bgImg":"linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
+			"--circSaturatin":"100%",
+			
 			"--htmlStroke":"inherit",
 			"--cssStroke":"inherit",
 			"--jsStroke":"inherit",
@@ -129,6 +138,7 @@
 			"--jsonStroke":"inherit",
 			
 			"--circStroke":"2px",
+			"--circLightness":"75%",
 			"--waveFill":"hsla(72, 100%, 75%,1)",
 			"--waveStroke":"0px",
 			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
@@ -349,7 +359,8 @@
 				.data(graph.nodes)
 				.enter().append("circle")
 				.attr("class", d => getFileTypeD(d.id)+" static")
-				.on("mouseover", sendWave)
+				//todo
+				//.on("mouseover", sendWave)
 				.on("mouseenter", (event, d) => {
 					labels.filter(l => l.id === d.id)
 						.transition()

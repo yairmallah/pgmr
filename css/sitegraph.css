@@ -32,14 +32,14 @@
 	--waveShadow:drop-shadow(0 0 5px hsl(75,72%,72%));
 	
 	--circSaturatin:100%;
-	--circLihgtness:55%;
+	--circLightness:75%;
 	--circStroke:2px;
 	--textColor:white;
 	--textShadow:2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 	--bgBody:#000;
 	--bgImg: linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em);
-	--staticShadow: drop-shadow(0 0 14px hsl(84,100%,79%)) drop-shadow(0 0 26px hsl(84,100%,79%));
-		
+	/*--staticShadow: drop-shadow(0 0 14px hsl(84,100%,79%)) drop-shadow(0 0 26px hsl(84,100%,79%));*/
+	--staticShadow: unset;
 	--gridSize: 50px;
 }
 body{
@@ -182,56 +182,56 @@ circle.static {
 	stroke-width: 2px;*/
 }
 circle.html {
-	fill: hsla(var(--htmlH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--htmlH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--htmlStroke);
 	r: 25;
 }
 circle.css { 
-	fill: hsla(var(--cssH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--cssH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--cssStroke);
 	r: 10;
 }
 circle.js {
-	fill: hsla(var(--jsH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--jsH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--jsStroke);
 	r:15;
 }
 circle.jpg {
-	fill: hsla(var(--jpgH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--jpgH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--jpgStroke);
 	r:8;
 }
 circle.png {
-	fill: hsla(var(--pngH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--pngH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--pngStroke);
 	r:8;
 }circle.gif {
-	fill: hsla(var(--gifH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--gifH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--gifStroke);
 	r:8;
 }
  circle.jpeg {
-	fill: hsla(var(--jpegH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--jpegH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--jpegStroke);
 	r:8;
 }
 circle.mp4 {
-	fill: hsla(var(--mp4H), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--mp4H), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--mp4Stroke);
 	r:8;
 }    
 circle.txt {
-	fill: hsla(var(--txtH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--txtH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--txtStroke);
 	r:12;
 }
 circle.other {
-	fill: hsla(var(--otherH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--otherH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--otherStroke);
 	r:10;
 }
 circle.json {
-	fill: hsla(var(--jsonH), var(--circSaturatin), var(--circLihgtness), 0.8);
+	fill: hsla(var(--jsonH), var(--circSaturatin), var(--circLightness), 0.8);
 	stroke: var(--jsonStroke);
 	r:10;
 }
