@@ -140,6 +140,7 @@
 			"--circLightness":"90%",
 			"--circSaturatin":"0%",
 			"--CircStyleStroke":"unset",
+			"--staticShadow": "unset",
 			
 			"--waveFill":"hsla(240, 100%, 30%,1)",
 			"--waveStroke":"1.5px",
@@ -196,7 +197,9 @@
 			"--circStroke":"2px",
 			"--circLightness":"80%",
 			"--circSaturatin":"100%",
-			"--CircStyleStroke":"stroke",
+			"--CircStyleStroke":"fill",//"stroke",
+			"--staticShadow": "drop-shadow(0 0 14px hsl(120,100%,80%))",
+
 			
 			"--waveFill":"url(#wave-fill)",//"hsla(72, 100%, 75%,1)",
 			"--waveStroke":"0px",
@@ -211,7 +214,8 @@
 			let t = darkValues[false];
 			darkValues[false]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;
 			//darkValues[true]["--"+cl+"Radius"] = t["--"+cl+"Radius"] * 2.5
-			darkValues[true]["--"+cl+"Fill"] = `url(#${cl}-fill)`;
+			t = darkValues[true];
+			darkValues[true]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;;
 		});
 		
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
@@ -475,7 +479,7 @@
 			const node = svg.selectAll("circle")
 				.data(graph.nodes)
 				.enter().append("circle")
-				.attr("class", d => getFileTypeD(d.id)+" static")
+				.attr("class", d => getFileTypeD(d.id)+" static " + d.external)
 				//todo
 				.on("mouseover", sendWave)
 				.on("mouseenter", (event, d) => {
