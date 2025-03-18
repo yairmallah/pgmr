@@ -193,7 +193,7 @@
 			"--otherFill":"inherit",
 			"--jsonFill":"inherit",
 			
-			"--circStroke":"0px",
+			"--circStroke":"2px",
 			"--circLightness":"80%",
 			"--circSaturatin":"100%",
 			"--CircStyleStroke":"stroke",
@@ -201,7 +201,7 @@
 			"--waveFill":"url(#wave-fill)",//"hsla(72, 100%, 75%,1)",
 			"--waveStroke":"0px",
 			"--waveRadius":"16",
-			"--waveShadow":"",//"drop-shadow(0 0 5px hsl(75,72%,72%))",
+			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
 			
 			"--pathSaturation":"100%",
 			"--pathLightness":"70%",
@@ -210,7 +210,7 @@
 		Object.keys(window.colors).forEach(cl => {
 			let t = darkValues[false];
 			darkValues[false]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;
-			darkValues[true]["--"+cl+"Radius"] = t["--"+cl+"Radius"] * 2.5
+			//darkValues[true]["--"+cl+"Radius"] = t["--"+cl+"Radius"] * 2.5
 			darkValues[true]["--"+cl+"Fill"] = `url(#${cl}-fill)`;
 		});
 		
