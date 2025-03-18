@@ -2,212 +2,258 @@
   "nodes": [
     {
       "id": "articleImporter.js",
-      "url": "https://yairmallah.github.io/pgmr/articleImporter.js"
+      "url": "https://yairmallah.github.io/pgmr/articleImporter.js",
+      "external": ""
     },
     {
       "id": "dictionaryScheme.js",
-      "url": "https://yairmallah.github.io/pgmr/dictionaryScheme.js"
+      "url": "https://yairmallah.github.io/pgmr/dictionaryScheme.js",
+      "external": ""
     },
     {
       "id": "dictionarysGen.js",
-      "url": "https://yairmallah.github.io/pgmr/dictionarysGen.js"
+      "url": "https://yairmallah.github.io/pgmr/dictionarysGen.js",
+      "external": ""
     },
     {
       "id": "displayMode.js",
-      "url": "https://yairmallah.github.io/pgmr/displayMode.js"
+      "url": "https://yairmallah.github.io/pgmr/displayMode.js",
+      "external": ""
     },
     {
       "id": "index.html",
-      "url": "https://yairmallah.github.io/pgmr/index.html"
+      "url": "https://yairmallah.github.io/pgmr/index.html",
+      "external": ""
     },
     {
       "id": "log.html",
-      "url": "https://yairmallah.github.io/pgmr/log.html"
+      "url": "https://yairmallah.github.io/pgmr/log.html",
+      "external": ""
     },
     {
       "id": "navLogic.js",
-      "url": "https://yairmallah.github.io/pgmr/navLogic.js"
+      "url": "https://yairmallah.github.io/pgmr/navLogic.js",
+      "external": ""
     },
     {
       "id": "nodeMessages.txt",
-      "url": "https://yairmallah.github.io/pgmr/nodeMessages.txt"
+      "url": "https://yairmallah.github.io/pgmr/nodeMessages.txt",
+      "external": ""
     },
     {
       "id": "simulationcode.html",
-      "url": "https://yairmallah.github.io/pgmr/simulationcode.html"
+      "url": "https://yairmallah.github.io/pgmr/simulationcode.html",
+      "external": ""
     },
     {
       "id": "sitemap.json",
-      "url": "https://yairmallah.github.io/pgmr/sitemap.json"
+      "url": "https://yairmallah.github.io/pgmr/sitemap.json",
+      "external": ""
     },
     {
       "id": "tba.html",
-      "url": "https://yairmallah.github.io/pgmr/tba.html"
+      "url": "https://yairmallah.github.io/pgmr/tba.html",
+      "external": ""
     },
     {
       "id": "tbaTxt.txt",
-      "url": "https://yairmallah.github.io/pgmr/tbaTxt.txt"
+      "url": "https://yairmallah.github.io/pgmr/tbaTxt.txt",
+      "external": ""
     },
     {
       "id": "turb.html",
-      "url": "https://yairmallah.github.io/pgmr/turb.html"
+      "url": "https://yairmallah.github.io/pgmr/turb.html",
+      "external": ""
     },
     {
       "id": "video.html",
-      "url": "https://yairmallah.github.io/pgmr/video.html"
+      "url": "https://yairmallah.github.io/pgmr/video.html",
+      "external": ""
     },
     {
       "id": "woods.png",
-      "url": "https://yairmallah.github.io/pgmr/woods.png"
+      "url": "https://yairmallah.github.io/pgmr/woods.png",
+      "external": ""
     },
     {
       "id": "general.css",
-      "url": "https://yairmallah.github.io/pgmr/css/general.css"
+      "url": "https://yairmallah.github.io/pgmr/css/general.css",
+      "external": ""
     },
     {
       "id": "log.css",
-      "url": "https://yairmallah.github.io/pgmr/css/log.css"
+      "url": "https://yairmallah.github.io/pgmr/css/log.css",
+      "external": ""
     },
     {
       "id": "sitegraph.css",
-      "url": "https://yairmallah.github.io/pgmr/css/sitegraph.css"
+      "url": "https://yairmallah.github.io/pgmr/css/sitegraph.css",
+      "external": ""
     },
     {
       "id": "tba.css",
-      "url": "https://yairmallah.github.io/pgmr/css/tba.css"
+      "url": "https://yairmallah.github.io/pgmr/css/tba.css",
+      "external": ""
     },
     {
       "id": "ths.css",
-      "url": "https://yairmallah.github.io/pgmr/css/ths.css"
+      "url": "https://yairmallah.github.io/pgmr/css/ths.css",
+      "external": ""
     },
     {
       "id": "video.css",
-      "url": "https://yairmallah.github.io/pgmr/css/video.css"
+      "url": "https://yairmallah.github.io/pgmr/css/video.css",
+      "external": ""
     },
     {
       "id": "IMG_0420.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0420.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0420.jpg",
+      "external": ""
     },
     {
       "id": "IMG_0421.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0421.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/IMG_0421.jpg",
+      "external": ""
     },
     {
       "id": "navSchame.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/navSchame.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/navSchame.gif",
+      "external": ""
     },
     {
       "id": "navSchameD.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/navSchameD.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/navSchameD.gif",
+      "external": ""
     },
     {
       "id": "siteMapThumbnail.png",
-      "url": "https://yairmallah.github.io/pgmr/imgs/siteMapThumbnail.png"
+      "url": "https://yairmallah.github.io/pgmr/imgs/siteMapThumbnail.png",
+      "external": ""
     },
     {
       "id": "tba.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/tba.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/tba.gif",
+      "external": ""
     },
     {
       "id": "אדם.png",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%93%D7%9D.png"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%93%D7%9D.png",
+      "external": ""
     },
     {
       "id": "אידאל.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%99%D7%93%D7%90%D7%9C.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%90%D7%99%D7%93%D7%90%D7%9C.gif",
+      "external": ""
     },
     {
       "id": "גבול.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%92%D7%91%D7%95%D7%9C.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%92%D7%91%D7%95%D7%9C.jpg",
+      "external": ""
     },
     {
       "id": "מודרניזם.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif",
+      "external": ""
     },
     {
       "id": "מושג.png",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%92.png"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%92.png",
+      "external": ""
     },
     {
       "id": "מושג2.png",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%922.png"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%A9%D7%922.png",
+      "external": ""
     },
     {
       "id": "מיתוס.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%99%D7%AA%D7%95%D7%A1.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%99%D7%AA%D7%95%D7%A1.jpg",
+      "external": ""
     },
     {
       "id": "מסילה.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A1%D7%99%D7%9C%D7%94.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A1%D7%99%D7%9C%D7%94.jpg",
+      "external": ""
     },
     {
       "id": "מרחב.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%91.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%91.jpg",
+      "external": ""
     },
     {
       "id": "מרחב2.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%912.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%A8%D7%97%D7%912.jpg",
+      "external": ""
     },
     {
       "id": "מתמטיקה.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94.jpg",
+      "external": ""
     },
     {
       "id": "סימולציה.mp4",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%A6%D7%99%D7%94.mp4"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A1%D7%99%D7%9E%D7%95%D7%9C%D7%A6%D7%99%D7%94.mp4",
+      "external": ""
     },
     {
       "id": "פונקציה.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A0%D7%A7%D7%A6%D7%99%D7%94.jpg",
+      "external": ""
     },
     {
       "id": "פוסטמודרניזם.jpg",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A1%D7%98%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.jpg"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A4%D7%95%D7%A1%D7%98%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.jpg",
+      "external": ""
     },
     {
       "id": "קו_פרקטל.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A7%D7%95_%D7%A4%D7%A8%D7%A7%D7%98%D7%9C.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A7%D7%95_%D7%A4%D7%A8%D7%A7%D7%98%D7%9C.gif",
+      "external": ""
     },
     {
       "id": "רדיאלי.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%93%D7%99%D7%90%D7%9C%D7%99.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%93%D7%99%D7%90%D7%9C%D7%99.gif",
+      "external": ""
     },
     {
       "id": "רנדומלי.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A0%D7%93%D7%95%D7%9E%D7%9C%D7%99.gif",
+      "external": ""
     },
     {
       "id": "רקורסיבי.gif",
-      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A7%D7%95%D7%A8%D7%A1%D7%99%D7%91%D7%99.gif"
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%A8%D7%A7%D7%95%D7%A8%D7%A1%D7%99%D7%91%D7%99.gif",
+      "external": ""
     },
     {
       "id": "urb.txt",
-      "url": "https://yairmallah.github.io/pgmr/texts/urb.txt"
+      "url": "https://yairmallah.github.io/pgmr/texts/urb.txt",
+      "external": ""
     },
     {
       "id": "d3.v7.min.js",
       "url": "https:/d3js.org/d3.v7.min.js",
-      "external": 1
+      "external": "external"
     },
     {
       "id": "prism-tomorrow.min.css",
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css",
-      "external": 1
+      "external": "external"
     },
     {
       "id": "prism.min.js",
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/prism.min.js",
-      "external": 1
+      "external": "external"
     },
     {
       "id": "prism-javascript.min.js",
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js",
-      "external": 1
+      "external": "external"
     },
     {
       "id": "prism-markup.min.js",
       "url": "https:/cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js",
-      "external": 1
+      "external": "external"
     }
   ],
   "links": [
