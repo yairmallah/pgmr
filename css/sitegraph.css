@@ -205,6 +205,7 @@ circle {
 circle.static {
 	stroke: white;
 	paint-order: var(--CircStyleStroke);
+	filter: var(--staticShadow);
 	/* Tiny visual breakup */
 	/*stroke: lime;
 	stroke-width: 2px;*/
