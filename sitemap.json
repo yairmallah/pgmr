@@ -566,10 +566,6 @@
     {
       "source": "tba.css",
       "target": "tba.gif"
-    },
-    {
-      "source": "video.css",
-      "target": "navSchameD.gif"
     }
   ]
 }
