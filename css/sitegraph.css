@@ -14,6 +14,7 @@
 	--txtH:	120;
 	--otherH:220;
 	--jsonH:220;
+	
 	--htmlStroke:inherit;
 	--cssStroke:inherit;
 	--jsStroke:inherit;
@@ -27,6 +28,30 @@
 	--otherStroke:inherit;
 	--jsonStroke:inherit;
 	
+	--htmlFill: url('#html-fill');
+	--cssFill: url('#css-fill');
+	--jsFill: url('#js-fill');
+	--jpgFill: url('#jpg-fill');
+	--pngFill: url('#png-fill');
+	--gifFill: url('#gif-fill');
+	--jpegFill: url('#jpeg-fill');
+	--mp4Fill: url('#mp4-fill');
+	--imgFill: url('#img-fill');
+	--txtFill: url('#txt-fill');
+	--otherFill: url('#other-fill');
+	
+	--htmlRadius: 25;
+	--cssRadius: 10;
+	--jsRadius: 15;
+	--jpgRadius: 8;
+	--pngRadius: 8;
+	--gifRadius: 8;
+	--jpegRadius: 8;
+	--mp4Radius: 8;
+	--txtRadius: 12;
+	--otherRadius: 10;
+	--jsonRadius: 10;
+
 	--waveFill:hsla(72, 100%, 75%,1);
 	--waveStroke:0px;
 	--waveShadow:drop-shadow(0 0 5px hsl(75,72%,72%));
@@ -34,6 +59,7 @@
 	--circSaturatin:100%;
 	--circLightness:75%;
 	--circStroke:2px;
+	--CircStyleStroke:stroke;
 	--textColor:white;
 	--textShadow:2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 	--bgBody:#000;
@@ -45,7 +71,6 @@
 body{
 	background-image: var(--bgImg);
 	background-size: var(--gridSize) var(--gridSize);
-	background-color: var(--bgBody);
 }
 #svg-container {
 	width: 100vw;
@@ -177,63 +202,76 @@ circle {
 	opacity:1;
 }
 circle.static {
-	filter: var(--staticShadow);
+	stroke: white;
+	paint-order: var(--CircStyleStroke);
+	/* Tiny visual breakup */
 	/*stroke: lime;
 	stroke-width: 2px;*/
 }
 circle.html {
-	fill: hsla(var(--htmlH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--htmlFill);
 	stroke: var(--htmlStroke);
-	r: 25;
+	r: var(--htmlRadius);
 }
+
 circle.css { 
-	fill: hsla(var(--cssH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--cssFill);
 	stroke: var(--cssStroke);
-	r: 10;
+	r: var(--cssRadius);
 }
+
 circle.js {
-	fill: hsla(var(--jsH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--jsFill);
 	stroke: var(--jsStroke);
-	r:15;
+	r: var(--jsRadius);
 }
+
 circle.jpg {
-	fill: hsla(var(--jpgH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--jpgFill);
 	stroke: var(--jpgStroke);
-	r:8;
+	r: var(--jpgRadius);
 }
+
 circle.png {
-	fill: hsla(var(--pngH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--pngFill);
 	stroke: var(--pngStroke);
-	r:8;
-}circle.gif {
-	fill: hsla(var(--gifH), var(--circSaturatin), var(--circLightness), 0.8);
+	r: var(--pngRadius);
+}
+
+circle.gif {
+	fill: var(--gifFill);
 	stroke: var(--gifStroke);
-	r:8;
+	r: var(--gifRadius);
 }
- circle.jpeg {
-	fill: hsla(var(--jpegH), var(--circSaturatin), var(--circLightness), 0.8);
+
+circle.jpeg {
+	fill: var(--jpegFill);
 	stroke: var(--jpegStroke);
-	r:8;
+	r: var(--jpegRadius);
 }
+
 circle.mp4 {
-	fill: hsla(var(--mp4H), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--mp4Fill);
 	stroke: var(--mp4Stroke);
-	r:8;
+	r: var(--mp4Radius);
 }    
+
 circle.txt {
-	fill: hsla(var(--txtH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--txtFill);
 	stroke: var(--txtStroke);
-	r:12;
+	r: var(--txtRadius);
 }
+
 circle.other {
-	fill: hsla(var(--otherH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--otherFill);
 	stroke: var(--otherStroke);
-	r:10;
+	r: var(--otherRadius);
 }
+
 circle.json {
-	fill: hsla(var(--jsonH), var(--circSaturatin), var(--circLightness), 0.8);
+	fill: var(--jsonFill);
 	stroke: var(--jsonStroke);
-	r:10;
+	r: var(--jsonRadius);
 }
 line {
 	stroke: var(--textColor);

@@ -90,12 +90,25 @@
 				window.colors = specificColors;
 
 	</script>
+	
 	<script type="module">
 		import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		Object.assign(darkValues[false],{
+			"--htmlH":40,
+			"--cssH":180,
+			"--jsH":0,
+			"--jpgH":260,
+			"--pngH":280,
+			"--gifH":290,
+			"--jpegH":270,
+			"--mp4H":330,
+			"--imgH":280,
+			"--txtH":120,
+			"--otherH":220,
+			"--jsonH":220,
+		
 			"--textShadow":"none",
 			"--bgImg":"unset",
-			"--circSaturatin":"0%",
 
 			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
 			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
@@ -110,19 +123,47 @@
 			"--otherStroke":`hsl(${specificColors["other"].h}, 100%, 65%)`,
 			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,
 			
+			"--htmlRadius": 25,
+			"--cssRadius": 10,
+			"--jsRadius": 15,
+			"--jpgRadius": 8,
+			"--pngRadius": 8,
+			"--gifRadius": 8,
+			"--jpegRadius": 8,
+			"--mp4Radius": 8,
+			"--txtRadius": 12,
+			"--otherRadius": 10,
+			"--jsonRadius": 10,
+			
 			"--circStroke":"3.5px",
 			"--circLightness":"90%",
+			"--circSaturatin":"0%",
+			"--CircStyleStroke":"unset",
+			
 			"--waveFill":"hsla(240, 100%, 30%,1)",
 			"--waveStroke":"1.5px",
 			"--waveShadow":"none",
+			
 			"--pathSaturation":"100%",
 			"--pathLightness":"45%",
 			"--pathOpacity":0.7
 		});
 		Object.assign(darkValues[true],{
+			"--htmlH":40,
+			"--cssH":180,
+			"--jsH":0,
+			"--jpgH":260,
+			"--pngH":280,
+			"--gifH":290,
+			"--jpegH":270,
+			"--mp4H":330,
+			"--imgH":280,
+			"--txtH":120,
+			"--otherH":220,
+			"--jsonH":220,
+			
 			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
 			"--bgImg":"linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
-			"--circSaturatin":"100%",
 			
 			"--htmlStroke":"inherit",
 			"--cssStroke":"inherit",
@@ -137,15 +178,39 @@
 			"--otherStroke":"inherit",
 			"--jsonStroke":"inherit",
 			
-			"--circStroke":"2px",
-			"--circLightness":"75%",
+			"--htmlFill":"inherit",
+			"--cssFill":"inherit",
+			"--jsFill":"inherit",
+			"--jpgFill":"inherit",
+			"--pngFill":"inherit",
+			"--gifFill":"inherit",
+			"--jpegFill":"inherit",
+			"--mp4Fill":"inherit",
+			"--imgFill":"inherit",
+			"--txtFill":"inherit",
+			"--otherFill":"inherit",
+			"--jsonFill":"inherit",
+			
+			"--circStroke":"0px",
+			"--circLightness":"80%",
+			"--circSaturatin":"100%",
+			"--CircStyleStroke":"stroke",
+			
 			"--waveFill":"hsla(72, 100%, 75%,1)",
 			"--waveStroke":"0px",
 			"--waveShadow":"drop-shadow(0 0 5px hsl(75,72%,72%))",
+			
 			"--pathSaturation":"100%",
-			"--pathLightness":"90%",
-			"--pathOpacity":0.7
+			"--pathLightness":"70%",
+			"--pathOpacity":0.4
 		});
+		Object.keys(window.colors).forEach(cl => {
+			let t = darkValues[false];
+			darkValues[false]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;
+			darkValues[true]["--"+cl+"Radius"] = t["--"+cl+"Radius"] * 2.5
+			darkValues[true]["--"+cl+"Fill"] = `url(#${cl}-fill)`;
+		});
+		
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
 		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
 		let isDark = sessionStorage.getItem("isDark") || true;
@@ -153,6 +218,49 @@
 	</script>
 </head>
 	<body>
+	<svg width="40px" height="40px" style="position:absolute;">
+		<defs id="defs-svg">
+		</defs>
+	</svg>
+	<script>
+		const SVG_NS = "http://www.w3.org/2000/svg";
+		const defsContainer = document.getElementById("defs-svg");
+
+		Object.keys(window.colors).forEach(cl => {
+			const radialDef = document.createElementNS(SVG_NS, "radialGradient");
+			radialDef.setAttribute("id", cl + "-fill");
+			radialDef.setAttribute("cx", "50%");
+			radialDef.setAttribute("cy", "50%");
+			radialDef.setAttribute("r", "50%");
+
+			const stop1 = document.createElementNS(SVG_NS, "stop");
+			stop1.setAttribute("offset", "0%");
+			stop1.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
+			
+			const stop2 = document.createElementNS(SVG_NS, "stop");
+			stop2.setAttribute("offset", "40%");
+			stop2.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
+			
+			const stop3 = document.createElementNS(SVG_NS, "stop");
+			stop3.setAttribute("offset", "41%");
+			stop3.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 1)`);
+
+			const stop4 = document.createElementNS(SVG_NS, "stop");
+			stop4.setAttribute("offset", "45%");
+			stop4.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 0.3)`);
+			
+			const stop5 = document.createElementNS(SVG_NS, "stop");
+			stop5.setAttribute("offset", "100%");
+			stop5.setAttribute("stop-color", "hsla(0, 0%, 100%, 0.0)");
+
+			radialDef.appendChild(stop1);
+			radialDef.appendChild(stop2);
+			radialDef.appendChild(stop3);
+			radialDef.appendChild(stop4);
+			radialDef.appendChild(stop5);
+			defsContainer.appendChild(radialDef);
+		});
+	</script>
 	<div id="svg-container">
 		<div id="bg-html" class="symBg hidden"></div>
 		<div id="bg-css" class="symBg hidden"></div>
@@ -348,6 +456,7 @@
 
 
 			window.adjacencyMap = new Map();
+			
 			graph.links.forEach(link => {
 				if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
 				adjacencyMap.get(link.source.id).push(link);
@@ -360,7 +469,7 @@
 				.enter().append("circle")
 				.attr("class", d => getFileTypeD(d.id)+" static")
 				//todo
-				//.on("mouseover", sendWave)
+				.on("mouseover", sendWave)
 				.on("mouseenter", (event, d) => {
 					labels.filter(l => l.id === d.id)
 						.transition()
@@ -654,7 +763,6 @@
 			}
 		});
 	</script>
-
 	</body>
 </html>
 
