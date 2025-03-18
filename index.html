@@ -217,9 +217,10 @@
 		let isDark = sessionStorage.getItem("isDark") || true;
 		toggleMode(isDark);
 	</script>
+	
 </head>
 	<body>
-	<svg width="0" height="0" style="position:absolute;">
+	<svg class="hidden" width="0" height="0" style="position:fixed;">
 		<defs id="defs-svg">
 		</defs>
 	</svg>
@@ -404,7 +405,6 @@
 		const minDistance = 30;
 		
 		setClassesBg();
-
 		function getFileType(filename) {
 			if (filename.endsWith(".html")) return "html";
 			if (filename.endsWith(".css")) return "css";
