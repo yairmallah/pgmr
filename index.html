@@ -236,24 +236,24 @@
 			radialDef.setAttribute("r", "50%");
 
 			const stop1 = document.createElementNS(SVG_NS, "stop");
-			stop1.setAttribute("offset", "0%");
+			stop1.setAttribute("offset", "40%");
 			stop1.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
 			
 			const stop2 = document.createElementNS(SVG_NS, "stop");
 			stop2.setAttribute("offset", "40%");
-			stop2.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
+			stop2.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 0.8)`);
 			
 			const stop3 = document.createElementNS(SVG_NS, "stop");
-			stop3.setAttribute("offset", "41%");
-			stop3.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 1)`);
+			stop3.setAttribute("offset", "43%");
+			stop3.setAttribute("stop-color", `hsla(120, 0%, 100%, 1)`);
 
 			const stop4 = document.createElementNS(SVG_NS, "stop");
 			stop4.setAttribute("offset", "45%");
-			stop4.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 0.3)`);
+			stop4.setAttribute("stop-color", `hsla(120, 0%, 70%, 0.3)`);
 			
 			const stop5 = document.createElementNS(SVG_NS, "stop");
 			stop5.setAttribute("offset", "100%");
-			stop5.setAttribute("stop-color", "hsla(0, 0%, 100%, 0.0)");
+			stop5.setAttribute("stop-color", "hsla(120, 100%, 70%, 0.0)");
 
 			radialDef.appendChild(stop1);
 			radialDef.appendChild(stop2);
