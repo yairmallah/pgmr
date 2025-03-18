@@ -758,7 +758,7 @@
 				if (height > width){
 					return (alpha) => {
 						graph.nodes.forEach((node) => {
-							if (node.external === 1) {
+							if (node.external === "external") {
 								node.x = width - offs;
 							}
 						});
@@ -766,7 +766,7 @@
 				} else {
 					return (alpha) => {
 						graph.nodes.forEach((node) => {
-							if (node.external === 1) {
+							if (node.external === "external") {
 								node.y = height - offs;
 							}
 						});
