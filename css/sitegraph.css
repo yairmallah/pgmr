@@ -296,7 +296,7 @@ path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--mp4H)), var
 path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--txtH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--otherH)), var(--pathSaturation), var(--pathLightness));}
 .wave{
-	r: vsr(--waveRadius);
+	r: var(--waveRadius);
 	/*fill: hsla(72, 100%, 75%,1);*/
 	fill:var(--waveFill);
 	stroke-width: var(--waveStroke);
