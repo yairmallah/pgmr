@@ -759,7 +759,7 @@
 					return (alpha) => {
 						graph.nodes.forEach((node) => {
 							if (node.external === "external") {
-								node.x = width - offs;
+								node.fx = width - offs;
 							}
 						});
 					};
@@ -767,7 +767,7 @@
 					return (alpha) => {
 						graph.nodes.forEach((node) => {
 							if (node.external === "external") {
-								node.y = height - offs;
+								node.fy = height - offs;
 							}
 						});
 					};
