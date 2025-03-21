@@ -117,6 +117,18 @@ circle {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+.code::-webkit-scrollbar {
+width: 10px;
+}
+/* Handle */
+.code::-webkit-scrollbar-thumb {
+background: #333; 
+box-shadow: inset 0px 0px 2px 2px #000;
+}
+/* Handle on hover */
+.code::-webkit-scrollbar-thumb:hover {
+background: #999; 
+}
 
 .hidden {
 	visibility: hidden;
