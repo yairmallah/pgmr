@@ -1,7 +1,9 @@
 :root{
 	--invBG:hsla(50, 50%, 95%, 0.85);
 	--invTXT:black;
-	--invTxtLightness:42%
+	--invTxtLightness:42%;
+	--invScrollbarColor:#ccc;
+	--invScrollbarHover:#666;
 }
 
 body{
@@ -214,11 +216,11 @@ width: 10px;
 }
 /* Handle */
 #main::-webkit-scrollbar-thumb {
-background: #ccc; 
-box-shadow: inset 0px 0px 2px 2px #eee;
+background: var(--invScrollbarColor);
+box-shadow: inset 0px 0px 2px 2px var(--invBG);
 }
 /* Handle on hover */
 #main::-webkit-scrollbar-thumb:hover {
-background: #999; 
+background: var(--invScrollbarHover); 
 }
 /* end scrollbar */
