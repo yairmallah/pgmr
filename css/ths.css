@@ -1,6 +1,7 @@
 :root{
 	--invBG:hsla(50, 50%, 95%, 0.85);
 	--invTXT:black;
+	--invTxtLightness:42%
 }
 
 body{
@@ -64,19 +65,19 @@ body{
     font-size: 12px;
 }
 #main .bterm{
-	color: hsl(120, 100%, 40%);
+	color: hsl(var(--termH), 100%, var(--invTxtLightness));
 }
 #main .bmath{
-	color: hsl(0, 100%, 40%);
+	color: hsl(var(--mathH), 100%, var(--invTxtLightness));
 }
 #main .bspc{
-	color: hsl(288, 100%, 40%);
+	color: hsl(var(--spcH), 100%, var(--invTxtLightness));
 }
 #main .bmus{
-	color: hsl(216, 100%, 40%);
+	color: hsl(var(--musH), 100%, var(--invTxtLightness));
 }
 #main .bmyt{
-	color: hsl(72, 100%, 40%);
+	color: hsl(var(--mytH), 100%, var(--invTxtLightness));
 }
 
 #footnotes {
