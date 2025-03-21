@@ -168,6 +168,16 @@ svg{
 	padding:0;
 	font-size:13px;
 }
+#code-preview::-webkit-scrollbar {
+width: 10px;
+}
+#code-preview::-webkit-scrollbar-thumb {
+background: #555; 
+box-shadow: inset 0px 0px 2px 2px #2d2d2d;;
+}
+#code-preview::-webkit-scrollbar-thumb:hover {
+background: #999; 
+}
 #img-preview{
 	display:none;
 	max-height: 100%;
