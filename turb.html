@@ -13,12 +13,16 @@
 			Object.assign(darkValues[false],{
 				"--invBG":darkValues[true]["--bgBody"],
 				"--invTXT":darkValues[true]["--textColor"],
-				"--invTxtLightness":darkValues[true]["--txtLightness"]
+				"--invTxtLightness":darkValues[true]["--txtLightness"],
+				"--invScrollbarColor":darkValues[true]["--scrollbarColor"],
+				"--invScrollbarHover":darkValues[true]["--scrollbarHover"]
 			});
 			Object.assign(darkValues[true],{
 				"--invBG":darkValues[false]["--bgBody"],
 				"--invTXT":darkValues[false]["--textColor"],
-				"--invTxtLightness":darkValues[false]["--txtLightness"]
+				"--invTxtLightness":darkValues[false]["--txtLightness"],
+				"--invScrollbarColor":darkValues[false]["--scrollbarColor"],
+				"--invScrollbarHover":darkValues[false]["--scrollbarHover"]
 			});
 		</script>
 		<script type="module" src="navLogic.js"></script>
