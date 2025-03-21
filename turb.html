@@ -12,11 +12,13 @@
 			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
 			Object.assign(darkValues[false],{
 				"--invBG":"black",
-				"--invTXT":"white"
+				"--invTXT":"white",
+				"--invTxtLightness":darkValues[true]["--txtLightness"]
 			});
 			Object.assign(darkValues[true],{
 				"--invBG":"hsl(50, 50%, 95%)",
-				"--invTXT":"black"
+				"--invTXT":"black",
+				"--invTxtLightness":darkValues[false]["--txtLightness"]
 			});
 		</script>
 		<script type="module" src="navLogic.js"></script>
