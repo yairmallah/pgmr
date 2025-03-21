@@ -11,13 +11,13 @@
 		<script type="module">
 			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
 			Object.assign(darkValues[false],{
-				"--invBG":"black",
-				"--invTXT":"white",
+				"--invBG":darkValues[true]["--bgBody"],
+				"--invTXT":darkValues[true]["--textColor"],
 				"--invTxtLightness":darkValues[true]["--txtLightness"]
 			});
 			Object.assign(darkValues[true],{
-				"--invBG":"hsl(50, 50%, 95%)",
-				"--invTXT":"black",
+				"--invBG":darkValues[false]["--bgBody"],
+				"--invTXT":darkValues[false]["--textColor"],
 				"--invTxtLightness":darkValues[false]["--txtLightness"]
 			});
 		</script>
