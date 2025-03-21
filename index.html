@@ -88,12 +88,13 @@
 					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
 				}
 		});
-				window.colors = specificColors;
+		window.colors = specificColors;
 
 	</script>
 	
 	<script type="module">
-		import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
+		import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
+		window.darkValues = darkValues;
 		Object.assign(darkValues[false],{
 			"--htmlH":40,
 			"--cssH":180,
@@ -218,309 +219,406 @@
 			darkValues[true]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;;
 		});
 		
+		
+		const toggleMode=(isDark)=>{
+			Object.keys(darkValues[isDark]).forEach(varMode => {
+				const root = document.documentElement;
+				root.style.setProperty(varMode, darkValues[isDark][varMode]);
+			});
+			sessionStorage.setItem("isDark", isDark);
+			if (simulationSVG){
+				if (isDark){
+					simulationSVG.selectAll("path").each(function(d) {
+						const path = segmentedPath(d.source, d.target);
+						window.linkPaths[[d.source.id, d.target.id]] = path;
+						const line = d3.select(this);
+						const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+						line.attr("d", dAttr);
+					});
+				}else {
+					simulationSVG.selectAll("path").each(function(d) {
+						const path = segmentedPathMidDig(d.source, d.target);
+						window.linkPaths[[d.source.id, d.target.id]] = path;
+						const line = d3.select(this);
+						const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+						line.attr("d", dAttr);
+					});
+				}
+			}
+		};
+		
 		document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
 		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
 		let isDark = sessionStorage.getItem("isDark") || true;
 		toggleMode(isDark);
+		
 	</script>
 	
 </head>
 	<body>
-	<svg class="hidden" width="0" height="0" style="position:fixed;">
-		<defs id="defs-svg">
-			<radialGradient id="wave-fill" cx="50%" cy="50%" r="50%">
-				<stop offset="25%" stop-color="hsla(72, 100%, 75%,1)"/>
-				<stop offset="25%" stop-color="hsla(72,100%,85%,0.7)"/>
-				<stop offset="100%" stop-color="hsla(120,100%,85%,0)"/>
-			</radialGradient>
-		</defs>
-	</svg>
-	<script>
-		const SVG_NS = "http://www.w3.org/2000/svg";
-		const defsContainer = document.getElementById("defs-svg");
+		<svg class="hidden" width="0" height="0" style="position:fixed;">
+			<defs id="defs-svg">
+				<radialGradient id="wave-fill" cx="50%" cy="50%" r="50%">
+					<stop offset="25%" stop-color="hsla(72, 100%, 75%,1)"/>
+					<stop offset="25%" stop-color="hsla(72,100%,85%,0.7)"/>
+					<stop offset="100%" stop-color="hsla(120,100%,85%,0)"/>
+				</radialGradient>
+			</defs>
+		</svg>
+		<script id="wave-color-setup">
+			const SVG_NS = "http://www.w3.org/2000/svg";
+			const defsContainer = document.getElementById("defs-svg");
 
-		Object.keys(window.colors).forEach(cl => {
-			const radialDef = document.createElementNS(SVG_NS, "radialGradient");
-			radialDef.setAttribute("id", cl + "-fill");
-			radialDef.setAttribute("cx", "50%");
-			radialDef.setAttribute("cy", "50%");
-			radialDef.setAttribute("r", "50%");
+			Object.keys(window.colors).forEach(cl => {
+				const radialDef = document.createElementNS(SVG_NS, "radialGradient");
+				radialDef.setAttribute("id", cl + "-fill");
+				radialDef.setAttribute("cx", "50%");
+				radialDef.setAttribute("cy", "50%");
+				radialDef.setAttribute("r", "50%");
 
-			const stop1 = document.createElementNS(SVG_NS, "stop");
-			stop1.setAttribute("offset", "40%");
-			stop1.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
-			
-			const stop2 = document.createElementNS(SVG_NS, "stop");
-			stop2.setAttribute("offset", "40%");
-			stop2.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 0.8)`);
-			
-			const stop3 = document.createElementNS(SVG_NS, "stop");
-			stop3.setAttribute("offset", "43%");
-			stop3.setAttribute("stop-color", `hsla(120, 0%, 100%, 1)`);
+				const stop1 = document.createElementNS(SVG_NS, "stop");
+				stop1.setAttribute("offset", "40%");
+				stop1.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 75%, 0.8)`);
+				
+				const stop2 = document.createElementNS(SVG_NS, "stop");
+				stop2.setAttribute("offset", "40%");
+				stop2.setAttribute("stop-color", `hsla(${window.colors[cl].h}, 100%, 100%, 0.8)`);
+				
+				const stop3 = document.createElementNS(SVG_NS, "stop");
+				stop3.setAttribute("offset", "43%");
+				stop3.setAttribute("stop-color", `hsla(120, 0%, 100%, 1)`);
 
-			const stop4 = document.createElementNS(SVG_NS, "stop");
-			stop4.setAttribute("offset", "45%");
-			stop4.setAttribute("stop-color", `hsla(120, 0%, 70%, 0.3)`);
-			
-			const stop5 = document.createElementNS(SVG_NS, "stop");
-			stop5.setAttribute("offset", "100%");
-			stop5.setAttribute("stop-color", "hsla(120, 100%, 70%, 0.0)");
+				const stop4 = document.createElementNS(SVG_NS, "stop");
+				stop4.setAttribute("offset", "45%");
+				stop4.setAttribute("stop-color", `hsla(120, 0%, 70%, 0.3)`);
+				
+				const stop5 = document.createElementNS(SVG_NS, "stop");
+				stop5.setAttribute("offset", "100%");
+				stop5.setAttribute("stop-color", "hsla(120, 100%, 70%, 0.0)");
 
-			radialDef.appendChild(stop1);
-			radialDef.appendChild(stop2);
-			radialDef.appendChild(stop3);
-			radialDef.appendChild(stop4);
-			radialDef.appendChild(stop5);
-			defsContainer.appendChild(radialDef);
-		});
-	</script>
-	<div id="svg-container">
-		<div id="bg-html" class="symBg hidden"></div>
-		<div id="bg-css" class="symBg hidden"></div>
-		<div id="bg-js" class="symBg hidden"></div>
-		<div id="bg-img" class="symBg hidden"></div>
-		<div id="bg-txt" class="symBg hidden"></div>
-	</div>
-	<div id="display-layout">
-		<div id="bgc-html" class="smBg"></div>
-		<div id="bgc-css" class="smBg"></div>
-		<div id="bgc-js" class="smBg"></div>
-		<div id="bgc-img" class="smBg"></div>
-		<div id="bgc-txt" class="smBg"></div>
-	</div>
-	<div id="dark-button">
-		<div id="toggle-light"></div>
-		<div id="toggle-dark"></div>
-	</div>
-	<div id="page-preview-container">
-		<div id="page-preview-wrapper">
-			<iframe id="page-preview" src="" title="page preview"></iframe>
-			<pre id="code-preview" class="language-js" data-url=""></pre>
-			<img id="img-preview" src=""></img>
-			<video id="vid-preview" controls>
-				<source id="vid-src" src="" type="video/mp4">
-				Your browser does not support the video tag.
-			</video>
+				radialDef.appendChild(stop1);
+				radialDef.appendChild(stop2);
+				radialDef.appendChild(stop3);
+				radialDef.appendChild(stop4);
+				radialDef.appendChild(stop5);
+				defsContainer.appendChild(radialDef);
+			});
+		</script>
+		<div id="svg-container">
+			<div id="bg-html" class="symBg hidden"></div>
+			<div id="bg-css" class="symBg hidden"></div>
+			<div id="bg-js" class="symBg hidden"></div>
+			<div id="bg-img" class="symBg hidden"></div>
+			<div id="bg-txt" class="symBg hidden"></div>
 		</div>
-		
-		<button id="closeBtn" onclick="hidePreview()">[X]</button>
-		<button id="openBtn" onclick="openPreview()">
-			<span class="open">[↗]</span>
-		</button>
-	</div>
-	<script id="layout-setup">
-		const gridSize = 50;
-		document.documentElement.style.setProperty('gridSize', gridSize+'px');
-		const offs = 30;
-		const width = document.getElementById("svg-container").offsetWidth;
-		const height = document.getElementById("svg-container").offsetHeight;
-		const bounds = {
-			html: { xMin: 0 + offs, xMax: width - offs,  
-					yMin: 0 + offs, yMax: height - offs},
-					
-			css: { xMin: 0 + offs, xMax: width/3 - offs, 
-					yMin: 0 + offs, yMax: height/2 - offs  },
-					
-			js: { xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
-					yMin: height/2 + offs, yMax: height*8/15 - offs  },
-					
-			img: { xMin: 0 + offs, xMax: width*9/10 - offs, 
-					yMin: height/1.7 + offs, yMax: height - offs  },
-									
-			txt: { xMin: width*9/10 + offs, xMax: width - offs, 
-					yMin: height*2/3 + offs, yMax: height - offs  },
-					
-			other: { xMin: 0 + offs, xMax: width - offs, 
-					yMin: 0 + offs, yMax: height - offs  }
-		};
-		
-		if (height >= width*1.2){
-			bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
-							yMin: 0+ offs, yMax:height / 3 - offs};
-			bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
-							yMin: 0+ offs, yMax: height * 5/9 - offs};
-			bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
-							yMin: height / 3+ offs, yMax: height* 5/9 - offs};
-			bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
-							yMin: height * 5 / 9 + offs, yMax: height - offs};
-			bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
-							yMin: height / 3 + offs, yMax: height - offs};
-		}else if (width >= height*1.2){
-			bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
-							xMax: width / 3 - offs,		yMax: height*2/3 - offs};
-							
-			bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
-							xMax: width / 3 - offs,		yMax: height - offs};
-							
-			bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
-							xMax: width / 2 - offs,		yMax: height / 3 - offs};
+		<div id="display-layout">
+			<div id="bgc-html" class="smBg"></div>
+			<div id="bgc-css" class="smBg"></div>
+			<div id="bgc-js" class="smBg"></div>
+			<div id="bgc-img" class="smBg"></div>
+			<div id="bgc-txt" class="smBg"></div>
+		</div>
+		<div id="dark-button">
+			<div id="toggle-light"></div>
+			<div id="toggle-dark"></div>
+		</div>
+		<div id="page-preview-container">
+			<div id="page-preview-wrapper">
+				<iframe id="page-preview" src="" title="page preview"></iframe>
+				<pre id="code-preview" class="language-js" data-url=""></pre>
+				<img id="img-preview" src=""></img>
+				<video id="vid-preview" controls>
+					<source id="vid-src" src="" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
 			
-			bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
-							xMax: width / 2 - offs,		yMax: height - offs};
-							
-			bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
-							xMax: width - offs,			yMax: height - offs};
-		}
+			<button id="closeBtn" onclick="hidePreview()">[X]</button>
+			<button id="openBtn" onclick="openPreview()">
+				<span class="open">[↗]</span>
+			</button>
+		</div>
+		<script id="layout-setup">
+			const gridSize = 50;
+			document.documentElement.style.setProperty('gridSize', gridSize+'px');
+			const offs = 30;
+			const width = document.getElementById("svg-container").offsetWidth;
+			const height = document.getElementById("svg-container").offsetHeight;
+			const bounds = {
+				html: { xMin: 0 + offs, xMax: width - offs,  
+						yMin: 0 + offs, yMax: height - offs},
+						
+				css: { xMin: 0 + offs, xMax: width/3 - offs, 
+						yMin: 0 + offs, yMax: height/2 - offs  },
+						
+				js: { xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
+						yMin: height/2 + offs, yMax: height*8/15 - offs  },
+						
+				img: { xMin: 0 + offs, xMax: width*9/10 - offs, 
+						yMin: height/1.7 + offs, yMax: height - offs  },
+										
+				txt: { xMin: width*9/10 + offs, xMax: width - offs, 
+						yMin: height*2/3 + offs, yMax: height - offs  },
+						
+				other: { xMin: 0 + offs, xMax: width - offs, 
+						yMin: 0 + offs, yMax: height - offs  }
+			};
+			
+			if (height >= width*1.2){
+				bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
+								yMin: 0+ offs, yMax:height / 3 - offs};
+				bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
+								yMin: 0+ offs, yMax: height * 5/9 - offs};
+				bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
+								yMin: height / 3+ offs, yMax: height* 5/9 - offs};
+				bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
+								yMin: height * 5 / 9 + offs, yMax: height - offs};
+				bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
+								yMin: height / 3 + offs, yMax: height - offs};
+			}else if (width >= height*1.2){
+				bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
+								xMax: width / 3 - offs,		yMax: height*2/3 - offs};
+								
+				bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
+								xMax: width / 3 - offs,		yMax: height - offs};
+								
+				bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
+								xMax: width / 2 - offs,		yMax: height / 3 - offs};
+				
+				bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
+								xMax: width / 2 - offs,		yMax: height - offs};
+								
+				bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+								xMax: width - offs,			yMax: height - offs};
+			}
 
-		const areas = {
-			html: { x: width / 3, y: height / 2 },
-			css: { x: width / 6, y: height / 3 },
-			js: { x: (5 * width) / 6, y: height / 3 },
-			img: { x: width / 4, y: (2 * height) / 3 },
-			txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
-		};
-		for (let i = 0; i < Object.keys(areas).length; i++){
-			const bound = bounds[Object.keys(areas)[i]];
-			areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
-			areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
-		}
-		
-		function decideColor(srcClss, trgClss){
-			return Math.floor(Math.random()*(window.colors[srcClss].h - window.colors[trgClss].h)) + window.colors[trgClss].h;
-		}
-		function setClassesBg(){
-			for (let i = 0; i < Object.keys(bounds).length; i++){
-				const cl = Object.keys(bounds)[i];
-				const clBackground = document.getElementById("bg-"+cl);
-				if (clBackground){
-					clBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
-					clBackground.style.border = `2px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
-					clBackground.style.left = `${bounds[cl].xMin}px`;
-					clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
-					clBackground.style.top = `${bounds[cl].yMin}px`;
-					clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
-				}
-				const clcBackground = document.getElementById("bgc-"+cl);
-				const ch = gridSize*8/10;
-				const cw = gridSize*8/10;
-				if (clcBackground){
-					clcBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
-					clcBackground.style.border = `0.5px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
-					clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
-					clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
-					clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
-					clcBackground.style.height = `${(bounds[cl].yMax-bounds[cl].yMin)/height*ch}px`;
+			const areas = {
+				html: { x: width / 3, y: height / 2 },
+				css: { x: width / 6, y: height / 3 },
+				js: { x: (5 * width) / 6, y: height / 3 },
+				img: { x: width / 4, y: (2 * height) / 3 },
+				txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
+			};
+			for (let i = 0; i < Object.keys(areas).length; i++){
+				const bound = bounds[Object.keys(areas)[i]];
+				areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
+				areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
+			}
+			
+			function decideColor(srcClss, trgClss){
+				return Math.floor(Math.random()*(window.colors[srcClss].h - window.colors[trgClss].h)) + window.colors[trgClss].h;
+			}
+			function setClassesBg(){
+				for (let i = 0; i < Object.keys(bounds).length; i++){
+					const cl = Object.keys(bounds)[i];
+					const clBackground = document.getElementById("bg-"+cl);
+					if (clBackground){
+						clBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
+						clBackground.style.border = `2px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
+						clBackground.style.left = `${bounds[cl].xMin}px`;
+						clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
+						clBackground.style.top = `${bounds[cl].yMin}px`;
+						clBackground.style.height = `${bounds[cl].yMax-bounds[cl].yMin}px`;
+					}
+					const clcBackground = document.getElementById("bgc-"+cl);
+					const ch = gridSize*8/10;
+					const cw = gridSize*8/10;
+					if (clcBackground){
+						clcBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
+						clcBackground.style.border = `0.5px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
+						clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
+						clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
+						clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
+						clcBackground.style.height = `${(bounds[cl].yMax-bounds[cl].yMin)/height*ch}px`;
+					}
 				}
 			}
-		}
-		layoutButton=document.getElementById("display-layout");
-		layoutButton.addEventListener("click", () => {
-			layouts = document.getElementsByClassName('symBg');
-			for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
-		});
-	</script>
-
-	<script>
-		const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
-		console.log("height: ", height, " width: ", width);
-		const minDistance = 30;
-		
-		setClassesBg();
-		function getFileType(filename) {
-			if (filename.endsWith(".html")) return "html";
-			if (filename.endsWith(".css")) return "css";
-			if (filename.endsWith(".js")) return "js";
-			if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
-			if (filename.endsWith(".txt")) return "txt";
-			return "other";
-		}
-		function getFileTypeD(filename) {
-			return filename.split(".").slice(-1)[0];
-		}
-		
-		d3.json(json_add).then(graph => {
-			graph.nodes.forEach(d => {
-				d.class = getFileType(d.id);
-				d.bounds = bounds[d.class];
-				d.x = Math.floor(Math.random() * (d.bounds.xMax - d.bounds.xMin + 1)) + d.bounds.xMin;
-				d.y = Math.floor(Math.random() * (d.bounds.yMax - d.bounds.yMin + 1)) + d.bounds.yMin;
-			})
-		
-			const svg = d3.select("#svg-container")
-				.append("svg")
-				.attr("width", width)
-				.attr("height", height);
-
-			// alpha dependency, 1 > alpha >= 0.001 (~)
-			const simulation = d3.forceSimulation(graph.nodes)
-				.force("link", d3.forceLink(graph.links).id(d => d.id).strength(1).distance(300))
-				.force("charge", d3.forceManyBody().strength(-100))
-				.force("charge_html", manyBodyClass(400, "html"))
-				.force("bounds", forceBounds())
-				.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
-				.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
-				.force("boycottExt", boycottExt())
-				.force("grid", forceGrid(gridSize, 3))
-				.force('collide', d3.forceCollide(minDistance))
-			
-			const link = svg.selectAll("path")
-				.data(graph.links)
-				.enter().append("path")
-				.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
-				/*.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`)*/;
-			
-			//decideColor alternative
-			document.querySelectorAll('path').forEach(el => {
-				const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
-				const rangeId = Math.floor(Math.random()*(window.colors[clsId[1]].h - window.colors[clsId[0]].h));
-				el.style.setProperty('--index', rangeId);
+			layoutButton=document.getElementById("display-layout");
+			layoutButton.addEventListener("click", () => {
+				layouts = document.getElementsByClassName('symBg');
+				for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
 			});
-
-
-			window.adjacencyMap = new Map();
+		</script>
+		<script id="simulation-setup">
+			const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
+			console.log("height: ", height, " width: ", width);
+			const minDistance = 30;
 			
-			graph.links.forEach(link => {
-				if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
-				adjacencyMap.get(link.source.id).push(link);
-			});
-			const depth = graph.links.length;
-			console.log("graph depth: ", depth);
-
-			const node = svg.selectAll("circle")
-				.data(graph.nodes)
-				.enter().append("circle")
-				.attr("class", d => getFileTypeD(d.id)+" static " + d.external)
-				//todo
-				.on("mouseover", sendWave)
-				.on("mouseenter", (event, d) => {
-					labels.filter(l => l.id === d.id)
-						.transition()
-						.duration(300)
-						.attr("style", "display:block;");
-				})
-				.on("mouseleave", (event, d) => {
-					labels.filter(l => l.id === d.id)
-						.transition()
-						.duration(300)
-						.attr("style", " ");
-				})
-				.on("click", (event, d) => setPreviewPage(d))/*window.open(d.url, "_blank"))*/;
-
-			const labels = svg.selectAll("text")
-				.data(graph.nodes)
-				.enter().append("text")
-				.attr("dy", -15)
-				.attr("text-anchor", "middle")
-				.text(d => d.id);
-
-			simulation.on("tick", () => {
-				node									
-					.attr("cx", d => d.x)
-					.attr("cy", d => d.y);
+			setClassesBg();
+			function getFileType(filename) {
+				if (filename.endsWith(".html")) return "html";
+				if (filename.endsWith(".css")) return "css";
+				if (filename.endsWith(".js")) return "js";
+				if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
+				if (filename.endsWith(".txt")) return "txt";
+				return "other";
+			}
+			function getFileTypeD(filename) {
+				return filename.split(".").slice(-1)[0];
+			}
 			
-				link.each(function(d) {
-					const path = segmentedPath(d.source, d.target, gridSize);
-					const line = d3.select(this);
-					const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
-					line.attr("d", dAttr);
+			d3.json(json_add).then(graph => {
+				window.graph = graph;
+				graph.nodes.forEach(d => {
+					d.class = getFileType(d.id);
+					d.bounds = bounds[d.class];
+					d.x = Math.floor(Math.random() * (d.bounds.xMax - d.bounds.xMin + 1)) + d.bounds.xMin;
+					d.y = Math.floor(Math.random() * (d.bounds.yMax - d.bounds.yMin + 1)) + d.bounds.yMin;
+				})
+			
+				const svg = d3.select("#svg-container")
+					.append("svg")
+					.attr("width", width)
+					.attr("height", height);
+				window.simulationSVG = svg;
+
+				// alpha dependency, 1 > alpha >= 0.001 (~)
+				const simulation = d3.forceSimulation(graph.nodes)
+					.force("link", d3.forceLink(graph.links).id(d => d.id).strength(1).distance(300))
+					.force("charge", d3.forceManyBody().strength(-100))
+					.force("charge_html", manyBodyClass(400, "html"))
+					.force("bounds", forceBounds())
+					.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
+					.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(0.5))
+					.force("boycottExt", boycottExt())
+					.force("grid", forceGrid(gridSize, 3))
+					.force('collide', d3.forceCollide(minDistance))
+				
+				const link = simulationSVG.selectAll("path")
+					.data(graph.links)
+					.enter().append("path")
+					.attr("class", d => "pathS-"+getFileType(d.source.id) +" pathE-"+getFileType(d.target.id))
+					/*.attr("style", d => `stroke: hsl(${decideColor(getFileTypeD(d.source.id), getFileTypeD(d.target.id))}, 100%, 65%)`)*/;
+				
+				//decideColor alternative
+				document.querySelectorAll('path').forEach(el => {
+					const clsId = [el.classList[0].split("-")[1],el.classList[1].split("-")[1]];
+					const rangeId = Math.floor(Math.random()*(window.colors[clsId[1]].h - window.colors[clsId[0]].h));
+					el.style.setProperty('--index', rangeId);
 				});
 
-				labels
-					.attr("x", d => d.x)
-					.attr("y", d => d.y);
-			});
-			
 
+				window.adjacencyMap = new Map();
+				window.linkPaths = {};
+				
+				graph.links.forEach(link => {
+					if (!adjacencyMap.has(link.source.id)) adjacencyMap.set(link.source.id, []);
+					adjacencyMap.get(link.source.id).push(link);
+				});
+				const depth = graph.links.length;
+				console.log("graph depth: ", depth);
+
+				const node = simulationSVG.selectAll("circle")
+					.data(graph.nodes)
+					.enter().append("circle")
+					.attr("class", d => getFileTypeD(d.id)+" static " + d.external)
+					//todo
+					.on("mouseover", sendWave)
+					.on("mouseenter", (event, d) => {
+						labels.filter(l => l.id === d.id)
+							.transition()
+							.duration(300)
+							.attr("style", "display:block;");
+					})
+					.on("mouseleave", (event, d) => {
+						labels.filter(l => l.id === d.id)
+							.transition()
+							.duration(300)
+							.attr("style", " ");
+					})
+					.on("click", (event, d) => setPreviewPage(d))/*window.open(d.url, "_blank"))*/;
+
+				const labels = simulationSVG.selectAll("text")
+					.data(graph.nodes)
+					.enter().append("text")
+					.attr("dy", -15)
+					.attr("text-anchor", "middle")
+					.text(d => d.id);
+
+				simulation.on("tick", () => {
+					node									
+						.attr("cx", d => d.x)
+						.attr("cy", d => d.y);
+				
+					link.each(function(d) {
+						const path = segmentedPathMidDig(d.source, d.target);
+						window.linkPaths[[d.source.id, d.target.id]] = path;
+						const line = d3.select(this);
+						const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
+						line.attr("d", dAttr);
+					});
+
+					labels
+						.attr("x", d => d.x)
+						.attr("y", d => d.y);
+				});
+				
+				
+				function forceGrid(size, strength) {
+					return (alpha) => {
+						graph.nodes.forEach(d => {
+							const gridX = Math.round(d.x / size) * size;
+							const gridY = Math.round(d.y / size) * size;
+							if (alpha > 0.1){
+								d.vx += (gridX - d.x) * strength * alpha;
+								d.vy += (gridY - d.y) * strength * alpha;
+							} else{
+								d.x = gridX * (1 - alpha/1*10) + d.x * alpha/1*10;
+								d.y = gridY * (1 - alpha/1*10) + d.y * alpha/1*10;
+							}
+						});
+					};
+				}
+				function forceBounds() {
+					return function(alpha) {
+						for (const node of simulation.nodes()) {
+							node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
+							node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
+						}
+					};
+				}
+				
+				function manyBodyClass(strength, type) {
+					return (alpha) => {
+						graph.nodes.forEach((node) => {
+							if (node.class === type) {
+								graph.nodes.forEach((other) => {
+									if (other !== node && other.class === type) {
+										const dx = node.x - other.x;
+										const dy = node.y - other.y;
+										const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+										const force = (strength * alpha) / Math.pow(dist, 0.5);
+										node.vx += (dx / dist) * force;
+										node.vy += (dy / dist) * force;
+									}
+								});
+							}
+						});
+					};
+				}
+				function boycottExt() {
+					if (height > width){
+						return (alpha) => {
+							graph.nodes.forEach((node) => {
+								if (node.external === "external") {
+									node.fx = width - offs;
+								}
+							});
+						};
+					} else {
+						return (alpha) => {
+							graph.nodes.forEach((node) => {
+								if (node.external === "external") {
+									node.fy = height - offs;
+								}
+							});
+						};
+					}
+				}
+			});
+	</script>
+			
+		<script id="wave-functions">
 			/*function sendWave(event, d) {
 				const visited = new Set();
 				const speed = 0.3;
@@ -531,7 +629,7 @@
 					graph.links.forEach(link => {
 						if (link.source.id === source.id && !visited.has(link.target.id)) {
 							const path = segmentedPath(link.source, link.target, gridSize);
-							const dot = svg.append("circle")
+							const dot = simulationSVG.append("circle")
 								.attr("class", "wave w"+source.class)
 								.attr("cx", path[0].x)
 								.attr("cy", path[0].y);
@@ -555,137 +653,137 @@
 						}
 					});
 					// z-index
-					svg.selectAll("circle.static").raise();
-					svg.selectAll("text").raise();
+					simulationSVG.selectAll("circle.static").raise();
+					simulationSVG.selectAll("text").raise();
 				}
 				propagate(d);
 			}*/
 
-
 			function sendWave(event, d) {
-				const waveID = Date.now(); // Unique ID for this wave
-				const visited = new Set();
-				const speed = 0.3;
-				let maxDots = Math.min(depth*2, 250); // Pool size
-				let dotIndex = 0;
+						const waveID = Date.now(); // Unique ID for this wave
+						const visited = new Set();
+						const speed = 0.3;
+						let maxDots = Math.min(graph.links.length*2, 250); // Pool size
+						let dotIndex = 0;
 
-				// Create a fixed pool of dots
-				if (!window.dotPool) {
-					window.dotPool = Array.from({ length: maxDots }, () =>
-						svg.append("circle")
-							.attr("class", "wave")
-							.attr("r", 2)
-							.style("opacity", 0)
-					);
-				}
-
-				function getDot() {
-					let dot = window.dotPool[dotIndex];
-					const marker = dotIndex;
-					while (dot.activeWave){
-						dotIndex = (dotIndex + 1) % maxDots;
-						if (dotIndex == marker){
-							//push additional dots
-							/*const newDot = svg.append("circle")
-								.attr("class", "wave")
-								.attr("r", 2)
-								.style("opacity", 0);
-							dotPool.push(newDot);
-							dotIndex = maxDots;
-							dot = newDot;*/
-							break;
+						// Create a fixed pool of dots
+						if (!window.dotPool) {
+							window.dotPool = Array.from({ length: maxDots }, () =>
+								simulationSVG.append("circle")
+									.attr("class", "wave")
+									.attr("r", 2)
+									.style("opacity", 0)
+							);
 						}
-						dot = window.dotPool[dotIndex];
-					}
-					dotIndex = (dotIndex + 1) % maxDots;
-					dot.interrupt(); // Always stop previous animation //??
-					dot.activeWave = waveID;
-					return dot.style("opacity", 1);
-				}
-				
-				function propagate(source) {
-					if (visited.has(source.id)) return;
-					
-					visited.add(source.id);
-					const neighbors = adjacencyMap.get(source.id) || [];
-					neighbors.forEach(link => {
-						if (visited.has(link.target.id)) return;
 
-						const path = segmentedPath(link.source, link.target, gridSize);
-						const dot = getDot()
-							.attr("cx", path[0].x)
-							.attr("cy", path[0].y);
-						travel(dot, path, () => {
-							// Add a small delay between nodes to avoid recursive locking
-							setTimeout(() => propagate(link.target), 0);
-						});			
-					});
-					// Z-index
-					svg.selectAll("circle.static").raise();
-					svg.selectAll("text").raise();
-				}
-
-				function travel(dot, path, onComplete) {
-					const totalLength = path.slice(1).reduce((sum, p, i) => {
-						const dx = p.x - path[i].x;
-						const dy = p.y - path[i].y;
-						return sum + Math.sqrt(dx * dx + dy * dy);
-					}, 0);
-
-					const interpolator = d3.interpolate(0, totalLength);
-
-					dot.transition()
-						.duration(totalLength / speed)
-						.ease(d3.easeLinear)
-						.attrTween("cx", function () {
-							return function (t) {
-								if (dot.activeWave !== waveID) return dot.attr("cx");
-								let traveled = interpolator(t);
-								for (let i = 1; i < path.length; i++) {
-									const segmentLength = Math.sqrt(
-										Math.pow(path[i].x - path[i - 1].x, 2) +
-										Math.pow(path[i].y - path[i - 1].y, 2)
-									);
-									if (traveled <= segmentLength) {
-										const ratio = traveled / segmentLength;
-										return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
-									}
-									traveled -= segmentLength;
+						function getDot() {
+							let dot = window.dotPool[dotIndex];
+							const marker = dotIndex;
+							while (dot.activeWave){
+								dotIndex = (dotIndex + 1) % maxDots;
+								if (dotIndex == marker){
+									//push additional dots
+									/*const newDot = simulationSVG.append("circle")
+										.attr("class", "wave")
+										.attr("r", 2)
+										.style("opacity", 0);
+									dotPool.push(newDot);
+									dotIndex = maxDots;
+									dot = newDot;*/
+									break;
 								}
-								return path[path.length - 1].x;
-							};
-						})
-						.attrTween("cy", function () {
-							return function (t) {
-								if (dot.activeWave !== waveID) return dot.attr("cy");
-								let traveled = interpolator(t);
-								for (let i = 1; i < path.length; i++) {
-									const segmentLength = Math.sqrt(
-										Math.pow(path[i].x - path[i - 1].x, 2) +
-										Math.pow(path[i].y - path[i - 1].y, 2)
-									);
-									if (traveled <= segmentLength) {
-										const ratio = traveled / segmentLength;
-										return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
-									}
-									traveled -= segmentLength;
-								}
-								return path[path.length - 1].y;
-							};
-						})
-						.on("end", function () {
-							if (dot.activeWave === waveID) {
-								dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
+								dot = window.dotPool[dotIndex];
 							}
-							dot.activeWave = false;
-						});
-				}
-				propagate(d);
-			}
+							dotIndex = (dotIndex + 1) % maxDots;
+							dot.interrupt(); // Always stop previous animation //??
+							dot.activeWave = waveID;
+							return dot.style("opacity", 1);
+						}
+						
+						function propagate(source) {
+							if (visited.has(source.id)) return;
+							
+							visited.add(source.id);
+							const neighbors = window.adjacencyMap.get(source.id) || [];
+							neighbors.forEach(link => {
+								if (visited.has(link.target.id)) return;
 
+								const path = window.linkPaths[[link.source.id, link.target.id]];
+								const dot = getDot()
+									.attr("cx", path[0].x)
+									.attr("cy", path[0].y);
+								travel(dot, path, () => {
+									// Add a small delay between nodes to avoid recursive locking
+									setTimeout(() => propagate(link.target), 0);
+								});			
+							});
+							// Z-index
+							simulationSVG.selectAll("circle.static").raise();
+							simulationSVG.selectAll("text").raise();
+						}
 
+						function travel(dot, path, onComplete) {
+							const totalLength = path.slice(1).reduce((sum, p, i) => {
+								const dx = p.x - path[i].x;
+								const dy = p.y - path[i].y;
+								return sum + Math.sqrt(dx * dx + dy * dy);
+							}, 0);
+
+							const interpolator = d3.interpolate(0, totalLength);
+
+							dot.transition()
+								.duration(totalLength / speed)
+								.ease(d3.easeLinear)
+								.attrTween("cx", function () {
+									return function (t) {
+										if (dot.activeWave !== waveID) return dot.attr("cx");
+										let traveled = interpolator(t);
+										for (let i = 1; i < path.length; i++) {
+											const segmentLength = Math.sqrt(
+												Math.pow(path[i].x - path[i - 1].x, 2) +
+												Math.pow(path[i].y - path[i - 1].y, 2)
+											);
+											if (traveled <= segmentLength) {
+												const ratio = traveled / segmentLength;
+												return path[i - 1].x + (path[i].x - path[i - 1].x) * ratio;
+											}
+											traveled -= segmentLength;
+										}
+										return path[path.length - 1].x;
+									};
+								})
+								.attrTween("cy", function () {
+									return function (t) {
+										if (dot.activeWave !== waveID) return dot.attr("cy");
+										let traveled = interpolator(t);
+										for (let i = 1; i < path.length; i++) {
+											const segmentLength = Math.sqrt(
+												Math.pow(path[i].x - path[i - 1].x, 2) +
+												Math.pow(path[i].y - path[i - 1].y, 2)
+											);
+											if (traveled <= segmentLength) {
+												const ratio = traveled / segmentLength;
+												return path[i - 1].y + (path[i].y - path[i - 1].y) * ratio;
+											}
+											traveled -= segmentLength;
+										}
+										return path[path.length - 1].y;
+									};
+								})
+								.on("end", function () {
+									if (dot.activeWave === waveID) {
+										dot.transition().duration(300).style("opacity", 0).on("end", onComplete);
+									}
+									dot.activeWave = false;
+								});
+						}
+						propagate(d);
+					}
+		</script>
+
+		<script id="path-generator">
 			// 45 deg gen
-			function segmentedPath(source, target, size) {
+			function segmentedPath(source, target) {
 				const points = [{ x: source.x, y: source.y }];
 				let [x, y] = [source.x, source.y];
 				const targetX = target.x ;
@@ -711,70 +809,134 @@
 				points.push({ x: targetX, y: targetY });
 				return points;
 			}
+				
+		
+			function lineIntersectsBox(x1, y1, x2, y2, box) {
+				const { xMin, xMax, yMin, yMax } = box;
 
-			function forceGrid(size, strength) {
-				return (alpha) => {
-					graph.nodes.forEach(d => {
-						const gridX = Math.round(d.x / size) * size;
-						const gridY = Math.round(d.y / size) * size;
-						if (alpha > 0.1){
-							d.vx += (gridX - d.x) * strength * alpha;
-							d.vy += (gridY - d.y) * strength * alpha;
-						} else{
-							d.x = gridX * (1 - alpha/1*10) + d.x * alpha/1*10;
-							d.y = gridY * (1 - alpha/1*10) + d.y * alpha/1*10;
-						}
-					});
-				};
-			}
-			function forceBounds() {
-				return function(alpha) {
-					for (const node of simulation.nodes()) {
-						node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
-						node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
-					}
-				};
-			}
-			
-			function manyBodyClass(strength, type) {
-				return (alpha) => {
-					graph.nodes.forEach((node) => {
-						if (node.class === type) {
-							graph.nodes.forEach((other) => {
-								if (other !== node && other.class === type) {
-									const dx = node.x - other.x;
-									const dy = node.y - other.y;
-									const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-									const force = (strength * alpha) / Math.pow(dist, 0.5);
-									node.vx += (dx / dist) * force;
-									node.vy += (dy / dist) * force;
-								}
-							});
-						}
-					});
-				};
-			}
-			function boycottExt() {
-				if (height > width){
-					return (alpha) => {
-						graph.nodes.forEach((node) => {
-							if (node.external === "external") {
-								node.fx = width - offs;
-							}
-						});
-					};
-				} else {
-					return (alpha) => {
-						graph.nodes.forEach((node) => {
-							if (node.external === "external") {
-								node.fy = height - offs;
-							}
-						});
-					};
+				// If both points are on one side of the box, no intersection
+				if (x1 < xMin && x2 < xMin) return false;
+				if (x1 > xMax && x2 > xMax) return false;
+				if (y1 < yMin && y2 < yMin) return false;
+				if (y1 > yMax && y2 > yMax) return false;
+
+				// Check if either point is inside the box
+				if (x1 >= xMin && x1 <= xMax && y1 >= yMin && y1 <= yMax) return true;
+				if (x2 >= xMin && x2 <= xMax && y2 >= yMin && y2 <= yMax) return true;
+
+				// Otherwise, check for intersection with each box edge
+				const edges = [
+					[[xMin, yMin], [xMax, yMin]], // top
+					[[xMax, yMin], [xMax, yMax]], // right
+					[[xMax, yMax], [xMin, yMax]], // bottom
+					[[xMin, yMax], [xMin, yMin]]  // left
+				];
+
+				for (let [[ex1, ey1], [ex2, ey2]] of edges) {
+					if (segmentsIntersect(x1, y1, x2, y2, ex1, ey1, ex2, ey2)) return true;
 				}
+
+				return false;
 			}
-		});
-	</script>
+
+			// Helper: do two line segments intersect?
+			function segmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y4) {
+				function ccw(ax, ay, bx, by, cx, cy) {
+					return (cy - ay) * (bx - ax) > (by - ay) * (cx - ax);
+				}
+				return (
+					ccw(x1, y1, x3, y3, x4, y4) !== ccw(x2, y2, x3, y3, x4, y4) &&
+					ccw(x1, y1, x2, y2, x3, y3) !== ccw(x1, y1, x2, y2, x4, y4)
+				);
+			}
+
+
+			function segmentedPathMidDig(source, target, ) {
+				let [x, y] = [source.x, source.y];
+				const targetX = target.x, targetY = target.y;
+
+				let midPoints = [{ x: source.x, y: source.y }];
+				const dx = targetX - x;
+				const dy = targetY - y;
+				const digLen = Math.min(Math.abs(dx), Math.abs(dy));
+
+				if (Math.abs(dx) > Math.abs(dy)) {
+					let midX = x + dx/2;
+					midPoints.push({ x: midX - digLen * Math.sign(dx)/2, y: y });
+					midPoints.push({ x: midX + digLen * Math.sign(dx)/2, y: y + digLen * Math.sign(dy)});
+				} else {
+					let midY = y + dy/2;
+					midPoints.push({ x: x, y: midY - digLen * Math.sign(dy)/2 });
+					midPoints.push({ x: x + digLen * Math.sign(dx), y: midY + digLen * Math.sign(dy)/2 });
+				}
+				midPoints.push({ x: targetX, y: targetY });
+				
+				return midPoints;
+			}
+
+				
+			function segmentedPathRecursive(source, target, depth = 0, maxDepth = 4) {
+				allNodes = graph.nodes;
+				const points = [{ x: source.x, y: source.y }];
+				let [x, y] = [source.x, source.y];
+				const targetX = target.x, targetY = target.y;
+
+				// Generate initial path: L-shape via 45°/90° logic
+				let midPoints = [];
+
+				if (Math.abs(targetX - x) > Math.abs(targetY - y)) {
+					let midX = x + (targetX - x) / 2;
+					midPoints.push({ x: midX, y: y }, { x: midX, y: targetY });
+				} else {
+					let midY = y + (targetY - y) / 2;
+					midPoints.push({ x: x, y: midY }, { x: targetX, y: midY });
+				}
+				midPoints.push({ x: targetX, y: targetY });
+
+				// Check segments for collisions
+				let fullPath = [points[0], ...midPoints];
+				for (let i = 0; i < fullPath.length - 1; i++) {
+					let [p1, p2] = [fullPath[i], fullPath[i + 1]];
+					for (let node of allNodes) {
+						if (node.id === source.id || node.id === target.id) continue;
+						let padding = darkValues[false][`--${node.class}Radius`] + 10;
+						const box = {
+							xMin: node.x - padding,
+							xMax: node.x + padding,
+							yMin: node.y - padding,
+							yMax: node.y + padding
+						};
+						if (lineIntersectsBox(p1.x, p1.y, p2.x, p2.y, box)) {
+							// Collision! Insert detour point before hitting node
+							if (depth >= maxDepth) {
+								// Stop recursion if too deep
+								return [points[0], { x: targetX, y: targetY }];
+							}
+
+							// Calculate detour point (perpendicular)
+							let detour;
+							if (Math.abs(p2.x - p1.x) > Math.abs(p2.y - p1.y)) {
+								// Horizontal segment — detour vertically
+								const dir = (p1.y < node.y) ? -1 : 1;
+								detour = { x: p1.x, y: p1.y + dir * padding * 2 };
+							} else {
+								// Vertical segment — detour horizontally
+								const dir = (p1.x < node.x) ? -1 : 1;
+								detour = { x: p1.x + dir * padding * 2, y: p1.y };
+							}
+
+							// Recurse from source → detour, then detour → target
+							const firstHalf = segmentedPathRecursive(source, detour, depth + 1, maxDepth);
+							const secondHalf = segmentedPathRecursive(detour, target, depth + 1, maxDepth);
+							// Merge paths (avoid duplicate detour point)
+							return [...firstHalf.slice(0, -1), ...secondHalf];
+						}
+					}
+				}
+				// No collisions, return clean path
+				return fullPath;
+			}		
+		</script>
 	</body>
 </html>
 
