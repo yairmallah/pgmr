@@ -98,11 +98,6 @@ svg{
 	height:calc(var(--gridSize)*8/10);
 	top:calc(var(--gridSize)*11/10);
 	left:calc(var(--gridSize)/10);
-	border-radius: 50%;
-	overflow:hidden;
-	border: 2px solid var(--textColor);
-	opacity:0.7;
-	rotate: 0 0 1 45deg;
 }
 #toggle-dark{
 	height:50%;
