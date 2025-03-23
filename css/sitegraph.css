@@ -93,21 +93,11 @@ svg{
 	opacity:0.7;
 }
 #dark-button{
-	position:fixed;
+	/*position:fixed;
 	width:calc(var(--gridSize)*8/10);
 	height:calc(var(--gridSize)*8/10);
 	top:calc(var(--gridSize)*11/10);
-	left:calc(var(--gridSize)/10);
-}
-#toggle-dark{
-	height:50%;
-	width:100%;
-	background-color:#000;
-}
-#toggle-light{
-	height:50%;
-	width:100%;
-	background-color:#fff;
+	left:calc(var(--gridSize)/10);*/
 }
 #page-preview-container{
 	position:fixed;
