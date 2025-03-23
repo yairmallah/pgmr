@@ -30,7 +30,6 @@
 			else if (!((d.url.endsWith(".jpg"))||(d.url.endsWith(".png"))||(d.url.endsWith(".mp4"))||(d.url.endsWith(".gif"))||(d.url.endsWith(".svg"))||(d.url.endsWith(".jpeg"))||(d.url.endsWith(".webp")))) {
 				pre.dataset.url = d.url;
 				pre.classList = "lang-"+d.url.split(".").slice(-1);
-				console.log(d.url);
 				fetch(d.url)
 					.then((res) => res.text())
 					.then((code) => {
