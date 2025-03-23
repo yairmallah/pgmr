@@ -92,6 +92,7 @@
 
 	</script>
 	
+	<script type="module" src="navLogic.js"></script>	
 	<script type="module">
 		import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		window.darkValues = darkValues;
@@ -252,9 +253,7 @@
 		let isDark = sessionStorage.getItem("isDark") || true;
 		toggleMode(isDark);
 		
-	</script>
-	<script type="module" src="navLogic.js"></script>
-	
+	</script>	
 </head>
 	<body>
 		<svg class="hidden" width="0" height="0" style="position:fixed;">
