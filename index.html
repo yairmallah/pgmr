@@ -227,7 +227,7 @@
 				root.style.setProperty(varMode, darkValues[isDark][varMode]);
 			});
 			sessionStorage.setItem("isDark", isDark);
-			if (simulationSVG){
+			if (window.simulationSVG){
 				if (isDark){
 					simulationSVG.selectAll("path").each(function(d) {
 						const path = segmentedPath(d.source, d.target);
