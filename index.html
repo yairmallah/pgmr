@@ -92,7 +92,7 @@
 
 	</script>
 	
-	<script type="module" src="navLogic.js"></script>	
+	<script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
 	<script type="module">
 		import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		window.darkValues = darkValues;
@@ -220,7 +220,6 @@
 			darkValues[true]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;;
 		});
 		
-		
 		const toggleMode=(isDark)=>{
 			Object.keys(darkValues[isDark]).forEach(varMode => {
 				const root = document.documentElement;
@@ -230,7 +229,7 @@
 			if (window.simulationSVG){
 				if (isDark){
 					simulationSVG.selectAll("path").each(function(d) {
-						const path = segmentedPath(d.source, d.target);
+						const path = pathsGenerator[isDark](d.source, d.target);
 						window.linkPaths[[d.source.id, d.target.id]] = path;
 						const line = d3.select(this);
 						const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
@@ -238,7 +237,7 @@
 					});
 				}else {
 					simulationSVG.selectAll("path").each(function(d) {
-						const path = segmentedPathMidDig(d.source, d.target);
+						const path = pathsGenerator[isDark](d.source, d.target);
 						window.linkPaths[[d.source.id, d.target.id]] = path;
 						const line = d3.select(this);
 						const dAttr = `M ${path[0].x},${path[0].y} ` + path.map(p => `L ${p.x},${p.y}`).join(" ");
@@ -247,12 +246,13 @@
 				}
 			}
 		};
-		// for static dark button NOT when used by naButton
-		/*document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
-		document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});*/
-		let isDark = sessionStorage.getItem("isDark") || true;
-		toggleMode(isDark);
-		
+		// rebind click event to the display mode buttons for path regenerationg
+		requestAnimationFrame(() => {
+			document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
+			document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+			let isDark = sessionStorage.getItem("isDark") || true;
+			toggleMode(isDark);
+		});
 	</script>	
 </head>
 	<body>
@@ -338,8 +338,8 @@
 			const gridSize = 50;
 			document.documentElement.style.setProperty('gridSize', gridSize+'px');
 			const offs = 30;
-			const width = document.getElementById("svg-container").offsetWidth;
-			const height = document.getElementById("svg-container").offsetHeight;
+			var width = document.getElementById("svg-container").offsetWidth;
+			var height = document.getElementById("svg-container").offsetHeight;
 			const bounds = {
 				html: { xMin: 0 + offs, xMax: width - offs,  
 						yMin: 0 + offs, yMax: height - offs},
@@ -359,33 +359,52 @@
 				other: { xMin: 0 + offs, xMax: width - offs, 
 						yMin: 0 + offs, yMax: height - offs  }
 			};
-			
-			if (height >= width*1.2){
-				bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
-								yMin: 0+ offs, yMax:height / 3 - offs};
-				bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
-								yMin: 0+ offs, yMax: height * 5/9 - offs};
-				bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
-								yMin: height / 3+ offs, yMax: height* 5/9 - offs};
-				bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
-								yMin: height * 5 / 9 + offs, yMax: height - offs};
-				bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
-								yMin: height / 3 + offs, yMax: height - offs};
-			}else if (width >= height*1.2){
-				bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
-								xMax: width / 3 - offs,		yMax: height*2/3 - offs};
-								
-				bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
-								xMax: width / 3 - offs,		yMax: height - offs};
-								
-				bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
-								xMax: width / 2 - offs,		yMax: height / 3 - offs};
-				
-				bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
-								xMax: width / 2 - offs,		yMax: height - offs};
-								
-				bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
-								xMax: width - offs,			yMax: height - offs};
+			function resetBounds(){
+				if (height >= width*1.2){
+					bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
+									yMin: 0+ offs, yMax:height / 3 - offs};
+					bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
+									yMin: 0+ offs, yMax: height * 5/9 - offs};
+					bounds["js"]= {	xMin: width / 4 + offs, xMax: width * 3/4 - offs,
+									yMin: height / 3+ offs, yMax: height* 5/9 - offs};
+					bounds["img"]= {xMin: 0 + offs, xMax: width * 3 / 4 - offs, 
+									yMin: height * 5 / 9 + offs, yMax: height - offs};
+					bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
+									yMin: height / 3 + offs, yMax: height - offs};
+				}else if (width <= height*1.2){
+					bounds["html"]= { 	xMin: 0 + offs, xMax: width - offs,  
+										yMin: 0 + offs, yMax: height - offs},
+							
+					bounds["css"]= { 	xMin: 0 + offs, xMax: width/3 - offs, 
+										yMin: 0 + offs, yMax: height/2 - offs  },
+							
+					bounds["js"]= { 	xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
+										yMin: height/2 + offs, yMax: height*8/15 - offs  };
+							
+					bounds["img"]= { 	xMin: 0 + offs, xMax: width*9/10 - offs, 
+										yMin: height/1.7 + offs, yMax: height - offs  };
+											
+					bounds["txt"]= { 	xMin: width*9/10 + offs, xMax: width - offs, 
+										yMin: height*2/3 + offs, yMax: height - offs  };
+							
+					bounds["other"]= { 	xMin: 0 + offs, xMax: width - offs, 
+										yMin: 0 + offs, yMax: height - offs  };
+				}else {
+					bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
+									xMax: width / 3 - offs,		yMax: height*2/3 - offs};
+									
+					bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
+									xMax: width / 3 - offs,		yMax: height - offs};
+									
+					bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
+									xMax: width / 2 - offs,		yMax: height / 3 - offs};
+					
+					bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
+									xMax: width / 2 - offs,		yMax: height - offs};
+									
+					bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+									xMax: width - offs,			yMax: height - offs};
+				}
 			}
 
 			const areas = {
@@ -395,12 +414,13 @@
 				img: { x: width / 4, y: (2 * height) / 3 },
 				txt: { x: (3 * width) / 4, y: (2 * height) / 3 }
 			};
-			for (let i = 0; i < Object.keys(areas).length; i++){
-				const bound = bounds[Object.keys(areas)[i]];
-				areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
-				areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
+			function resetAreas(){
+				for (let i = 0; i < Object.keys(areas).length; i++){
+					const bound = bounds[Object.keys(areas)[i]];
+					areas[Object.keys(areas)[i]].x = (bound.xMax + bound.xMin)/2
+					areas[Object.keys(areas)[i]].y = (bound.yMax + bound.yMin)/2
+				}
 			}
-			
 			function decideColor(srcClss, trgClss){
 				return Math.floor(Math.random()*(window.colors[srcClss].h - window.colors[trgClss].h)) + window.colors[trgClss].h;
 			}
@@ -439,8 +459,11 @@
 			const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
 			console.log("height: ", height, " width: ", width);
 			const minDistance = 30;
-			
+		
+			resetBounds();
+			resetAreas();
 			setClassesBg();
+			
 			function getFileType(filename) {
 				if (filename.endsWith(".html")) return "html";
 				if (filename.endsWith(".css")) return "css";
@@ -479,6 +502,8 @@
 					.force("boycottExt", boycottExt())
 					.force("grid", forceGrid(gridSize, 3))
 					.force('collide', d3.forceCollide(minDistance))
+					
+				window.simulation = simulation;
 				
 				const link = simulationSVG.selectAll("path")
 					.data(graph.links)
@@ -613,7 +638,24 @@
 				}
 			});
 	</script>
-			
+		<script id="resize-logic">
+		/*let resizeTimeout;*/
+		window.addEventListener("resize", () => {
+			/*clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(() => {*/
+				width = document.getElementById("svg-container").offsetWidth;
+				height = document.getElementById("svg-container").offsetHeight;
+				console.log("height: ", height, " width: ", width);
+				resetBounds();
+				resetAreas();
+				setClassesBg();
+				graph.nodes.forEach(d => {
+					d.bounds = bounds[d.class];
+				});
+				window.simulation.alpha(1).restart();
+			/*}, 150);*/
+		});
+		</script>
 		<script id="wave-functions">
 			/*function sendWave(event, d) {
 				const visited = new Set();
@@ -703,7 +745,7 @@
 							const neighbors = window.adjacencyMap.get(source.id) || [];
 							neighbors.forEach(link => {
 								if (visited.has(link.target.id)) return;
-
+								// Get paths from path pool
 								const path = window.linkPaths[[link.source.id, link.target.id]];
 								const dot = getDot()
 									.attr("cx", path[0].x)
@@ -847,7 +889,7 @@
 			}
 
 
-			function segmentedPathMidDig(source, target, ) {
+			function segmentedPathMidDig(source, target) {
 				let [x, y] = [source.x, source.y];
 				const targetX = target.x, targetY = target.y;
 
@@ -931,7 +973,10 @@
 				}
 				// No collisions, return clean path
 				return fullPath;
-			}		
+			}
+			// for checks
+			const differentPaths = [segmentedPath, segmentedPathMidDig, segmentedPathRecursive];
+			var pathsGenerator = {true: segmentedPath, false: segmentedPathMidDig};
 		</script>
 	</body>
 </html>
