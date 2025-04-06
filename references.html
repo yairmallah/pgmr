@@ -1,59 +1,28 @@
 <!DOCTYPE html>
 <html lang="he">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>סימולציית תנועה</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>רפרנסים</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
-		<link rel="stylesheet" type="text/css" href="css\video.css"/>
-        
-    </head>
-    <body>
+		<link rel="stylesheet" type="text/css" href="css\references.css"/>
+	</head>
+	<body>
 		<script type="module" src="navLogic.js"></script>
+		<div id="table-containor">
+			<table>
+				<tr id="row-0" class="row-even"></tr>
+				<tr id="row-1" class="row-odd"></tr>
+				<tr id="row-2" class="row-even"></tr>
+				<tr id="row-3" class="row-odd"></tr>
+				<tr id="row-4" class="row-even"></tr>
+				<tr id="row-5" class="row-odd"></tr>
+			</table>
+		</div>
 		<script>
+			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
+			console.log("in");
 			
 		</script>
-		<div id="container">
-			<div id="legend">
-				<div class="legend" id="sym">
-					<table>
-						<tr>
-							<td>הולכי רגל</td>
-							<td><div class="legendColor" style="background-color: #017f3f;"></div></td>
-						</tr>
-						<tr>
-							<td>רכבת</td>
-							<td><div class="legendColor" style="background-color: #606000;"></div></td>
-						</tr>
-						<tr>
-							<td>אופנים</td>
-							<td><div class="legendColor" style="background-color: #0001be;"></div></td>
-						</tr>
-						<tr>
-							<td>מכוניות</td>
-							<td><div class="legendColor" style="background-color: #9f2000;"></div></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<video id="myVideo" controls>
-				<source src="imgs\סימולציה.mp4" type="video/mp4">
-				Your browser does not support the video tag.
-			</video>
-			<div id="scheme-code" class="code"><div>
-			<script>
-				fetch("simulationcode.html") // Load the other page
-					.then(response => response.text()) // Convert response to text
-					.then(html => {
-						let parser = new DOMParser();
-						let doc = parser.parseFromString(html, "text/html"); // Parse as DOM
-						let targetElement = doc.querySelector("#simulation-code"); // Select specific element
-						if (targetElement) {
-						document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
-						}
-					});
-			</script>
-			<iframe id="scheme-code" src="simulationcode.html" title="simulation code"></iframe>
-		</div>
-    </body>
+	</body>
 </html>
