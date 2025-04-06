@@ -1,0 +1,532 @@
+{
+  "0p-carnac.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-carnac.png",
+    "line": 0,
+    "type": "p",
+    "title": "carnac",
+    "index": 0,
+    "subtitle": "תוכנית",
+    "row index": 0.06859931473963388,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "0p-stonehenge.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-stonehenge.png",
+    "line": 0,
+    "type": "p",
+    "title": "stonehenge",
+    "index": 1,
+    "subtitle": "תוכנית",
+    "row index": 0.6904863953258031,
+    "info": " ע"
+  },
+  "1p-edfu.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-edfu.png",
+    "line": 1,
+    "type": "p",
+    "title": "edfu",
+    "index": 2,
+    "subtitle": "תוכנית",
+    "row index": 0.6291501327958634,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "1p-pantheon.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png",
+    "line": 1,
+    "type": "p",
+    "title": "pantheon",
+    "index": 3,
+    "subtitle": "תוכנית",
+    "row index": 0.8438893458799247,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "1s-edfu.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-edfu.png",
+    "line": 1,
+    "type": "s",
+    "title": "edfu",
+    "index": 4,
+    "subtitle": "חתך",
+    "row index": 0.15001636410274422,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "1s-pantheon.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-pantheon.png",
+    "line": 1,
+    "type": "s",
+    "title": "pantheon",
+    "index": 5,
+    "subtitle": "חתך",
+    "row index": 0.4745391259137852,
+    "info": " ע"
+  },
+  "2p-celsus.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-celsus.png",
+    "line": 2,
+    "type": "p",
+    "title": "celsus",
+    "index": 6,
+    "subtitle": "תוכנית",
+    "row index": 0.9095008790214621,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "2p-trajan_s forum.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-trajan_s forum.png",
+    "line": 2,
+    "type": "p",
+    "title": "trajan_s forum",
+    "index": 7,
+    "subtitle": "תוכנית",
+    "row index": 0.8651966151809455,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "2s-celsus.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-celsus.png",
+    "line": 2,
+    "type": "s",
+    "title": "celsus",
+    "index": 8,
+    "subtitle": "חתך",
+    "row index": 0.7357165763042487,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "2s-trajan_s forum.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-trajan_s forum.png",
+    "line": 2,
+    "type": "s",
+    "title": "trajan_s forum",
+    "index": 9,
+    "subtitle": "חתך",
+    "row index": 0.0031061648888515148,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "3p-cluny.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cluny.png",
+    "line": 3,
+    "type": "p",
+    "title": "cluny",
+    "index": 10,
+    "subtitle": "תוכנית",
+    "row index": 0.8822175806144984,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "3p-cordoba mosque.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cordoba mosque.png",
+    "line": 3,
+    "type": "p",
+    "title": "cordoba mosque",
+    "index": 11,
+    "subtitle": "תוכנית",
+    "row index": 0.7234391962593925,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "3p-de chaveliers.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-de chaveliers.png",
+    "line": 3,
+    "type": "p",
+    "title": "de chaveliers",
+    "index": 12,
+    "subtitle": "תוכנית",
+    "row index": 0.25076748964562334,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "3p-hagia sophia.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-hagia sophia.png",
+    "line": 3,
+    "type": "p",
+    "title": "hagia sophia",
+    "index": 13,
+    "subtitle": "תוכנית",
+    "row index": 0.47101184133152896,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "3p-rochester.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-rochester.png",
+    "line": 3,
+    "type": "p",
+    "title": "rochester",
+    "index": 14,
+    "subtitle": "תוכנית",
+    "row index": 0.26915607259571606,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "3s-cluny.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cluny.png",
+    "line": 3,
+    "type": "s",
+    "title": "cluny",
+    "index": 15,
+    "subtitle": "חתך",
+    "row index": 0.36038607144176404,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "3s-cordoba mosque.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cordoba mosque.png",
+    "line": 3,
+    "type": "s",
+    "title": "cordoba mosque",
+    "index": 16,
+    "subtitle": "חתך",
+    "row index": 0.17733249725068778,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "3s-de chevalier.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-de chevalier.png",
+    "line": 3,
+    "type": "s",
+    "title": "de chevalier",
+    "index": 17,
+    "subtitle": "חתך",
+    "row index": 0.796585488512931,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "3s-hagia sophia.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-hagia sophia.png",
+    "line": 3,
+    "type": "s",
+    "title": "hagia sophia",
+    "index": 18,
+    "subtitle": "חתך",
+    "row index": 0.550318386327484,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "3s-rochester.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-rochester.png",
+    "line": 3,
+    "type": "s",
+    "title": "rochester",
+    "index": 19,
+    "subtitle": "חתך",
+    "row index": 0.3346428934230734,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "4p+s-la rottonda.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p+s-la rottonda.png",
+    "line": 4,
+    "type": "p",
+    "title": "la rottonda",
+    "index": 20,
+    "subtitle": "תוכנית",
+    "row index": 0.2862645323748334,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  },
+  "4p-alhambra.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-alhambra.jpg",
+    "line": 4,
+    "type": "p",
+    "title": "alhambra",
+    "index": 21,
+    "subtitle": "תוכנית",
+    "row index": 0.4676507269585244,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "4p-bauhaus.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-bauhaus.png",
+    "line": 4,
+    "type": "p",
+    "title": "bauhaus",
+    "index": 22,
+    "subtitle": "תוכנית",
+    "row index": 0.6512903258300858,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  },
+  "4p-genevieve.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-genevieve.png",
+    "line": 4,
+    "type": "p",
+    "title": "genevieve",
+    "index": 23,
+    "subtitle": "תוכנית",
+    "row index": 0.15589958833738105,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "4p-laurentian.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-laurentian.png",
+    "line": 4,
+    "type": "p",
+    "title": "laurentian",
+    "index": 24,
+    "subtitle": "תוכנית",
+    "row index": 0.8683865958760487,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "4p-malatestiana.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-malatestiana.png",
+    "line": 4,
+    "type": "p",
+    "title": "malatestiana",
+    "index": 25,
+    "subtitle": "תוכנית",
+    "row index": 0.05469852153587096,
+    "info": " ע"
+  },
+  "4p-taliesin.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-taliesin.png",
+    "line": 4,
+    "type": "p",
+    "title": "taliesin",
+    "index": 26,
+    "subtitle": "תוכנית",
+    "row index": 0.45030379968152967,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "4s-alhambra.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-alhambra.png",
+    "line": 4,
+    "type": "s",
+    "title": "alhambra",
+    "index": 27,
+    "subtitle": "חתך",
+    "row index": 0.9909283249340168,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "4s-bauhaus.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-bauhaus.png",
+    "line": 4,
+    "type": "s",
+    "title": "bauhaus",
+    "index": 28,
+    "subtitle": "חתך",
+    "row index": 0.5607862211684151,
+    "info": " ע"
+  },
+  "4s-genevieve.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-genevieve.png",
+    "line": 4,
+    "type": "s",
+    "title": "genevieve",
+    "index": 29,
+    "subtitle": "חתך",
+    "row index": 0.899068506831708,
+    "info": " ע"
+  },
+  "4s-laurentian.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-laurentian.png",
+    "line": 4,
+    "type": "s",
+    "title": "laurentian",
+    "index": 30,
+    "subtitle": "חתך",
+    "row index": 0.23503749063379487,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "4s-malatestiana.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-malatestiana.png",
+    "line": 4,
+    "type": "s",
+    "title": "malatestiana",
+    "index": 31,
+    "subtitle": "חתך",
+    "row index": 0.6167368065329258,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "4s-taliesin.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-taliesin.png",
+    "line": 4,
+    "type": "s",
+    "title": "taliesin",
+    "index": 32,
+    "subtitle": "חתך",
+    "row index": 0.6220283257184576,
+    "info": " ע"
+  },
+  "5p+s-kasbah.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p+s-kasbah.png",
+    "line": 5,
+    "type": "p",
+    "title": "kasbah",
+    "index": 33,
+    "subtitle": "תוכנית",
+    "row index": 0.9967647201132461,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5p-berlinun.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-berlinun.jpg",
+    "line": 5,
+    "type": "p",
+    "title": "berlinun",
+    "index": 34,
+    "subtitle": "תוכנית",
+    "row index": 0.9079672258978139,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "5p-bodtker.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bodtker.png",
+    "line": 5,
+    "type": "p",
+    "title": "bodtker",
+    "index": 35,
+    "subtitle": "תוכנית",
+    "row index": 0.7546491657714738,
+    "info": " ע"
+  },
+  "5p-bourse de commerce.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bourse de commerce.png",
+    "line": 5,
+    "type": "p",
+    "title": "bourse de commerce",
+    "index": 36,
+    "subtitle": "תוכנית",
+    "row index": 0.8771110142842594,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "5p-chichu.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-chichu.png",
+    "line": 5,
+    "type": "p",
+    "title": "chichu",
+    "index": 37,
+    "subtitle": "תוכנית",
+    "row index": 0.3632343992453325,
+    "info": " ע"
+  },
+  "5p-exodus.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-exodus.jpg",
+    "line": 5,
+    "type": "p",
+    "title": "exodus",
+    "index": 38,
+    "subtitle": "תוכנית",
+    "row index": 0.2592277088935251,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5p-hurva.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hurva.png",
+    "line": 5,
+    "type": "p",
+    "title": "hurva",
+    "index": 39,
+    "subtitle": "תוכנית",
+    "row index": 0.961455603963442,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  },
+  "5p-isrmuseum.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-isrmuseum.png",
+    "line": 5,
+    "type": "p",
+    "title": "isrmuseum",
+    "index": 40,
+    "subtitle": "תוכנית",
+    "row index": 0.8411376150598338,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  },
+  "5p-kasbah.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-kasbah.png",
+    "line": 5,
+    "type": "p",
+    "title": "kasbah",
+    "index": 41,
+    "subtitle": "תוכנית",
+    "row index": 0.14091726408197103,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "5p-ramot.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-ramot.png",
+    "line": 5,
+    "type": "p",
+    "title": "ramot",
+    "index": 42,
+    "subtitle": "תוכנית",
+    "row index": 0.31380624548416725,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "5p-seine.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-seine.png",
+    "line": 5,
+    "type": "p",
+    "title": "seine",
+    "index": 43,
+    "subtitle": "תוכנית",
+    "row index": 0.8480269368942919,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5s-berlinun.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-berlinun.png",
+    "line": 5,
+    "type": "s",
+    "title": "berlinun",
+    "index": 44,
+    "subtitle": "חתך",
+    "row index": 0.6033650636914986,
+    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+  },
+  "5s-bodtker.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bodtker.png",
+    "line": 5,
+    "type": "s",
+    "title": "bodtker",
+    "index": 45,
+    "subtitle": "חתך",
+    "row index": 0.474348362734637,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5s-bourse de commerse.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bourse de commerse.png",
+    "line": 5,
+    "type": "s",
+    "title": "bourse de commerse",
+    "index": 46,
+    "subtitle": "חתך",
+    "row index": 0.9468843813416848,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  },
+  "5s-chichu.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-chichu.png",
+    "line": 5,
+    "type": "s",
+    "title": "chichu",
+    "index": 47,
+    "subtitle": "חתך",
+    "row index": 0.08582272063324137,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5s-hurva.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-hurva.png",
+    "line": 5,
+    "type": "s",
+    "title": "hurva",
+    "index": 48,
+    "subtitle": "חתך",
+    "row index": 0.7047682171805191,
+    "info": " ע"
+  },
+  "5s-isrmuseum.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-isrmuseum.png",
+    "line": 5,
+    "type": "s",
+    "title": "isrmuseum",
+    "index": 49,
+    "subtitle": "חתך",
+    "row index": 0.6179562577312713,
+    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+  },
+  "5s-kasbah.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-kasbah.png",
+    "line": 5,
+    "type": "s",
+    "title": "kasbah",
+    "index": 50,
+    "subtitle": "חתך",
+    "row index": 0.8645187941796575,
+    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+  },
+  "5s-ramot.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-ramot.png",
+    "line": 5,
+    "type": "s",
+    "title": "ramot",
+    "index": 51,
+    "subtitle": "חתך",
+    "row index": 0.8247760964409141,
+    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+  },
+  "5s-seine.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-seine.png",
+    "line": 5,
+    "type": "s",
+    "title": "seine",
+    "index": 52,
+    "subtitle": "חתך",
+    "row index": 0.594081649723676,
+    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+  }
+}
