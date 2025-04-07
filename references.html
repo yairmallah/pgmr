@@ -129,10 +129,20 @@
 			function mouseOnRef(e){
 				const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
-				if (infoTag.getBoundingClientRect().right > windowWidth) infoTag.style.right = e.clientX + "px";
-				else infoTag.style.left = e.clientX + "px";
-				if (infoTag.getBoundingClientRect().bottom > windowHeight) infoTag.style.bottom = e.clientY + "px";
-				else infoTag.style.top = e.clientY + "px";
+				if (infoTag.getBoundingClientRect().right > windowWidth){
+					infoTag.style.right = e.clientX + "px";
+					infoTag.style.left = "auto";
+				}
+				else {
+					infoTag.style.left = e.clientX + "px";
+					infoTag.style.right = "auto";
+				}
+				if (infoTag.getBoundingClientRect().bottom > windowHeight){
+					infoTag.style.top = (e.clientY - infoTag.getBoundingClientRect().bottom) + "px";
+				}
+				else{
+					infoTag.style.top = e.clientY + "px";
+				}
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
