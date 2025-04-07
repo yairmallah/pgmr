@@ -110,6 +110,8 @@
 			}
 			
 			const infoTag = document.getElementById("info-tag");
+			const minWidth = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--infoTagWidth"))
+			const minHeight = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--infoTagHeight"))
 			const infoTitle = document.getElementById('info-tag-title');
 			const infoType = document.getElementById('info-tag-type');
 			const infoSubstance = document.getElementById('info-tag-substance');
