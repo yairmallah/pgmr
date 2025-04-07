@@ -10,15 +10,12 @@
 			function colWidthSetUp(cols){
 				const root = document.documentElement;
 				root.style.setProperty("--colSize", (100/cols) + "vw");
-				console.log(100/cols);
-				console.log(cols);
 			}
 			function rowHeightSetUp(rows){
 				const root = document.documentElement;
 				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
-				console.log(Math.floor(100/rows));
-				console.log(rows);
+				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "% ");
 			}
 		</script>
 		<script type="module">
@@ -50,30 +47,52 @@
 	</head>
 	<body>
 		<div id="table-containor">
-			<table class="smaller">
+			<table class="container smaller">
 				<tr id="row-5" class="row row-odd"></tr>
 			</table>
-			<table class="smaller">
+			<table class="container smaller">
 				<tr id="row-4" class="row row-even"></tr>
 			</table>
-			<table class="smaller">
+			<table class="container smaller">
 				<tr id="row-3" class="row row-odd"></tr>
 			</table>
-			<table class="smaller">
+			<table class="container smaller">
 				<tr id="row-2" class="row row-even"></tr>
 			</table>
-			<table class="larger">
+			<table class="container larger">
 				<tr id="row-1" class="row row-odd"></tr>
 			</table>
-			<table class="larger">
+			<table class="container larger">
 				<tr id="row-0" class="row row-even"></tr>
 			</table>
+		</div>
+		<div id="texts">
+			<table id="texts-left"></table>
+			<table id="texts-right"></table>
 		</div>
 		<script>
 			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
 			fetch(json_add)
 				.then(response => response.json())
 				.then(data => {
+					
+					function packInfomation(obj){
+						const container = document.createElement("div");
+						const title = document.createElement("h3");
+						title.className = "text-title";
+						title.innerHTML = obj["title"];
+						const type = document.createElement("p");
+						type.className = "text-type";
+						type.innerHTML = obj["subtitle"];
+						const info = document.createElement("p");
+						info.className = "text-info";
+						info.innerHTML = obj["info"];
+						container.appendChild(title);
+						container.appendChild(type);
+						//container.appendChild(info);
+						return container;
+					}
+					
 					console.log(data);
 					const rows = {};
 					let maxItemsInAnyRow = 0;
@@ -93,8 +112,21 @@
 						}
 					};
 					// Fill each row
+					for (let rowId in Object.keys(rows)) {
+						rowId = Object.keys(rows).length - rowId - 1;
+						const base = Object.keys(rows)[rowId];
+						console.log(base, rowId);
+						let trl = document.createElement('tr');
+						trl.id = "texts-left-" + base;
+						document.getElementById("texts-left").appendChild(trl);
+						let trr = document.createElement('tr');
+						trr.id = "texts-right-" + base;
+						document.getElementById("texts-right").appendChild(trr);
+					}
 					for (const rowId in rows) {
 						const tr = document.getElementById(rowId);
+						const trInfoR = document.getElementById("texts-right-" + rowId);
+						const trInfoL = document.getElementById("texts-left-" + rowId);
 						if (!tr) continue;
 
 						const items = rows[rowId].sort((a, b) => a["row index"] - b["row index"]);
@@ -115,6 +147,10 @@
 								img.src = item.url;
 								img.alt = item.title;
 								td.appendChild(img);
+								const textTD =  document.createElement('td');
+								textTD.appendChild(packInfomation(item));
+								if (item["row index"] < 0.5) trInfoL.appendChild(textTD);
+								if (item["row index"] >= 0.5) trInfoR.appendChild(textTD);
 							} else {
 								td.innerHTML = "&nbsp;";
 								td.className = "empty-cell";
@@ -124,9 +160,9 @@
 						});
 					}
 				})
-				.catch(error => {
+				/*.catch(error => {
 					console.error('Error loading JSON:', error);
-				});
+				});*/
 		</script>
 	</body>
 </html>
