@@ -20,9 +20,7 @@
 		</script>
 		<script>
 			function switchRow(rowClass){
-				console.log(rowClass);
 				document.querySelectorAll(rowClass).forEach(row => {
-					console.log(row);
 					const cells = Array.from(row.children);
 					const reversed = cells.map(cell => cell.innerHTML).reverse();
 					cells.forEach((cell, i) => {
