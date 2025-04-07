@@ -127,7 +127,7 @@
 			}
 			
 			function mouseOnRef(e){
-				const windowHeight = window.innerHeight;
+				/*const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
 				if (e.clientX + minWidth > windowWidth){
 					infoTag.style.right = e.clientX + "px";
@@ -138,11 +138,15 @@
 					infoTag.style.right = "auto";
 				}
 				if (e.clientY + minHeight > windowHeight){
-					infoTag.style.top = (e.clientY - infoTag.getBoundingClientRect().bottom) + "px";
+					console.log("in");
+					infoTag.style.bottom = (e.clientY) + "px";
+					infoTag.style.top = "auto";
 				}
 				else{
 					infoTag.style.top = e.clientY + "px";
-				}
+				}*/
+				infoTag.style.top = e.clientY + "px";
+				infoTag.style.left = e.clientX + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
