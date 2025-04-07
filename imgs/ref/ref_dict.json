@@ -366,7 +366,7 @@
     "title": "bourse de commerce",
     "index": 36,
     "subtitle": "תוכנית",
-    "row index": 0.8771110142842594,
+    "row index": 1,
     "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
   },
   "5p-chichu.png": {
@@ -409,16 +409,6 @@
     "row index": 0.8411376150598338,
     "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
   },
-  "5p-kasbah.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-kasbah.png",
-    "line": 5,
-    "type": "p",
-    "title": "kasbah",
-    "index": 41,
-    "subtitle": "תוכנית",
-    "row index": 0.14091726408197103,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
-  },
   "5p-ramot.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-ramot.png",
     "line": 5,
@@ -438,95 +428,5 @@
     "subtitle": "תוכנית",
     "row index": 0.8480269368942919,
     "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "5s-berlinun.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-berlinun.png",
-    "line": 5,
-    "type": "s",
-    "title": "berlinun",
-    "index": 44,
-    "subtitle": "חתך",
-    "row index": 0.6033650636914986,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
-  },
-  "5s-bodtker.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bodtker.png",
-    "line": 5,
-    "type": "s",
-    "title": "bodtker",
-    "index": 45,
-    "subtitle": "חתך",
-    "row index": 0.474348362734637,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "5s-bourse de commerse.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bourse de commerse.png",
-    "line": 5,
-    "type": "s",
-    "title": "bourse de commerse",
-    "index": 46,
-    "subtitle": "חתך",
-    "row index": 0.9468843813416848,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
-  },
-  "5s-chichu.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-chichu.png",
-    "line": 5,
-    "type": "s",
-    "title": "chichu",
-    "index": 47,
-    "subtitle": "חתך",
-    "row index": 0.08582272063324137,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "5s-hurva.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-hurva.png",
-    "line": 5,
-    "type": "s",
-    "title": "hurva",
-    "index": 48,
-    "subtitle": "חתך",
-    "row index": 0.7047682171805191,
-    "info": " ע"
-  },
-  "5s-isrmuseum.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-isrmuseum.png",
-    "line": 5,
-    "type": "s",
-    "title": "isrmuseum",
-    "index": 49,
-    "subtitle": "חתך",
-    "row index": 0.6179562577312713,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
-  },
-  "5s-kasbah.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-kasbah.png",
-    "line": 5,
-    "type": "s",
-    "title": "kasbah",
-    "index": 50,
-    "subtitle": "חתך",
-    "row index": 0.8645187941796575,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "5s-ramot.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-ramot.png",
-    "line": 5,
-    "type": "s",
-    "title": "ramot",
-    "index": 51,
-    "subtitle": "חתך",
-    "row index": 0.8247760964409141,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
-  },
-  "5s-seine.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-seine.png",
-    "line": 5,
-    "type": "s",
-    "title": "seine",
-    "index": 52,
-    "subtitle": "חתך",
-    "row index": 0.594081649723676,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
   }
 }
