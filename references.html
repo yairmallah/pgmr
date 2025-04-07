@@ -108,6 +108,24 @@
 				lrgSchm.className = "";
 				lrgSchm.style.backgroundImage = `url(${ref["url"]})`;
 			}
+
+  lrgSchm.addEventListener('mousemove', (e) => {
+    const rect = lrgSchm.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    lrgSchm.style.backgroundPosition = `${x}% ${y}%`;
+  });
+
+  lrgSchm.addEventListener('mouseenter', () => {
+	console.log("in");
+    lrgSchm.classList.add('zoomed');
+  });
+
+  lrgSchm.addEventListener('mouseleave', () => {
+    lrgSchm.classList.remove('zoomed');
+    lrgSchm.style.backgroundPosition = 'center';
+  });
+
 		</script>
 		<div id="info-tag" class="hidden">
 			<h3 id="info-tag-title"></h3>
