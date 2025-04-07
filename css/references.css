@@ -19,7 +19,7 @@ tr{
 	height: var(--rowSize);
 }
 td{
-	border: 1px red solid;
+	/*border: 1px red solid;*/
 }
 #larger{
 	width: 100%;
