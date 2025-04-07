@@ -124,7 +124,5 @@ td img{
 #info-tag{
 	position:fixed;
 	z-index:3;
-	width: 50px;
-	height: 100px;
 	border-radius: 10px;
 }
