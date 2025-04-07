@@ -121,3 +121,6 @@ td img{
 .text-table-row-L{
 	height:var(--textSectionRowSize);
 }
+#info-tag{
+	position:fixed;
+}
