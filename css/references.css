@@ -127,7 +127,8 @@ td img{
 	z-index:3;
 	border-radius: 5px;
 	background-color: rgba(calc(var(--navSubMenu)), calc(0.98*var(--navSubMenu)), calc(0.9*var(--navSubMenu)), 0.8);
-	padding:10px;
+	padding: 0px 10px;
+	font-size: 14px;
 }
 #info-tag-type{
 	font-style: italic;
