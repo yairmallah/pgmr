@@ -15,6 +15,7 @@
 			}
 			function rowHeightSetUp(rows){
 				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
+				root.style.setProperty("--schemeTop", (100/rows) + "vh");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
 				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "%");
 				root.style.setProperty("--textSectionRowSize", (100/rows*2/rows) + "vh");
@@ -101,16 +102,21 @@
 			<table id="texts-right"></table>
 		</div>
 		<div id="large-scheme" class="hidden"></div>
+		<script>
+			const lrgSchm = document.getElementById("large-scheme");
+			function updateMainRef(ref){
+				console.log("i updateMainRef" + ref);
+				lrgSchm.className = "";
+				console.log("i updateMainRef" + ref);
+				lrgSchm.style.backgroundImage = `url(${ref["url"]})`;
+			}
+		</script>
 		<div id="info-tag" class="hidden">
 			<h3 id="info-tag-title"></h3>
 			<p id="info-tag-type"></p>
 			<p id="info-tag-substance"></p>
 		</div>
-		<script>
-			function updateMainRef(ref){
-				console.log("i updateMainRef" + ref);
-			}
-			
+		<script>		
 			const infoTag = document.getElementById("info-tag");
 			const minWidth = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--infoTagWidth"))
 			const minHeight = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue("--infoTagHeight"))
@@ -147,8 +153,8 @@
 				else{
 					infoTag.style.top = e.clientY + "px";
 				}*/
-				infoTag.style.top = e.clientY + "px";
-				infoTag.style.left = e.clientX + "px";
+				infoTag.style.top = e.clientY + 5+ "px";
+				infoTag.style.left = e.clientX + 5 + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
@@ -226,10 +232,10 @@
 								img.src = item.url;
 								img.alt = item.title;
 								td.appendChild(img);
-								td.addEventListener("click", () => {updateMainRef(item)});
-								td.addEventListener("mousemove", (e) => {mouseOnRef(e)});
-								td.addEventListener("mouseenter", () => {mouseEnterRef(item)});
-								td.addEventListener("mouseleave", () => {mouseLeaveRef()});
+								td.addEventListener("click", () => {updateMainRef(item);});
+								td.addEventListener("mousemove", (e) => {mouseOnRef(e);});
+								td.addEventListener("mouseenter", () => {mouseEnterRef(item);});
+								td.addEventListener("mouseleave", () => {mouseLeaveRef();});
 								const textTD =  document.createElement('td');
 								textTD.appendChild(packInfomation(item));
 								if (item["row index"] < 0.5) trInfoL.appendChild(textTD);
