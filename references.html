@@ -17,7 +17,8 @@
 				const root = document.documentElement;
 				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
-				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "% ");
+				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "%");
+				root.style.setProperty("--textSectionRowSize", (100/rows*2/rows) + "vh");
 			}
 		</script>
 		<script>
