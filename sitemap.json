@@ -936,6 +936,218 @@
     {
       "source": "tba.css",
       "target": "tba.gif"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "0p-carnac.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "0p-stonehenge.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "1p-edfu.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "1p-pantheon.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "1s-edfu.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "1s-pantheon.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "2p-celsus.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "2p-trajan_s forum.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "2s-celsus.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "2s-trajan_s forum.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3p-cluny.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3p-cordoba mosque.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3p-de chaveliers.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3p-hagia sophia.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3p-rochester.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3s-cluny.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3s-cordoba mosque.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3s-de chevalier.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3s-hagia sophia.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "3s-rochester.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p+s-la rottonda.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-alhambra.jpg"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-bauhaus.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-genevieve.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-laurentian.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-malatestiana.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4p-taliesin.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-alhambra.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-bauhaus.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-genevieve.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-laurentian.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-malatestiana.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "4s-taliesin.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p+s-kasbah.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-berlinun.jpg"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-bodtker.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-bourse de commerce.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-chichu.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-exodus.jpg"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-hurva.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-isrmuseum.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-kasbah.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-ramot.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-seine.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-berlinun.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-bodtker.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-bourse de commerse.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-chichu.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-hurva.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-isrmuseum.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-kasbah.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-ramot.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-seine.png"
     }
   ]
 }
