@@ -41,6 +41,11 @@
       "external": ""
     },
     {
+      "id": "references.html",
+      "url": "https://yairmallah.github.io/pgmr/references.html",
+      "external": ""
+    },
+    {
       "id": "simulationcode.html",
       "url": "https://yairmallah.github.io/pgmr/simulationcode.html",
       "external": ""
@@ -83,6 +88,11 @@
     {
       "id": "log.css",
       "url": "https://yairmallah.github.io/pgmr/css/log.css",
+      "external": ""
+    },
+    {
+      "id": "references.css",
+      "url": "https://yairmallah.github.io/pgmr/css/references.css",
       "external": ""
     },
     {
@@ -226,6 +236,276 @@
       "external": ""
     },
     {
+      "id": "0p-carnac.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-carnac.png",
+      "external": ""
+    },
+    {
+      "id": "0p-stonehenge.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-stonehenge.png",
+      "external": ""
+    },
+    {
+      "id": "1p-edfu.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-edfu.png",
+      "external": ""
+    },
+    {
+      "id": "1p-pantheon.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png",
+      "external": ""
+    },
+    {
+      "id": "1s-edfu.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-edfu.png",
+      "external": ""
+    },
+    {
+      "id": "1s-pantheon.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-pantheon.png",
+      "external": ""
+    },
+    {
+      "id": "2p-celsus.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-celsus.png",
+      "external": ""
+    },
+    {
+      "id": "2p-trajan_s forum.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-trajan_s%20forum.png",
+      "external": ""
+    },
+    {
+      "id": "2s-celsus.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-celsus.png",
+      "external": ""
+    },
+    {
+      "id": "2s-trajan_s forum.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-trajan_s%20forum.png",
+      "external": ""
+    },
+    {
+      "id": "3p-cluny.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cluny.png",
+      "external": ""
+    },
+    {
+      "id": "3p-cordoba mosque.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cordoba%20mosque.png",
+      "external": ""
+    },
+    {
+      "id": "3p-de chaveliers.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-de%20chaveliers.png",
+      "external": ""
+    },
+    {
+      "id": "3p-hagia sophia.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-hagia%20sophia.png",
+      "external": ""
+    },
+    {
+      "id": "3p-rochester.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-rochester.png",
+      "external": ""
+    },
+    {
+      "id": "3s-cluny.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cluny.png",
+      "external": ""
+    },
+    {
+      "id": "3s-cordoba mosque.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cordoba%20mosque.png",
+      "external": ""
+    },
+    {
+      "id": "3s-de chevalier.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-de%20chevalier.png",
+      "external": ""
+    },
+    {
+      "id": "3s-hagia sophia.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-hagia%20sophia.png",
+      "external": ""
+    },
+    {
+      "id": "3s-rochester.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-rochester.png",
+      "external": ""
+    },
+    {
+      "id": "4p+s-la rottonda.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p%2Bs-la%20rottonda.png",
+      "external": ""
+    },
+    {
+      "id": "4p-alhambra.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-alhambra.jpg",
+      "external": ""
+    },
+    {
+      "id": "4p-bauhaus.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-bauhaus.png",
+      "external": ""
+    },
+    {
+      "id": "4p-genevieve.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-genevieve.png",
+      "external": ""
+    },
+    {
+      "id": "4p-laurentian.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-laurentian.png",
+      "external": ""
+    },
+    {
+      "id": "4p-malatestiana.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-malatestiana.png",
+      "external": ""
+    },
+    {
+      "id": "4p-taliesin.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-taliesin.png",
+      "external": ""
+    },
+    {
+      "id": "4s-alhambra.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-alhambra.png",
+      "external": ""
+    },
+    {
+      "id": "4s-bauhaus.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-bauhaus.png",
+      "external": ""
+    },
+    {
+      "id": "4s-genevieve.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-genevieve.png",
+      "external": ""
+    },
+    {
+      "id": "4s-laurentian.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-laurentian.png",
+      "external": ""
+    },
+    {
+      "id": "4s-malatestiana.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-malatestiana.png",
+      "external": ""
+    },
+    {
+      "id": "4s-taliesin.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-taliesin.png",
+      "external": ""
+    },
+    {
+      "id": "5p+s-kasbah.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p%2Bs-kasbah.png",
+      "external": ""
+    },
+    {
+      "id": "5p-berlinun.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-berlinun.jpg",
+      "external": ""
+    },
+    {
+      "id": "5p-bodtker.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bodtker.png",
+      "external": ""
+    },
+    {
+      "id": "5p-bourse de commerce.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bourse%20de%20commerce.png",
+      "external": ""
+    },
+    {
+      "id": "5p-chichu.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-chichu.png",
+      "external": ""
+    },
+    {
+      "id": "5p-exodus.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-exodus.jpg",
+      "external": ""
+    },
+    {
+      "id": "5p-hurva.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hurva.png",
+      "external": ""
+    },
+    {
+      "id": "5p-isrmuseum.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-isrmuseum.png",
+      "external": ""
+    },
+    {
+      "id": "5p-kasbah.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-kasbah.png",
+      "external": ""
+    },
+    {
+      "id": "5p-ramot.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-ramot.png",
+      "external": ""
+    },
+    {
+      "id": "5p-seine.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-seine.png",
+      "external": ""
+    },
+    {
+      "id": "5s-berlinun.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-berlinun.png",
+      "external": ""
+    },
+    {
+      "id": "5s-bodtker.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bodtker.png",
+      "external": ""
+    },
+    {
+      "id": "5s-bourse de commerse.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-bourse%20de%20commerse.png",
+      "external": ""
+    },
+    {
+      "id": "5s-chichu.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-chichu.png",
+      "external": ""
+    },
+    {
+      "id": "5s-hurva.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-hurva.png",
+      "external": ""
+    },
+    {
+      "id": "5s-isrmuseum.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-isrmuseum.png",
+      "external": ""
+    },
+    {
+      "id": "5s-kasbah.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-kasbah.png",
+      "external": ""
+    },
+    {
+      "id": "5s-ramot.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-ramot.png",
+      "external": ""
+    },
+    {
+      "id": "5s-seine.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-seine.png",
+      "external": ""
+    },
+    {
+      "id": "ref_dict.json",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json",
+      "external": ""
+    },
+    {
       "id": "urb.txt",
       "url": "https://yairmallah.github.io/pgmr/texts/urb.txt",
       "external": ""
@@ -303,7 +583,15 @@
     },
     {
       "source": "index.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "index.html",
       "target": "displayMode.js"
+    },
+    {
+      "source": "index.html",
+      "target": "navLogic.js"
     },
     {
       "source": "index.html",
@@ -368,6 +656,10 @@
     {
       "source": "navLogic.js",
       "target": "log.html"
+    },
+    {
+      "source": "navLogic.js",
+      "target": "references.html"
     },
     {
       "source": "navLogic.js",
@@ -456,6 +748,38 @@
     {
       "source": "nodeMessages.txt",
       "target": "רקורסיבי.gif"
+    },
+    {
+      "source": "references.html",
+      "target": "general.css"
+    },
+    {
+      "source": "references.html",
+      "target": "references.css"
+    },
+    {
+      "source": "references.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "references.html",
+      "target": "displayMode.js"
+    },
+    {
+      "source": "references.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "references.html",
+      "target": "general.css"
+    },
+    {
+      "source": "references.html",
+      "target": "references.css"
+    },
+    {
+      "source": "references.html",
+      "target": "ref_dict.json"
     },
     {
       "source": "tba.html",
