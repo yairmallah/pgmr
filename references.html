@@ -11,13 +11,14 @@
 			function colWidthSetUp(cols){
 				root.style.setProperty("--colSize", (100/cols) + "vw");
 				root.style.setProperty("--textSctionWidth", (100-100/cols*2) + "%");
-				
+				root.style.setProperty("--schemeWidth", (100-100/cols*2) + "%");
 			}
 			function rowHeightSetUp(rows){
 				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
 				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "%");
 				root.style.setProperty("--textSectionRowSize", (100/rows*2/rows) + "vh");
+				root.style.setProperty("--schemeHeight", (100/rows*(rows-1)) + "vh");
 			}
 		</script>
 		<script>
@@ -99,7 +100,7 @@
 			<table id="texts-left"></table>
 			<table id="texts-right"></table>
 		</div>
-		<div id="large-scheme"></div>
+		<div id="large-scheme" class="hidden"></div>
 		<div id="info-tag" class="hidden">
 			<h3 id="info-tag-title"></h3>
 			<p id="info-tag-type"></p>
