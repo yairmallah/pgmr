@@ -20,7 +20,9 @@
 		</script>
 		<script>
 			function switchRow(rowClass){
+				console.log(rowClass);
 				document.querySelectorAll(rowClass).forEach(row => {
+					console.log(row);
 					const cells = Array.from(row.children);
 					const reversed = cells.map(cell => cell.innerHTML).reverse();
 					cells.forEach((cell, i) => {
@@ -28,6 +30,22 @@
 					});
 				});
 			}
+			function packInfomation(obj){
+						const container = document.createElement("div");
+						const title = document.createElement("h3");
+						title.className = "text-title";
+						title.innerHTML = obj["title"];
+						const type = document.createElement("i");
+						type.className = "text-type";
+						type.innerHTML = obj["subtitle"];
+						const info = document.createElement("p");
+						info.className = "text-info";
+						info.innerHTML = obj["info"];
+						container.appendChild(title);
+						container.appendChild(type);
+						//container.appendChild(info);
+						return container;
+					}
 		</script>
 		<script type="module">
 			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
@@ -87,23 +105,6 @@
 				.then(response => response.json())
 				.then(data => {
 					
-					function packInfomation(obj){
-						const container = document.createElement("div");
-						const title = document.createElement("h3");
-						title.className = "text-title";
-						title.innerHTML = obj["title"];
-						const type = document.createElement("i");
-						type.className = "text-type";
-						type.innerHTML = obj["subtitle"];
-						const info = document.createElement("p");
-						info.className = "text-info";
-						info.innerHTML = obj["info"];
-						container.appendChild(title);
-						container.appendChild(type);
-						//container.appendChild(info);
-						return container;
-					}
-					
 					console.log(data);
 					const rows = {};
 					let maxItemsInAnyRow = 0;
@@ -131,14 +132,13 @@
 					for (let rowId in Object.keys(rows)) {
 						rowId = Object.keys(rows).length - rowId - 1;
 						const base = Object.keys(rows)[rowId];
-						console.log(base, rowId);
 						let trl = document.createElement('tr');
 						trl.id = "texts-left-" + base;
-						trl.className = "text-table-row";
+						trl.className = "text-table-row-L";
 						document.getElementById("texts-left").appendChild(trl);
 						let trr = document.createElement('tr');
 						trr.id = "texts-right-" + base;
-						trr.className = "text-table-row";
+						trr.className = "text-table-row-R";
 						document.getElementById("texts-right").appendChild(trr);
 					}
 					for (const rowId in rows) {
@@ -178,7 +178,7 @@
 							tr.appendChild(td);
 						});
 					}
-					switchRow("text-table-row");
+					switchRow(".text-table-row-L");
 				})
 				/*.catch(error => {
 					console.error('Error loading JSON:', error);
