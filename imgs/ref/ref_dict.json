@@ -7,28 +7,27 @@
     "index": 0,
     "subtitle": "תוכנית",
     "row index": 0,
-    "info": " בריטני, צרפת
-    4,500-3,500 לפנה״ס "
+    "info": " בריטני, צרפת | 4,500-3,500 לפנה״ס "
   },
   "0p-stonehenge.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-stonehenge.png",
     "line": 0,
     "type": "p",
-    "title": "סטונהאנג'",
+    "title": "סטונהנג'",
     "index": 1,
     "subtitle": "תוכנית",
     "row index": 1,
-    "info": " ע"
+    "info": " וילטשייר, אנגליה | 2,400-2,200 לפנה״ס "
   },
   "1p-edfu.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-edfu.png",
     "line": 1,
     "type": "p",
-    "title": "edfu",
+    "title": "המקדש המצרי באדפו",
     "index": 2,
     "subtitle": "תוכנית",
     "row index": 0,
-    "info": ""
+    "info": "אדפו, מצרים העליונה | 237-57 לפנה״ס"
   },
   "1p-pantheon.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png",
@@ -38,17 +37,17 @@
     "index": 3,
     "subtitle": "תוכנית",
     "row index": 1,
-    "info": "ר"
+    "info": "רומא, איטליה | מאה שנייה לספירה"
   },
   "2p-celsus.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-celsus.png",
     "line": 2,
     "type": "p",
-    "title": "celsus",
+    "title": "ספריית צלזוס",
     "index": 6,
     "subtitle": "תוכנית",
     "row index": 0.9095008790214621,
-    "info": "ע"
+    "info": "איזמיר, טורקיה | שנות העשרה למאה השנייה לספירה"
   },
   "2p-trajan_s forum.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-trajan_s forum.png",
@@ -57,7 +56,7 @@
     "title": "trajan_s forum",
     "index": 7,
     "subtitle": "תוכנית",
-    "row index": 0.8651966151809455,
+    "row index": 0.25,
     "info": ""
   },
   "3p-cluny.png": {
