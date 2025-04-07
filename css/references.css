@@ -8,6 +8,7 @@
 	--textSctionWidth:80%;
 	--textSectionRowSize:5.5vh;
 	--navSubMenu:34;
+	--infoTagWidth:150px;
 }
 
 #table-containor{
@@ -79,6 +80,7 @@ td img{
 	background-color: var(--bgBody);
 }
 #texts {
+	visibility:hidden;
 	position:fixed;
 	overflow-x:hidden;
 	height: calc(var(--rowSize)*2);
@@ -129,6 +131,7 @@ td img{
 	background-color: rgba(calc(var(--navSubMenu)), calc(0.98*var(--navSubMenu)), calc(0.9*var(--navSubMenu)), 0.8);
 	padding: 0px 10px;
 	font-size: 14px;
+	max-width: var(--infoTagWidth)
 }
 #info-tag-type{
 	font-style: italic;
