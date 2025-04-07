@@ -10,6 +10,8 @@
 			function colWidthSetUp(cols){
 				const root = document.documentElement;
 				root.style.setProperty("--colSize", (100/cols) + "vw");
+				root.style.setProperty("--textSctionWidth", (100-100/cols*2) + "%");
+				
 			}
 			function rowHeightSetUp(rows){
 				const root = document.documentElement;
