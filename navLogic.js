@@ -6,17 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
 	navContainer.innerHTML = `
 		<button id="navButton"></button>
 		<div id="subMenu" class="hidden">
-			<table>
-				<tr>
-					<td><button class="navItem" data-link="video.html">סימולציה</button></td>
-					<td><button class="navItem" data-link="index.html">בית</button></td>
+			<table id="subMenuTable">
+				<tr class="subMenuTR">
+					<td class="subMenuTD"><button class="navItem" data-link="turb.html">אורבניזם</button></td>
+					<td class="subMenuTD"><button class="navItem" data-link="index.html">בית</button></td>
 				</tr>
-				<tr>
-					<td><button class="navItem" data-link="log.html">מילון</button></td>
-					<td><button class="navItem" data-link="tba.html">תב"ע</button></td>
+				<tr class="subMenuTR">
+					<td class="subMenuTD"><button class="navItem" data-link="log.html">מילון</button></td>
+					<td class="subMenuTD"><button class="navItem" data-link="tba.html">תב"ע</button></td>
 				</tr>
-				<tr>
-					<td><button class="navItem" data-link="turb.html">אורבניזם</button></td>
+				<tr class="subMenuTR">
+					<td class="subMenuTD"><button class="navItem" data-link="video.html">סימולציה</button></td>
+					<td class="subMenuTD"><button class="navItem" data-link="references.html">רפרנסים</button></td>
 				</tr>
 			</table>
 		</div>
