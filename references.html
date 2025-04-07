@@ -118,7 +118,6 @@
 			
 			infoTag.addEventListener("mouseenter", () => {infoTag.className = "";});
 			infoTag.addEventListener("mouseleave", () => {infoTag.className = "hidden";});
-			//FLAG!
 			infoTag.addEventListener("mousemove", (e) => {mouseOnRef(e)});
 			
 			function updateInfoTag(ref){
@@ -130,7 +129,7 @@
 			function mouseOnRef(e){
 				const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
-				if (infoTag.getBoundingClientRect().right > windowWidth){
+				if (e.clientX + minWidth > windowWidth){
 					infoTag.style.right = e.clientX + "px";
 					infoTag.style.left = "auto";
 				}
@@ -138,7 +137,7 @@
 					infoTag.style.left = e.clientX + "px";
 					infoTag.style.right = "auto";
 				}
-				if (infoTag.getBoundingClientRect().bottom > windowHeight){
+				if (e.clientY + minHeight > windowHeight){
 					infoTag.style.top = (e.clientY - infoTag.getBoundingClientRect().bottom) + "px";
 				}
 				else{
