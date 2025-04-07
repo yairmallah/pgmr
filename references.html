@@ -13,82 +13,13 @@
 				console.log(100/cols);
 				console.log(cols);
 			}
-		</script>
-	</head>
-	<body>
-		<script type="module" src="navLogic.js"></script>
-		<div id="table-containor">
-			<table id="smaller">
-				<tr id="row-5" class="row-odd"></tr>
-				<tr id="row-4" class="row-even"></tr>
-				<tr id="row-3" class="row-odd"></tr>
-				<tr id="row-2" class="row-even"></tr>
-			</table>
-			<table id="larger">
-				<tr id="row-1" class="row-odd"></tr>
-				<tr id="row-0" class="row-even"></tr>
-			</table>
-		</div>
-		<script>
-			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
-			fetch(json_add)
-				.then(response => response.json())
-				.then(data => {
-					console.log(data);
-					const rows = {};
-					let maxItemsInAnyRow = 0;
-
-					// Group by rows
-					for (const key in data) {
-						const item = data[key];
-						const rowId = `row-${item.line}`;
-						if (!rows[rowId]) rows[rowId] = [];
-						rows[rowId].push(item);
-					}
-
-					// Determine max number of items in a row
-					for (const rowId in rows) {
-						if (rows[rowId].length > maxItemsInAnyRow) {
-							maxItemsInAnyRow = rows[rowId].length;
-						}
-					}
-					colWidthSetUp(maxItemsInAnyRow);
-					// Fill each row
-					for (const rowId in rows) {
-						const tr = document.getElementById(rowId);
-						if (!tr) continue;
-
-						const items = rows[rowId].sort((a, b) => a["row index"] - b["row index"]);
-						const leftItems = items.filter(item => item["row index"] < 0.5);
-						const rightItems = items.filter(item => item["row index"] >= 0.5);
-						let paddingCount = maxItemsInAnyRow - (leftItems.length + rightItems.length);
-						if (rowId[rowId.length - 1] == 1) paddingCount = 0;
-						if (rowId[rowId.length - 1] == 0) paddingCount = 2;
-						const paddingCells = new Array(paddingCount).fill(null);
-
-						const fullRow = [...leftItems, ...paddingCells, ...rightItems];
-						
-						fullRow.forEach(item => {
-							const td = document.createElement('td');
-							console.log(item);
-							if (item) {
-								td.className = (item["row index"] < 0.5) ? "left-half" : "right-half";
-								const img = document.createElement('img');
-								img.src = item.url;
-								img.alt = item.title;
-								td.appendChild(img);
-							} else {
-								td.innerHTML = "&nbsp;";
-								td.className = "empty-cell";
-							}
-
-							tr.appendChild(td);
-						});
-					}
-				})
-				.catch(error => {
-					console.error('Error loading JSON:', error);
-				});
+			function rowHeightSetUp(rows){
+				const root = document.documentElement;
+				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
+				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
+				console.log(Math.floor(100/rows));
+				console.log(rows);
+			}
 		</script>
 		<script type="module">
 			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
@@ -114,6 +45,88 @@
 				let isDark = sessionStorage.getItem("isDark") || true;
 				toggleMode(isDark);
 			});
+		</script>
+		<script type="module" src="navLogic.js"></script>
+	</head>
+	<body>
+		<div id="table-containor">
+			<table class="smaller">
+				<tr id="row-5" class="row row-odd"></tr>
+			</table>
+			<table class="smaller">
+				<tr id="row-4" class="row row-even"></tr>
+			</table>
+			<table class="smaller">
+				<tr id="row-3" class="row row-odd"></tr>
+			</table>
+			<table class="smaller">
+				<tr id="row-2" class="row row-even"></tr>
+			</table>
+			<table class="larger">
+				<tr id="row-1" class="row row-odd"></tr>
+			</table>
+			<table class="larger">
+				<tr id="row-0" class="row row-even"></tr>
+			</table>
+		</div>
+		<script>
+			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
+			fetch(json_add)
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+					const rows = {};
+					let maxItemsInAnyRow = 0;
+
+					// Group by rows
+					for (const key in data) {
+						const item = data[key];
+						const rowId = `row-${item.line}`;
+						if (!rows[rowId]) rows[rowId] = [];
+						rows[rowId].push(item);
+					}
+					rowHeightSetUp(Object.keys(rows).length);
+					// Determine max number of items in a row
+					for (const rowId in rows) {
+						if (rows[rowId].length > maxItemsInAnyRow) {
+							maxItemsInAnyRow = rows[rowId].length;
+						}
+					};
+					// Fill each row
+					for (const rowId in rows) {
+						const tr = document.getElementById(rowId);
+						if (!tr) continue;
+
+						const items = rows[rowId].sort((a, b) => a["row index"] - b["row index"]);
+						const leftItems = items.filter(item => item["row index"] < 0.5);
+						const rightItems = items.filter(item => item["row index"] >= 0.5);
+						let paddingCount = maxItemsInAnyRow - (leftItems.length + rightItems.length);
+						if (rowId[rowId.length - 1] == 1) paddingCount = 0;
+						if (rowId[rowId.length - 1] == 0) paddingCount = 2;
+						const paddingCells = new Array(paddingCount).fill(null);
+
+						const fullRow = [...leftItems, ...paddingCells, ...rightItems];
+						
+						fullRow.forEach(item => {
+							const td = document.createElement('td');
+							if (item) {
+								td.className = (item["row index"] < 0.5) ? "left-half" : "right-half";
+								const img = document.createElement('img');
+								img.src = item.url;
+								img.alt = item.title;
+								td.appendChild(img);
+							} else {
+								td.innerHTML = "&nbsp;";
+								td.className = "empty-cell";
+							}
+
+							tr.appendChild(td);
+						});
+					}
+				})
+				.catch(error => {
+					console.error('Error loading JSON:', error);
+				});
 		</script>
 	</body>
 </html>
