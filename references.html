@@ -152,26 +152,10 @@
 			}
 			
 			function mouseOnRef(e){
-				/*const windowHeight = window.innerHeight;
+				const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
-				if (e.clientX + minWidth > windowWidth){
-					infoTag.style.right = e.clientX + "px";
-					infoTag.style.left = "auto";
-				}
-				else {
-					infoTag.style.left = e.clientX + "px";
-					infoTag.style.right = "auto";
-				}
-				if (e.clientY + minHeight > windowHeight){
-					console.log("in");
-					infoTag.style.bottom = (e.clientY) + "px";
-					infoTag.style.top = "auto";
-				}
-				else{
-					infoTag.style.top = e.clientY + "px";
-				}*/
-				infoTag.style.top = e.clientY + 5+ "px";
-				infoTag.style.left = e.clientX + 5 + "px";
+				infoTag.style.top = Math.min((e.clientY + 5), windowHeight - minHeight) + "px";
+				infoTag.style.left = Math.min((e.clientX + 5), windowWidth - minWidth) + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
