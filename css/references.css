@@ -75,7 +75,7 @@ td img{
 .row-even .right-half{
 	background-color: var(--bgBody);
 }
-#texts{
+#texts {
 	position:fixed;
 	overflow-x:hidden;
 	height: calc(var(--rowSize)*2);
@@ -83,6 +83,7 @@ td img{
 	bottom:0;
 	z-index:3;
 	width:100%;
+	font-size:12px
 }
 #texts-left{
 	direction:rtl;
@@ -97,4 +98,14 @@ td img{
 	left:50%;
 	width:50%;
 	bottom:0;
+}
+#texts p{
+	margin:0;
+}
+#texts i{
+	margin:0;
+	direction:rtl;
+}
+#texts h3{
+	margin:0;
 }
