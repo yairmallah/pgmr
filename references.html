@@ -18,6 +18,17 @@
 				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "% ");
 			}
 		</script>
+		<script>
+			function switchRow(rowClass){
+				document.querySelectorAll(rowClass).forEach(row => {
+					const cells = Array.from(row.children);
+					const reversed = cells.map(cell => cell.innerHTML).reverse();
+					cells.forEach((cell, i) => {
+						cell.innerHTML = reversed[i];
+					});
+				});
+			}
+		</script>
 		<script type="module">
 			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
 			window.darkValues = darkValues;
@@ -96,6 +107,7 @@
 					console.log(data);
 					const rows = {};
 					let maxItemsInAnyRow = 0;
+					let LeftMax = 0;
 
 					// Group by rows
 					for (const key in data) {
@@ -109,6 +121,10 @@
 					for (const rowId in rows) {
 						if (rows[rowId].length > maxItemsInAnyRow) {
 							maxItemsInAnyRow = rows[rowId].length;
+							LeftMax = 0;
+							rows[rowId].forEach(item => {
+								if (item["row index"] < 0.5) LeftMax ++;
+							});
 						}
 					};
 					// Fill each row
@@ -118,12 +134,15 @@
 						console.log(base, rowId);
 						let trl = document.createElement('tr');
 						trl.id = "texts-left-" + base;
+						trl.className = "text-table-row";
 						document.getElementById("texts-left").appendChild(trl);
 						let trr = document.createElement('tr');
 						trr.id = "texts-right-" + base;
+						trr.className = "text-table-row";
 						document.getElementById("texts-right").appendChild(trr);
 					}
 					for (const rowId in rows) {
+						let leftCount = 0;
 						const tr = document.getElementById(rowId);
 						const trInfoR = document.getElementById("texts-right-" + rowId);
 						const trInfoL = document.getElementById("texts-left-" + rowId);
@@ -138,7 +157,7 @@
 						const paddingCells = new Array(paddingCount).fill(null);
 
 						const fullRow = [...leftItems, ...paddingCells, ...rightItems];
-						
+						let LeftCount = 0
 						fullRow.forEach(item => {
 							const td = document.createElement('td');
 							if (item) {
@@ -159,6 +178,7 @@
 							tr.appendChild(td);
 						});
 					}
+					switchRow("text-table-row");
 				})
 				/*.catch(error => {
 					console.error('Error loading JSON:', error);
