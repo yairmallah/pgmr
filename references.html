@@ -118,10 +118,7 @@
 			infoTag.addEventListener("mouseenter", () => {infoTag.className = "";});
 			infoTag.addEventListener("mouseleave", () => {infoTag.className = "hidden";});
 			//FLAG!
-			infoTag.addEventListener("mousemove", (e) => {
-				infoTag.style.left = e.clientX + "px";
-				infoTag.style.top = e.clientY + "px";
-			});
+			infoTag.addEventListener("mousemove", (e) => {mouseOnRef(e)});
 			
 			function updateInfoTag(ref){
 				infoTitle.innerHTML = ref["title"];
@@ -129,9 +126,13 @@
 				infoSubstance.innerHTML = ref["info"];
 			}
 			
-			function mouseOnRef(ref, e){
-				infoTag.style.left = e.clientX + "px";
-				infoTag.style.top = e.clientY + "px";
+			function mouseOnRef(e){
+				const windowHeight = window.innerHeight;
+				const windowWidth = window.innerWidth;
+				if (infoTag.getBoundingClientRect().right > windowWidth) infoTag.style.right = e.clientX + "px";
+				else infoTag.style.left = e.clientX + "px";
+				if (infoTag.getBoundingClientRect().bottom > windowHeight) infoTag.style.bottom = e.clientY + "px";
+				else infoTag.style.top = e.clientY + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
@@ -210,7 +211,7 @@
 								img.alt = item.title;
 								td.appendChild(img);
 								td.addEventListener("click", () => {updateMainRef(item)});
-								td.addEventListener("mousemove", (e) => {mouseOnRef(item, e)});
+								td.addEventListener("mousemove", (e) => {mouseOnRef(e)});
 								td.addEventListener("mouseenter", () => {mouseEnterRef(item)});
 								td.addEventListener("mouseleave", () => {mouseLeaveRef()});
 								const textTD =  document.createElement('td');
