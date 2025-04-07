@@ -100,21 +100,24 @@
 			<table id="texts-left"></table>
 			<table id="texts-right"></table>
 		</div>
+		<div id="info-tag" class="hidden">acive</div>
 		<script>
 			function updateMainRef(ref){
 				console.log("i updateMainRef" + ref);
 			}
+			const infoTag = document.getElementById("info-tag");
 			function mouseOnRef(ref, e){
-				console.log("i mouseOnRef" + ref);
-				console.log(e);
-				console.log( e.clientY, e.clientX);
-				
-				/*document.addEventListener("mousemove", (e) => {
-				if (isDragging) {
-			dragged = true;
-			let newX = e.clientX
-			let newY = e.clientY
-			}*/}
+				infoTag.style.left = e.clientX + "px";
+				infoTag.style.top = e.clientY + "px";
+			}
+			function mouseEnterRef(ref){
+				infoTag.className = "";
+				console.log("EnterRe");
+			}
+			function mouseLeaveRef(){
+				infoTag.className = "hidden";
+				console.log("rRe");
+			}
 		</script>
 		<script>
 			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
@@ -186,12 +189,15 @@
 								td.appendChild(img);
 								td.addEventListener("click", () => {updateMainRef(item)});
 								td.addEventListener("mousemove", (e) => {mouseOnRef(item, e)});
+								td.addEventListener("mouseenter", () => {mouseEnterRef(item)});
+								td.addEventListener("mouseleave", () => {mouseLeaveRef()});
 								const textTD =  document.createElement('td');
 								textTD.appendChild(packInfomation(item));
 								if (item["row index"] < 0.5) trInfoL.appendChild(textTD);
 								if (item["row index"] >= 0.5) trInfoR.appendChild(textTD);
 							} else {
 								td.innerHTML = "&nbsp;";
+								td.addEventListener("mouseenter", () => {mouseLeaveRef()});
 								td.className = "empty-cell";
 							}
 
