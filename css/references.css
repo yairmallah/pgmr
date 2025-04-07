@@ -89,8 +89,11 @@ td img{
 	top: var(--schemeTop);
 	height: var(--schemeHeight);
 	width: var(--schemeWidth);
-	background-repeat: no-repeat;
-	background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+	filter: invert(1);
+	mix-blend-mode: difference;
 }
 
 #texts {
