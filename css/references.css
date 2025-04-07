@@ -1,6 +1,8 @@
 :root {
 	--bgBody:#000;
 	--rowSize:16vh;
+	--schemeHeight:80vh;
+	--schemeWidth:90vh;
 	--bgInv:hsl(50, 50%, 95%);
 	--colSize: 5vw;
 	--rows: 16% 16% 16% 16% 16% 16%;
@@ -80,6 +82,15 @@ td img{
 .row-even .right-half{
 	background-color: var(--bgBody);
 }
+#large-scheme{
+	position:fixed;
+	z-index:1;
+	top: var(--rowSize);
+	height: var(--schemeHeight);
+	width: var(--schemeWidth);
+	background-color:red;
+}
+
 #texts {
 	visibility:hidden;
 	position:fixed;
