@@ -86,7 +86,7 @@
 			<table class="container smaller">
 				<tr id="row-2" class="row row-even"></tr>
 			</table>
-			<table class="container larger">
+			<table class="container smaller">
 				<tr id="row-1" class="row row-odd"></tr>
 			</table>
 			<table class="container larger">
@@ -150,8 +150,8 @@
 						const leftItems = items.filter(item => item["row index"] < 0.5);
 						const rightItems = items.filter(item => item["row index"] >= 0.5);
 						let paddingCount = maxItemsInAnyRow - (leftItems.length + rightItems.length);
-						if (rowId[rowId.length - 1] == 1) paddingCount = 0;
-						if (rowId[rowId.length - 1] == 0) paddingCount = 2;
+						/*if (rowId[rowId.length - 1] == 1) paddingCount = 0;
+						if (rowId[rowId.length - 1] == 0) paddingCount = 2;*/
 						const paddingCells = new Array(paddingCount).fill(null);
 
 						const fullRow = [...leftItems, ...paddingCells, ...rightItems];
