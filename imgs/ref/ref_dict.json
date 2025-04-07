@@ -127,16 +127,16 @@
     "index": 12,
     "subtitle": "תוכנית",
     "row index": 0.25076748964562334,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+    "info": "גכע "
   },
   "3p-hagia sophia.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-hagia sophia.png",
     "line": 3,
     "type": "p",
-    "title": "hagia sophia",
+    "title": "איה סופיה",
     "index": 13,
     "subtitle": "תוכנית",
-    "row index": 0.47101184133152896,
+    "row index": 1,
     "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
   },
   "3p-rochester.png": {
@@ -146,58 +146,8 @@
     "title": "rochester",
     "index": 14,
     "subtitle": "תוכנית",
-    "row index": 0.26915607259571606,
+    "row index": 0.4,
     "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
-  },
-  "3s-cluny.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cluny.png",
-    "line": 3,
-    "type": "s",
-    "title": "cluny",
-    "index": 15,
-    "subtitle": "חתך",
-    "row index": 0.36038607144176404,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
-  },
-  "3s-cordoba mosque.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-cordoba mosque.png",
-    "line": 3,
-    "type": "s",
-    "title": "cordoba mosque",
-    "index": 16,
-    "subtitle": "חתך",
-    "row index": 0.17733249725068778,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
-  },
-  "3s-de chevalier.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-de chevalier.png",
-    "line": 3,
-    "type": "s",
-    "title": "de chevalier",
-    "index": 17,
-    "subtitle": "חתך",
-    "row index": 0.796585488512931,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
-  },
-  "3s-hagia sophia.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-hagia sophia.png",
-    "line": 3,
-    "type": "s",
-    "title": "hagia sophia",
-    "index": 18,
-    "subtitle": "חתך",
-    "row index": 0.550318386327484,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
-  },
-  "3s-rochester.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/3s-rochester.png",
-    "line": 3,
-    "type": "s",
-    "title": "rochester",
-    "index": 19,
-    "subtitle": "חתך",
-    "row index": 0.3346428934230734,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
   },
   "4p+s-la rottonda.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p+s-la rottonda.png",
@@ -205,7 +155,7 @@
     "type": "p",
     "title": "la rottonda",
     "index": 20,
-    "subtitle": "תוכנית",
+    "subtitle": "תוכנית וחתך",
     "row index": 0.2862645323748334,
     "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
   },
@@ -213,11 +163,11 @@
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-alhambra.jpg",
     "line": 4,
     "type": "p",
-    "title": "alhambra",
+    "title": "אלהמברה",
     "index": 21,
     "subtitle": "תוכנית",
-    "row index": 0.4676507269585244,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+    "row index": 1,
+    "info": "ע"
   },
   "4p-bauhaus.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-bauhaus.png",
