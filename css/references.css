@@ -6,6 +6,7 @@
 	--rows: 16% 16% 16% 16% 16% 16%;
 	--textsTop: 67%;
 	--textSctionWidth:80%;
+	--textSectionRowSize:5.5vh
 }
 
 #table-containor{
@@ -113,4 +114,10 @@ td img{
 #texts h3{
 	margin:0;
 	text-align:center;
+}
+.text-table-row-R{
+	height:var(--textSectionRowSize);
+}
+.text-table-row-L{
+	height:var(--textSectionRowSize);
 }
