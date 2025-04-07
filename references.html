@@ -92,7 +92,7 @@
 			<table class="container smaller">
 				<tr id="row-1" class="row row-odd"></tr>
 			</table>
-			<table class="container larger">
+			<table class="container smaller">
 				<tr id="row-0" class="row row-even"></tr>
 			</table>
 		</div>
@@ -100,23 +100,51 @@
 			<table id="texts-left"></table>
 			<table id="texts-right"></table>
 		</div>
-		<div id="info-tag" class="hidden">acive</div>
+		<div id="info-tag" class="hidden">
+			<h3 id="info-tag-title"></h3>
+			<p id="info-tag-type"></p>
+			<p id="info-tag-substance"></p>
+		</div>
 		<script>
+		//font-style: italic;
+			
 			function updateMainRef(ref){
 				console.log("i updateMainRef" + ref);
 			}
+			
 			const infoTag = document.getElementById("info-tag");
+			const infoTitle = document.getElementById('info-tag-title');
+			const infoType = document.getElementById('info-tag-type');
+			const infoSubstance = document.getElementById('info-tag-substance');
+			
+			infoTag.addEventListener("mouseenter", () => {infoTag.className = "";});
+			infoTag.addEventListener("mouseleave", () => {infoTag.className = "hidden";});
+			//FLAG!
+			infoTag.addEventListener("mousemove", (e) => {
+				infoTag.style.left = e.clientX + "px";
+				infoTag.style.top = e.clientY + "px";
+			});
+			
+			function updateInfoTag(ref){
+				console.log("in");
+				infoTitle.innerHTML = ref["title"];
+				infoType.innerHTML = ref["subtitle"];
+				infoSubstance.innerHTML = ref["info"];
+				console.log(ref);
+				console.log(infoSubstance);
+				
+			}
+			
 			function mouseOnRef(ref, e){
 				infoTag.style.left = e.clientX + "px";
 				infoTag.style.top = e.clientY + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
-				console.log("EnterRe");
+				updateInfoTag(ref);
 			}
 			function mouseLeaveRef(){
 				infoTag.className = "hidden";
-				console.log("rRe");
 			}
 		</script>
 		<script>
