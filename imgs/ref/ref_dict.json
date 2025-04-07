@@ -59,26 +59,6 @@
     "row index": 0.8651966151809455,
     "info": ""
   },
-  "2s-celsus.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-celsus.png",
-    "line": 2,
-    "type": "s",
-    "title": "celsus",
-    "index": 8,
-    "subtitle": "חתך",
-    "row index": 0.7357165763042487,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "2s-trajan_s forum.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2s-trajan_s forum.png",
-    "line": 2,
-    "type": "s",
-    "title": "trajan_s forum",
-    "index": 9,
-    "subtitle": "חתך",
-    "row index": 0.0031061648888515148,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
-  },
   "3p-cluny.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cluny.png",
     "line": 3,
@@ -198,26 +178,6 @@
     "subtitle": "תוכנית",
     "row index": 0.45030379968152967,
     "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
-  },
-  "4s-alhambra.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-alhambra.png",
-    "line": 4,
-    "type": "s",
-    "title": "alhambra",
-    "index": 27,
-    "subtitle": "חתך",
-    "row index": 0.9909283249340168,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
-  },
-  "4s-bauhaus.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/4s-bauhaus.png",
-    "line": 4,
-    "type": "s",
-    "title": "bauhaus",
-    "index": 28,
-    "subtitle": "חתך",
-    "row index": 0.5607862211684151,
-    "info": " ע"
   },
   "5p+s-kasbah.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p+s-kasbah.png",
