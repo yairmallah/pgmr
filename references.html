@@ -101,13 +101,11 @@
 			<table id="texts-left"></table>
 			<table id="texts-right"></table>
 		</div>
-		<div id="large-scheme" class="hidden"></div>
+		<div id="large-scheme"></div>
 		<script>
 			const lrgSchm = document.getElementById("large-scheme");
 			function updateMainRef(ref){
-				console.log("i updateMainRef" + ref);
 				lrgSchm.className = "";
-				console.log("i updateMainRef" + ref);
 				lrgSchm.style.backgroundImage = `url(${ref["url"]})`;
 			}
 		</script>
