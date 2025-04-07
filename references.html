@@ -105,26 +105,27 @@
 		<script>
 			const lrgSchm = document.getElementById("large-scheme");
 			function updateMainRef(ref){
-				lrgSchm.className = "";
-				lrgSchm.style.backgroundImage = `url(${ref["url"]})`;
+				console.log(ref["url"]);
+				lrgSchm.className = "ggg";
+				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
 			}
 
-  lrgSchm.addEventListener('mousemove', (e) => {
-    const rect = lrgSchm.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    lrgSchm.style.backgroundPosition = `${x}% ${y}%`;
-  });
+			lrgSchm.addEventListener('mousemove', (e) => {
+				const rect = lrgSchm.getBoundingClientRect();
+				const x = ((e.clientX - rect.left) / rect.width) * 100;
+				const y = ((e.clientY - rect.top) / rect.height) * 100;
+				lrgSchm.style.backgroundPosition = `${x}% ${y}%`;
+			});
 
-  lrgSchm.addEventListener('mouseenter', () => {
-	console.log("in");
-    lrgSchm.classList.add('zoomed');
-  });
+			lrgSchm.addEventListener('mouseenter', () => {
+				console.log("in");
+				lrgSchm.classList.add('zoomed');
+			});
 
-  lrgSchm.addEventListener('mouseleave', () => {
-    lrgSchm.classList.remove('zoomed');
-    lrgSchm.style.backgroundPosition = 'center';
-  });
+			lrgSchm.addEventListener('mouseleave', () => {
+				lrgSchm.classList.remove('zoomed');
+				lrgSchm.style.backgroundPosition = 'center';
+			});
 
 		</script>
 		<div id="info-tag" class="hidden">
