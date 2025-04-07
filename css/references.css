@@ -89,7 +89,8 @@ td img{
 	top: var(--schemeTop);
 	height: var(--schemeHeight);
 	width: var(--schemeWidth);
-	background-color:red;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
 }
 
 #texts {
