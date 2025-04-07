@@ -6,7 +6,8 @@
 	--rows: 16% 16% 16% 16% 16% 16%;
 	--textsTop: 67%;
 	--textSctionWidth:80%;
-	--textSectionRowSize:5.5vh
+	--textSectionRowSize:5.5vh;
+	--navSubMenu:34;
 }
 
 #table-containor{
@@ -125,4 +126,5 @@ td img{
 	position:fixed;
 	z-index:3;
 	border-radius: 10px;
+	background-color: rgba(calc(var(--navSubMenu)), calc(0.98*var(--navSubMenu)), calc(0.9*var(--navSubMenu)), 0.8);
 }
