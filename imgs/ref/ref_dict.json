@@ -53,41 +53,41 @@
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-trajan_s forum.png",
     "line": 2,
     "type": "p",
-    "title": "trajan_s forum",
+    "title": "פורום טריאנוס",
     "index": 7,
     "subtitle": "תוכנית",
     "row index": 0.25,
-    "info": ""
+    "info": "רומא, איטליה | 105-113 לספירה"
   },
   "3p-cluny.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cluny.png",
     "line": 3,
     "type": "p",
-    "title": "cluny",
+    "title": "מנזר קלוני",
     "index": 10,
     "subtitle": "תוכנית",
-    "row index": 0.8822175806144984,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+    "row index": 0.1,
+    "info": " קלוני, צרפת | 910 לספירה "
   },
   "3p-cordoba mosque.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-cordoba mosque.png",
     "line": 3,
     "type": "p",
-    "title": "cordoba mosque",
+    "title": "הקתדרלה של קורדובה",
     "index": 11,
     "subtitle": "תוכנית",
-    "row index": 0.7234391962593925,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+    "row index": 0,
+    "info": "אנדלוסיה, ספרד | 785 לספירה  "
   },
   "3p-de chaveliers.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-de chaveliers.png",
     "line": 3,
     "type": "p",
-    "title": "de chaveliers",
+    "title": "מבצר קראק דה שבלייר",
     "index": 12,
     "subtitle": "תוכנית",
-    "row index": 0.25076748964562334,
-    "info": "גכע "
+    "row index": 0.9,
+    "info": "סוריה | 1031 "
   },
   "3p-hagia sophia.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-hagia sophia.png",
@@ -97,186 +97,196 @@
     "index": 13,
     "subtitle": "תוכנית",
     "row index": 1,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+    "info": "איסטנבול, טורקיה | 537 לספירה"
   },
   "3p-rochester.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/3p-rochester.png",
     "line": 3,
     "type": "p",
-    "title": "rochester",
+    "title": "טירת רוצ׳סטר",
     "index": 14,
     "subtitle": "תוכנית",
-    "row index": 0.4,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+    "row index": 0.2,
+    "info": "דרום מזרח אנגליה | 1089"
   },
   "4p+s-la rottonda.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p+s-la rottonda.png",
     "line": 4,
     "type": "p",
-    "title": "la rottonda",
+    "title": "וילה רוטונדה | פלאדיו",
     "index": 20,
     "subtitle": "תוכנית וחתך",
-    "row index": 0.2862645323748334,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+    "row index": 0.3,
+    "info": "ויצ׳נזה, צפון איטליה | 1567-1590"
   },
   "4p-alhambra.jpg": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-alhambra.jpg",
     "line": 4,
     "type": "p",
-    "title": "אלהמברה",
+    "title": "ארמון אלהמברה",
     "index": 21,
     "subtitle": "תוכנית",
     "row index": 1,
-    "info": "ע"
+    "info": "גרנדה, ספרד | 1238"
   },
   "4p-bauhaus.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-bauhaus.png",
     "line": 4,
     "type": "p",
-    "title": "bauhaus",
+    "title": "באוהאוס | ולטר גרופיוס",
     "index": 22,
     "subtitle": "תוכנית",
-    "row index": 0.6512903258300858,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+    "row index": 0.2,
+    "info": "דסאו, גרמניה | 1925-6"
   },
   "4p-genevieve.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-genevieve.png",
     "line": 4,
     "type": "p",
-    "title": "genevieve",
+    "title": "ספריית סן לה-ז׳נבייב | אנרי לברוסט",
     "index": 23,
     "subtitle": "תוכנית",
-    "row index": 0.15589958833738105,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+    "row index": 0,
+    "info": "פריז, צרפת | 1851"
   },
   "4p-laurentian.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-laurentian.png",
     "line": 4,
     "type": "p",
-    "title": "laurentian",
+    "title": "הספרייה הלורנציאנית | מיכלנג׳לו",
     "index": 24,
     "subtitle": "תוכנית",
-    "row index": 0.8683865958760487,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+    "row index": 0.9,
+    "info": "פירנצה, איטליה | 1523-1571"
   },
   "4p-malatestiana.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-malatestiana.png",
     "line": 4,
     "type": "p",
-    "title": "malatestiana",
+    "title": "ספריית מלטסטיאנה",
     "index": 25,
     "subtitle": "תוכנית",
-    "row index": 0.05469852153587096,
-    "info": " ע"
+    "row index": 0.1,
+    "info": " צ׳זנה, צפון איטליה | 1447-1452"
   },
   "4p-taliesin.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/4p-taliesin.png",
     "line": 4,
     "type": "p",
-    "title": "taliesin",
+    "title": "טליאסין ווסט | פרנק לויד רייט",
     "index": 26,
     "subtitle": "תוכנית",
-    "row index": 0.45030379968152967,
-    "info": "גכע גכע דגכערגערגכערערעאמןןיראועואןעיוא רא יאריע כיעגוכעגוכע "
+    "row index": 0.8,
+    "info": "אריזונה, ארה״ב | 1911, 1937"
   },
   "5p+s-kasbah.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p+s-kasbah.png",
     "line": 5,
     "type": "p",
-    "title": "kasbah",
+    "title": "הקסבה | פיאט בלום",
     "index": 33,
     "subtitle": "תוכנית",
-    "row index": 0.9967647201132461,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+    "row index": 0.2,
+    "info": " הנגלו, הולנד | 1973 "
   },
   "5p-berlinun.jpg": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-berlinun.jpg",
     "line": 5,
     "type": "p",
-    "title": "berlinun",
+    "title": "האוניברסיטה הפתוחה בברלין | קנדיליס, יוזיק, וודס. נורמן פוסטר",
     "index": 34,
     "subtitle": "תוכנית",
-    "row index": 0.9079672258978139,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+    "row index": 0.6,
+    "info": "ברלין, גרמניה | 1973, 2005"
   },
   "5p-bodtker.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bodtker.png",
     "line": 5,
     "type": "p",
-    "title": "bodtker",
+    "title": "וילה בודטקר | סבר פהן",
     "index": 35,
     "subtitle": "תוכנית",
-    "row index": 0.7546491657714738,
-    "info": " ע"
+    "row index": 0.8,
+    "info": "אוסלו, נורבגיה | 1967, 1985"
   },
   "5p-bourse de commerce.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-bourse de commerce.png",
     "line": 5,
     "type": "p",
-    "title": "bourse de commerce",
+    "title": "הבורסה למסחר | טדאו אנדו",
     "index": 36,
     "subtitle": "תוכנית",
     "row index": 1,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
+    "info": "פריז, צרפת | 2020"
   },
   "5p-chichu.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-chichu.png",
     "line": 5,
     "type": "p",
-    "title": "chichu",
+    "title": "מוזיאון צ׳יצ׳ו לאמנויות",
     "index": 37,
     "subtitle": "תוכנית",
-    "row index": 0.3632343992453325,
-    "info": " ע"
+    "row index": 0.4,
+    "info": "נאושימה, יפן | 2004"
   },
   "5p-exodus.jpg": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-exodus.jpg",
     "line": 5,
     "type": "p",
-    "title": "exodus",
+    "title": "אקסודוס, או האסירים מרצון של הארכיטקטורה | רם קולהאס",
     "index": 38,
     "subtitle": "תוכנית",
-    "row index": 0.2592277088935251,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+    "row index": 0.7,
+    "info": "לונדון, אנגליה. לא נבנה | 1972"
   },
   "5p-hurva.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hurva.png",
     "line": 5,
     "type": "p",
-    "title": "hurva",
+    "title": "בית כנסת החורבה. לא נבנה | לואי קאן",
     "index": 39,
     "subtitle": "תוכנית",
-    "row index": 0.961455603963442,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+    "row index": 0.9,
+    "info": "ירושלים, ישראל | 1967-1974"
   },
   "5p-isrmuseum.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-isrmuseum.png",
     "line": 5,
     "type": "p",
-    "title": "isrmuseum",
+    "title": "מוזיאון ישראל | אל מנספלד",
     "index": 40,
     "subtitle": "תוכנית",
-    "row index": 0.8411376150598338,
-    "info": "ע כע ע גכע גכעגכע ןגצעךרע עכגע "
+    "row index": 0,
+    "info": "ירושלים, ישראל | 1965"
   },
   "5p-ramot.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-ramot.png",
     "line": 5,
     "type": "p",
-    "title": "ramot",
+    "title": "שיכוני רמות פולין | צבי הקר",
     "index": 42,
     "subtitle": "תוכנית",
-    "row index": 0.31380624548416725,
-    "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
+    "row index": 0.1,
+    "info": "ירושלים, ישראל | 1974"
   },
   "5p-seine.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-seine.png",
     "line": 5,
     "type": "p",
-    "title": "seine",
+    "title": "שיכוני איברי-סור-סן | ז׳אן רנודי",
     "index": 43,
     "subtitle": "תוכנית",
-    "row index": 0.8480269368942919,
-    "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
+    "row index": 0.3,
+    "info": "פריז, צרפת | 1970-1975"
+  },
+  "2p-greece.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-seine.png",
+    "line": 2,
+    "type": "p",
+    "title": "מגורים ביוון העתיקה, כנראה",
+    "index": 43,
+    "subtitle": "תוכנית",
+    "row index": 0,
+    "info": "יוון | זמן לא ידוע"
   }
 }
