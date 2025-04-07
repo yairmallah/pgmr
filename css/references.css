@@ -1,8 +1,57 @@
 :root {
 	--bgBody:#000;
 	--rowSize:16vh;
+	--bgInv:hsl(50, 50%, 95%);
+	--colSize: 5vw;
+}
+#table-containor{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left:0;
+}
+table{
+	border:0;
+	border-spacing:0;
 }
 tr{
-	width: 16vh;
-.row-odd{
+	height: var(--rowSize);
 }
+td{
+	border: 1px red solid;
+}
+#larger{
+	width: 100%;
+}
+#smaller td{
+	width: var(--colSize);
+	height: 100%
+}
+#smaller td img{
+	max-width: var(--colSize);
+}
+td img{
+	max-height: var(--rowSize);
+	filter: invert(1);
+	mix-blend-mode: difference;
+}
+.right-half{ 
+	direction: rtl;
+	z-index:2;
+}
+.left-half{
+	direction: ltr;
+	z-index:2;
+}
+.empty-cell{
+	background-color: var(--bgBody);
+	z-index = -1;
+}
+.row-odd{
+	background-color: var(--bgInv);
+}
+.row-even{
+	background-color: var(--bgBody);
+}
+
