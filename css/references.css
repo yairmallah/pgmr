@@ -91,6 +91,7 @@ td img{
 	right:50%;
 	width:50%;
 	bottom:0;
+	text-align:center;
 }
 #texts-right{
 	direction:ltr;
@@ -98,14 +99,17 @@ td img{
 	left:50%;
 	width:50%;
 	bottom:0;
+	text-align:center;
 }
 #texts p{
 	margin:0;
+	text-align:center;
 }
 #texts i{
 	margin:0;
-	direction:rtl;
+	text-align:center;
 }
 #texts h3{
 	margin:0;
+	text-align:center;
 }
