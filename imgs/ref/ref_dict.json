@@ -3,20 +3,20 @@
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-carnac.png",
     "line": 0,
     "type": "p",
-    "title": "carnac",
+    "title": "קרנאק",
     "index": 0,
     "subtitle": "תוכנית",
-    "row index": 0.06859931473963388,
+    "row index": 0,
     "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
   },
   "0p-stonehenge.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-stonehenge.png",
     "line": 0,
     "type": "p",
-    "title": "stonehenge",
+    "title": "סטונהאנג'",
     "index": 1,
     "subtitle": "תוכנית",
-    "row index": 0.6904863953258031,
+    "row index": 1,
     "info": " ע"
   },
   "1p-edfu.png": {
@@ -26,38 +26,18 @@
     "title": "edfu",
     "index": 2,
     "subtitle": "תוכנית",
-    "row index": 0.6291501327958634,
+    "row index": 0,
     "info": " איעוגי ראעיאוראעור עירו ערוכעיורלכעורו עיכ עגכחליע גלכעלגכעע ל לי "
   },
   "1p-pantheon.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png",
     "line": 1,
     "type": "p",
-    "title": "pantheon",
+    "title": "הפנתאון",
     "index": 3,
     "subtitle": "תוכנית",
-    "row index": 0.8438893458799247,
+    "row index": 1,
     "info": "רקעמקרךע עכ צער עחמרעןרגעןצםגכ עעכג ע"
-  },
-  "1s-edfu.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-edfu.png",
-    "line": 1,
-    "type": "s",
-    "title": "edfu",
-    "index": 4,
-    "subtitle": "חתך",
-    "row index": 0.15001636410274422,
-    "info": "ןרכעירויעןוכיעיןגויכעיויכגע יגריע "
-  },
-  "1s-pantheon.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/1s-pantheon.png",
-    "line": 1,
-    "type": "s",
-    "title": "pantheon",
-    "index": 5,
-    "subtitle": "חתך",
-    "row index": 0.4745391259137852,
-    "info": " ע"
   },
   "2p-celsus.png": {
     "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-celsus.png",
