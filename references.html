@@ -101,6 +101,22 @@
 			<table id="texts-right"></table>
 		</div>
 		<script>
+			function updateMainRef(ref){
+				console.log("i updateMainRef" + ref);
+			}
+			function mouseOnRef(ref, e){
+				console.log("i mouseOnRef" + ref);
+				console.log(e);
+				console.log( e.clientY, e.clientX);
+				
+				/*document.addEventListener("mousemove", (e) => {
+				if (isDragging) {
+			dragged = true;
+			let newX = e.clientX
+			let newY = e.clientY
+			}*/}
+		</script>
+		<script>
 			const json_add = "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json"
 			fetch(json_add)
 				.then(response => response.json())
@@ -168,6 +184,8 @@
 								img.src = item.url;
 								img.alt = item.title;
 								td.appendChild(img);
+								td.addEventListener("click", () => {updateMainRef(item)});
+								td.addEventListener("mousemove", (e) => {mouseOnRef(item, e)});
 								const textTD =  document.createElement('td');
 								textTD.appendChild(packInfomation(item));
 								if (item["row index"] < 0.5) trInfoL.appendChild(textTD);
