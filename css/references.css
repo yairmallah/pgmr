@@ -89,11 +89,17 @@ td img{
 	top: var(--schemeTop);
 	height: var(--schemeHeight);
 	width: var(--schemeWidth);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 	filter: invert(1);
 	mix-blend-mode: difference;
+	transition: background-size 0.3s ease;
+	overflow: hidden;
+}
+
+#large-scheme.zoomed {
+	background-size: 200%; /* zoom level */
 }
 
 #texts {
