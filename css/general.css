@@ -183,6 +183,12 @@ b {
     border-radius: 4px;
     padding: 4px;
 }
+.subMenuTD{
+	width:auto;
+}
+.subMenuTR{
+	height:auto;
+}
 .navItem {
     width: 105px; /*navigation buttons!!*/
     height: 25px;
