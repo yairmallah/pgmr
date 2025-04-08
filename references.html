@@ -154,8 +154,8 @@
 			function mouseOnRef(e){
 				const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
-				infoTag.style.top = Math.min((e.clientY + 5), windowHeight - minHeight) + "px";
-				infoTag.style.left = Math.min((e.clientX + 5), windowWidth - minWidth) + "px";
+				infoTag.style.top = Math.min((e.clientY + 5), windowHeight - minHeight - 5) + "px";
+				infoTag.style.left = Math.min((e.clientX + 5), windowWidth - minWidth - 5) + "px";
 			}
 			function mouseEnterRef(ref){
 				infoTag.className = "";
