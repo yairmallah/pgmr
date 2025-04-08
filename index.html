@@ -81,7 +81,7 @@
 				mp4:	{h:330, s:100, l:70, a:0.8},
 				img:	{h:280, s:100, l:70, a:0.8}, 
 				txt:	{h:120, s:100, l:90, a:1},
-				json:	{h:210, s:100, l:90, a:1},
+				json:	{h:200, s:100, l:90, a:1},
 				other:	{h:220, s:0, l:0, a:1}
 			},{
 				get(target, key) {
@@ -97,18 +97,18 @@
 		import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
 		window.darkValues = darkValues;
 		Object.assign(darkValues[false],{
-			"--htmlH":40,
-			"--cssH":180,
-			"--jsH":0,
-			"--jpgH":260,
-			"--pngH":280,
-			"--gifH":290,
-			"--jpegH":270,
-			"--mp4H":330,
-			"--imgH":280,
-			"--txtH":120,
-			"--otherH":220,
-			"--jsonH":220,
+			"--htmlH":specificColors["html"].h,
+			"--cssH":specificColors["css"].h,
+			"--jsH":specificColors["js"].h,
+			"--jpgH":specificColors["jpg"].h,
+			"--pngH":specificColors["png"].h,
+			"--gifH":specificColors["gif"].h,
+			"--jpegH":specificColors["jpeg"].h,
+			"--mp4H":specificColors["mp4"].h,
+			"--imgH":specificColors["img"].h,
+			"--txtH":specificColors["txt"].h,
+			"--otherH":specificColors["other"].h,
+			"--jsonH":specificColors["json"].h,
 		
 			"--textShadow":"none",
 			"--bgImg":"unset",
@@ -154,18 +154,18 @@
 			"--pathOpacity":0.7
 		});
 		Object.assign(darkValues[true],{
-			"--htmlH":40,
-			"--cssH":180,
-			"--jsH":0,
-			"--jpgH":260,
-			"--pngH":280,
-			"--gifH":290,
-			"--jpegH":270,
-			"--mp4H":330,
-			"--imgH":280,
-			"--txtH":120,
-			"--otherH":220,
-			"--jsonH":220,
+			"--htmlH":specificColors["html"].h,
+			"--cssH":specificColors["css"].h,
+			"--jsH":specificColors["js"].h,
+			"--jpgH":specificColors["jpg"].h,
+			"--pngH":specificColors["png"].h,
+			"--gifH":specificColors["gif"].h,
+			"--jpegH":specificColors["jpeg"].h,
+			"--mp4H":specificColors["mp4"].h,
+			"--imgH":specificColors["img"].h,
+			"--txtH":specificColors["txt"].h,
+			"--otherH":specificColors["other"].h,
+			"--jsonH":specificColors["json"].h,
 			
 			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
 			"--bgImg":"linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
@@ -379,7 +379,7 @@
 										yMin: 0 + offs, yMax: height/2 - offs  },
 							
 					bounds["js"]= { 	xMin: width*5/8 + offs, xMax: width*9/10 - offs, 
-										yMin: height/2 + offs, yMax: height*8/15 - offs  };
+										yMin: 0 + offs, yMax: height*8/15 - offs  };
 							
 					bounds["img"]= { 	xMin: 0 + offs, xMax: width*9/10 - offs, 
 										yMin: height/1.7 + offs, yMax: height - offs  };
@@ -397,12 +397,12 @@
 									xMax: width / 3 - offs,		yMax: height - offs};
 									
 					bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
-									xMax: width / 2 - offs,		yMax: height / 3 - offs};
+									xMax: width - offs,			yMax: height / 4 - offs};
 					
-					bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 3 + offs,
+					bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 4 + offs,
 									xMax: width / 2 - offs,		yMax: height - offs};
 									
-					bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+					bounds["img"]= {xMin: width /2 + offs,		yMin: height / 4 + offs,
 									xMax: width - offs,			yMax: height - offs};
 				}
 			}
@@ -470,6 +470,7 @@
 				if (filename.endsWith(".js")) return "js";
 				if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
 				if (filename.endsWith(".txt")) return "txt";
+				if (filename.endsWith(".json")) return "txt";
 				return "other";
 			}
 			function getFileTypeD(filename) {
