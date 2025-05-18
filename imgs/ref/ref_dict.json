@@ -280,7 +280,7 @@
     "info": "פריז, צרפת | 1970-1975"
   },
   "2p-greece.png": {
-    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-seine.png",
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-greece-1.png",
     "line": 2,
     "type": "p",
     "title": "מגורים ביוון העתיקה, כנראה",
@@ -288,5 +288,135 @@
     "subtitle": "תוכנית",
     "row index": 0,
     "info": "יוון | זמן לא ידוע"
-  }
+  },
+  "5c-chamberworks.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5c-chamberworks.png",
+    "line": 5,
+    "type": "c",
+    "title": "יצירות קאמריות | דניאל ליבסקינד",
+    "index": 44,
+    "subtitle": "קומפוזיציה",
+    "row index": 0.55,
+    "info": "ללא מקום | 1978-1985"
+  },
+  "5e-the light pavilion.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5e-the light pavilion.png",
+    "line": 5,
+    "type": "e",
+    "title": "ביתן אור | לבאוס וודס",
+    "index": 45,
+    "subtitle": "חזית",
+    "row index": 0.56,
+    "info": "צ׳נגדו, סין | 2007-2012"
+   },
+  "5p-la tourrette monastery.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-la tourrette monastery.png",
+    "line": 5,
+    "type": "p",
+    "title": "מנזר לה טורט | לה-קורבוזיה",
+    "index": 46,
+    "subtitle": "תכנית",
+    "row index": 0.35,
+    "info": "אוו, צרפת | 1956-1960"
+    },
+  "5p-thermal baths at vals.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-thermal baths at vals.png",
+    "line": 5,
+    "type": "p",
+    "title": "ת׳רמה וולס | פיטר זומת׳ור",
+    "index": 47,
+    "subtitle": "תכנית",
+    "row index": 0.15,
+    "info": "וולס, שווייץ | 1996"
+    },
+  "5p-rolex center.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-rolex center.png",
+    "line": 5,
+    "type": "p",
+    "title": "מרכז רולקס | SANAA",
+    "index": 48,
+    "subtitle": "תכנית",
+    "row index": 0.9,
+    "info": "לוזאן, שווייץ | 2010"
+     },
+  "5p-dulles airport.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-dulles airport.png",
+    "line": 5,
+    "type": "p",
+    "title": "שדה התעופה בדולס | אירו סארינן",
+    "index": 49,
+    "subtitle": "תכנית",
+    "row index": 0.45,
+    "info": "דולס וושינגטון, ארה״ב | 1960"
+    },
+  "2p-baths of caracalla.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/2p-baths of caracalla.png",
+    "line": 2,
+    "type": "p",
+    "title": "מרחצאות קרקלה",
+    "index": 50,
+    "subtitle": "תכנית",
+    "row index": 0.91,
+    "info": "רומא, איטליה | 216 לספירה"
+   },
+  "5p-kimbell art museum.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-kimbell art museum.png",
+    "line": 5,
+    "type": "p",
+    "title": "מוזיאון לאמנות ע״ש קימבל | לואי קאן",
+    "index": 51,
+    "subtitle": "תכנית וחתך",
+    "row index": 0.89,
+    "info": "טקסס, ארה״ב | 1972"
+   },
+  "5p-house monsaraz.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-house monsaraz.png",
+    "line": 5,
+    "type": "p",
+    "title": "בית מונסרז | איירס מטאוס",
+    "index": 52,
+    "subtitle": "תכנית",
+    "row index": 0.8,
+    "info": "מונסרז, פורטוגל | 2018"
+  },
+  "5p-fuji pavilion.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-fuji pavilion.png",
+    "line": 5,
+    "type": "p",
+    "title": "ביתן פוג׳י | יוטקה מורטה",
+    "index": 53,
+    "subtitle": "תכנית",
+    "row index": 0.93,
+    "info": "אוסקה, יפן | 2018"
+   },
+  "5p-national parliament of bangladesh.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-national parliament of bangladesh.png",
+    "line": 5,
+    "type": "p",
+    "title": "בית הפרלמנט של בנגלדש | לואי קאן",
+    "index": 54,
+    "subtitle": "תכנית",
+    "row index": 0.92,
+    "info": "דאקה, בנגלדש | 1962-1982"
+   },
+  "5p-dome over new york city.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-dome over new york city.png",
+    "line": 5,
+    "type": "p",
+    "title": "כיפה מעל ניו-יורק | באקמינסטר פולר",
+    "index": 55,
+    "subtitle": "תכנית",
+    "row index": 0.98,
+    "info": "לא נבנה, ניו-יורק, ארה״ב | 1960"
+   },
+  "5p-olympiastadion.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-olympiastadion.png",
+    "line": 5,
+    "type": "p",
+    "title": "האיצטדיון האולימפי | פריי אוטו",
+    "index": 56,
+    "subtitle": "תכנית",
+    "row index": 0.6,
+    "info": "מינכן, גרמניה | 1968-1972"
+    }
 }
