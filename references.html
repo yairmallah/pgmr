@@ -103,7 +103,37 @@
 		</div>
 		<div id="large-scheme"></div>
 		<script>
-			const lrgSchm = document.getElementById("large-scheme");
+			const lrgTable = document.getElementById('table-containor');
+			const lrgSchm = document.getElementById('large-scheme');
+			
+			let isInsideBottom = false;
+
+			lrgTable.addEventListener('mousemove', (e) => {
+				// Check if cursor is within the bottom element's bounding box
+				const rect = lrgSchm.getBoundingClientRect();
+				const inside = (
+					e.clientX >= rect.left &&
+					e.clientX <= rect.right &&
+					e.clientY >= rect.top &&
+					e.clientY <= rect.bottom
+				);
+
+				if (inside /*&& !isInsideBottom*/) {
+					isInsideBottom = true;
+					lrgSchm.dispatchEvent(new Event('mouseenter'));
+				} else if (!inside /*&& isInsideBottom*/) {
+					isInsideBottom = false;
+					lrgSchm.dispatchEvent(new Event('mouseleave'));
+				}
+				// Clone and dispatch to bottom
+				if (isInsideBottom){
+					const newEvent = new MouseEvent('mousemove', e);
+					lrgSchm.dispatchEvent(newEvent);
+				}
+			});
+
+		</script>
+		<script>
 			function updateMainRef(ref){
 				console.log(ref["url"]);
 				lrgSchm.className = "";
