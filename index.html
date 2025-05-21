@@ -69,23 +69,23 @@
 		}
 	</script>
 	<script>
-			const specificColors = new Proxy(
+		const specificColors = new Proxy(
 			{
-				html:	{h:40, s:100, l:100, a:1},
-				css:	{h:180, s:100, l:90, a:1},
+				html:	{h:120, s:100, l:100, a:1}, //40
+				css:	{h:210, s:100, l:90, a:1}, //180
 				js:		{h:0, s:100, l:70, a:1},
 				jpg:	{h:260, s:100, l:70, a:0.8},
 				png:	{h:280, s:100, l:70, a:0.8},
 				gif:	{h:290, s:100, l:70, a:0.8},
 				jpeg:	{h:270, s:100, l:70, a:0.8},
 				mp4:	{h:330, s:100, l:70, a:0.8},
-				img:	{h:280, s:100, l:70, a:0.8}, 
-				txt:	{h:120, s:100, l:90, a:1},
-				json:	{h:200, s:100, l:90, a:1},
-				other:	{h:220, s:0, l:0, a:1}
+				img:	{h:280, s:100, l:70, a:0.8},
+				txt:	{h:40, s:100, l:90, a:1}, //120
+				json:	{h:50, s:100, l:90, a:1}, //200
+				other:	{h:330, s:0, l:0, a:1} //220
 			},{
 				get(target, key) {
-					return key in target ? target[key] : {h:220, s:0, l:0, a:1};
+					return key in target ? target[key] : {h:330, s:0, l:0, a:1}; //220
 				}
 		});
 		window.colors = specificColors;
@@ -126,17 +126,17 @@
 			"--otherStroke":`hsl(${specificColors["other"].h}, 100%, 65%)`,
 			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,
 			
-			"--htmlRadius": 25,
-			"--cssRadius": 10,
-			"--jsRadius": 15,
-			"--jpgRadius": 8,
-			"--pngRadius": 8,
-			"--gifRadius": 8,
-			"--jpegRadius": 8,
-			"--mp4Radius": 8,
-			"--txtRadius": 12,
-			"--otherRadius": 10,
-			"--jsonRadius": 10,
+			"--htmlRadius": 20, //25
+			"--cssRadius": 8, //10
+			"--jsRadius": 12, //15
+			"--jpgRadius": 6, //8
+			"--pngRadius": 6, //8
+			"--gifRadius": 6, //8
+			"--jpegRadius": 6, //8
+			"--mp4Radius": 6, //8
+			"--txtRadius": 10, //12
+			"--otherRadius": 10, //10
+			"--jsonRadius": 10, //10
 			
 			"--circStroke":"3.5px",
 			"--circLightness":"90%",
@@ -371,7 +371,7 @@
 									yMin: height * 5 / 9 + offs, yMax: height - offs};
 					bounds["txt"]= {xMin: width * 3 / 4 + offs, xMax: width - offs,
 									yMin: height / 3 + offs, yMax: height - offs};
-				}else if (width <= height*1.2){
+				}/*else if (width <= height*1.2){
 					bounds["html"]= { 	xMin: 0 + offs, xMax: width - offs,  
 										yMin: 0 + offs, yMax: height - offs},
 							
@@ -389,6 +389,24 @@
 							
 					bounds["other"]= { 	xMin: 0 + offs, xMax: width - offs, 
 										yMin: 0 + offs, yMax: height - offs  };
+				}*/else if (width <= height*1.2){
+					bounds["html"]= { 	xMin: width*6/8 + offs, xMax: width - offs,  
+										yMin: height*0/4 + offs, yMax: height*1/4 - offs},
+							
+					bounds["css"]= { 	xMin: 0 + offs, xMax: width/2 - offs, 
+										yMin: 0 + offs, yMax: height/4 - offs  },
+							
+					bounds["js"]= { 	xMin: width*4/8 + offs, xMax: width - offs, 
+										yMin: height*1/4 + offs, yMax: height*1/2 - offs  };
+							
+					bounds["img"]= { 	xMin: 0 + offs, xMax: width/2 - offs, 
+										yMin: height/2 + offs, yMax: height - offs  };
+											
+					bounds["txt"]= { 	xMin: width*4/8 + offs, xMax: width*6/8 - offs, 
+										yMin: height*4/8 + offs, yMax: height*8/8 - offs  };
+							
+					bounds["other"]= { 	xMin: width*0/8 + offs, xMax: width*4/8 - offs, 
+										yMin: height*2/8 + offs, yMax: height*4/8 - offs  };
 				}else {
 					bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
 									xMax: width / 3 - offs,		yMax: height*2/3 - offs};
