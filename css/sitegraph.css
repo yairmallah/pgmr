@@ -40,15 +40,15 @@
 	--txtFill: url('#txt-fill');
 	--otherFill: url('#other-fill');
 	
-	--htmlRadius: 25;
-	--cssRadius: 10;
-	--jsRadius: 15;
-	--jpgRadius: 8;
-	--pngRadius: 8;
-	--gifRadius: 8;
-	--jpegRadius: 8;
-	--mp4Radius: 8;
-	--txtRadius: 12;
+	--htmlRadius: 20;
+	--cssRadius: 8;
+	--jsRadius: 12;
+	--jpgRadius: 6;
+	--pngRadius: 6;
+	--gifRadius: 6;
+	--jpegRadius: 6;
+	--mp4Radius: 6;
+	--txtRadius: 10;
 	--otherRadius: 10;
 	--jsonRadius: 10;
 
