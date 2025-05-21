@@ -22,6 +22,63 @@
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="dictionarysGen.js"></script>
+		<script>
+		async function nodeClick(nodeName) {
+			await initializeAllDicts();
+			const infoTitle = document.getElementById('node-title');
+			let node_obj = null;
+
+			d3.selectAll(".node").filter(d => {
+				if (d.id === nodeName) {
+					node_obj = d;
+				}
+				return d._group && d._group.g === nodeName;
+			});
+
+			infoTitle.textContent = `${nodeName}`;
+			const infoParagraph = document.getElementById('node-info');
+			infoParagraph.innerHTML = nodeMessages[nodeName];
+			scanForDefinitions(infoParagraph);
+
+			//node position
+			if (current_node != null) {
+				current_node.fx = null;
+				current_node.fy = null;
+				console.log(current_node);
+			}
+			// Fix the current node
+			node_obj.fx = width / 10;
+			node_obj.fy = height / 10;
+			d3.selectAll(".node").each(function(d) {
+				if (d == node_obj){
+					d3.select(this).select("circle").style("opacity", "1");
+				} else {
+					d3.select(this).select("circle").style("opacity", "");
+				}
+			});
+			current_node = node_obj
+			sessionStorage.setItem("def", current_node.id);
+			window.dictionarySchemeSimulation.alpha(1).restart();
+		}
+		window.nodeClick = nodeClick;
+		</script><script>
+
+		async function scanForDefinitions(txtElement){
+			await initializeAllDicts();
+			let txt = txtElement.innerHTML;
+			for (let key in nodeMessages) {
+				const regex = new RegExp(`(\\b|\\s|^|>)([המכלבשו]?)(` + key + `)(ים|ות|ה|ת|ית|י)?(?=\\s|$|[:;.,!?<])`, 'g');
+
+				txt = txt.replace(regex, (match, before, prefix = '', base, suffix = '') => {
+					const cleanBefore = before === '>' ? '>' : before; // keep > outside
+					const wordPart = `${prefix}${base}${suffix}`;
+					return `${cleanBefore}<b class='b${nodeClass[key]}' onclick='window.nodeClick("${key}")'>${wordPart}</b>`;
+				});
+			}
+			txtElement.innerHTML = txt;
+		}
+		window.scanForDefinitions = scanForDefinitions;
+		</script>
         <script>
 			// definitions
             const width = document.getElementById("graph-container").offsetWidth;
@@ -39,6 +96,8 @@
 			const heart_con = []
 			const problem_words = ["לב", "הר", "קו"]
 			
+			
+			scanForDefinitions = window.scanForDefinitions;
 			async function nodeClick(nodeName) {
 				sessionStorage.setItem("def", nodeName);
 				await initializeAllDicts();
@@ -47,7 +106,7 @@
 				
 				const infoParagraph = document.getElementById('node-info');
 				let text = nodeMessages[nodeName];
-				for (let key in nodeMessages) {
+				/*for (let key in nodeMessages) {
 					if (problem_words.includes(key)){
 						if (key=="הר" && !mountain_con.includes(nodeName)) {
 							continue;}
@@ -66,8 +125,9 @@
 					}
 					const regex = new RegExp(key, "g");
 					text = text.replace(regex, "<b class='b" + nodeClass[key] +"' onclick='nodeClick(\""+key+"\")'>"+key+"</b>");
-				}
+				}*/
 				infoParagraph.innerHTML = text;
+				scanForDefinitions(infoParagraph);
 				const scheme = document.getElementById('schemes');
 				let inner = "";
 				for (let imgObj in nodeScheme[nodeName]){
@@ -79,6 +139,7 @@
 				}
 				scheme.innerHTML = inner;
 			}
+			//nodeClick = window.nodeClick;
 			
 			initializeAllDicts().then(() => {
 				// define dictionarys
