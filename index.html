@@ -318,6 +318,7 @@
 			<div id="bgc-img" class="smBg"></div>
 			<div id="bgc-txt" class="smBg"></div>
 		</div>
+		<div id="lock-wave"></div>
 		<div id="page-preview-container">
 			<div id="page-preview-wrapper">
 				<iframe id="page-preview" src="" title="page preview"></iframe>
@@ -676,6 +677,11 @@
 		});
 		</script>
 		<script id="wave-functions">
+			var activeWave = true;
+			const waveLock=document.getElementById("lock-wave");
+			waveLock.addEventListener("click", () => {
+				activeWave = !activeWave;
+			});
 			/*function sendWave(event, d) {
 				const visited = new Set();
 				const speed = 0.3;
@@ -717,6 +723,7 @@
 			}*/
 
 			function sendWave(event, d) {
+						if (!activeWave) return 0;
 						const waveID = Date.now(); // Unique ID for this wave
 						const visited = new Set();
 						const speed = 0.3;
