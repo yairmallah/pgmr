@@ -131,7 +131,10 @@
 					lrgSchm.dispatchEvent(newEvent);
 				}
 			});
-
+			lrgTable.addEventListener('wheel', (e) => {
+				const newEvent = new WheelEvent('wheel', e);
+				 if (isInsideBottom) lrgSchm.dispatchEvent(newEvent);
+			});
 		</script>
 		<script>
 			function updateMainRef(ref){
@@ -148,7 +151,6 @@
 			});
 
 			lrgSchm.addEventListener('mouseenter', () => {
-				console.log("in");
 				lrgSchm.classList.add('zoomed');
 			});
 
@@ -156,7 +158,13 @@
 				lrgSchm.classList.remove('zoomed');
 				lrgSchm.style.backgroundPosition = 'center';
 			});
-
+			lrgSchm.addEventListener('wheel', (e) => {
+				let dir = -e.deltaY / Math.abs(e.deltaY);
+				if (!root.style.getPropertyValue("--zoomValue")) root.style.setProperty("--zoomValue", "150%");
+				let newZoom = Math.max(1, parseInt(root.style.getPropertyValue("--zoomValue")) + 10*dir);
+				root.style.setProperty("--zoomValue", newZoom+"%");
+				console.log((root.style.getPropertyValue("--zoomValue")));
+			});
 		</script>
 		<div id="info-tag" class="hidden">
 			<h3 id="info-tag-title"></h3>
