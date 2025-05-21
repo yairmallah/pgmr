@@ -92,6 +92,15 @@ svg{
 	border-radius: 5%;
 	opacity:0.7;
 }
+#lock-wave{
+	position:fixed;
+	width:var(--gridSize);
+	height:var(--gridSize);
+	top:var(--gridSize);
+	left:0;
+	opacity:0;
+	background-color:red;
+}
 #dark-button{
 	/*position:fixed;
 	width:calc(var(--gridSize)*8/10);
