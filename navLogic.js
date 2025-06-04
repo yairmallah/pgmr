@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // not here!! routes the pages on a route
-function setupInactivityRedirect(timeoutMinutes = 0.5, redirectUrl = '/') {
+function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
   let timeout;
 
   function resetTimer() {
