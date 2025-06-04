@@ -308,7 +308,6 @@
 			<div id="bg-html" class="symBg hidden"></div>
 			<div id="bg-css" class="symBg hidden"></div>
 			<div id="bg-js" class="symBg hidden"></div>
-			<div id="bg-img" class="symBg hidden"></div>
 			<div id="bg-txt" class="symBg hidden"></div>
 		</div>
 		<div id="display-layout">
@@ -1003,6 +1002,53 @@
 			// for checks
 			const differentPaths = [segmentedPath, segmentedPathMidDig, segmentedPathRecursive];
 			var pathsGenerator = {true: segmentedPath, false: segmentedPathMidDig};
+		</script>
+		<script>
+			function randomWave(){
+				if (window.graph){
+					let random = Math.floor(Math.random() * graph.nodes.length);
+					let randomNode = graph.nodes[random];
+					while (randomNode.class == "img"){
+						random = Math.floor(Math.random() * graph.nodes.length);
+						randomNode = graph.nodes[random];
+					}
+					sendWave(null, randomNode);
+				}
+			}
+			
+			function runWhileInactive(callback, intervalSeconds = 5) {
+				let intervalId;
+				let timeoutId;
+
+				function startInterval() {
+					// Start repeating the callback every N seconds
+					intervalId = setInterval(callback, intervalSeconds * 1000);
+				}
+
+				function stopInterval() {
+					clearInterval(intervalId);
+					clearTimeout(timeoutId);
+				}
+
+				function reset() {
+					stopInterval();
+					// Restart the interval after inactivity
+					timeoutId = setTimeout(startInterval, 1000); // short delay before restart
+				}
+
+				const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+				events.forEach(event => {
+					document.addEventListener(event, reset, { passive: true });
+				});
+
+				startInterval();
+			}
+			runWhileInactive(() => {
+				randomWave();
+			});
+			
+			
+			
 		</script>
 	</body>
 </html>
