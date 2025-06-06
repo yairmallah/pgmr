@@ -418,5 +418,75 @@
     "subtitle": "תכנית",
     "row index": 0.6,
     "info": "מינכן, גרמניה | 1968-1972"
-    }
+    },
+    "5s-riola church.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-riola church.jpg",
+    "line": 5,
+    "type": "s",
+    "title": "כנסיית ריולה | אלוור אאלטו",
+    "index": 57,
+    "subtitle": "חתך",
+    "row index": 0.7,
+    "info": "ריולה די ורגטו, איטליה | 1966-1980"
+    },
+    "5p-lloyds building.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-lloyds building.jpg",
+    "line": 5,
+    "type": "p",
+    "title": "בניין לוידס | ריצ׳רד רוג׳רס",
+    "index": 58,
+    "subtitle": "תכנית",
+    "row index": 0.59,
+    "info": "לונדון, אנגליה | 1978-1986"
+    },
+      "5p-leicester university engineering building.png": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-leicester university engineering building.png",
+    "line": 5,
+    "type": "p",
+    "title": "פקולטה להנדסה באוניברסיטת לייססטר | ג׳יימס סטירלינג וג׳יימס גוואן",
+    "index": 59,
+    "subtitle": "תכנית",
+    "row index": 0.45,
+    "info": "לייססטר, אנגליה | 1978-1986"
+    },
+        "0p-palace of minos.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-palace of minos.jpg",
+    "line": 5,
+    "type": "p",
+    "title": "ארמון מינוס",
+    "index": 60,
+    "subtitle": "תכנית",
+    "row index": 0.2,
+    "info": "קנוסוס, יוון | 7,000 לפנה״ס"
+    },
+        "5p-hsbc headquarters.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hsbc headquarters.jpg",
+    "line": 5,
+    "type": "p",
+    "title": "מטה HSBC | נורמן פוסטר",
+    "index": 61,
+    "subtitle": "תכנית",
+    "row index": 0.36,
+    "info": "הונג קונג, סין | 1986"
+    },
+   "5i-visitors center vijversburg park.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5i-visitors center vijversburg park.jpg",
+    "line": 5,
+    "type": "i",
+    "title": "מרכז מבקרים בפארק וייברסבורג | נורמן פוסטר",
+    "index": 61,
+    "subtitle": "צילום",
+    "row index": 0.76,
+    "info": "ליברדן, הולנד | 2017"
+    },
+   "5i-freeway park.jpg": {
+    "url": "https://yairmallah.github.io/pgmr/imgs/ref/5i-freeway park.jpg",
+    "line": 5,
+    "type": "i",
+    "title": "פארק פריוויי | לורנס הלפרין",
+    "index": 62,
+    "subtitle": "צילום",
+    "row index": 0.12,
+    "info": "סיאטל, ארה״ב | 1976"
+    },
 }
