@@ -141,22 +141,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // not here!! routes the pages on a route
-function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
-  let timeout;
 
-  function resetTimer() {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      window.location.href = redirectUrl;
-    }, timeoutMinutes * 60 * 1000);
-  }
+const route = ['/pgmr/'];
 
-  const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-  events.forEach(event => {
-    document.addEventListener(event, resetTimer, { passive: true });
-  });
+function setupInactivityRedirect(timeoutMinutes = 0.5, redirectUrl = '/pgmr/') {
+	let timeout;
 
-  resetTimer(); // Start the timer
+	function resetTimer() {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			window.location.href = redirectUrl;
+		}, timeoutMinutes * 60 * 1000);
+	}
+
+	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+	events.forEach(event => {
+		document.addEventListener(event, resetTimer, { passive: true });
+	});
+
+	resetTimer(); // Start the timer
 }
 
 // Call the function when the module loads
