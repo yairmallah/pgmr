@@ -142,6 +142,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // not here!! routes the pages on a route
 // Dictionary loading function using Promises
+function activePresMode(){
+	sessionStorage.setItem("presMode", true);
+	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
+	document.documentElement.style.setProperty("--PresHeight", "20vh");
+}
+function deActivePresMode(){
+	sessionStorage.setItem("presMode", false);
+	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
+	document.documentElement.style.setProperty("--PresHeight", "0vh");
+}
+if (sessionStorage.getItem("activatePresMode") === "true") {
+	activePresMode();
+
+	const presTxt = document.createElement("div");
+	presTxt.id = "presTxt";
+	presTxt.innerHTML = window.pgsTxts[window.location.pathname]; // or use proper route key
+	document.body.appendChild(presTxt);
+}
+
+
+
+
 function loadPgTxts(filePath, delimiter = ':\n') {
 	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
     return fetch(filePath)
@@ -183,18 +205,6 @@ setupRoute();
 const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
 
-// Call the function when the module loads
-function activePresMode(){
-	sessionStorage.setItem("presMode", true);
-	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
-	document.documentElement.style.setProperty("--PresHeight", "20vh");
-}
-function deActivePresMode(){
-	sessionStorage.setItem("presMode", false);
-	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
-	document.documentElement.style.setProperty("--PresHeight", "0vh");
-}
-
 function routeRunWhileInactive(callback, intervalSeconds = 3) {
 	let intervalId;
 	let timeoutId;
@@ -227,13 +237,10 @@ function routeRunWhileInactive(callback, intervalSeconds = 3) {
 routeRunWhileInactive(() => {
 	let step = parseInt(sessionStorage.getItem("routeStep"));
 	window.location.href = route[step%route.length];
-	requestAnimationFrame(() => {
-		sessionStorage.setItem("routeStep", (step + 1));
-		const presTxt = document.createElement("div");
-		presTxt.id = "presTxt";
-		presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
-		document.body.appendChild(presTxt);
-		activePresMode();
-	});
-	
+	sessionStorage.setItem("routeStep", (step + 1));
+	/*const presTxt = document.createElement("div");
+	presTxt.id = "presTxt";
+	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
+	document.body.appendChild(presTxt);
+	activePresMode();*/
 });
