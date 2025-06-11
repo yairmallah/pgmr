@@ -61,7 +61,7 @@ td{
 }
 .smaller td img{
 	max-width: 100%;
-	max-height: 100%;
+	max-height: 8vh;
 }
 td img{
 	max-height: var(--rowSize);
