@@ -149,7 +149,7 @@ function setupRoute(){
 	}
 }
 setupRoute();
-prefix = ""
+let prefix = ""
 let locs = window.location.href.split("/");
 locs.pop();
 locs.pop();
