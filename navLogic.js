@@ -236,12 +236,8 @@ function routeRunWhileInactive(callback, intervalSeconds = 20) {
 	startInterval();
 }
 routeRunWhileInactive(() => {
-	let step = parseInt(sessionStorage.getItem("routeStep"));
-	window.location.href = route[step%route.length];
-	sessionStorage.setItem("routeStep", (step + 1));
-	/*const presTxt = document.createElement("div");
-	presTxt.id = "presTxt";
-	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
-	document.body.appendChild(presTxt);*/
 	activePresMode();
+	let step = parseInt(sessionStorage.getItem("routeStep"));
+	sessionStorage.setItem("routeStep", (step + 1));
+	window.location.href = route[step%route.length];
 });
