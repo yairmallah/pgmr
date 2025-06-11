@@ -163,8 +163,6 @@ if (sessionStorage.getItem("activatePresMode") === "true") {
 }
 
 
-
-
 function loadPgTxts(filePath, delimiter = ':\n') {
 	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
     return fetch(filePath)
@@ -197,7 +195,7 @@ loadPgTxts();
 
 function setupRoute(){
 	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
-		sessionStorage.setItem("routeStep", 0);
+		sessionStorage.setItem("routeStep", -1);
 		sessionStorage.setItem("presMode", false);
 	}
 }
