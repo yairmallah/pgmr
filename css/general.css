@@ -23,8 +23,8 @@
 
 	--nonPresHeight: 100vh;
 	--nonPresWidth: 100vw;
-	--nonPresHeight: 0vh;
-	--nonPresWidth: 0vw;
+	--PresHeight: 0vh;
+	--PresWidth: 0vw;
 }
 
 body {
