@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // not here!! routes the pages on a route
 
-const route = ['/pgmr/'];
+/*const route = ['/pgmr/'];
 
 function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
 	let timeout;
@@ -163,4 +163,4 @@ function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
 }
 
 // Call the function when the module loads
-setupInactivityRedirect();
+setupInactivityRedirect();*/
