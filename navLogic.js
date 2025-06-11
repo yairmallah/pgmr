@@ -231,7 +231,8 @@ routeRunWhileInactive(() => {
 		const presTxt = document.createElement("div");
 		presTxt.id = "presTxt";
 		presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
-		document.body.appendChild(presTxt);		
+		document.body.appendChild(presTxt);
+		activePresMode();
 	});
 	
 });
