@@ -179,14 +179,7 @@ function setupRoute(){
 	}
 }
 setupRoute();
-prefix = ""
-let locs = window.location.href.split("/");
-locs.pop();
-locs.pop();
-locs.forEach(loc => {
-	prefix += loc + "/";
-});
-const temp_add = prefix;
+
 const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
 
@@ -231,7 +224,7 @@ function routeRunWhileInactive(callback, intervalSeconds = 3) {
 }
 routeRunWhileInactive(() => {
 	let step = parseInt(sessionStorage.getItem("routeStep"));
-	window.location.href = temp_add + route[step%route.length];
+	window.location.href = route[step%route.length];
 	sessionStorage.setItem("routeStep", (step + 1));
 	activePresMode();
 	const presTxt = document.createElement("div");
