@@ -45,7 +45,6 @@ body {
 	height: var(--nonPresHeight);
 	width: var(--nonPresWidth);
 	margin: 0;
-	background-color: var(--bgBody);
 	font-size: 16px;
 	color: var(--textColor);
 }
