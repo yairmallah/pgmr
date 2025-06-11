@@ -234,6 +234,7 @@ function routeRunWhileInactive(callback, intervalSeconds = 20) {
 }
 routeRunWhileInactive(() => {
 	activePresMode();
+	window.alert(hih);
 	let step = parseInt(sessionStorage.getItem("routeStep"));
 	sessionStorage.setItem("routeStep", (step + 1));
 	window.location.href = route[step%route.length];
