@@ -241,6 +241,11 @@
       "external": ""
     },
     {
+      "id": "0p-palace of minos.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-palace%20of%20minos.jpg",
+      "external": ""
+    },
+    {
       "id": "0p-stonehenge.png",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/0p-stonehenge.png",
       "external": ""
@@ -421,6 +426,16 @@
       "external": ""
     },
     {
+      "id": "5i-freeway park.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5i-freeway%20park.jpg",
+      "external": ""
+    },
+    {
+      "id": "5i-visitors center vijversburg park.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5i-visitors%20center%20vijversburg%20park.jpg",
+      "external": ""
+    },
+    {
       "id": "5p+s-kasbah.png",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p%2Bs-kasbah.png",
       "external": ""
@@ -471,6 +486,11 @@
       "external": ""
     },
     {
+      "id": "5p-hsbc headquarters.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hsbc%20headquarters.jpg",
+      "external": ""
+    },
+    {
       "id": "5p-hurva.png",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-hurva.png",
       "external": ""
@@ -493,6 +513,16 @@
     {
       "id": "5p-la tourrette monastery.jpg",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-la%20tourrette%20monastery.jpg",
+      "external": ""
+    },
+    {
+      "id": "5p-leicester university engineering building.png",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-leicester%20university%20engineering%20building.png",
+      "external": ""
+    },
+    {
+      "id": "5p-lloyds building.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5p-lloyds%20building.jpg",
       "external": ""
     },
     {
@@ -566,6 +596,11 @@
       "external": ""
     },
     {
+      "id": "5s-riola church.jpg",
+      "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-riola%20church.jpg",
+      "external": ""
+    },
+    {
       "id": "5s-seine.png",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/5s-seine.png",
       "external": ""
@@ -573,6 +608,11 @@
     {
       "id": "ref_dict.json",
       "url": "https://yairmallah.github.io/pgmr/imgs/ref/ref_dict.json",
+      "external": ""
+    },
+    {
+      "id": "rouTxt.txt",
+      "url": "https://yairmallah.github.io/pgmr/texts/rouTxt.txt",
       "external": ""
     },
     {
@@ -837,7 +877,27 @@
     },
     {
       "source": "references.html",
+      "target": "index.html"
+    },
+    {
+      "source": "references.html",
+      "target": "log.html"
+    },
+    {
+      "source": "references.html",
       "target": "navLogic.js"
+    },
+    {
+      "source": "references.html",
+      "target": "references.html"
+    },
+    {
+      "source": "references.html",
+      "target": "tba.html"
+    },
+    {
+      "source": "references.html",
+      "target": "turb.html"
     },
     {
       "source": "references.html",
@@ -1013,6 +1073,10 @@
     },
     {
       "source": "ref_dict.json",
+      "target": "0p-palace of minos.jpg"
+    },
+    {
+      "source": "ref_dict.json",
       "target": "0p-stonehenge.png"
     },
     {
@@ -1097,6 +1161,14 @@
     },
     {
       "source": "ref_dict.json",
+      "target": "5i-freeway park.jpg"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5i-visitors center vijversburg park.jpg"
+    },
+    {
+      "source": "ref_dict.json",
       "target": "5p+s-kasbah.png"
     },
     {
@@ -1137,6 +1209,10 @@
     },
     {
       "source": "ref_dict.json",
+      "target": "5p-hsbc headquarters.jpg"
+    },
+    {
+      "source": "ref_dict.json",
       "target": "5p-hurva.png"
     },
     {
@@ -1150,6 +1226,14 @@
     {
       "source": "ref_dict.json",
       "target": "5p-la tourrette monastery.jpg"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-leicester university engineering building.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5p-lloyds building.jpg"
     },
     {
       "source": "ref_dict.json",
@@ -1174,6 +1258,34 @@
     {
       "source": "ref_dict.json",
       "target": "5p-thermal baths at vals.png"
+    },
+    {
+      "source": "ref_dict.json",
+      "target": "5s-riola church.jpg"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "index.html"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "log.html"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "references.html"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "tba.html"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "turb.html"
+    },
+    {
+      "source": "rouTxt.txt",
+      "target": "video.html"
     }
   ]
 }
