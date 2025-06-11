@@ -206,7 +206,7 @@ setupRoute();
 const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
 
-function routeRunWhileInactive(callback, intervalSeconds = 3) {
+function routeRunWhileInactive(callback, intervalSeconds = 20) {
 	let intervalId;
 	let timeoutId;
 
