@@ -48,7 +48,16 @@ body {
 	font-size: 16px;
 	color: var(--textColor);
 }
-    
+#presTxt{
+	font-family: 'Courier New', monospace;
+	align-items: flex-start;
+	justify-content: center;
+	height: var(--PresHeight);
+	width: var(--PresWidth);
+	margin: 10px;
+	font-size: 16px;
+	color: var(--textColor);
+}  
 /* scrollbar */
 /* width */
 ::-webkit-scrollbar {
