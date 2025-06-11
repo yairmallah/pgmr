@@ -158,7 +158,7 @@ locs.forEach(loc => {
 });
 const temp_add = prefix;
 console.log(temp_add);
-const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html'];
+const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
 
 function routeRunWhileInactive(callback, intervalSeconds = 3) {
