@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const route = ['/pgmr/'];
 
-function setupInactivityRedirect(timeoutMinutes = 0.5, redirectUrl = '/pgmr/') {
+function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
 	let timeout;
 
 	function resetTimer() {
