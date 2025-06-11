@@ -152,9 +152,10 @@ function deActivePresMode(){
 	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
 	document.documentElement.style.setProperty("--PresHeight", "0vh");
 }
+
 if (sessionStorage.getItem("activatePresMode") === "true") {
 	activePresMode();
-
+	console.log("in");
 	const presTxt = document.createElement("div");
 	presTxt.id = "presTxt";
 	presTxt.innerHTML = window.pgsTxts[window.location.pathname]; // or use proper route key
