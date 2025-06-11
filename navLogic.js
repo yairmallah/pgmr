@@ -155,6 +155,8 @@ const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/tu
 
 function activePresMode(){
 	sessionStorage.setItem("presMode", true);
+	console.log("pres mod act");
+	console.log("pres mod act");
 	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
 	document.documentElement.style.setProperty("--PresHeight", "20vh");
 }
