@@ -2,7 +2,7 @@
 	--mainBgColor:hsla(0,0,0,0.85);
 }
 
-body{
+#non-pres-container{
 	display: grid;
 	grid-template-columns: 27% 71%; /* Two equal sides + one center */
 	grid-template-rows: 100%; /* Full height */
