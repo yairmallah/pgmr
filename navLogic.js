@@ -195,7 +195,7 @@ loadPgTxts();
 
 function setupRoute(){
 	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
-		sessionStorage.setItem("routeStep", -1);
+		sessionStorage.setItem("routeStep", 0);
 		sessionStorage.setItem("presMode", false);
 	}
 }
