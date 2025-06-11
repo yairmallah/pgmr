@@ -1,11 +1,11 @@
 :root {
 	--bgBody:#000;
-	--rowSize:16vh;
-	--schemeHeight:80vh;
-	--schemeTop:16vh;
-	--schemeWidth:90vh;
+	--rowSize:16%;
+	--schemeHeight:80%;
+	--schemeTop:16%;
+	--schemeWidth:90%;
 	--bgInv:hsl(50, 50%, 95%);
-	--colSize: 5vw;
+	--colSize: 5%;
 	--rows: 16% 16% 16% 16% 16% 16%;
 	--textsTop: 67%;
 	--textSctionWidth:80%;
@@ -60,7 +60,8 @@ td{
 	height: 100%
 }
 .smaller td img{
-	max-width: var(--colSize);
+	max-width: 100%;
+	max-height: 100%;
 }
 td img{
 	max-height: var(--rowSize);
