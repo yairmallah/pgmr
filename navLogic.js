@@ -141,6 +141,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // not here!! routes the pages on a route
+// Dictionary loading function using Promises
+function loadPgTxts(filePath, delimiter = ':\n') {
+	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
+    return fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+            }
+            return response.text();
+        })
+        .then(text => {
+            const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
+            const dictionary = {};
+            lines.forEach(line => {
+                const [key, value] = line.split(delimiter).map(part => part.trim());
+                if (key && value !== undefined) {
+                    dictionary[key] = value.replaceAll("\n", "<br/>");
+                }
+            });
+            window.pgsTxts = dictionary;
+        })
+        .catch(error => {
+            console.error("Error loading dictionary:", error.message);
+            return {};
+        });
+}
+
+loadPgTxts();
+
+
 
 function setupRoute(){
 	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
@@ -149,7 +179,7 @@ function setupRoute(){
 	}
 }
 setupRoute();
-let prefix = ""
+prefix = ""
 let locs = window.location.href.split("/");
 locs.pop();
 locs.pop();
@@ -157,9 +187,18 @@ locs.forEach(loc => {
 	prefix += loc + "/";
 });
 const temp_add = prefix;
-console.log(temp_add);
 const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
+
+// Call the function when the module loads
+function activePresMode(){
+	sessionStorage.setItem("presMode", true);
+	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
+}
+function deActivePresMode(){
+	sessionStorage.setItem("presMode", false);
+	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
+}
 
 function routeRunWhileInactive(callback, intervalSeconds = 3) {
 	let intervalId;
@@ -180,7 +219,7 @@ function routeRunWhileInactive(callback, intervalSeconds = 3) {
 		// Restart the interval after inactivity
 		timeoutId = setTimeout(startInterval, 1000);
 		sessionStorage.setItem("routeStep", 0);
-		sessionStorage.setItem("presMode", false);
+		deActivePresMode();
 	}
 
 	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
@@ -194,6 +233,9 @@ routeRunWhileInactive(() => {
 	let step = parseInt(sessionStorage.getItem("routeStep"));
 	window.location.href = temp_add + route[step%route.length];
 	sessionStorage.setItem("routeStep", (step + 1));
-	sessionStorage.setItem("presMode", true);
-
+	activePresMode();
+	const presTxt = document.createElement("div");
+	presTxt.id = "presTxt";
+	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
+	document.body.appendChild(presTxt);
 });
