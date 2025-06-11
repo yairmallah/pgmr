@@ -15,153 +15,155 @@
 				"--mainBgColor": "hsla(0, 0%, 0%, 0.85)"
 			});
 		</script>
+        <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
     <body>
-		<script type="module" src="navLogic.js"></script>
-		<div id="dictionary-scheme">
-			<div id="graph-container"></div>
-			<div class="textcot">
-				<h3 id="node-title"></h3>
-				<p id="node-info">
+		<div id="non-pres-container">
+			<div id="dictionary-scheme">
+				<div id="graph-container"></div>
+				<div class="textcot">
+					<h3 id="node-title"></h3>
+					<p id="node-info">
+					</p>
+				</div>
+			</div>
+			<div id="wmain"></div>
+			<div id="main">
+				<h3 id="title"></h3>
+				<p id="tba-txt">
 				</p>
 			</div>
-		</div>
-		<div id="wmain"></div>
-		<div id="main">
-			<h3 id="title"></h3>
-			<p id="tba-txt">
-			</p>
-		</div>
-	    <div id="fullscreenImage">
-			<img id="fullscreenImg" src="https://yairmallah.github.io/pgmr/imgs/tba.gif" alt="Expanded View">
-			<button id="closeBtn" onclick="hideImage()">X</button>
-		</div>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="dictionarysGen.js"></script>
-		<script>
-			function showImage() {
-				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
-				document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
-			}
+			<div id="fullscreenImage">
+				<img id="fullscreenImg" src="https://yairmallah.github.io/pgmr/imgs/tba.gif" alt="Expanded View">
+				<button id="closeBtn" onclick="hideImage()">X</button>
+			</div>
+			<script src="https://d3js.org/d3.v7.min.js"></script>
+			<script src="dictionarysGen.js"></script>
+			<script>
+				function showImage() {
+					document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
+					document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
+				}
 
-			function hideImage() {
-				document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
-				document.body.style.overflow = "auto"; // Re-enable page scrolling
-			}
-		</script>
-		
-		<script type="module">
-			const filePath = "https://yairmallah.github.io/pgmr/tbaTxt.txt"
-			var tba_base_txt = [];
-			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";		
-
-			function loadTba() {
-				
-				return fetch(filePath)
-					.then(response => {
-						if (!response.ok) {
-							throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
-						}
-						return response.text();
-					})
-					.then(text => {
-						tba_base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
-						return tba_base_txt;
-					})
-					.catch(error => {
-						console.error("Error loading TBA:", error.message);
-						return {};
-					});
-			}
+				function hideImage() {
+					document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
+					document.body.style.overflow = "auto"; // Re-enable page scrolling
+				}
+			</script>
 			
-			function generateIndentedList(strings) {
-				// Create a container for the nested structure
-				let html = '';
+			<script type="module">
+				const filePath = "https://yairmallah.github.io/pgmr/tbaTxt.txt"
+				var tba_base_txt = [];
+				import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";		
 
-				// Stack to keep track of the current list levels
-				const stack = [];
-				
-				function mapEnglishToHebrew(char) {
-					const englishToHebrew = {
-						a: 'א', b: 'ב', c: 'ג', d: 'ד', e: 'ה', f: 'ו', g: 'ז', h: 'ח',
-						i: 'ט', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ס', p: 'ע',
-						q: 'פ', r: 'צ', s: 'ק', t: 'ר', u: 'ש', v: 'ת', w: 'שׁ', x: 'שׂ',
-						y: 'ץ', z: 'תּ'
-					};
-					return englishToHebrew[char.toLowerCase()] || null;
-				}
-				// Helper function to determine the level based on the prefix
-				function getLevel(prefix) {
-					if (!isNaN(parseInt(prefix, 10))) {
-						return 1; // Numeric levels (e.g., 1, 2, 3)
-					} else if (prefix >= 'א' && prefix <= 'ת') {
-						return 5; // Alphabetical levels (a-z)
-					} else if (prefix >= 'a' && prefix <= 'z') {
-						return 10; // Alphabetical levels (a-z)
-					} else if (prefix >= 'A' && prefix <= 'Z') {
-						return 20; // Uppercase alphabetical levels (A-Z)
-					} else {
-						return 30; // Other prefixes
-					}
-				}
-				function getPrefix(prefix) {
-					if (!isNaN(parseInt(prefix, 10))) {
-						return "decimal";
-						return "hebrew";
-					} else if (prefix >= 'i' && prefix <= 'Z') {
-						return "lower-roman";
-					} else {
-						return "hebrew";
-					}
+				function loadTba() {
+					
+					return fetch(filePath)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+							}
+							return response.text();
+						})
+						.then(text => {
+							tba_base_txt = text.split("\n");//text.replaceAll("\n", "<br/>");
+							return tba_base_txt;
+						})
+						.catch(error => {
+							console.error("Error loading TBA:", error.message);
+							return {};
+						});
 				}
 				
+				function generateIndentedList(strings) {
+					// Create a container for the nested structure
+					let html = '';
 
-				// Iterate over the input strings
-				strings.forEach(str => {
-					// Split the string into prefix and text
-					var [prefix, text] = str.split('.');
+					// Stack to keep track of the current list levels
+					const stack = [];
 					
-					if (prefix.length == 1 && !(prefix == 'i' || prefix == 'x' || prefix == 'v') && isNaN(parseInt(prefix, 10))){
-						prefix = mapEnglishToHebrew(prefix);}
+					function mapEnglishToHebrew(char) {
+						const englishToHebrew = {
+							a: 'א', b: 'ב', c: 'ג', d: 'ד', e: 'ה', f: 'ו', g: 'ז', h: 'ח',
+							i: 'ט', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ס', p: 'ע',
+							q: 'פ', r: 'צ', s: 'ק', t: 'ר', u: 'ש', v: 'ת', w: 'שׁ', x: 'שׂ',
+							y: 'ץ', z: 'תּ'
+						};
+						return englishToHebrew[char.toLowerCase()] || null;
+					}
+					// Helper function to determine the level based on the prefix
+					function getLevel(prefix) {
+						if (!isNaN(parseInt(prefix, 10))) {
+							return 1; // Numeric levels (e.g., 1, 2, 3)
+						} else if (prefix >= 'א' && prefix <= 'ת') {
+							return 5; // Alphabetical levels (a-z)
+						} else if (prefix >= 'a' && prefix <= 'z') {
+							return 10; // Alphabetical levels (a-z)
+						} else if (prefix >= 'A' && prefix <= 'Z') {
+							return 20; // Uppercase alphabetical levels (A-Z)
+						} else {
+							return 30; // Other prefixes
+						}
+					}
+					function getPrefix(prefix) {
+						if (!isNaN(parseInt(prefix, 10))) {
+							return "decimal";
+							return "hebrew";
+						} else if (prefix >= 'i' && prefix <= 'Z') {
+							return "lower-roman";
+						} else {
+							return "hebrew";
+						}
+					}
 					
-					// Determine the numeric or alphabetical order of the prefix
-					const level = getLevel(prefix);
 
-					// Pop the stack until we find the correct parent level
-					while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-						html += '</ul>';
+					// Iterate over the input strings
+					strings.forEach(str => {
+						// Split the string into prefix and text
+						var [prefix, text] = str.split('.');
+						
+						if (prefix.length == 1 && !(prefix == 'i' || prefix == 'x' || prefix == 'v') && isNaN(parseInt(prefix, 10))){
+							prefix = mapEnglishToHebrew(prefix);}
+						
+						// Determine the numeric or alphabetical order of the prefix
+						const level = getLevel(prefix);
+
+						// Pop the stack until we find the correct parent level
+						while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+							html += '</ul>';
+							stack.pop();
+						}
+						
+						// Add a new list if necessary
+						if (stack.length === 0 || stack[stack.length - 1].level < level) {
+							html += "<ul>";//'<ol style="list-style-type:' + getPrefix(prefix) + ';">'
+							stack.push({ level });
+						}
+
+						// Add the current item
+						html += '<li>'+text+'</li>';
+					});
+
+					// Close any remaining open lists
+					while (stack.length > 0) {
+						html += '</ul>'//'</ol>';
 						stack.pop();
 					}
-					
-					// Add a new list if necessary
-					if (stack.length === 0 || stack[stack.length - 1].level < level) {
-						html += "<ul>";//'<ol style="list-style-type:' + getPrefix(prefix) + ';">'
-						stack.push({ level });
-					}
 
-					// Add the current item
-					html += '<li>'+text+'</li>';
-				});
-
-				// Close any remaining open lists
-				while (stack.length > 0) {
-					html += '</ul>'//'</ol>';
-					stack.pop();
+					return html;
 				}
-
-				return html;
-			}
-			
-			loadTba().then(() => {
-				tba_base_txt = generateIndentedList(tba_base_txt);
-				document.getElementById('tba-txt').innerHTML = tba_base_txt;	
-				initializeAllDicts().then(() => {
-					initializeGraph();
-					let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
-					nodeClick(def);
-				scanForDefinitions(document.getElementById("tba-txt"));
+				
+				loadTba().then(() => {
+					tba_base_txt = generateIndentedList(tba_base_txt);
+					document.getElementById('tba-txt').innerHTML = tba_base_txt;	
+					initializeAllDicts().then(() => {
+						initializeGraph();
+						let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+						nodeClick(def);
+					scanForDefinitions(document.getElementById("tba-txt"));
+					});
 				});
-			});
-		</script>
+			</script>
+		</div>
     </body>
 </html>

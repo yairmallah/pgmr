@@ -28,68 +28,71 @@
 		<script type="module" src="navLogic.js"></script>
     </head>
     <body>
-		<div id="dictionary-scheme">
-			<div id="graph-container"></div>
-			<div class="textcot">
-				<h3 id="node-title"></h3>
-				<p id="node-info">
-				</p>
+		<div id="non-pres-container">
+
+			<div id="dictionary-scheme">
+				<div id="graph-container"></div>
+				<div class="textcot">
+					<h3 id="node-title"></h3>
+					<p id="node-info">
+					</p>
+				</div>
 			</div>
-		</div>
-		<div id="main"></div>
-		<div id="footnotes"></div>
-		<div id="toc"></div>
-		<script>
-			function showImage() {
-				document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
-				document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
-			}
+			<div id="main"></div>
+			<div id="footnotes"></div>
+			<div id="toc"></div>
+			<script>
+				function showImage() {
+					document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
+					document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
+				}
 
-			function hideImage() {
-				document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
-				document.body.style.overflow = "auto"; // Re-enable page scrolling
-			}
-		</script>
-		<script type="module">
-			window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
-			import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
-			import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
-			window.scrollToFootnote = scrollToFootnote;
-			window.selectFootnote = selectFootnote;
-			loadArticle().then(() => {
-				initializeAllDicts().then(() => {
-					initializeGraph();
-					let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
-					nodeClick(def);
-					requestAnimationFrame(() => {
-						positionFootnotes();
+				function hideImage() {
+					document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
+					document.body.style.overflow = "auto"; // Re-enable page scrolling
+				}
+			</script>
+			<script type="module">
+				window.txt_add = "https://yairmallah.github.io/pgmr/texts/urb.txt";
+				import { loadArticle, scrollToFootnote, selectFootnote, positionFootnotes } from "https://yairmallah.github.io/pgmr/articleImporter.js";
+				import { initializeGraph, nodeClick, scanForDefinitions } from "https://yairmallah.github.io/pgmr/dictionaryScheme.js";
+				window.scrollToFootnote = scrollToFootnote;
+				window.selectFootnote = selectFootnote;
+				loadArticle().then(() => {
+					initializeAllDicts().then(() => {
+						initializeGraph();
+						let def = sessionStorage.getItem("def") || 'ארכיטקטורה';
+						nodeClick(def);
+						requestAnimationFrame(() => {
+							positionFootnotes();
+						});
+					scanForDefinitions(document.getElementById("main"));
 					});
-				scanForDefinitions(document.getElementById("main"));
 				});
-			});
-		</script>
-		<script>
-			let isSyncingMain = false;
-			let isSyncingFootnotes = false;
+			</script>
+			<script>
+				let isSyncingMain = false;
+				let isSyncingFootnotes = false;
 
-			function syncScroll() {
-				const mainText = document.getElementById("main");
-				const footnotes = document.getElementById("footnotes");
+				function syncScroll() {
+					const mainText = document.getElementById("main");
+					const footnotes = document.getElementById("footnotes");
 
-				mainText.addEventListener("scroll", function() {
-					if (!isSyncingMain) {
-						isSyncingFootnotes = true;
-						const diff = mainText.scrollTop - mainText.dataset.prevScroll;
-						footnotes.scrollTop += diff;
-						mainText.dataset.prevScroll = mainText.scrollTop;
-						isSyncingFootnotes = false;
-					}
-				});
-				// Initialize previous scroll positions
-				mainText.dataset.prevScroll = mainText.scrollTop;
-				footnotes.dataset.prevScroll = footnotes.scrollTop;
-			}
-			syncScroll();
-		</script>
+					mainText.addEventListener("scroll", function() {
+						if (!isSyncingMain) {
+							isSyncingFootnotes = true;
+							const diff = mainText.scrollTop - mainText.dataset.prevScroll;
+							footnotes.scrollTop += diff;
+							mainText.dataset.prevScroll = mainText.scrollTop;
+							isSyncingFootnotes = false;
+						}
+					});
+					// Initialize previous scroll positions
+					mainText.dataset.prevScroll = mainText.scrollTop;
+					footnotes.dataset.prevScroll = footnotes.scrollTop;
+				}
+				syncScroll();
+			</script>
+		</div>
 	</body>
 </html>
