@@ -14,12 +14,12 @@
 				root.style.setProperty("--schemeWidth", (100-100/cols*2) + "%");
 			}
 			function rowHeightSetUp(rows){
-				root.style.setProperty("--rowSize", Math.floor(100/rows) + "vh");
-				root.style.setProperty("--schemeTop", (100/rows) + "vh");
+				root.style.setProperty("--rowSize", Math.floor(100/rows) + "%");
+				root.style.setProperty("--schemeTop", (100/rows) + "%");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
 				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "%");
-				root.style.setProperty("--textSectionRowSize", (100/rows*2/rows) + "vh");
-				root.style.setProperty("--schemeHeight", (100/rows*(rows-1)) + "vh");
+				root.style.setProperty("--textSectionRowSize", (100/rows*2/rows) + "%");
+				root.style.setProperty("--schemeHeight", (100/rows*(rows-1)) + "%");
 			}
 		</script>
 		<script>
@@ -75,8 +75,10 @@
 			});
 		</script>
 		<script type="module" src="navLogic.js"></script>
+
 	</head>
 	<body>
+<div id="non-pres-container">
 		<div id="table-containor">
 			<table class="container smaller">
 				<tr id="row-6" class="row row-even"></tr>
@@ -297,5 +299,6 @@
 					console.error('Error loading JSON:', error);
 				});
 		</script>
+</div>
 	</body>
 </html>
