@@ -1008,7 +1008,7 @@
 				if (window.graph){
 					let random = Math.floor(Math.random() * graph.nodes.length);
 					let randomNode = graph.nodes[random];
-					while (randomNode.class == "img"){
+					while (randomNode.class != "html"){
 						random = Math.floor(Math.random() * graph.nodes.length);
 						randomNode = graph.nodes[random];
 					}
