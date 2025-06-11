@@ -142,6 +142,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // not here!! routes the pages on a route
 // Dictionary loading function using Promises
+
+function setupRoute(){
+	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
+		sessionStorage.setItem("routeStep", 0);
+		sessionStorage.setItem("presMode", false);
+	}
+}
+setupRoute();
+
+const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
+
 function activePresMode(){
 	sessionStorage.setItem("presMode", true);
 	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
@@ -190,18 +201,6 @@ function loadPgTxts(filePath, delimiter = ':\n') {
 }
 
 loadPgTxts();
-
-
-
-function setupRoute(){
-	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
-		sessionStorage.setItem("routeStep", 0);
-		sessionStorage.setItem("presMode", false);
-	}
-}
-setupRoute();
-
-const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
 
 
 function routeRunWhileInactive(callback, intervalSeconds = 20) {
