@@ -166,7 +166,7 @@ function deActivePresMode(){
 	document.documentElement.style.setProperty("--PresHeight", "0vh");
 }
 
-if (sessionStorage.getItem("activatePresMode") === "true") {
+/*if (sessionStorage.getItem("activatePresMode") === "true") {
 	activePresMode();
 	console.log("in");
 	const presTxt = document.createElement("div");
@@ -204,7 +204,7 @@ function loadPgTxts(filePath, delimiter = ':\n') {
 
 loadPgTxts();
 
-
+*/
 function routeRunWhileInactive(callback, intervalSeconds = 20) {
 	let intervalId;
 	let timeoutId;
@@ -235,9 +235,12 @@ function routeRunWhileInactive(callback, intervalSeconds = 20) {
 	startInterval();
 }
 routeRunWhileInactive(() => {
-	activePresMode();
-	window.alert(hih);
+	//activePresMode();
+	//window.alert(hih);
 	let step = parseInt(sessionStorage.getItem("routeStep"));
 	sessionStorage.setItem("routeStep", (step + 1));
+	window.alert(step);
+	window.alert(route.length);
+	window.alert(route);
 	window.location.href = route[step%route.length];
 });
