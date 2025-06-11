@@ -142,25 +142,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // not here!! routes the pages on a route
 
-/*const route = ['/pgmr/'];
+function setupRoute(){
+	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
+		sessionStorage.setItem("routeStep", 0);
+		sessionStorage.setItem("presMode", false);
+	}
+}
+setupRoute();
+prefix = ""
+let locs = window.location.href.split("/");
+locs.pop();
+locs.pop();
+locs.forEach(loc => {
+	prefix += loc + "/";
+});
+const temp_add = prefix;
+console.log(temp_add);
+const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html'];
 
-function setupInactivityRedirect(timeoutMinutes = 5, redirectUrl = '/pgmr/') {
-	let timeout;
 
-	function resetTimer() {
-		clearTimeout(timeout);
-		timeout = setTimeout(() => {
-			window.location.href = redirectUrl;
-		}, timeoutMinutes * 60 * 1000);
+function routeRunWhileInactive(callback, intervalSeconds = 3) {
+	let intervalId;
+	let timeoutId;
+
+	function startInterval() {
+		// Start repeating the callback every N seconds
+		intervalId = setInterval(callback, intervalSeconds * 1000);
+	}
+
+	function stopInterval() {
+		clearInterval(intervalId);
+		clearTimeout(timeoutId);
+	}
+
+	function reset() {
+		stopInterval();
+		// Restart the interval after inactivity
+		timeoutId = setTimeout(startInterval, 1000);
+		sessionStorage.setItem("routeStep", 0);
+		sessionStorage.setItem("presMode", false);
 	}
 
 	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
 	events.forEach(event => {
-		document.addEventListener(event, resetTimer, { passive: true });
+		document.addEventListener(event, reset, { passive: true });
 	});
 
-	resetTimer(); // Start the timer
+	startInterval();
 }
+routeRunWhileInactive(() => {
+	let step = parseInt(sessionStorage.getItem("routeStep"));
+	window.location.href = temp_add + route[step%route.length];
+	sessionStorage.setItem("routeStep", (step + 1));
+	sessionStorage.setItem("presMode", true);
 
-// Call the function when the module loads
-setupInactivityRedirect();*/
+});
