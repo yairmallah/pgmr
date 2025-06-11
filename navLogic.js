@@ -187,10 +187,12 @@ const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/tu
 function activePresMode(){
 	sessionStorage.setItem("presMode", true);
 	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
+	document.documentElement.style.setProperty("--PresHeight", "20vh");
 }
 function deActivePresMode(){
 	sessionStorage.setItem("presMode", false);
 	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
+	document.documentElement.style.setProperty("--PresHeight", "0vh");
 }
 
 function routeRunWhileInactive(callback, intervalSeconds = 3) {
