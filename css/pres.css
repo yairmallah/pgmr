@@ -36,8 +36,6 @@ body{
 }
 #main {
   position: relative;
-  /*top: 1%;
-  /*left: 28%; /* 25, 70, 89*/
   width: 100%;
   height: 100%;
   overflow-y: auto;
@@ -47,7 +45,6 @@ body{
   background-size: cover;
   z-index: 1;
   background-color: var(--mainBgColor);
-  grid-area: 1 / 2;
 }
 #fullscreenImage {
     position: fixed;
