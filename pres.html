@@ -20,17 +20,17 @@
     <body>
 		<div id="thumbnails-container">
 			<div id="buttons-container">
+				<button class="phase-button" id="ph-0">
+					<iframe class="btn-frm" id="frm-btn-0" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
+					<p class="btn-txt" id="txt-btn-0">אדריכלות קלאסית ולואי קאהן</p>
+				</button>
 				<button class="phase-button" id="ph-1">
-					<iframe class="btn-frm" id="frm-btn-1" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
+					<iframe class="btn-frm" id="frm-btn-1" src="https://yairmallah.github.io/pgmr/"></iframe>
 					<p class="btn-txt" id="txt-btn-1">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-2">
-					<iframe class="btn-frm" id="frm-btn-2" src="https://yairmallah.github.io/pgmr/"></iframe>
+					<iframe class="btn-frm" id="frm-btn-2" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-2">אדריכלות קלאסית ולואי קאהן</p>
-				</button>
-				<button class="phase-button" id="ph-3">
-					<iframe class="btn-frm" id="frm-btn-3" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
-					<p class="btn-txt" id="txt-btn-3">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-3">
 					<iframe class="btn-frm" id="frm-btn-3" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
@@ -40,36 +40,79 @@
 		</div>
 		<div id="main-section-container">
 			<div id="main-texts">
-					<p id="st-1">
+					<p id="st-0">
 						הפרדיגמה הקלאסית של האדריכלות נבנתה על יחסים בין חלל וחומר וסמל: המרחב הוא מערכת שבה לכל אלמנט יש תפקיד צורני ומבני. עם המהפכה התעשייתית השנייה והופעתה של המכונית, נוצר מצב חדש: מרחקים התארכו ומבנים הוגדרו לפי תפקודם. קנה המידה האדריכלי הומר למהירות ויעילות. בתוך המפנה הזה ניסח לואי קאהן את המובחנות בין מרחבים משרתים למשורתים. תפיסת "משרת-משורת" שלו ביקשה לסמן מחדש את סט היחסים האדריכליים.
 					</p>
-					<p id="st-2">
+					<p id="st-1">
 						בשנות החמישים הציע מדען המחשב ג'ון פון ניומן פרדיגמה ארכיטקטונית לבניית מחשב. הפרדיגמה מתבססת על ארבעה רכיבים המתקשרים ביניהם - משתמש, יחידת בקרה, יחידה לוגית ושרת. המשתמש שולח בקשה לשרת, הבקשה עוברת תרגום על ידי יחידת הבקרה, היחידה הלוגית מתווכת אותה לשרת ומחזירה ערך מתורגם למשתמש. ארכיטקטורת פון ניומן מבוססת על רשת מעברים בין מטא-פרוגרמות שונות.
 					</p>
-					<p id="st-3">
+					<p id="st-2">
 						בירושלים, הדרך למוזיאון ישראל אינה ישירה: כבישים, גשרים ושבילים יוצרים מערכת הכוונה וניתוב בתוך העיר. המרחק אינו מכשול אלא עיקרון-והגישה הופכת לניווט במערכת לוגית שמסוגלת לשמור, להסתיר ולכוון.
 					</p>
-					<p id="st-4">
+					<p id="st-3">
 						בגבעת רם יישמנו את עקרונות ארכיטקטורת פון ניומן על תכנון פיזי: חילקנו את הקמפוס לקטגוריות של משתמש, בקרה, לוגיקה ושרת—ובהתאם לכך יצרנו מערך מרחבי חדש שבו כל פעולה מוצאת את מקומה במערכת כוללת. החלוקה המרחבית מניחה את השרתים, פרוגרמות הקצה שלא מהוות ציר תנועה, על גבי מערכת לוגית שמקשרת בין כלל האלמנטים. בהקבלה אליה ישנה יחידת בקרה שמתווכת את הכניסות ומסדרת את המרחב כולו.
 					</p>
 			</div>
-			<iframe id="main" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
-			<div id="fullscreenImage">
-				<img id="fullscreenImg" src="https://yairmallah.github.io/pgmr/imgs/tba.gif" alt="Expanded View">
-				<button id="closeBtn" onclick="hideImage()">X</button>
-			</div>
-			<script src="https://d3js.org/d3.v7.min.js"></script>
-			<script src="dictionarysGen.js"></script>
-			<script id="full-screen-img">
-				function showImage() {
-					document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
-					document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
+			<iframe id="main" src="https://yairmallah.github.io/pgmr/"></iframe>
+			<script id="spesific-passive">
+				function randomWave(){
+					if (window.graph){
+						let random = Math.floor(Math.random() * graph.nodes.length);
+						let randomNode = graph.nodes[random];
+						while (randomNode.class != "html"){
+							random = Math.floor(Math.random() * graph.nodes.length);
+							randomNode = graph.nodes[random];
+						}
+						sendWave(null, randomNode);
+					}
 				}
+				
+			</script>
+			<script id="main-motion">
+				var current_phase = 0;
+				window.current_phase = current_phase;
+				function update_phase(){
+					current_phase += 1;
+					window.current_phase = current_phase;
+					for (int i = 0; i < 4; i ++){
+						document.getElementById('
+						for (let i = 0; i<layouts.length; i++){
+						
+							layouts[i].classList.toggle("hidden");
+						}
+					}
+				}
+				
+				function runWhileInactive(callback, intervalSeconds = 2) {
+					let intervalId;
+					let timeoutId;
 
-				function hideImage() {
-					document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
-					document.body.style.overflow = "auto"; // Re-enable page scrolling
+					function startInterval() {
+						// Start repeating the callback every N seconds
+						intervalId = setInterval(callback, intervalSeconds * 1000);
+					}
+
+					function stopInterval() {
+						clearInterval(intervalId);
+						clearTimeout(timeoutId);
+					}
+
+					function reset() {
+						stopInterval();
+						// Restart the interval after inactivity
+						timeoutId = setTimeout(startInterval, 1000); // short delay before restart
+					}
+
+					const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+					events.forEach(event => {
+						document.addEventListener(event, reset, { passive: true });
+					});
+
+					startInterval();
 				}
+				runWhileInactive(() => {
+					randomWave();
+				});
 			</script>
 		</div>
     </body>
