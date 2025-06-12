@@ -14,7 +14,7 @@
 				root.style.setProperty("--schemeWidth", (100-100/cols*2) + "%");
 			}
 			function rowHeightSetUp(rows){
-				root.style.setProperty("--rowSize", Math.floor(100/rows) + "%");
+				root.style.setProperty("--rowSize", (Math.floor(100/rows)-2) + "%");
 				root.style.setProperty("--schemeTop", (100/rows) + "%");
 				root.style.setProperty("--rows", ((100/rows) + "% ").repeat(rows));
 				root.style.setProperty("--textsTop", (100/rows)*(rows-2) + "%");
@@ -75,7 +75,107 @@
 			});
 		</script>
 		<script type="module" src="navLogic.js"></script>
+		<script id="temp2del">
+/*
+// Dictionary loading function using Promises
+function loadPgTxts(filePath, delimiter = ':\n') {
+	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
+    return fetch(filePath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
+            }
+            return response.text();
+        })
+        .then(text => {
+            const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
+            const dictionary = {};
+            lines.forEach(line => {
+                const [key, value] = line.split(delimiter).map(part => part.trim());
+                if (key && value !== undefined) {
+                    dictionary[key] = value.replaceAll("\n", "<br/>");
+                }
+            });
+            window.pgsTxts = dictionary;
+        })
+        .catch(error => {
+            console.error("Error loading dictionary:", error.message);
+            return {};
+        });
+}
 
+loadPgTxts();
+
+
+
+function setupRoute(){
+	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
+		sessionStorage.setItem("routeStep", 0);
+		sessionStorage.setItem("presMode", false);
+	}
+}
+setupRoute();
+let prefix = ""
+let locs = window.location.href.split("/");
+locs.pop();
+locs.pop();
+locs.forEach(loc => {
+	prefix += loc + "/";
+});
+const temp_add = prefix;
+const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
+
+
+// Call the function when the module loads
+function activePresMode(){
+	sessionStorage.setItem("presMode", true);
+	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
+}
+function deActivePresMode(){
+	sessionStorage.setItem("presMode", false);
+	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
+}
+
+function routeRunWhileInactive(callback, intervalSeconds = 3) {
+	let intervalId;
+	let timeoutId;
+
+	function startInterval() {
+		// Start repeating the callback every N seconds
+		intervalId = setInterval(callback, intervalSeconds * 1000);
+	}
+
+	function stopInterval() {
+		clearInterval(intervalId);
+		clearTimeout(timeoutId);
+	}
+
+	function reset() {
+		stopInterval();
+		// Restart the interval after inactivity
+		timeoutId = setTimeout(startInterval, 1000);
+		sessionStorage.setItem("routeStep", 0);
+		deActivePresMode();
+	}
+
+	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+	events.forEach(event => {
+		document.addEventListener(event, reset, { passive: true });
+	});
+
+	startInterval();
+}
+routeRunWhileInactive(() => {
+	let step = parseInt(sessionStorage.getItem("routeStep"));
+	window.location.href = temp_add + route[step%route.length];
+	sessionStorage.setItem("routeStep", (step + 1));
+	activePresMode();
+	const presTxt = document.createElement("div");
+	presTxt.id = "presTxt";
+	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
+	document.body.appendChild(presTxt);
+});
+		</script>
 	</head>
 	<body>
 <div id="non-pres-container">
@@ -123,10 +223,10 @@
 					e.clientY <= rect.bottom
 				);
 
-				if (inside /*&& !isInsideBottom*/) {
+				if (inside *//*&& !isInsideBottom*//*) {
 					isInsideBottom = true;
 					lrgSchm.dispatchEvent(new Event('mouseenter'));
-				} else if (!inside /*&& isInsideBottom*/) {
+				} else if (!inside *//*&& isInsideBottom*//*) {
 					isInsideBottom = false;
 					lrgSchm.dispatchEvent(new Event('mouseleave'));
 				}
@@ -139,7 +239,7 @@
 			lrgTable.addEventListener('wheel', (e) => {
 				const newEvent = new WheelEvent('wheel', e);
 				 if (isInsideBottom) lrgSchm.dispatchEvent(newEvent);
-			});
+			});*/
 		</script>
 		<script>
 			function updateMainRef(ref){
