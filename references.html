@@ -174,7 +174,7 @@ routeRunWhileInactive(() => {
 	presTxt.id = "presTxt";
 	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
 	document.body.appendChild(presTxt);
-});
+});*/
 		</script>
 	</head>
 	<body>
@@ -223,10 +223,10 @@ routeRunWhileInactive(() => {
 					e.clientY <= rect.bottom
 				);
 
-				if (inside *//*&& !isInsideBottom*//*) {
+				if (inside /*&& !isInsideBottom*/) {
 					isInsideBottom = true;
 					lrgSchm.dispatchEvent(new Event('mouseenter'));
-				} else if (!inside *//*&& isInsideBottom*//*) {
+				} else if (!inside /*&& isInsideBottom*/) {
 					isInsideBottom = false;
 					lrgSchm.dispatchEvent(new Event('mouseleave'));
 				}
