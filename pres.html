@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>פרזנטציה</title>
+		<link rel="stylesheet" type="text/css" href="css\general.css"/>
+		<link rel="stylesheet" type="text/css" href="css\pres.css"/>
+        <script type="module">
+			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
+			Object.assign(darkValues[false],{
+				"--mainBgColor": "hsla(50, 50%, 95%, 0.85)"
+			});
+			Object.assign(darkValues[true],{
+				"--mainBgColor": "hsla(0, 0%, 0%, 0.85)"
+			});
+		</script>
+        <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
+    </head>
+    <body>
+		<div id="main-section-container">
+			<iframe id="main"></iframe>
+			<div id="fullscreenImage">
+				<img id="fullscreenImg" src="https://yairmallah.github.io/pgmr/imgs/tba.gif" alt="Expanded View">
+				<button id="closeBtn" onclick="hideImage()">X</button>
+			</div>
+			<script src="https://d3js.org/d3.v7.min.js"></script>
+			<script src="dictionarysGen.js"></script>
+			<script id="full-screen-img">
+				function showImage() {
+					document.getElementById("fullscreenImage").style.display = "flex"; // Show fullscreen mode
+					document.body.style.overflow = "hidden"; // Prevent scrolling on the main page
+				}
+
+				function hideImage() {
+					document.getElementById("fullscreenImage").style.display = "none"; // Hide fullscreen mode
+					document.body.style.overflow = "auto"; // Re-enable page scrolling
+				}
+			</script>
+		</div>
+		<div id="thumbnails-container"></div>
+    </body>
+</html>
