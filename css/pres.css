@@ -45,6 +45,9 @@ body{
   background-size: cover;
   z-index: 1;
   background-color: var(--mainBgColor);
+  border: none;
+  margin: 0;
+  padding:0;
 }
 #fullscreenImage {
     position: fixed;
