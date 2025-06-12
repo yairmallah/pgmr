@@ -26,6 +26,10 @@ body{
 	overflow-x: hidden;
 	text-align: justify;
 }
+#main-texts p{
+	direction: rtl;
+	text-align: justify;
+}
 #main {
   position: relative;
   width: 100%;
