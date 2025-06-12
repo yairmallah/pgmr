@@ -24,6 +24,7 @@ body{
 	direction: rtl;
 	overflow-y: auto;
 	overflow-x: hidden;
+	text-align: justify;
 }
 #main {
   position: relative;
