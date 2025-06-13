@@ -68,6 +68,20 @@
 				}
 				
 			</script>
+			<script id="spesific-passive">
+				function popNav(iframe){
+					const naver = iframeDoc.getElementById('navContainer');
+					if (naver) {
+						naver.remove();
+					}
+				}
+				function popNavs(){
+					let i = document.querySelector("iframe");
+					popNav(i);
+					
+				}
+				popNavs();
+			</script>
 			<script id="main-motion">
 				var current_phase = 0;
 				window.current_phase = current_phase;
