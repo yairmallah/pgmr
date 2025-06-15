@@ -55,27 +55,29 @@
 			</div>
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
-				function randomWave(){
-					if (window.graph){
-						let random = Math.floor(Math.random() * graph.nodes.length);
-						let randomNode = graph.nodes[random];
-						while (randomNode.class != "html"){
-							random = Math.floor(Math.random() * graph.nodes.length);
-							randomNode = graph.nodes[random];
-						}
-						sendWave(null, randomNode);
+				const passiveFuncs = {0: null, 1: randomWave(), 2: null, 3: null};
+				function getDocumentScripture(iframe){
+					try {
+						iframeDoc = iframe.contentWindow;
+					} catch (error) {
+						console.error(error);
+						console.error(iframe);
+						iframeDoc = null;
 					}
+					return iframeDoc;
 				}
+				function runPassive(scripture){
 				
+				}
 			</script>
 			<script id="pop-navigators">
 				function popNav(iframe){
 					try{
-					iframe = iframe.contentDocument || iframe.contentWindow.document;
-					const naver = iframe.getElementById('navContainer');
-					if (naver) {
-						naver.remove();
-					}
+						iframe = iframe.contentDocument || iframe.contentWindow.document;
+						const naver = iframe.getElementById('navContainer');
+						if (naver) {
+							naver.remove();
+						}
 					} catch (error) {
 						console.error(error);
 						console.log(iframe);
@@ -84,10 +86,8 @@
 				function popNavs(){
 					let iframes = document.querySelectorAll("iframe");
 					iframes.forEach(i => {popNav(i)});
-					/*let navBtns = document.querySelectorAll("#navContainer");
-					navBtns.forEach(nv => {nv.remove();});*/
 				}
-				//popNavs();
+				popNavs();
 			</script>
 			<script id="main-motion">
 				var current_phase = 0;
