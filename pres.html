@@ -77,9 +77,10 @@
 					try{
 						iframe = iframe.contentDocument || iframe.contentWindow.document;
 						const naver = iframe.getElementById('navContainer');
-						if (naver) {
-							naver.remove();
-						}
+						requestAnimationFrame(() => {
+							if (naver) {naver.remove();}
+						});
+						
 					} catch (error) {
 						console.error(error);
 						console.log(iframe);
