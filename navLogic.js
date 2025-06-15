@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			<div id="toggle-dark"></div>
 		</div>
 	`;
+	var isInIframe = false;
+	try {
+		isInIframe = window.self !== window.top;
+	} catch (e) {
+		isInIframe = true; // Probably cross-origin iframe
+	}
+	if (!isInIframe) return null;
 	document.body.appendChild(navContainer);
 	const navButton = document.getElementById("navButton");
 	const subMenu = document.getElementById("subMenu");
