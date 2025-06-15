@@ -15,6 +15,15 @@
 				"--mainBgColor": "hsla(0, 0%, 0%, 0.85)"
 			});
 		</script>
+		<script id="main-dict">
+			// index => 0=addres, 1=func
+			const phase_data = {
+				0: ["/pgmr/references.html"],
+				1: ["/pgmr/"],
+				2: ["/pgmr/"],
+				3: ["/pgmr/"],
+			}
+		</script>
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
     <body>
@@ -55,7 +64,6 @@
 			</div>
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
-				const passiveFuncs = {0: null, 1: "randomWave()", 2: null, 3: null};
 				function getDocumentScripture(iframe){
 					try {
 						iframeDoc = iframe.contentWindow;
@@ -103,9 +111,11 @@
 					}
 				}
 				var current_phase = 0;
+				const main_iframe = document.getElementById("main");
 				window.current_phase = current_phase;
-				function update_phase(){
-					current_phase += 1;
+				function update_phase(phs=-1){
+					if (ph s== -1){current_phase += 1;}
+					else {current_phase = phs;}
 					current_phase %= 4;
 					window.current_phase = current_phase;
 					// diss-apear texts
@@ -113,6 +123,7 @@
 						let stepName = 'st-'+i;
 						stepShow(document.getElementById(stepName));
 					}
+					main_iframe.src = phase_data[current_phase][0];
 				}
 				
 				function runWhileInactive(callback, intervalSeconds = 51) {
