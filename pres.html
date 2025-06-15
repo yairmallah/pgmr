@@ -66,8 +66,10 @@
 					}
 					return iframeDoc;
 				}
-				function runPassive(scripture){
-				
+				function runPassive(){
+					if (window.current_phase){
+						
+					}
 				}
 			</script>
 			<script id="pop-navigators">
@@ -104,17 +106,14 @@
 				function update_phase(){
 					current_phase += 1;
 					window.current_phase = current_phase;
+					// diss-apear texts
 					for (let i = 0; i < 4; i ++){
 						let stepName = 'st-'+i;
-						document.getElementById(stepName);
-						for (let i = 0; i<layouts.length; i++){
-						
-							layouts[i].classList.toggle("hidden");
-						}
+						stepShow(document.getElementById(stepName));
 					}
 				}
 				
-				function runWhileInactive(callback, intervalSeconds = 2) {
+				function runWhileInactive(callback, intervalSeconds = 51) {
 					let intervalId;
 					let timeoutId;
 
@@ -142,7 +141,7 @@
 					startInterval();
 				}
 				runWhileInactive(() => {
-					randomWave();
+					//randomWave();
 				});
 			</script>
 		</div>
