@@ -29,19 +29,19 @@
     <body>
 		<div id="thumbnails-container">
 			<div id="buttons-container">
-				<button class="phase-button" id="ph-0">
+				<button class="phase-button" id="ph-0" onclick="update_phase(0)">
 					<iframe class="btn-frm" id="frm-btn-0" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-0">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
-				<button class="phase-button" id="ph-1">
+				<button class="phase-button" id="ph-1" onclick="update_phase(1)">
 					<iframe class="btn-frm" id="frm-btn-1" src="https://yairmallah.github.io/pgmr/"></iframe>
 					<p class="btn-txt" id="txt-btn-1">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
-				<button class="phase-button" id="ph-2">
+				<button class="phase-button" id="ph-2" onclick="update_phase(2)">
 					<iframe class="btn-frm" id="frm-btn-2" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-2">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
-				<button class="phase-button" id="ph-3">
+				<button class="phase-button" id="ph-3" onclick="update_phase(3)">
 					<iframe class="btn-frm" id="frm-btn-3" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-3">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
@@ -49,16 +49,16 @@
 		</div>
 		<div id="main-section-container">
 			<div id="main-texts">
-					<p id="st-0">
+					<p class="main-text" id="st-0">
 						הפרדיגמה הקלאסית של האדריכלות נבנתה על יחסים בין חלל וחומר וסמל: המרחב הוא מערכת שבה לכל אלמנט יש תפקיד צורני ומבני. עם המהפכה התעשייתית השנייה והופעתה של המכונית, נוצר מצב חדש: מרחקים התארכו ומבנים הוגדרו לפי תפקודם. קנה המידה האדריכלי הומר למהירות ויעילות. בתוך המפנה הזה ניסח לואי קאהן את המובחנות בין מרחבים משרתים למשורתים. תפיסת "משרת-משורת" שלו ביקשה לסמן מחדש את סט היחסים האדריכליים.
 					</p>
-					<p id="st-1">
+					<p class="main-text" id="st-1">
 						בשנות החמישים הציע מדען המחשב ג'ון פון ניומן פרדיגמה ארכיטקטונית לבניית מחשב. הפרדיגמה מתבססת על ארבעה רכיבים המתקשרים ביניהם - משתמש, יחידת בקרה, יחידה לוגית ושרת. המשתמש שולח בקשה לשרת, הבקשה עוברת תרגום על ידי יחידת הבקרה, היחידה הלוגית מתווכת אותה לשרת ומחזירה ערך מתורגם למשתמש. ארכיטקטורת פון ניומן מבוססת על רשת מעברים בין מטא-פרוגרמות שונות.
 					</p>
-					<p id="st-2">
+					<p class="main-text" id="st-2">
 						בירושלים, הדרך למוזיאון ישראל אינה ישירה: כבישים, גשרים ושבילים יוצרים מערכת הכוונה וניתוב בתוך העיר. המרחק אינו מכשול אלא עיקרון-והגישה הופכת לניווט במערכת לוגית שמסוגלת לשמור, להסתיר ולכוון.
 					</p>
-					<p id="st-3">
+					<p class="main-text" id="st-3">
 						בגבעת רם יישמנו את עקרונות ארכיטקטורת פון ניומן על תכנון פיזי: חילקנו את הקמפוס לקטגוריות של משתמש, בקרה, לוגיקה ושרת—ובהתאם לכך יצרנו מערך מרחבי חדש שבו כל פעולה מוצאת את מקומה במערכת כוללת. החלוקה המרחבית מניחה את השרתים, פרוגרמות הקצה שלא מהוות ציר תנועה, על גבי מערכת לוגית שמקשרת בין כלל האלמנטים. בהקבלה אליה ישנה יחידת בקרה שמתווכת את הכניסות ומסדרת את המרחב כולו.
 					</p>
 			</div>
@@ -104,25 +104,34 @@
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
 					if (parStepInd <= window.current_phase){
-						if (stepP.classList.contains('hidden')){stepP.classList.toggle("hidden");}
+						stepP.classList.toggle("hidden", false);
 					}
 					else{
-						if (!(stepP.classList.contains('hidden'))){stepP.classList.toggle("hidden");}
+						stepP.classList.toggle("hidden", true);
 					}
 				}
 				var current_phase = 0;
 				const main_iframe = document.getElementById("main");
+				const main_texts = document.getElementById("main-texts");
 				window.current_phase = current_phase;
 				function update_phase(phs=-1){
+					document.getElementById(("st-" + window.current_phase)).classList.toggle("chosen", false);
+					
 					if (phs == -1){current_phase += 1;}
 					else {current_phase = phs;}
 					current_phase %= 4;
 					window.current_phase = current_phase;
-					// diss-apear texts
+					// texts beahavior
+					document.getElementById(("st-" + current_phase)).classList.toggle("chosen", true);
 					for (let i = 0; i < 4; i ++){
 						let stepName = 'st-'+i;
 						stepShow(document.getElementById(stepName));
 					}
+					main_texts.scrollTo({
+						top: main_texts.scrollHeight,
+						behavior: 'smooth'
+					});
+					
 					main_iframe.src = phase_data[current_phase][0];
 				}
 				
@@ -153,6 +162,7 @@
 
 					startInterval();
 				}
+				update_phase(0);
 				runWhileInactive(() => {
 					update_phase();
 				});

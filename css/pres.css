@@ -34,6 +34,12 @@ body{
 #main-texts p{
 	direction: rtl;	text-align: justify;
 }
+p.main-text{
+	opacity: 0.65;
+}
+p.chosen{
+	opacity: 1;
+}
 #main {
 	position: relative;
 	transform: scale(var(--divBPar));
@@ -79,4 +85,7 @@ body{
 	overflow: hidden;
 	pointer-events: none;
 	height: var(--divSInv);
+}
+.hidden{
+	position:absolute;
 }
