@@ -1,7 +1,7 @@
 import * as dispMode from './displayMode.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-	console.log("start");
+	/*console.log("start");
 	var isInIframe = false;
 	try {
 		isInIframe = window.self !== window.top;
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		isInIframe = true; // Probably cross-origin iframe
 	}
 	if (!isInIframe) return null;
-	console.log("pass");
+	console.log("pass");*/
 	const navContainer = document.createElement("div");
 	navContainer.id = "navContainer";
 	navContainer.innerHTML = `
