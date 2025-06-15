@@ -1,9 +1,9 @@
 import * as dispMode from './displayMode.js';
-
+console.log("in");
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("start");
-	/*var isInIframe = false;
-	try {
+	let isInIframe = false;
+	/*try {
 		isInIframe = window.self !== window.top;
 	} catch (e) {
 		isInIframe = true; // Probably cross-origin iframe
