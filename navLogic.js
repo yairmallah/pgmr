@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		isInIframe = window.self !== window.top;
 	} catch (e) {
 		isInIframe = true; // Probably cross-origin iframe
-	}/*
+	}
+	console.log("isInIframe", isInIframe);
+	/*
 	if (!isInIframe) return null;
 	console.log("pass");*/
 	const navContainer = document.createElement("div");
