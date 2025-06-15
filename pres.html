@@ -66,17 +66,28 @@
 			<script id="spesific-passive">
 				function getDocumentScripture(iframe){
 					try {
-						iframeDoc = iframe.contentWindow;
+						let iframeDoc = iframe.contentWindow;
 					} catch (error) {
 						console.error(error);
 						console.error(iframe);
-						iframeDoc = null;
+						let iframeDoc = null;
+					}
+					return iframeDoc;
+				}
+				function getDocumentSelector(iframe){
+					try {
+						let iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
+					} catch (error) {
+						console.error(error);
+						console.error(iframe);
+						let iframeDoc = null;
 					}
 					return iframeDoc;
 				}
 				function runPassive(){
-					if (window.current_phase){
-						
+					if (window.current_phase == 2){
+						iframe = main_iframe.contentDocument || main_iframe.contentWindow.document;
+						getDocumentSelector(main_iframe).getElementById("myVideo").play();
 					}
 				}
 			</script>
@@ -133,6 +144,7 @@
 					});
 					
 					main_iframe.src = phase_data[current_phase][0];
+					runPassive();
 					popNav(main_iframe);
 				}
 				
