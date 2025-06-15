@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	console.log("isInIframe = ", isInIframe);
 	
-	if (!isInIframe) return null;
+	if (isInIframe) return null;
 	console.log("pass");
 	const navContainer = document.createElement("div");
 	navContainer.id = "navContainer";
