@@ -65,22 +65,24 @@
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
 				function getDocumentScripture(iframe){
+					iframeDoc = null;
 					try {
-						let iframeDoc = iframe.contentWindow;
+						iframeDoc = iframe.contentWindow;
 					} catch (error) {
 						console.error(error);
 						console.error(iframe);
-						let iframeDoc = null;
+						iframeDoc = null;
 					}
 					return iframeDoc;
 				}
 				function getDocumentSelector(iframe){
+					iframeDoc = null;
 					try {
-						let iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
+						iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
 					} catch (error) {
 						console.error(error);
 						console.error(iframe);
-						let iframeDoc = null;
+						iframeDoc = null;
 					}
 					return iframeDoc;
 				}
