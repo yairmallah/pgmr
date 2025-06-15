@@ -53,7 +53,7 @@
 						בגבעת רם יישמנו את עקרונות ארכיטקטורת פון ניומן על תכנון פיזי: חילקנו את הקמפוס לקטגוריות של משתמש, בקרה, לוגיקה ושרת—ובהתאם לכך יצרנו מערך מרחבי חדש שבו כל פעולה מוצאת את מקומה במערכת כוללת. החלוקה המרחבית מניחה את השרתים, פרוגרמות הקצה שלא מהוות ציר תנועה, על גבי מערכת לוגית שמקשרת בין כלל האלמנטים. בהקבלה אליה ישנה יחידת בקרה שמתווכת את הכניסות ומסדרת את המרחב כולו.
 					</p>
 			</div>
-			<iframe id="main" src="https://yairmallah.github.io/pgmr/"></iframe>
+			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
 				function randomWave(){
 					if (window.graph){
@@ -68,19 +68,26 @@
 				}
 				
 			</script>
-			<script id="spesific-passive">
+			<script id="pop-navigators">
 				function popNav(iframe){
-					const naver = iframeDoc.getElementById('navContainer');
+					try{
+					iframe = iframe.contentDocument || iframe.contentWindow.document;
+					const naver = iframe.getElementById('navContainer');
 					if (naver) {
 						naver.remove();
 					}
+					} catch (error) {
+						console.error(error);
+						console.log(iframe);
+					}
 				}
 				function popNavs(){
-					let i = document.querySelector("iframe");
-					popNav(i);
-					
+					let iframes = document.querySelectorAll("iframe");
+					iframes.forEach(i => {popNav(i)});
+					/*let navBtns = document.querySelectorAll("#navContainer");
+					navBtns.forEach(nv => {nv.remove();});*/
 				}
-				popNavs();
+				//popNavs();
 			</script>
 			<script id="main-motion">
 				var current_phase = 0;
