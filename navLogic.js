@@ -1,8 +1,8 @@
 import * as dispMode from './displayMode.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-	/*console.log("start");
-	var isInIframe = false;
+	console.log("start");
+	/*var isInIframe = false;
 	try {
 		isInIframe = window.self !== window.top;
 	} catch (e) {
