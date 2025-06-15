@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	} catch (e) {
 		isInIframe = true; // Probably cross-origin iframe
 	}
-	console.log("isInIframe", isInIframe);
-	/*
+	console.log("isInIframe = ", isInIframe);
+	
 	if (!isInIframe) return null;
-	console.log("pass");*/
+	console.log("pass");
 	const navContainer = document.createElement("div");
 	navContainer.id = "navContainer";
 	navContainer.innerHTML = `
