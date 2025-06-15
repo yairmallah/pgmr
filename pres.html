@@ -84,8 +84,8 @@
 				function popNav(iframe){
 					try{
 						iframe = iframe.contentDocument || iframe.contentWindow.document;
-						const naver = iframe.getElementById('navContainer');
 						requestAnimationFrame(() => {
+							const naver = iframe.getElementById('navContainer');
 							if (naver) {naver.remove();}
 						});
 						
