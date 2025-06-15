@@ -3,11 +3,11 @@ console.log("in");
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("start");
 	var isInIframe = false;
-	/*try {
+	try {
 		isInIframe = window.self !== window.top;
 	} catch (e) {
 		isInIframe = true; // Probably cross-origin iframe
-	}
+	}/*
 	if (!isInIframe) return null;
 	console.log("pass");*/
 	const navContainer = document.createElement("div");
