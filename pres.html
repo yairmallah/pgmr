@@ -55,7 +55,7 @@
 			</div>
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
-				const passiveFuncs = {0: null, 1: randomWave(), 2: null, 3: null};
+				const passiveFuncs = {0: null, 1: "randomWave()", 2: null, 3: null};
 				function getDocumentScripture(iframe){
 					try {
 						iframeDoc = iframe.contentWindow;
@@ -92,7 +92,7 @@
 			<script id="main-motion">
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
-					if (parStepInd =< window.current_phase){
+					if (parStepInd <= window.current_phase){
 						if (stepP.classList.contains('hidden')){stepP.classList.toggle("hidden");}
 					}
 					else{
