@@ -106,6 +106,7 @@
 				window.current_phase = current_phase;
 				function update_phase(){
 					current_phase += 1;
+					current_phase %= 4;
 					window.current_phase = current_phase;
 					// diss-apear texts
 					for (let i = 0; i < 4; i ++){
