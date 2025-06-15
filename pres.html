@@ -18,10 +18,10 @@
 		<script id="main-dict">
 			// index => 0=addres, 1=func
 			const phase_data = {
-				0: ["/pgmr/references.html"],
-				1: ["/pgmr/"],
-				2: ["/pgmr/"],
-				3: ["/pgmr/"],
+				0: ["references.html"],
+				1: ["index.html"],
+				2: ["video.html"],
+				3: ["video.html"],
 			}
 		</script>
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
@@ -30,19 +30,19 @@
 		<div id="thumbnails-container">
 			<div id="buttons-container">
 				<button class="phase-button" id="ph-0" onclick="update_phase(0)">
-					<iframe class="btn-frm" id="frm-btn-0" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
+					<iframe class="btn-frm" id="frm-btn-0" src="references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-0">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-1" onclick="update_phase(1)">
-					<iframe class="btn-frm" id="frm-btn-1" src="https://yairmallah.github.io/pgmr/"></iframe>
+					<iframe class="btn-frm" id="frm-btn-1" src="index.html"></iframe>
 					<p class="btn-txt" id="txt-btn-1">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-2" onclick="update_phase(2)">
-					<iframe class="btn-frm" id="frm-btn-2" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
+					<iframe class="btn-frm" id="frm-btn-2" src="video.html"></iframe>
 					<p class="btn-txt" id="txt-btn-2">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-3" onclick="update_phase(3)">
-					<iframe class="btn-frm" id="frm-btn-3" src="https://yairmallah.github.io/pgmr/references.html"></iframe>
+					<iframe class="btn-frm" id="frm-btn-3" src="references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-3">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 			</div>
@@ -133,6 +133,7 @@
 					});
 					
 					main_iframe.src = phase_data[current_phase][0];
+					popNav(main_iframe);
 				}
 				
 				function runWhileInactive(callback, intervalSeconds = 51) {
