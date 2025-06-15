@@ -90,13 +90,23 @@
 				popNavs();
 			</script>
 			<script id="main-motion">
+				function stepShow(stepP){
+					const parStepInd = parseInt(stepP.id.split("-")[1]);
+					if (parStepInd =< window.current_phase){
+						if (stepP.classList.contains('hidden')){stepP.classList.toggle("hidden");}
+					}
+					else{
+						if (!(stepP.classList.contains('hidden'))){stepP.classList.toggle("hidden");}
+					}
+				}
 				var current_phase = 0;
 				window.current_phase = current_phase;
 				function update_phase(){
 					current_phase += 1;
 					window.current_phase = current_phase;
-					for (int i = 0; i < 4; i ++){
-						document.getElementById('
+					for (let i = 0; i < 4; i ++){
+						let stepName = 'st-'+i;
+						document.getElementById(stepName);
 						for (let i = 0; i<layouts.length; i++){
 						
 							layouts[i].classList.toggle("hidden");
