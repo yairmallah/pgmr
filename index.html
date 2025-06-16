@@ -307,19 +307,20 @@
 				}
 			}
 		};
-		window.toggleMode = toggleMode;
 		// rebind click event to the display mode buttons for path regenerationg
+		window.toggleMode = toggleMode;
 		requestAnimationFrame(() => {
+			
 			try {
-				document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
-				document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+				document.getElementById("toggle-light").addEventListener("click", () => {window.toggleMode(false)});
+				document.getElementById("toggle-dark").addEventListener("click", () => {window.toggleMode(true)});
 			} catch (e) {
 				console.log("no display mode button error ", e);
 			}
 			let isDark = sessionStorage.getItem("isDark") || true;
 			toggleMode(isDark);
 		});
-	</script>	
+	</script>
 </head>
 	<body>
 <div id="non-pres-container">
