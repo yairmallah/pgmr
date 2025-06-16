@@ -68,8 +68,12 @@
 			window.toggleMode = toggleMode;
 			// rebind click event to the display mode buttons for path regenerationg
 			requestAnimationFrame(() => {
-				document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
-				document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+				try {
+					document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
+					document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+				}catch (e) {
+					console.log("no display mode button error ", e);
+				}
 				let isDark = sessionStorage.getItem("isDark") || true;
 				toggleMode(isDark);
 			});
