@@ -98,7 +98,7 @@
 				jpeg:	{h:210, s:80, l:29, a:0.8},
 				mp4:	{h:220, s:80, l:29, a:0.8},
 				img:	{h:224, s:80, l:29, a:0.8},
-				txt:	{h:10, s:75, l:50, a:1}, //120
+				txt:	{h:190, s:60, l:40, a:1}, //120
 				json:	{h:350, s:75, l:50, a:1}, //200
 				other:	{h:224, s:80, l:29, a:1} //220
 			},{
@@ -374,6 +374,7 @@
 			<div id="bg-html" class="symBg hidden"></div>
 			<div id="bg-css" class="symBg hidden"></div>
 			<div id="bg-js" class="symBg hidden"></div>
+			<div id="bg-img" class="symBg hidden"></div>
 			<div id="bg-txt" class="symBg hidden"></div>
 		</div>
 		<div id="display-layout">
@@ -426,7 +427,7 @@
 						yMin: 0 + offs, yMax: height - offs  }
 			};
 			function resetBounds(){
-				if (height >= width*1.2){
+				if (height >= width*1.2){ // narrow
 					bounds["html"]= {xMin: width / 4  + offs, xMax: width - offs,
 									yMin: 0+ offs, yMax:height / 3 - offs};
 					bounds["css"]= {xMin: 0 + offs, xMax: width / 4 - offs,
@@ -455,7 +456,7 @@
 							
 					bounds["other"]= { 	xMin: 0 + offs, xMax: width - offs, 
 										yMin: 0 + offs, yMax: height - offs  };
-				}*/else if (width <= height*1.2){
+				}*/else if (width <= height*1.2){ //sqr
 					bounds["html"]= { 	xMin: width*6/8 + offs, xMax: width - offs,  
 										yMin: height*0/4 + offs, yMax: height*1/4 - offs},
 							
@@ -473,17 +474,17 @@
 							
 					bounds["other"]= { 	xMin: width*0/8 + offs, xMax: width*4/8 - offs, 
 										yMin: height*2/8 + offs, yMax: height*4/8 - offs  };
-				}else {
+				}else { //wide
 					bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
 									xMax: width / 3 - offs,		yMax: height*2/3 - offs};
 									
 					bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
 									xMax: width / 3 - offs,		yMax: height - offs};
 									
-					bounds["txt"]= {xMin: width / 3 + offs,		yMin: 0 + offs,
+					bounds["txt"]= {xMin: width / 2 + offs,		yMin: 0 + offs,
 									xMax: width - offs,			yMax: height / 4 - offs};
 					
-					bounds["js"]= {	xMin: width / 3 + offs,		yMin: height / 4 + offs,
+					bounds["js"]= {	xMin: width / 3 + offs,		yMin: 0 + offs,
 									xMax: width / 2 - offs,		yMax: height - offs};
 									
 					bounds["img"]= {xMin: width /2 + offs,		yMin: height / 4 + offs,
@@ -513,8 +514,8 @@
 					const cl = Object.keys(bounds)[i];
 					const clBackground = document.getElementById("bg-"+cl);
 					if (clBackground){
-						clBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
-						clBackground.style.border = `2px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
+						clBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, ${window.colors[cl].s}%, ${window.colors[cl].l}%, 0.4)`;
+						clBackground.style.border = `2px solid hsla(${window.colors[cl].h}, ${window.colors[cl].s}%, ${window.colors[cl].l}%, 1)`;
 						clBackground.style.left = `${bounds[cl].xMin}px`;
 						clBackground.style.width = `${bounds[cl].xMax-bounds[cl].xMin}px`;
 						clBackground.style.top = `${bounds[cl].yMin}px`;
@@ -524,8 +525,8 @@
 					const ch = gridSize*8/10;
 					const cw = gridSize*8/10;
 					if (clcBackground){
-						clcBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, 100%, 65%, 0.4)`;
-						clcBackground.style.border = `0.5px solid hsla(${window.colors[cl].h}, 100%, 65%, 1)`;
+						clcBackground.style.backgroundColor = `hsla(${window.colors[cl].h}, ${window.colors[cl].s}%, ${window.colors[cl].l}%, 0.4)`;
+						clcBackground.style.border = `0.5px solid hsla(${window.colors[cl].h}, ${window.colors[cl].s}%, ${window.colors[cl].l}%, 1)`;
 						clcBackground.style.left = `${bounds[cl].xMin/width*cw}px`;
 						clcBackground.style.width = `${(bounds[cl].xMax-bounds[cl].xMin)/width*cw}px`;
 						clcBackground.style.top = `${bounds[cl].yMin/height*ch}px`;
@@ -554,7 +555,7 @@
 				if (filename.endsWith(".js")) return "js";
 				if (filename.match(/\.(jpg|png|mp4|gif|svg|jpeg|webp)$/)) return "img";
 				if (filename.endsWith(".txt")) return "txt";
-				if (filename.endsWith(".json")) return "txt";
+				if (filename.endsWith(".json")) return "js";
 				return "other";
 			}
 			function getFileTypeD(filename) {
