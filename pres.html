@@ -46,6 +46,14 @@
 		<link rel="stylesheet" type="text/css" href="css\pres.css"/>
         <script type="module">
 			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
+			Object.assign(darkValues[true],{
+				"--invBG":darkValues[false]["--bgBody"],
+				"--invTXT":darkValues[false]["--textColor"]
+			}
+			Object.assign(darkValues[false],{
+				"--invBG":darkValues[true]["--bgBody"],
+				"--invTXT":darkValues[true]["--textColor"]
+			}
 			window.darkValues = darkValues;
 			const toggleMode=(isDark)=>{
 				Object.keys(darkValues[isDark]).forEach(varMode => {
