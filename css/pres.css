@@ -64,6 +64,7 @@ p.chosen{
 	width: 100%;
 	height: 100%;
 	display: grid;
+	align-items: center;
 	grid-template-rows: 25% 25% 25% 25%;
 	grid-template-columns: 100%;
 	gap: 0;
@@ -77,12 +78,12 @@ p.chosen{
 	background-color: black;
 }
 .btn-frm{
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 2 / 1;
 	transform: scale(var(--divSPar));
 	transform-origin: top left;
 	overflow: hidden;
 	pointer-events: none;
-	height: var(--divSInv);
+	width: var(--divSInv);
 }
 .hidden{
 	position:absolute;
