@@ -6,7 +6,22 @@
         <title>סימולציית תנועה</title>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\video.css"/>
-        <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
+        <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>
+		<script type="module">
+			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
+			// rebind click event to the display mode buttons for path regenerationg
+			window.toggleMode = toggleMode;
+			requestAnimationFrame(() => {
+				try {
+					document.getElementById("toggle-light").addEventListener("click", () => {window.toggleMode(false)});
+					document.getElementById("toggle-dark").addEventListener("click", () => {window.toggleMode(true)});
+				} catch (e) {
+					console.log("no display mode button error ", e);
+				}
+				let isDark = sessionStorage.getItem("isDark") || true;
+				toggleMode(isDark);
+			});
+		</script>
     </head>
     <body>
 		<div id="non-pres-container">
@@ -40,6 +55,9 @@
 					<source src="imgs\סימולציה.mp4" type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
+				<script>
+					document.getElementById("myVideo").play();
+				</script>
 				<div id="scheme-code" class="code"></div>
 				<script>
 					fetch("simulationcode.html") // Load the other page
