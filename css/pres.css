@@ -5,7 +5,9 @@
 	--divS: 25%;
 	--divSPar: 0.25;
 	--divSInv: 400%;
-
+	
+	--invBG:hsla(50, 50%, 95%, 0.85);
+	--invTXT:black;
 }
 
 body{
@@ -75,7 +77,9 @@ p.chosen{
 	height: 80%;
 	overflow: hidden;
 	border: none;
-	background-color: black;
+	background-color: var(--bgBody);
+	box-shadow: 0px 0px 15px var(--invBG);
+	border-radius: 10px;
 }
 .btn-frm{
 	aspect-ratio: 2 / 1;
