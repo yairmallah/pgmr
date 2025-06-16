@@ -4,17 +4,75 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>פרזנטציה</title>
+		<script id="iframe-halper">
+			function getDocumentScripture(iframe){
+				iframeDoc = null;
+				try {
+					iframeDoc = iframe.contentWindow;
+				} catch (error) {
+					console.error(error);
+					console.error(iframe);
+					iframeDoc = null;
+				}
+				return iframeDoc;
+			}
+			function getDocumentSelector(iframe){
+				iframeDoc = null;
+				try {
+					iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
+				} catch (error) {
+					console.error(error);
+					console.error(iframe);
+					iframeDoc = null;
+				}
+				return iframeDoc;
+			}
+			function waitForToggleMode(iframe, callback, timeout = 2000) {
+				const start = Date.now();
+
+				(function check() {
+					const fn = iframe.contentWindow?.toggleMode;
+					if (typeof fn === 'function') {
+						callback(fn); // success!
+					} else if (Date.now() - start < timeout) {
+						setTimeout(check, 50); // keep checking
+					} else {
+						console.warn("toggleMode not available in iframe after timeout");
+					}
+				})();
+			}
+		</script>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\pres.css"/>
         <script type="module">
-			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
-			Object.assign(darkValues[false],{
-				"--mainBgColor": "hsla(50, 50%, 95%, 0.85)"
-			});
-			Object.assign(darkValues[true],{
-				"--mainBgColor": "hsla(0, 0%, 0%, 0.85)"
+			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
+			window.darkValues = darkValues;
+			const toggleMode=(isDark)=>{
+				Object.keys(darkValues[isDark]).forEach(varMode => {
+					const root = document.documentElement;
+					root.style.setProperty(varMode, darkValues[isDark][varMode]);
+				});
+				let iframes = document.querySelectorAll("iframe");
+				iframes.forEach(i => {
+					let iScript = getDocumentScripture(i);
+					waitForToggleMode(i, () => {iScript.toggleMode(isDark);});
+				});
+				sessionStorage.setItem("isDark", isDark);
+			};
+			window.toggleMode = toggleMode;
+			// rebind click event to the display mode buttons for path regenerationg
+			requestAnimationFrame(() => {
+				try {
+					document.getElementById("toggle-light").addEventListener("click", () => {toggleMode(false)});
+					document.getElementById("toggle-dark").addEventListener("click", () => {toggleMode(true)});
+				}catch (e) {
+					console.log("no display mode button error ", e);
+				}
+				let isDark = sessionStorage.getItem("isDark") || true;
+				toggleMode(isDark);
 			});
 		</script>
+		<script id="dark"
 		<script id="main-dict">
 			// index => 0=addres, 1=func
 			const phase_data = {
@@ -64,28 +122,6 @@
 			</div>
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
-				function getDocumentScripture(iframe){
-					iframeDoc = null;
-					try {
-						iframeDoc = iframe.contentWindow;
-					} catch (error) {
-						console.error(error);
-						console.error(iframe);
-						iframeDoc = null;
-					}
-					return iframeDoc;
-				}
-				function getDocumentSelector(iframe){
-					iframeDoc = null;
-					try {
-						iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
-					} catch (error) {
-						console.error(error);
-						console.error(iframe);
-						iframeDoc = null;
-					}
-					return iframeDoc;
-				}
 				function runPassive(){
 					if (window.current_phase == 2){
 						iframe = main_iframe.contentDocument || main_iframe.contentWindow.document;
