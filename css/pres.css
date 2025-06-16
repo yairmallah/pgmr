@@ -1,5 +1,4 @@
 :root{
-	--mainBgColor:hsla(0,0,0,0.85);
 	--divB: 73%;
 	--divBPar: 0.73;
 	--divBInv: 136%;
@@ -52,7 +51,6 @@ p.chosen{
 	background-attachment: fixed;
 	background-size: cover;
 	z-index: 1;
-	background-color: var(--mainBgColor);
 	border: none;
 	margin: 0;
 	padding:0;
