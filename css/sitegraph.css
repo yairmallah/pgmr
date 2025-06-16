@@ -294,7 +294,7 @@ path{
 	opacity: var(--pathOpacity);
 	fill: none;
 }
-path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--htmlH)), var(--pathSaturation), var(--pathLightness));}
+/*path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--htmlH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--cssH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jsH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpgH)), var(--pathSaturation), var(--pathLightness));}
@@ -303,7 +303,17 @@ path.pathS-gif:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--gifH)), var
 path.pathS-jpeg:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--jpegH)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--mp4H)), var(--pathSaturation), var(--pathLightness));}
 path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--txtH)), var(--pathSaturation), var(--pathLightness));}
-path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--otherH)), var(--pathSaturation), var(--pathLightness));}
+path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index) + var(--otherH)), var(--pathSaturation), var(--pathLightness));}*/
+path.pathS-html:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--htmlH)), var(--htmlS), var(--htmlL));}
+path.pathS-css:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--cssH)),  var(--cssS), var(--cssL));}
+path.pathS-js:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--jsH)),  var(--jsS), var(--jsL));}
+path.pathS-jpg:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--jpgH)),  var(--jpgS), var(--jpgL));}
+path.pathS-png:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--pngH)),  var(--pngS), var(--pngL));}
+path.pathS-gif:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--gifH)),  var(--gifS), var(--gifL));}
+path.pathS-jpeg:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--jpegH)),  var(--jpegS), var(--jpegL));}
+path.pathS-mp4:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--mp4H)),  var(--mp4S), var(--mp4L));}
+path.pathS-txt:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--txtH)),  var(--txtS), var(--txtL));}
+path.pathS-other:nth-of-type(n) {stroke: hsl(calc(var(--index)/2 + var(--otherH)),  var(--otherS), var(--otherL));}
 .wave{
 	r: var(--waveRadius);
 	/*fill: hsla(72, 100%, 75%,1);*/
