@@ -69,7 +69,7 @@
 		}
 	</script>
 	<script>
-		const specificColors = new Proxy(
+		/*const specificColors = new Proxy(
 			{
 				html:	{h:120, s:100, l:100, a:1}, //40
 				css:	{h:210, s:100, l:90, a:1}, //180
@@ -83,6 +83,24 @@
 				txt:	{h:40, s:100, l:90, a:1}, //120
 				json:	{h:50, s:100, l:90, a:1}, //200
 				other:	{h:330, s:0, l:0, a:1} //220
+			},{
+				get(target, key) {
+					return key in target ? target[key] : {h:330, s:0, l:0, a:1}; //220
+				}
+		});*/const specificColors = new Proxy(
+			{
+				html:	{h:224, s:20, l:60, a:1}, //40
+				css:	{h:5, s:20, l:25, a:1}, //180
+				js:		{h:0, s:75, l:50, a:1},
+				jpg:	{h:200, s:80, l:29, a:0.8},
+				png:	{h:240, s:80, l:29, a:0.8},
+				gif:	{h:230, s:80, l:29, a:0.8},
+				jpeg:	{h:210, s:80, l:29, a:0.8},
+				mp4:	{h:220, s:80, l:29, a:0.8},
+				img:	{h:224, s:80, l:29, a:0.8},
+				txt:	{h:10, s:75, l:50, a:1}, //120
+				json:	{h:350, s:75, l:50, a:1}, //200
+				other:	{h:224, s:80, l:29, a:1} //220
 			},{
 				get(target, key) {
 					return key in target ? target[key] : {h:330, s:0, l:0, a:1}; //220
@@ -113,7 +131,7 @@
 			"--textShadow":"none",
 			"--bgImg":"unset",
 
-			"--htmlStroke":`hsl(${specificColors["html"].h}, 100%, 65%)`,
+			/*"--htmlStroke":`hsl(${specificColors["html"].h}, ${specificColors["html"].s}%, ${specificColors["html"].l}%)`,
 			"--cssStroke":`hsl(${specificColors["css"].h}, 100%, 65%)`,
 			"--jsStroke":`hsl(${specificColors["js"].h}, 100%, 65%)`,
 			"--jpgStroke":`hsl(${specificColors["jpg"].h}, 100%, 65%)`,
@@ -124,7 +142,19 @@
 			"--imgStroke":`hsl(${specificColors["img"].h}, 100%, 65%)`,
 			"--txtStroke":`hsl(${specificColors["txt"].h}, 100%, 65%)`,
 			"--otherStroke":`hsl(${specificColors["other"].h}, 100%, 65%)`,
-			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,
+			"--jsonStroke":`hsl(${specificColors["json"].h}, 100%, 65%)`,*/
+			"--htmlStroke":`hsl(${specificColors["html"].h}, ${specificColors["html"].s}%, ${specificColors["html"].l}%)`,
+			"--cssStroke":`hsl(${specificColors["css"].h}, ${specificColors["css"].s}%, ${specificColors["css"].l}%)`,
+			"--jsStroke":`hsl(${specificColors["js"].h}, ${specificColors["js"].s}%, ${specificColors["js"].l}%)`,
+			"--jpgStroke":`hsl(${specificColors["jpg"].h}, ${specificColors["jpg"].s}%, ${specificColors["jpg"].l}%)`,
+			"--pngStroke":`hsl(${specificColors["png"].h}, ${specificColors["png"].s}%, ${specificColors["png"].l}%)`,
+			"--gifStroke":`hsl(${specificColors["gif"].h}, ${specificColors["gif"].s}%, ${specificColors["gif"].l}%)`,
+			"--jpegStroke":`hsl(${specificColors["jpeg"].h}, ${specificColors["jpeg"].s}%, ${specificColors["jpeg"].l}%)`,
+			"--mp4Stroke":`hsl(${specificColors["mp4"].h}, ${specificColors["mp4"].s}%, ${specificColors["mp4"].l}%)`,
+			"--imgStroke":`hsl(${specificColors["img"].h}, ${specificColors["img"].s}%, ${specificColors["img"].l}%)`,
+			"--txtStroke":`hsl(${specificColors["txt"].h}, ${specificColors["txt"].s}%, ${specificColors["txt"].l}%)`,
+			"--otherStroke":`hsl(${specificColors["other"].h}, ${specificColors["other"].s}%, ${specificColors["other"].l}%)`,
+			"--jsonStroke":`hsl(${specificColors["json"].h}, ${specificColors["json"].s}%, ${specificColors["json"].l}%)`,
 			
 			"--htmlRadius": 20, //25
 			"--cssRadius": 8, //10
@@ -166,6 +196,32 @@
 			"--txtH":specificColors["txt"].h,
 			"--otherH":specificColors["other"].h,
 			"--jsonH":specificColors["json"].h,
+			
+			"--htmlS":specificColors["html"].s +"%",
+			"--cssS":specificColors["css"].s +"%",
+			"--jsS":specificColors["js"].s +"%",
+			"--jpgS":specificColors["jpg"].s +"%",
+			"--pngS":specificColors["png"].s +"%",
+			"--gifS":specificColors["gif"].s +"%",
+			"--jpegS":specificColors["jpeg"].s +"%",
+			"--mp4S":specificColors["mp4"].s +"%",
+			"--imgS":specificColors["img"].s +"%",
+			"--txtS":specificColors["txt"].s +"%",
+			"--otherS":specificColors["other"].s +"%",
+			"--jsonS":specificColors["json"].s +"%",
+			
+			"--htmlL":specificColors["html"].l +"%",
+			"--cssL":specificColors["css"].l +"%",
+			"--jsL":specificColors["js"].l +"%",
+			"--jpgL":specificColors["jpg"].l +"%",
+			"--pngL":specificColors["png"].l +"%",
+			"--gifL":specificColors["gif"].l +"%",
+			"--jpegL":specificColors["jpeg"].l +"%",
+			"--mp4L":specificColors["mp4"].l +"%",
+			"--imgL":specificColors["img"].l +"%",
+			"--txtL":specificColors["txt"].l +"%",
+			"--otherL":specificColors["other"].l +"%",
+			"--jsonL":specificColors["json"].l +"%",
 			
 			"--textShadow":"2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000",
 			"--bgImg":"linear-gradient(hsla(120, 100%, 50%, 0.4) .1em, transparent .1em), linear-gradient(90deg, hsla(120, 100%, 50%, 0.4) .1em, transparent .1em)",
@@ -214,10 +270,15 @@
 		});
 		Object.keys(window.colors).forEach(cl => {
 			let t = darkValues[false];
+			//darkValues[false]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;
 			darkValues[false]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;
+			darkValues[false]["--"+cl+"L"] = `${(specificColors[cl].l+40)/2}%`;
+			darkValues[false]["--"+cl+"S"] = `${(specificColors[cl].s + 100)/2}%`;
 			//darkValues[true]["--"+cl+"Radius"] = t["--"+cl+"Radius"] * 2.5
 			t = darkValues[true];
-			darkValues[true]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${t['--circSaturatin']}, ${t['--circLightness']}, 0.8)`;;
+			darkValues[true]["--"+cl+"Fill"] = `hsla(${t['--'+cl+'H']}, ${specificColors[cl].s}%, ${specificColors[cl].l}%, 0.8)`;
+			darkValues[true]["--"+cl+"L"] = `${(specificColors[cl].l + 80)/2}%`;
+			darkValues[true]["--"+cl+"S"] = `${(specificColors[cl].s + 90)/2}%`;
 		});
 		
 		const toggleMode=(isDark)=>{
