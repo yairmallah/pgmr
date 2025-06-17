@@ -19,7 +19,7 @@
 			function getDocumentSelector(iframe){
 				iframeDoc = null;
 				try {
-					iframeDoc = main_iframe.contentDocument || main_iframe.contentWindow.document;
+					iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 				} catch (error) {
 					console.error(error);
 					console.error(iframe);
@@ -130,10 +130,15 @@
 			</div>
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
+				function indexPageAdaptor(iframe){
+					const iDoc = getDocumentSelector(iframe);
+					iDoc.getElementById("display-layout").remove();
+					layouts = iDoc.getElementsByClassName('symBg');
+					for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden", false);}
+				}
 				function runPassive(){
 					if (window.current_phase == 2){
-						iframe = main_iframe.contentDocument || main_iframe.contentWindow.document;
-						getDocumentSelector(main_iframe).getElementById("myVideo").play();
+						
 					}
 				}
 			</script>
@@ -190,7 +195,7 @@
 					});
 					
 					main_iframe.src = phase_data[current_phase][0];
-					console.log("in");
+					if (current_phase == 2) indexPageAdaptor(main_iframe);
 					runPassive();
 					popNav(main_iframe);
 				}
