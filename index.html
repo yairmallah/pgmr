@@ -365,10 +365,10 @@
 				stop5.setAttribute("stop-color", "hsla(120, 100%, 70%, 0.0)");
 
 				radialDef.appendChild(stop1);
-				radialDef.appendChild(stop2);
+				//radialDef.appendChild(stop2);
 				radialDef.appendChild(stop3);
 				radialDef.appendChild(stop4);
-				radialDef.appendChild(stop5);
+				//radialDef.appendChild(stop5);
 				defsContainer.appendChild(radialDef);
 			});
 		</script>
@@ -583,7 +583,7 @@
 					.force("charge", d3.forceManyBody().strength(-100))
 					.force("charge_html", manyBodyClass(400, "html"))
 					.force("bounds", forceBounds())
-					.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(2))
+					.force("x", d3.forceX(d => areas[getFileType(d.id)]?.x || width / 2).strength(0.5))
 					.force("y", d3.forceY(d => areas[getFileType(d.id)]?.y || height / 2).strength(2))
 					.force("boycottExt", boycottExt())
 					.force("grid", forceGrid(gridSize, 3))
@@ -678,10 +678,15 @@
 				}
 				function forceBounds() {
 					return function(alpha) {
-						for (const node of simulation.nodes()) {
-							node.x = Math.max(node.bounds.xMin, Math.min(node.bounds.xMax, node.x));
-							node.y = Math.max(node.bounds.yMin, Math.min(node.bounds.yMax, node.y));
-						}
+						graph.nodes.forEach((node) => {
+							console.log(node);
+							if (node.bounds.xMax - offs <= node.x) node.vx = -2;
+							if (node.bounds.xMin + offs >= node.x) node.vx = 2;	
+							if (node.bounds.yMax - offs <= node.y) node.vy = -2;
+							if (node.bounds.yMin + offs >= node.y) node.vy = 2;
+							/*node.x = Math.max(node.bounds.xMin + offs, Math.min(node.bounds.xMax - offs, node.x));
+							node.y = Math.max(node.bounds.yMin + offs, Math.min(node.bounds.yMax - offs, node.y));*/
+						});
 					};
 				}
 				
@@ -704,11 +709,11 @@
 					};
 				}
 				function boycottExt() {
-					if (height > width){
+					if (height * 1.2 > width){
 						return (alpha) => {
 							graph.nodes.forEach((node) => {
 								if (node.external === "external") {
-									node.fx = width - offs;
+									node.fx = 0 + offs;
 								}
 							});
 						};
