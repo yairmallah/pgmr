@@ -679,7 +679,6 @@
 				function forceBounds() {
 					return function(alpha) {
 						graph.nodes.forEach((node) => {
-							console.log(node);
 							if (node.bounds.xMax - offs <= node.x) node.vx = -2;
 							if (node.bounds.xMin + offs >= node.x) node.vx = 2;	
 							if (node.bounds.yMax - offs <= node.y) node.vy = -2;
