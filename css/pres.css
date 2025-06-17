@@ -110,6 +110,7 @@ p.chosen{
 	overflow: hidden;
 	pointer-events: none;
 	width: var(--divSInv);
+	height: var(--divSInv);
 }
 .phase-button .btn-txt{
 	font-family: 'Courier New', monospace;
