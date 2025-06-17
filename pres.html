@@ -219,7 +219,7 @@
 				window.current_phase = current_phase;
 				function update_phase(phs=-1){
 					let main_iframe = document.getElementById("main");
-					let main_texts = document.getElementById("main-texts");
+					let main_texts = document.getElementById("main-texts-wrapper");
 					document.getElementById(("st-" + window.current_phase)).classList.toggle("chosen", false);
 					document.getElementById(("ph-" + window.current_phase)).classList.toggle("chosen", false);
 					if (phs == -1){current_phase += 1;}
