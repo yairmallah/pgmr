@@ -41,6 +41,54 @@
 					}
 				})();
 			}
+			function waitForToggleModeDict(iframe, property, callback, timeout = 2000) {
+				const start = Date.now();
+				(function check() {
+					try{
+						const fn = iframe.contentWindow?.darkValues[true][property];
+						if (fn != null) {
+							callback(fn); // success!
+						} else if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn("toggleMode not available in iframe after timeout");
+						}
+					}
+					catch (e){
+						if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn("toggleMode not available in iframe after timeout");
+						}
+					}
+				})();
+			}
+			function waitForObj(iframe, objID, callback, timeout = 2000) {
+				const start = Date.now();
+				(function check() {
+					const fn = iframeDoc = iframe.contentDocument.getElementById(objID) || iframe.contentWindow.document.getElementById(objID);
+					if ( fn != null) {
+						callback(fn); // success!
+					} else if (Date.now() - start < timeout) {
+						setTimeout(check, 50); // keep checking
+					} else {
+						console.warn("toggleMode not available in iframe after timeout");
+					}
+				})();
+			}
+			function waitForClass(iframe, clsID, callback, timeout = 2000) {
+				const start = Date.now();
+				(function check() {
+					const fn = iframeDoc = iframe.contentDocument.getElementsByClassName(clsID) || iframe.contentWindow.document.getElementsByClassName(clsID);
+					if ( fn.length != 0) {
+						callback(fn); // success!
+					} else if (Date.now() - start < timeout) {
+						setTimeout(check, 50); // keep checking
+					} else {
+						console.warn("toggleMode not available in iframe after timeout");
+					}
+				})();
+			}
 		</script>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\pres.css"/>
@@ -131,10 +179,18 @@
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
 				function indexPageAdaptor(iframe){
-					const iDoc = getDocumentSelector(iframe);
-					iDoc.getElementById("display-layout").remove();
-					layouts = iDoc.getElementsByClassName('symBg');
-					for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden", false);}
+					//const iDoc = getDocumentSelector(iframe);
+					waitForObj(iframe, "display-layout", () => {getDocumentSelector(iframe).getElementById("display-layout").remove();});
+					waitForClass(iframe, 'symBg', () => {
+						layouts = getDocumentSelector(iframe).getElementsByClassName('symBg');
+						for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden", false);}
+					});
+					waitForToggleModeDict(iframe, "--bgImg", () => {
+						let iScript = getDocumentScripture(iframe)
+						iScript.darkValues[true]["--bgImg"] = "none";
+						console.log(iScript.darkValues[true]);
+						iScript.toggleMode((sessionStorage.getItem("isDark") || true));
+					});
 				}
 				function runPassive(){
 					if (window.current_phase == 2){
@@ -195,7 +251,7 @@
 					});
 					
 					main_iframe.src = phase_data[current_phase][0];
-					if (current_phase == 2) indexPageAdaptor(main_iframe);
+					if (current_phase == 1) indexPageAdaptor(main_iframe);
 					runPassive();
 					popNav(main_iframe);
 				}
