@@ -128,7 +128,33 @@
 				toggleMode(isDark);
 			});
 		</script>
-		<script id="dark"
+		<script id="motion-helper">
+			function textAppearWordByWord(textElement, wordTime = 80){
+				/*let id = textElement.id.split("-");
+				let original = textElement.innerText;
+				console.log(original);
+				let words = textElement.innerText.split(" ");
+				textElement.innerHTML = ""; // Clear original text*/
+				textElement.classList.toggle("hidden", false);
+				/*words.forEach((word, index) => {
+					const span = document.createElement("span");
+					span.textContent = word + " ";
+					span.style.opacity = 0;
+					span.style.transition = "opacity 0.3s ease";
+					textElement.appendChild(span);
+
+					setTimeout(() => {
+						span.style.opacity = 1;
+						if (window.current_phase != id){}
+							
+					}, index * wordTime);
+				});
+				const totalDuration = (words.length + 1) * wordTime;
+				setTimeout(() => {
+					textElement.innerHTML = original; // Restore original HTML
+				}, totalDuration);*/
+			}	
+		</script>
 		<script id="main-dict">
 			// index => 0=addres, 1=tumbnail,  2=func
 			const phase_data = {
@@ -206,15 +232,15 @@
 			</script>
 			<script id="main-motion">
 				var current_phase = 0;
-				var step_time = 52;
+				var step_time = 10;
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
-					if (parStepInd <= window.current_phase){
+					if (parStepInd < window.current_phase){
 						stepP.classList.toggle("hidden", false);
 					}
-					else{
+					else if (parStepInd > window.current_phase){
 						stepP.classList.toggle("hidden", true);
-					}
+					} else { textAppearWordByWord(stepP); }
 				}
 				window.current_phase = current_phase;
 				function update_phase(phs=-1){
