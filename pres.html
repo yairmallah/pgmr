@@ -161,24 +161,10 @@
 				</button>
 			</div>
 		</div>
-		<div id="main-section-container">
-			<div id="main-texts">
-					<p class="main-text" id="st-0">
-						הפרדיגמה הקלאסית של האדריכלות נבנתה על יחסים בין חלל וחומר וסמל: המרחב הוא מערכת שבה לכל אלמנט יש תפקיד צורני ומבני. עם המהפכה התעשייתית השנייה והופעתה של המכונית, נוצר מצב חדש: מרחקים התארכו ומבנים הוגדרו לפי תפקודם. קנה המידה האדריכלי הומר למהירות ויעילות. בתוך המפנה הזה ניסח לואי קאהן את המובחנות בין מרחבים משרתים למשורתים. תפיסת "משרת-משורת" שלו ביקשה לסמן מחדש את סט היחסים האדריכליים.
-					</p>
-					<p class="main-text" id="st-1">
-						בשנות החמישים הציע מדען המחשב ג'ון פון ניומן פרדיגמה ארכיטקטונית לבניית מחשב. הפרדיגמה מתבססת על ארבעה רכיבים המתקשרים ביניהם - משתמש, יחידת בקרה, יחידה לוגית ושרת. המשתמש שולח בקשה לשרת, הבקשה עוברת תרגום על ידי יחידת הבקרה, היחידה הלוגית מתווכת אותה לשרת ומחזירה ערך מתורגם למשתמש. ארכיטקטורת פון ניומן מבוססת על רשת מעברים בין מטא-פרוגרמות שונות.
-					</p>
-					<p class="main-text" id="st-2">
-						בירושלים, הדרך למוזיאון ישראל אינה ישירה: כבישים, גשרים ושבילים יוצרים מערכת הכוונה וניתוב בתוך העיר. המרחק אינו מכשול אלא עיקרון-והגישה הופכת לניווט במערכת לוגית שמסוגלת לשמור, להסתיר ולכוון.
-					</p>
-					<p class="main-text" id="st-3">
-						בגבעת רם יישמנו את עקרונות ארכיטקטורת פון ניומן על תכנון פיזי: חילקנו את הקמפוס לקטגוריות של משתמש, בקרה, לוגיקה ושרת—ובהתאם לכך יצרנו מערך מרחבי חדש שבו כל פעולה מוצאת את מקומה במערכת כוללת. החלוקה המרחבית מניחה את השרתים, פרוגרמות הקצה שלא מהוות ציר תנועה, על גבי מערכת לוגית שמקשרת בין כלל האלמנטים. בהקבלה אליה ישנה יחידת בקרה שמתווכת את הכניסות ומסדרת את המרחב כולו.
-					</p>
-			</div>
+			
 			<iframe id="main" src="index.html"></iframe>
 			<script id="spesific-passive">
-				function indexPageAdaptor(iframe){
+				function indexPageAdaptor(iframe, transform='transform: scale(0.66);transform-origin: top left;height: 150%;'){
 					//const iDoc = getDocumentSelector(iframe);
 					waitForObj(iframe, "display-layout", () => {getDocumentSelector(iframe).getElementById("display-layout").remove();});
 					waitForClass(iframe, 'symBg', () => {
@@ -188,9 +174,9 @@
 					waitForToggleModeDict(iframe, "--bgImg", () => {
 						let iScript = getDocumentScripture(iframe)
 						iScript.darkValues[true]["--bgImg"] = "none";
-						console.log(iScript.darkValues[true]);
 						iScript.toggleMode((sessionStorage.getItem("isDark") || true));
 					});
+					iframe.style = transform;
 				}
 				function runPassive(){
 					if (window.current_phase == 2){
@@ -219,6 +205,8 @@
 				popNavs();
 			</script>
 			<script id="main-motion">
+				var current_phase = 0;
+				var step_time = 51;
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
 					if (parStepInd <= window.current_phase){
@@ -228,19 +216,19 @@
 						stepP.classList.toggle("hidden", true);
 					}
 				}
-				var current_phase = 0;
-				const main_iframe = document.getElementById("main");
-				const main_texts = document.getElementById("main-texts");
 				window.current_phase = current_phase;
 				function update_phase(phs=-1){
+					let main_iframe = document.getElementById("main");
+					let main_texts = document.getElementById("main-texts");
 					document.getElementById(("st-" + window.current_phase)).classList.toggle("chosen", false);
-					
+					document.getElementById(("ph-" + window.current_phase)).classList.toggle("chosen", false);
 					if (phs == -1){current_phase += 1;}
 					else {current_phase = phs;}
 					current_phase %= 4;
 					window.current_phase = current_phase;
 					// texts beahavior
 					document.getElementById(("st-" + current_phase)).classList.toggle("chosen", true);
+					document.getElementById(("ph-" + current_phase)).classList.toggle("chosen", true);
 					for (let i = 0; i < 4; i ++){
 						let stepName = 'st-'+i;
 						stepShow(document.getElementById(stepName));
@@ -252,11 +240,12 @@
 					
 					main_iframe.src = phase_data[current_phase][0];
 					if (current_phase == 1) indexPageAdaptor(main_iframe);
-					runPassive();
+					//runPassive();
+					else {main_iframe.style = "";}
 					popNav(main_iframe);
 				}
 				
-				function runWhileInactive(callback, intervalSeconds = 51) {
+				function runWhileInactive(callback, intervalSeconds = step_time) {
 					let intervalId;
 					let timeoutId;
 
@@ -272,6 +261,7 @@
 
 					function reset() {
 						stopInterval();
+						document.getElementById("navContainer").classList.toggle("hidden", false);
 						// Restart the interval after inactivity
 						timeoutId = setTimeout(startInterval, 1000); // short delay before restart
 					}
@@ -283,11 +273,29 @@
 
 					startInterval();
 				}
-				update_phase(0);
-				runWhileInactive(() => {
-					update_phase();
+				requestAnimationFrame(() => {
+					update_phase(0);
+					runWhileInactive(() => {
+						document.getElementById("navContainer").classList.toggle("hidden", true);
+						update_phase();
+					});
 				});
 			</script>
+	<div id="main-texts-wrapper">
+		<div id="main-texts">
+					<p class="main-text" id="st-0">
+						הפרדיגמה הקלאסית של האדריכלות נבנתה על יחסים בין חלל וחומר וסמל: המרחב הוא מערכת שבה לכל אלמנט יש תפקיד צורני ומבני. עם המהפכה התעשייתית השנייה והופעתה של המכונית, נוצר מצב חדש: מרחקים התארכו ומבנים הוגדרו לפי תפקודם. קנה המידה האדריכלי הומר למהירות ויעילות. בתוך המפנה הזה ניסח לואי קאהן את המובחנות בין מרחבים משרתים למשורתים. תפיסת "משרת-משורת" שלו ביקשה לסמן מחדש את סט היחסים האדריכליים.
+					</p>
+					<p class="main-text" id="st-1">
+						בשנות החמישים הציע מדען המחשב ג'ון פון ניומן פרדיגמה ארכיטקטונית לבניית מחשב. הפרדיגמה מתבססת על ארבעה רכיבים המתקשרים ביניהם - משתמש, יחידת בקרה, יחידה לוגית ושרת. המשתמש שולח בקשה לשרת, הבקשה עוברת תרגום על ידי יחידת הבקרה, היחידה הלוגית מתווכת אותה לשרת ומחזירה ערך מתורגם למשתמש. ארכיטקטורת פון ניומן מבוססת על רשת מעברים בין מטא-פרוגרמות שונות.
+					</p>
+					<p class="main-text" id="st-2">
+						בירושלים, הדרך למוזיאון ישראל אינה ישירה: כבישים, גשרים ושבילים יוצרים מערכת הכוונה וניתוב בתוך העיר. המרחק אינו מכשול אלא עיקרון-והגישה הופכת לניווט במערכת לוגית שמסוגלת לשמור, להסתיר ולכוון.
+					</p>
+					<p class="main-text" id="st-3">
+						בגבעת רם יישמנו את עקרונות ארכיטקטורת פון ניומן על תכנון פיזי: חילקנו את הקמפוס לקטגוריות של משתמש, בקרה, לוגיקה ושרת—ובהתאם לכך יצרנו מערך מרחבי חדש שבו כל פעולה מוצאת את מקומה במערכת כוללת. החלוקה המרחבית מניחה את השרתים, פרוגרמות הקצה שלא מהוות ציר תנועה, על גבי מערכת לוגית שמקשרת בין כלל האלמנטים. בהקבלה אליה ישנה יחידת בקרה שמתווכת את הכניסות ומסדרת את המרחב כולו.
+					</p>
+			</div>
 		</div>
     </body>
 </html>
