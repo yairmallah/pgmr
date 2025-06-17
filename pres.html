@@ -130,13 +130,13 @@
 		</script>
 		<script id="motion-helper">
 			function textAppearWordByWord(textElement, wordTime = 80){
-				/*let id = textElement.id.split("-");
+				let id = textElement.id.split("-");
 				let original = textElement.innerText;
 				console.log(original);
 				let words = textElement.innerText.split(" ");
-				textElement.innerHTML = ""; // Clear original text*/
+				textElement.innerHTML = ""; // Clear original text
 				textElement.classList.toggle("hidden", false);
-				/*words.forEach((word, index) => {
+				words.forEach((word, index) => {
 					const span = document.createElement("span");
 					span.textContent = word + " ";
 					span.style.opacity = 0;
@@ -152,7 +152,7 @@
 				const totalDuration = (words.length + 1) * wordTime;
 				setTimeout(() => {
 					textElement.innerHTML = original; // Restore original HTML
-				}, totalDuration);*/
+				}, totalDuration);
 			}	
 		</script>
 		<script id="main-dict">
