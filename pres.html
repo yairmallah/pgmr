@@ -254,7 +254,7 @@
 			</script>
 			<script id="main-motion">
 				var current_phase = 0;
-				var step_time = 10;
+				var step_time = 53;
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
 					if (parStepInd < window.current_phase){
@@ -310,6 +310,8 @@
 					function reset() {
 						stopInterval();
 						document.getElementById("navContainer").classList.toggle("hidden", false);
+						document.getElementsByTagName("body")[0].classList.toggle("no-mouse", false);
+						document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", false)});
 						// Restart the interval after inactivity
 						timeoutId = setTimeout(startInterval, 1000); // short delay before restart
 					}
@@ -325,6 +327,9 @@
 					update_phase(0);
 					runWhileInactive(() => {
 						document.getElementById("navContainer").classList.toggle("hidden", true);
+						document.getElementsByTagName("body")[0].classList.toggle("no-mouse", true);
+						document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", true)});
+						
 						update_phase();
 					});
 				});
