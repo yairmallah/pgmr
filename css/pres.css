@@ -121,3 +121,6 @@ p.chosen{
 .hidden{
 	position:absolute;
 }
+.no-mouse{
+	cursor: none;
+}
