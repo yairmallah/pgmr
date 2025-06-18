@@ -41,6 +41,11 @@
       "external": ""
     },
     {
+      "id": "pres.html",
+      "url": "https://yairmallah.github.io/pgmr/pres.html",
+      "external": ""
+    },
+    {
       "id": "references.html",
       "url": "https://yairmallah.github.io/pgmr/references.html",
       "external": ""
@@ -88,6 +93,11 @@
     {
       "id": "log.css",
       "url": "https://yairmallah.github.io/pgmr/css/log.css",
+      "external": ""
+    },
+    {
+      "id": "pres.css",
+      "url": "https://yairmallah.github.io/pgmr/css/pres.css",
       "external": ""
     },
     {
@@ -784,6 +794,10 @@
       "target": "video.html"
     },
     {
+      "source": "navLogic.js",
+      "target": "rouTxt.txt"
+    },
+    {
       "source": "nodeMessages.txt",
       "target": "IMG_0420.jpg"
     },
@@ -860,6 +874,66 @@
       "target": "רקורסיבי.gif"
     },
     {
+      "source": "pres.html",
+      "target": "general.css"
+    },
+    {
+      "source": "pres.html",
+      "target": "pres.css"
+    },
+    {
+      "source": "pres.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "pres.html",
+      "target": "references.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "index.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "video.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "references.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "index.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "displayMode.js"
+    },
+    {
+      "source": "pres.html",
+      "target": "index.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "navLogic.js"
+    },
+    {
+      "source": "pres.html",
+      "target": "references.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "video.html"
+    },
+    {
+      "source": "pres.html",
+      "target": "general.css"
+    },
+    {
+      "source": "pres.html",
+      "target": "pres.css"
+    },
+    {
       "source": "references.html",
       "target": "general.css"
     },
@@ -901,6 +975,10 @@
     },
     {
       "source": "references.html",
+      "target": "video.html"
+    },
+    {
+      "source": "references.html",
       "target": "general.css"
     },
     {
@@ -910,6 +988,10 @@
     {
       "source": "references.html",
       "target": "ref_dict.json"
+    },
+    {
+      "source": "references.html",
+      "target": "rouTxt.txt"
     },
     {
       "source": "tba.html",
@@ -1037,7 +1119,7 @@
     },
     {
       "source": "video.html",
-      "target": "simulationcode.html"
+      "target": "displayMode.js"
     },
     {
       "source": "video.html",
