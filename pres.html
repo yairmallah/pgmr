@@ -129,30 +129,52 @@
 			});
 		</script>
 		<script id="motion-helper">
-			function textAppearWordByWord(textElement, wordTime = 80){
-				let id = textElement.id.split("-");
-				let original = textElement.innerText;
-				console.log(original);
-				let words = textElement.innerText.split(" ");
+			var timeToWord = 100;
+			function textAppearWordByWord(textElement){
+				let id = textElement.id.split("-")[1];
+				let original = textElement.innerHTML;
+				
+				let words = textElement.innerHTML.split(" ");
 				textElement.innerHTML = ""; // Clear original text
+				const timeouts = [];
+				const spans = [];
+				
 				textElement.classList.toggle("hidden", false);
 				words.forEach((word, index) => {
-					const span = document.createElement("span");
-					span.textContent = word + " ";
-					span.style.opacity = 0;
-					span.style.transition = "opacity 0.3s ease";
-					textElement.appendChild(span);
+						const span = document.createElement("span");
+						span.textContent = word + " ";
+						span.style.opacity = 0;
+						span.style.transition = "opacity 0.3s ease";
+						textElement.appendChild(span);
+						spans.push(span);
 
-					setTimeout(() => {
-						span.style.opacity = 1;
-						if (window.current_phase != id){}
-							
-					}, index * wordTime);
-				});
-				const totalDuration = (words.length + 1) * wordTime;
-				setTimeout(() => {
+						const t = setTimeout(() => {
+							span.style.opacity = 1;
+							if (window.current_phase != id){
+								textElement._animation.cancel();
+							}
+						}, index * timeToWord);
+						timeouts.push(t);
+					
+				});		
+
+				const totalDuration = (words.length + 1) * timeToWord;
+				const resetTimeout = setTimeout(() => {
 					textElement.innerHTML = original; // Restore original HTML
 				}, totalDuration);
+				timeouts.push(resetTimeout);
+				textElement._animation = {
+					timeouts,
+					spans,
+					finish: () => {
+						timeouts.forEach(clearTimeout);
+						spans.forEach(span => span.style.opacity = 1); // Instantly show all words
+					},
+					cancel: () => {
+						timeouts.forEach(clearTimeout);
+						textElement.innerHTML = original;
+					}
+				};
 			}	
 		</script>
 		<script id="main-dict">
@@ -240,7 +262,7 @@
 					}
 					else if (parStepInd > window.current_phase){
 						stepP.classList.toggle("hidden", true);
-					} else { textAppearWordByWord(stepP); }
+					} else {textAppearWordByWord(stepP); }
 				}
 				window.current_phase = current_phase;
 				function update_phase(phs=-1){
