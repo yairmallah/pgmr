@@ -171,6 +171,11 @@
       "external": ""
     },
     {
+      "id": "הגשה.mp4",
+      "url": "https://yairmallah.github.io/pgmr/imgs/%D7%94%D7%92%D7%A9%D7%94.mp4",
+      "external": ""
+    },
+    {
       "id": "מודרניזם.gif",
       "url": "https://yairmallah.github.io/pgmr/imgs/%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%96%D7%9D.gif",
       "external": ""
@@ -1115,7 +1120,11 @@
     },
     {
       "source": "video.html",
-      "target": "סימולציה.mp4"
+      "target": "הגשה.mp4"
+    },
+    {
+      "source": "video.html",
+      "target": "הגשה.mp4"
     },
     {
       "source": "video.html",
@@ -1139,7 +1148,7 @@
     },
     {
       "source": "video.html",
-      "target": "סימולציה.mp4"
+      "target": "הגשה.mp4"
     },
     {
       "source": "general.css",
