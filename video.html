@@ -77,6 +77,55 @@
 				window.vid.play();
 			}
 		</script>
+		<script id="legend-surgical">
+			const von_neuman_list = ["user", "control", "logic", "server"]
+			function waitForVon_neuman_listLoad(timeout = 2000) {
+				const start = Date.now();
+				(function check() {
+					try{
+						let load_flag = true;
+						let von_neuman_list_objs = {};
+						von_neuman_list.forEach(phase => {
+							von_neuman_list_objs[phase] = document.querySelectorAll(("." + phase + "-data"))
+							if (!von_neuman_list_objs[phase].length === 2) load_flag = false;
+						});
+						if (load_flag) {
+							window.von_neuman_list_objs = von_neuman_list_objs;
+						} else if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn("video not available in after timeout");
+						}
+					}
+					catch (e){
+						if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn("video not available in after timeout");
+						}
+					}
+				})();
+			}waitForVon_neuman_listLoad();
+			function v_data_hide_all(){
+				waitForVon_neuman_listLoad();
+				von_neuman_list.forEach(phase => {
+					window.von_neuman_list_objs[phase].forEach(tag => {
+						tag.classList.toggle("hidden", true);
+					});
+				});
+			}
+			function v_data_show_some(n){
+				n %= von_neuman_list.length;
+				waitForVon_neuman_listLoad();
+				for (let i = 0; i < von_neuman_list.length; i ++){
+					phase = von_neuman_list[i];
+					window.von_neuman_list_objs[phase].forEach(tag => {
+						if (i <= n){tag.classList.toggle("hidden", false);}
+						else{tag.classList.toggle("hidden", true);}
+					});
+				}
+			}
+		</script>
     </head>
     <body>
 		<div id="non-pres-container">
@@ -107,35 +156,35 @@
 					</div>
 					<div class="legend hidden" id="pres">
 						<table class="legend-table">
-							<tr>
+							<tr class="user-data data">
 								<td>משתמש</td>
 								<td><div class="legendColor" style="background-color: hsl(224, 20%, 60%);"></div></td>
 							</tr>
-							<tr>
-								<td>משתמש</td>
+							<tr class="user-data data">
+								<td>המשתמש הוא ה</td>
 								<td>&nbsp;</td>
 							</tr>
-							<tr>
+							<tr class="control-data">
 								<td>בקרה</td>
 								<td><div class="legendColor" style="background-color: hsl(5, 20%, 25%);"></div></td>
 							</tr>
-							<tr>
+							<tr class="control-data">
 								<td>משתמש</td>
 								<td>&nbsp;</td>
 							</tr>
-							<tr>
+							<tr class="logic-data">
 								<td>לוגי</td>
 								<td><div class="legendColor" style="background-color: hsl(0, 75%, 50%);"></div></td>
 							</tr>
-							<tr>
+							<tr class="logic-data">
 								<td>משתמש</td>
 								<td>&nbsp;</td>
 							</tr>
-							<tr>
+							<tr class="server-data">
 								<td>שרת</td>
 								<td><div class="legendColor" style="background-color: hsl(224, 80%, 29%);"></div></td>
 							</tr>
-							<tr>
+							<tr class="server-data">
 								<td>משתמש</td>
 								<td>&nbsp;</td>
 							</tr>
