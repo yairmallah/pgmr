@@ -475,20 +475,20 @@
 					bounds["other"]= { 	xMin: width*0/8 + offs, xMax: width*4/8 - offs, 
 										yMin: height*2/8 + offs, yMax: height*4/8 - offs  };
 				}else { //wide
-					bounds["html"]= {xMin: 0 + offs,			yMin: 0 + offs,
-									xMax: width / 3 - offs,		yMax: height*2/3 - offs};
+					bounds["html"]= {xMin:width * 2/3 + offs,	yMin: 0 + offs,
+									xMax: width - offs,			yMax: height*2/3 - offs};
 									
-					bounds["css"]= {xMin: 0 + offs,				yMin: height*2/3 + offs,
-									xMax: width / 3 - offs,		yMax: height - offs};
-									
-					bounds["txt"]= {xMin: width / 2 + offs,		yMin: 0 + offs,
-									xMax: width - offs,			yMax: height / 4};
-					
-					bounds["js"]= {	xMin: width / 3 + offs,		yMin: 0 + offs,
-									xMax: width / 2 - offs,		yMax: height - offs};
-									
-					bounds["img"]= {xMin: width /2 + offs,		yMin: 0 + offs,
+					bounds["css"]= {xMin: width * 2/3 + offs,	yMin: height*2/3 + offs,
 									xMax: width - offs,			yMax: height - offs};
+									
+					bounds["txt"]= {xMin: 0 + offs,				yMin: 0 + offs,
+									xMax: width / 2 - offs,		yMax: height / 4};
+					
+					bounds["js"]= {	xMin: width / 2 + offs,		yMin: 0 + offs,
+									xMax: width * 2/3 - offs,	yMax: height - offs};
+									
+					bounds["img"]= {xMin: 0 + offs,				yMin: 0 + offs,
+									xMax: width / 2 - offs,		yMax: height - offs};
 				}
 			}
 
