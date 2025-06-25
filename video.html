@@ -32,6 +32,8 @@
 						let source = document.getElementById("vidSource");
 						if (vid != null && source != null) {
 							window.vid = document.getElementById("myVideo");
+							console.log("video loaded");
+							console.log(window.vid);
 							window.source = document.getElementById("vidSource");
 						} else if (Date.now() - start < timeout) {
 							setTimeout(check, 50); // keep checking
@@ -55,6 +57,7 @@
 				flip_vid(dest=0);
 			}
 			function flip_vid(dest=-1){
+			reset_triggers();
 				if (dest == -1){
 					if (window.current_vid_index){
 						window.current_vid_index += 1;
@@ -78,7 +81,7 @@
 			}
 		</script>
 		<script id="legend-surgical">
-			const von_neuman_list = ["user", "control", "logic", "server"]
+			const von_neuman_list = ["user", "control", "logic", "server", "lib"]
 			function waitForVon_neuman_listLoad(timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -188,6 +191,14 @@
 								<td>משתמש</td>
 								<td>&nbsp;</td>
 							</tr>
+							<tr class="lib-data">
+								<td>הספריה הלאומית</td>
+								<td><div class="legendColor" style="background-color: hsl(0, 0%, 100%);"></div></td>
+							</tr>
+							<tr class="lib-data">
+								<td>משתמש</td>
+								<td>&nbsp;</td>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -212,6 +223,38 @@
 							document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
 							}
 						});
+				</script>
+				<script>
+					var triggers = [];
+					function reset_triggers(){
+						triggers = [
+							{ time: 0, fired: false, action: () => v_data_hide_all() },
+							{ time: 4, fired: false, action: () => v_data_show_some(0) },
+							{ time: 12, fired: false, action: () => v_data_show_some(1) },
+							{ time: 20, fired: false, action: () => v_data_show_some(2) },
+							{ time: 28, fired: false, action: () => v_data_show_some(3) },
+							{ time: 36, fired: false, action: () => v_data_show_some(4) },
+						];
+					}
+					var isInIframe = false;
+					try {
+						isInIframe = window.self !== window.top;
+					} catch (e) {
+						isInIframe = true;
+					}
+					if (isInIframe){
+						reset_triggers();
+						waitForVideoLoad();
+						console.log(document.getElementById("myVideo"));
+						window.vid.addEventListener('timeupdate', () => {
+							triggers.forEach(t => {
+								if (!t.fired && window.vid.currentTime >= t.time) {
+									t.fired = true;
+									t.action();
+								}
+							});
+						});
+					}
 				</script>
 				<script id="legend-shaper">
 					const legend_cont = document.getElementById("legend");
@@ -277,7 +320,7 @@
 					} catch (e) {
 						isInIframe = true;
 					}
-					if (isInIframe || !isInIframe){
+					if (isInIframe){
 						resize_adapter();
 						window.addEventListener("resize", () => {
 							resize_adapter();
