@@ -76,6 +76,24 @@
 					}
 				})();
 			}
+			function waitForFunc(iframe, funcName, callback, timeout = 2000) {
+				const start = Date.now();
+
+				(function check() {
+					try {
+						const fn = iframe.contentWindow?.[funcName];
+						if (typeof fn === 'function') {
+							callback(fn); // success!
+						} else if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn(`${funcName} not available in iframe after timeout`);
+						}
+					} catch (err) {
+						console.error(err);
+					}
+				})();
+			}
 			function waitForClass(iframe, clsID, callback, timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -89,6 +107,37 @@
 					}
 				})();
 			}
+		</script>
+		<script id="contemporarry-funcs">
+			phase1_ref_list = [
+				"https://yairmallah.github.io/pgmr/imgs/ref/0p-palace of minos.jpg",
+				"https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png"
+				];
+			function getMain(){
+				return document.getElementById("main");
+			}
+			function phase1_change_ref(img_url){
+				/*
+				important!!
+				updateMainRef needs only ref, ref["url"]=> image url so sent only wrapper of {"url":"https://yairmallah.github.io/pgmr/imgs/ref/EXAMPLE.png"}
+				might cause some problem but who know :>
+				*/
+				let main_iframe = getMain();
+				waitForFunc(main_iframe, 'updateMainRef', () => {
+					waitForObj(main_iframe, "large-scheme", () => {
+						torah = getDocumentScripture(main_iframe);
+						torah.updateMainRef({"url":img_url});
+					});
+				});
+			}
+			function phase2_random_wave(){
+				let main_iframe = getMain();
+				waitForFunc(main_iframe, 'randomWave', () => {
+					torah = getDocumentScripture(main_iframe);
+					torah.randomWave();
+				});
+			}
+			function next_phase(){}
 		</script>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
 		<link rel="stylesheet" type="text/css" href="css\pres.css"/>
@@ -184,7 +233,28 @@
 				1: ["index.html"],
 				2: ["video.html"],
 				3: ["video.html?vid=1"],
-			}
+			};
+			// time table
+			const timeTable = {
+				0 : {
+					/*3: () => phase1_change_ref(phase1_ref_list[0]),
+					6: () => phase1_change_ref(phase1_ref_list[1]),*/
+					74: () => update_phase()
+				}, 
+				1 : {
+					/*7: () => phase2_random_wave(),
+					15: () => phase2_random_wave(),
+					22: () => phase2_random_wave(),*/
+					74: () => update_phase()
+				},
+				2 : {
+					74: () => update_phase()
+				},
+				3 : {
+					74: () => update_phase()
+				}
+			};
+			
 		</script>
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
@@ -252,9 +322,7 @@
 				}
 				popNavs();
 			</script>
-			<script id="main-motion">
-				var current_phase = 0;
-				var step_time = 53;
+			<script id="big-time-functions">
 				function stepShow(stepP){
 					const parStepInd = parseInt(stepP.id.split("-")[1]);
 					if (parStepInd < window.current_phase){
@@ -264,8 +332,8 @@
 						stepP.classList.toggle("hidden", true);
 					} else {textAppearWordByWord(stepP); }
 				}
-				window.current_phase = current_phase;
 				function update_phase(phs=-1){
+					window.inactiveSeconds = 0;
 					let main_iframe = document.getElementById("main");
 					let main_texts = document.getElementById("main-texts-wrapper");
 					document.getElementById(("st-" + window.current_phase)).classList.toggle("chosen", false);
@@ -288,50 +356,60 @@
 					
 					main_iframe.src = phase_data[current_phase][0];
 					if (current_phase == 1) indexPageAdaptor(main_iframe);
-					//runPassive();
 					else {main_iframe.style = "";}
 					popNav(main_iframe);
 				}
-				
-				function runWhileInactive(callback, intervalSeconds = step_time) {
-					let intervalId;
-					let timeoutId;
+			</script>
+			<script>
+				var current_phase = 0;
+				window.current_phase = current_phase;
+				var inactiveSeconds = 0;
+				window.inactiveSeconds = inactiveSeconds;
+				var userIsActive = true;
+				var lastActivityTime = Date.now();
+				var activity_threshold = 4;
 
-					function startInterval() {
-						// Start repeating the callback every N seconds
-						intervalId = setInterval(callback, intervalSeconds * 1000);
-					}
-
-					function stopInterval() {
-						clearInterval(intervalId);
-						clearTimeout(timeoutId);
-					}
-
-					function reset() {
-						stopInterval();
-						document.getElementById("navContainer").classList.toggle("hidden", false);
-						document.getElementsByTagName("body")[0].classList.toggle("no-mouse", false);
-						document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", false)});
-						// Restart the interval after inactivity
-						timeoutId = setTimeout(startInterval, 1000); // short delay before restart
-					}
-
-					const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-					events.forEach(event => {
-						document.addEventListener(event, reset, { passive: true });
-					});
-
-					startInterval();
+				// Track activity
+				function resetActivity() {
+					userIsActive = true;
+					lastActivityTime = Date.now();
+					document.getElementById("navContainer").classList.toggle("hidden", false);
+					document.getElementsByTagName("body")[0].classList.toggle("no-mouse", false);
+					document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", false)});					
+					// bad implementation but good idea: active geen light
+					//document.getElementById('status').textContent = "Active";
 				}
+				function stopActivity(){
+					userIsActive = false;
+					document.getElementById("navContainer").classList.toggle("hidden", true);
+					document.getElementsByTagName("body")[0].classList.toggle("no-mouse", true);
+					document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", true)});
+				}
+
+				['mousemove', 'keydown', 'scroll', 'touchstart'].forEach(evt => {
+					window.addEventListener(evt, resetActivity);
+				});
+
+				// Main loop
+				setInterval(() => {
+					// run every second
+					const now = Date.now();
+					const elapsed = Math.floor((now - lastActivityTime) / 1000);
+
+					if (elapsed > activity_threshold) {
+						if (userIsActive) stopActivity();
+						inactiveSeconds += 1;
+						console.log(inactiveSeconds);
+
+						// Check if a function is scheduled for this time
+						if (timeTable[window.current_phase][inactiveSeconds]) {
+							timeTable[window.current_phase][inactiveSeconds]();
+						}
+					}
+				}, 1000);
+		
 				requestAnimationFrame(() => {
 					update_phase(0);
-					runWhileInactive(() => {
-						document.getElementById("navContainer").classList.toggle("hidden", true);
-						document.getElementsByTagName("body")[0].classList.toggle("no-mouse", true);
-						document.querySelectorAll("iframe").forEach(ifrm => {ifrm.classList.toggle("no-mouse", true)});
-						
-						update_phase();
-					});
 				});
 			</script>
 	<div id="main-texts-wrapper">
