@@ -539,10 +539,12 @@
 				for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
 			}
 			layoutButton=document.getElementById("display-layout");
-			layoutButton.addEventListener("click", () => {
-				layouts = document.getElementsByClassName('symBg');
-				for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
-			});
+			if (layoutButton){
+				layoutButton.addEventListener("click", () => {
+					layouts = document.getElementsByClassName('symBg');
+					for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
+				});
+			}
 		</script>
 		<script id="simulation-setup">
 			const json_add= "https://yairmallah.github.io/pgmr/sitemap.json";
