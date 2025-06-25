@@ -534,6 +534,10 @@
 					}
 				}
 			}
+			function toggle_bg_areas(){
+				layouts = document.getElementsByClassName('symBg');
+				for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
+			}
 			layoutButton=document.getElementById("display-layout");
 			layoutButton.addEventListener("click", () => {
 				layouts = document.getElementsByClassName('symBg');
