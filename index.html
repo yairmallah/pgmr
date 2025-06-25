@@ -540,10 +540,7 @@
 			}
 			layoutButton=document.getElementById("display-layout");
 			if (layoutButton){
-				layoutButton.addEventListener("click", () => {
-					layouts = document.getElementsByClassName('symBg');
-					for (let i = 0; i<layouts.length; i++){layouts[i].classList.toggle("hidden");}
-				});
+				layoutButton.addEventListener("click", () => {toggle_bg_areas();});
 			}
 		</script>
 		<script id="simulation-setup">
