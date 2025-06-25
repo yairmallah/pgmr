@@ -22,6 +22,19 @@
 				toggleMode(isDark);
 			});
 		</script>
+		<script id="triggers">
+			var triggers = [];
+				function reset_triggers(){
+					triggers = [
+						{ time: 0, fired: false, action: () => v_data_hide_all() },
+						{ time: 4, fired: false, action: () => v_data_show_some(0) },
+						{ time: 12, fired: false, action: () => v_data_show_some(1) },
+						{ time: 20, fired: false, action: () => v_data_show_some(2) },
+						{ time: 28, fired: false, action: () => v_data_show_some(3) },
+						{ time: 36, fired: false, action: () => v_data_show_some(4) },
+					];
+				}
+		</script>
 		<script id="id-change">
 			const vid_adds = [["imgs\\סימולציה.mp4", "sym"] , ["imgs\\הגשה.mp4", "pres"]];
 			function waitForVideoLoad(timeout = 2000) {
@@ -32,8 +45,6 @@
 						let source = document.getElementById("vidSource");
 						if (vid != null && source != null) {
 							window.vid = document.getElementById("myVideo");
-							console.log("video loaded");
-							console.log(window.vid);
 							window.source = document.getElementById("vidSource");
 						} else if (Date.now() - start < timeout) {
 							setTimeout(check, 50); // keep checking
@@ -57,7 +68,8 @@
 				flip_vid(dest=0);
 			}
 			function flip_vid(dest=-1){
-			reset_triggers();
+				reset_triggers();
+				waitForVideoLoad();
 				if (dest == -1){
 					if (window.current_vid_index){
 						window.current_vid_index += 1;
@@ -225,17 +237,6 @@
 						});
 				</script>
 				<script>
-					var triggers = [];
-					function reset_triggers(){
-						triggers = [
-							{ time: 0, fired: false, action: () => v_data_hide_all() },
-							{ time: 4, fired: false, action: () => v_data_show_some(0) },
-							{ time: 12, fired: false, action: () => v_data_show_some(1) },
-							{ time: 20, fired: false, action: () => v_data_show_some(2) },
-							{ time: 28, fired: false, action: () => v_data_show_some(3) },
-							{ time: 36, fired: false, action: () => v_data_show_some(4) },
-						];
-					}
 					var isInIframe = false;
 					try {
 						isInIframe = window.self !== window.top;
@@ -254,6 +255,13 @@
 								}
 							});
 						});
+					}
+					// search params VID! vid=1 => pres
+					const params = new URLSearchParams(window.location.search);
+					const vidIndex = parseInt(params.get('vid'));
+
+					if (!isNaN(vidIndex) && vidIndex == 1) {
+						flip_to_pres();
 					}
 				</script>
 				<script id="legend-shaper">
