@@ -157,6 +157,7 @@ background: #999;
 
 .hidden {
 	visibility: hidden;
+	position: fixed;
 }
 
 h3 {
