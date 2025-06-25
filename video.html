@@ -220,7 +220,11 @@
 				</video>
 				<script>
 					document.getElementById("myVideo").play().catch(error => {
-						console.error("Playback failed:", error);
+						const params = new URLSearchParams(window.location.search);
+						const vidIndex = parseInt(params.get('vid'));
+						if (isNaN(vidIndex) || vidIndex != 1) {
+							console.error("Playback failed:", error);
+						}
 					});
 				</script>
 				<div id="scheme-code" class="code"></div>
