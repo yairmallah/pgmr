@@ -79,107 +79,6 @@
 			});
 		</script>
 		<script type="module" src="navLogic.js"></script>
-		<script id="temp2del">
-/*
-// Dictionary loading function using Promises
-function loadPgTxts(filePath, delimiter = ':\n') {
-	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
-    return fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
-            }
-            return response.text();
-        })
-        .then(text => {
-            const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
-            const dictionary = {};
-            lines.forEach(line => {
-                const [key, value] = line.split(delimiter).map(part => part.trim());
-                if (key && value !== undefined) {
-                    dictionary[key] = value.replaceAll("\n", "<br/>");
-                }
-            });
-            window.pgsTxts = dictionary;
-        })
-        .catch(error => {
-            console.error("Error loading dictionary:", error.message);
-            return {};
-        });
-}
-
-loadPgTxts();
-
-
-
-function setupRoute(){
-	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
-		sessionStorage.setItem("routeStep", 0);
-		sessionStorage.setItem("presMode", false);
-	}
-}
-setupRoute();
-let prefix = ""
-let locs = window.location.href.split("/");
-locs.pop();
-locs.pop();
-locs.forEach(loc => {
-	prefix += loc + "/";
-});
-const temp_add = prefix;
-const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
-
-
-// Call the function when the module loads
-function activePresMode(){
-	sessionStorage.setItem("presMode", true);
-	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
-}
-function deActivePresMode(){
-	sessionStorage.setItem("presMode", false);
-	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
-}
-
-function routeRunWhileInactive(callback, intervalSeconds = 3) {
-	let intervalId;
-	let timeoutId;
-
-	function startInterval() {
-		// Start repeating the callback every N seconds
-		intervalId = setInterval(callback, intervalSeconds * 1000);
-	}
-
-	function stopInterval() {
-		clearInterval(intervalId);
-		clearTimeout(timeoutId);
-	}
-
-	function reset() {
-		stopInterval();
-		// Restart the interval after inactivity
-		timeoutId = setTimeout(startInterval, 1000);
-		sessionStorage.setItem("routeStep", 0);
-		deActivePresMode();
-	}
-
-	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-	events.forEach(event => {
-		document.addEventListener(event, reset, { passive: true });
-	});
-
-	startInterval();
-}
-routeRunWhileInactive(() => {
-	let step = parseInt(sessionStorage.getItem("routeStep"));
-	window.location.href = temp_add + route[step%route.length];
-	sessionStorage.setItem("routeStep", (step + 1));
-	activePresMode();
-	const presTxt = document.createElement("div");
-	presTxt.id = "presTxt";
-	presTxt.innerHTML = window.pgsTxts[route[step%route.length]];
-	document.body.appendChild(presTxt);
-});*/
-		</script>
 	</head>
 	<body>
 <div id="non-pres-container">
@@ -210,12 +109,12 @@ routeRunWhileInactive(() => {
 			<table id="texts-left"></table>
 			<table id="texts-right"></table>
 		</div>
-		<div id="large-scheme"></div>
+		<div id="large-scheme" class="zoomed"></div>
 		<script>
 			const lrgTable = document.getElementById('table-containor');
 			const lrgSchm = document.getElementById('large-scheme');
 			
-			let isInsideBottom = false;
+			var isInsideBottom = false;
 
 			lrgTable.addEventListener('mousemove', (e) => {
 				// Check if cursor is within the bottom element's bounding box
@@ -246,12 +145,53 @@ routeRunWhileInactive(() => {
 			});
 		</script>
 		<script>
-			function updateMainRef(ref){
-				console.log(ref["url"]);
-				lrgSchm.className = "";
-				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
+			var zoomInterval = null;
+			function zoomSlow(step = 2, interval = 50, max_zoom = 500) {
+				if (zoomInterval !== null) return;
+				zoomInterval = setInterval(() => {
+					let currentZoom = parseInt(root.style.getPropertyValue("--zoom")) || 100;
+					let newZoom = currentZoom + step;
+					if (newZoom >= max_zoom) stopZoom();
+					root.style.setProperty("--zoom", newZoom);
+					
+				}, interval);
 			}
 
+			function stopZoom() {
+				clearInterval(zoomInterval);
+				zoomInterval = null;
+			}
+		</script>
+		<script>
+			function update_img_ratio(url){
+				const img = new Image();
+				let baseSize;
+				img.src = url;
+				
+				img.onload = () => {
+					const containerWidth = lrgSchm.clientWidth;
+					const containerHeight = lrgSchm.clientHeight;
+					const imageRatio = img.naturalWidth / img.naturalHeight;
+					const containerRatio = containerWidth / containerHeight;
+					if (imageRatio > containerRatio) {// fit to width
+						baseSize = 1;
+					} else {// fit to height, compute equivalent width %
+						baseSize = (containerHeight * imageRatio / containerWidth);
+					}
+					root.style.setProperty("--base-size", baseSize);
+				};
+			}
+			function updateMainRef(ref){
+				console.log(ref["url"]);
+				//lrgSchm.className = "";
+				//root.style.setProperty("--zoomValue", "150%");
+				if (isInsideBottom) root.style.setProperty("--zoom", "150");
+				if (!isInsideBottom) root.style.setProperty("--zoom", "100");
+				/*`calc(var(--base-size) * var(--zoom) / 100%)`*/
+				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
+				update_img_ratio(ref["url"]);
+				stopZoom();
+			}
 			lrgSchm.addEventListener('mousemove', (e) => {
 				const rect = lrgSchm.getBoundingClientRect();
 				const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -260,19 +200,24 @@ routeRunWhileInactive(() => {
 			});
 
 			lrgSchm.addEventListener('mouseenter', () => {
-				lrgSchm.classList.add('zoomed');
+				//lrgSchm.classList.add('zoomed');
+				if (root.style.getPropertyValue("--zoom") == "100") root.style.setProperty("--zoom", "150");
 			});
 
 			lrgSchm.addEventListener('mouseleave', () => {
-				lrgSchm.classList.remove('zoomed');
+				//lrgSchm.classList.remove('zoomed');
 				lrgSchm.style.backgroundPosition = 'center';
+				if (root.style.getPropertyValue("--zoom") == "150") root.style.setProperty("--zoom", "100");
 			});
 			lrgSchm.addEventListener('wheel', (e) => {
 				let dir = -e.deltaY / Math.abs(e.deltaY);
-				if (!root.style.getPropertyValue("--zoomValue")) root.style.setProperty("--zoomValue", "150%");
-				let newZoom = Math.max(1, parseInt(root.style.getPropertyValue("--zoomValue")) + 10*dir);
-				root.style.setProperty("--zoomValue", newZoom+"%");
-				console.log((root.style.getPropertyValue("--zoomValue")));
+				if (!root.style.getPropertyValue("--zoom")) root.style.setProperty("--zoom", "150");
+				let newZoom = Math.max(1, parseInt(root.style.getPropertyValue("--zoom")) + 10*dir);
+				root.style.setProperty("--zoom", newZoom);
+				//if (!root.style.getPropertyValue("--zoomValue")) root.style.setProperty("--zoomValue", "150%");
+				//let newZoom = Math.max(1, parseInt(root.style.getPropertyValue("--zoomValue")) + 10*dir);
+				//root.style.setProperty("--zoomValue", newZoom+"%");
+				//console.log((root.style.getPropertyValue("--")));
 			});
 		</script>
 		<div id="info-tag" class="hidden">
