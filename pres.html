@@ -110,8 +110,16 @@
 		</script>
 		<script id="contemporarry-funcs">
 			phase1_ref_list = [
-				"https://yairmallah.github.io/pgmr/imgs/ref/0p-palace of minos.jpg",
-				"https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png"
+				"https://yairmallah.github.io/pgmr/imgs/ref/0p-palace of minos.jpg", // 0 minos palace
+				//"https://yairmallah.github.io/pgmr/imgs/ref/1p-pantheon.png", // 1 pantheon
+				"https://yairmallah.github.io/pgmr/imgs/ref/2p-baths of caracalla.jpg", // 1 good
+				"https://yairmallah.github.io/pgmr/imgs/ref/4p-bauhaus.png", // 2 bauhaus
+				"https://yairmallah.github.io/pgmr/imgs/ref/5i-freeway park.jpg", // 3 halperin
+				"https://yairmallah.github.io/pgmr/imgs/ref/5i-visitors center vijversburg park.jpg", // 4 road
+				"https://yairmallah.github.io/pgmr/imgs/ref/5p-lloyds building.jpg", // 5 loydes B
+				"https://yairmallah.github.io/pgmr/imgs/ref/5p-house monsaraz.jpg" // 6 mateas
+				"https://yairmallah.github.io/pgmr/imgs/ref/5p-national parliament of bangladesh.png" // 7 kahn
+				
 				];
 			function getMain(){
 				return document.getElementById("main");
@@ -130,6 +138,17 @@
 					});
 				});
 			}
+			function phase1_zoom(){
+				let main_iframe = getMain();
+				waitForFunc(main_iframe, 'zoomSlow', () => {
+					// no need to wait cause its always after updateMainRef
+					/*waitForObj(main_iframe, "large-scheme", () => {
+						torah = getDocumentScripture(main_iframe);*/
+					torah.zoomSlow();
+					//});
+				});
+			}
+			
 			function phase2_random_wave(){
 				let main_iframe = getMain();
 				waitForFunc(main_iframe, 'randomWave', () => {
@@ -238,13 +257,27 @@
 			const timeTable = {
 				0 : {
 					3: () => phase1_change_ref(phase1_ref_list[0]),
-					6: () => phase1_change_ref(phase1_ref_list[1]),
-					74: () => update_phase()
+					5: ()=> phase1_zoom(),
+					10: () => phase1_change_ref(phase1_ref_list[1]),
+					12: ()=> phase1_zoom(),
+					17: () => phase1_change_ref(phase1_ref_list[2]),
+					19: ()=> phase1_zoom(),
+					24: () => phase1_change_ref(phase1_ref_list[3]),
+					26: ()=> phase1_zoom(),
+					31: () => phase1_change_ref(phase1_ref_list[4]),
+					33: ()=> phase1_zoom(),
+					38: () => phase1_change_ref(phase1_ref_list[5]),
+					41: ()=> phase1_zoom(),
+					46: () => phase1_change_ref(phase1_ref_list[6]),
+					48: ()=> phase1_zoom(),
+					53: () => phase1_change_ref(phase1_ref_list[7]),
+					55: ()=> phase1_zoom(),
+					60: () => update_phase()
 				}, 
 				1 : {
-					/*7: () => phase2_random_wave(),
+					7: () => phase2_random_wave(),
 					15: () => phase2_random_wave(),
-					22: () => phase2_random_wave(),*/
+					22: () => phase2_random_wave(),
 					74: () => update_phase()
 				},
 				2 : {
