@@ -152,52 +152,52 @@
 					<div class="legend" id="sym">
 						<table class="legend-table">
 							<tr>
-								<td>הולכי רגל</td>
 								<td><div class="legendColor" style="background-color: #017f3f;"></div></td>
+								<td>הולכי רגל</td>
 							</tr>
 							<tr>
-								<td>רכבת</td>
 								<td><div class="legendColor" style="background-color: #606000;"></div></td>
+								<td>רכבת</td>
 							</tr>
 							<tr>
-								<td>אופנים</td>
 								<td><div class="legendColor" style="background-color: #0001be;"></div></td>
+								<td>אופנים</td>
 							</tr>
 							<tr>
-								<td>מכוניות</td>
 								<td><div class="legendColor" style="background-color: #9f2000;"></div></td>
+								<td>מכוניות</td>
 							</tr>
 						</table>
 					</div>
 					<div class="legend hidden" id="pres">
 						<table class="legend-table">
 							<tr class="user-data data">
-								<td>משתמש</td>
 								<td><div class="legendColor" style="background-color: hsl(224, 20%, 60%);"></div></td>
+								<td>משתמש</td>
 							</tr>
 							<tr class="user-data data">
+								<td>&nbsp;</td>
 								<td>מרחב הפונה כלפי חוץ; נושא פנים למי שאינו בקיא במערכת הפנימית. אינו מציב פרוגרמה קבועה, אלא מימד של פתיחות וחוסר הכרעה.</td>
-								<td>&nbsp;</td>
 							</tr>
 							<tr class="control-data">
-								<td>בקרה</td>
 								<td><div class="legendColor" style="background-color: hsl(5, 20%, 25%);"></div></td>
+								<td>בקרה</td>
 							</tr>
 							<tr class="control-data">
+								<td>&nbsp;</td>
 								<td>המרחב שמתווך. זהו המנגנון הפנימי של הפעולה: מערכת השיקולים, לוח הזמנים, הארגון. הוא אינו נגיש בהכרח למשתמש, אך חייב להיות מתורגם אליו – ולהפך; הוא המערכת שמארגנת את היחסים בין חללים אחרים: מי נחשף למה, מה קודם למה, איך מגיעים.</td>
-								<td>&nbsp;</td>
 							</tr>
 							<tr class="logic-data">
-								<td>לוגי</td>
 								<td><div class="legendColor" style="background-color: hsl(0, 75%, 50%);"></div></td>
+								<td>לוגי</td>
 							</tr>
 							<tr class="logic-data">
-								<td>כאשר משתמש נותן פקודה למחשב, היא מיתרגמת לסדרה של פעולות שנעשות על ידי יחידה לוגית, על גבי המידע הצבור בשרת. תרגום הפקודה נעשה על ידי יחידת בקרה, שמטרתה ״לקרב״ את רצון המשתמש לשפת התכנות של המחשב.</td>
 								<td>&nbsp;</td>
+								<td>כאשר משתמש נותן פקודה למחשב, היא מיתרגמת לסדרה של פעולות שנעשות על ידי יחידה לוגית, על גבי המידע הצבור בשרת. תרגום הפקודה נעשה על ידי יחידת בקרה, שמטרתה ״לקרב״ את רצון המשתמש לשפת התכנות של המחשב.</td>
 							</tr>
 							<tr class="server-data">
-								<td>שרת</td>
 								<td><div class="legendColor" style="background-color: hsl(224, 80%, 29%);"></div></td>
+								<td>שרת</td> // flip up #legend dir:rtl
 							</tr>
 							<tr class="server-data">
 								<td>המרחב הפונה פנימה. הוא מתממשק עם מערכות גדולות ממנו – מים, ביוב, חשמל, אחסון, אקלים. השרת הוא מרחב של הכרח – לעיתים סמוי, לעיתים גלוי.</td>
@@ -271,34 +271,40 @@
 				<script id="legend-shaper">
 					const legend_cont = document.getElementById("legend");
 					var table_flipped = false;
+
+					function flip_table(table = null){
+						table_flipped = !table_flipped;
+						if (table === null){
+							const tables = document.querySelectorAll(".legend-table");
+							
+							if (!tables) return
+							tables.forEach(table => {flip_table(table);});
+						}
+						else {
+							for (const row of table.rows) {
+								const cells = Array.from(row.cells);
+								// Clear existing cells
+								while (row.firstChild) row.removeChild(row.firstChild);
+								// Reinsert in reverse order
+								for (let i = cells.length - 1; i >= 0; i--) {
+									row.appendChild(cells[i]);
+								}
+							}
+						}
+					}
+
 					function resize_adapter(){
 						let bd = document.querySelector("body");
 						let width = bd.offsetWidth;
 						let height = bd.offsetHeight;
 						if (height * 1.1 > width){
+							if (window.current_vid_index && window.current_vid_index == 1) {legend_cont.style.maxWidth = "28vh";}
+							else {legend_cont.style.maxWidth = "";}
 							legend_cont.style.position = "fixed";
-							legend_cont.style.right =  "0px";
+							legend_cont.style.right = "0px";
 							legend_cont.style.top = "0px";
 							document.getElementById("scheme-code").classList.toggle("hidden", true);
 							document.getElementById("container").style.gridTemplateColumns = "none";
-							if (!table_flipped){
-								const tables = document.querySelectorAll(".legend-table");
-								table_flipped = !table_flipped;
-								if (!tables){}
-								else{
-									tables.forEach(table => {
-										for (const row of table.rows) {
-											const cells = Array.from(row.cells);
-											// Clear existing cells
-											while (row.firstChild) row.removeChild(row.firstChild);
-											// Reinsert in reverse order
-											for (let i = cells.length - 1; i >= 0; i--) {
-												row.appendChild(cells[i]);
-											}
-										}
-									});
-								}
-							}
 						}
 						else{
 							legend_cont.style.position = "";
@@ -306,24 +312,6 @@
 							legend_cont.style.top = "";
 							document.getElementById("scheme-code").classList.toggle("hidden", false);
 							document.getElementById("container").style.gridTemplateColumns = "1fr auto 1fr";
-							if (table_flipped){
-								const tables = document.querySelectorAll(".legend-table");
-								table_flipped = !table_flipped;
-								if (!tables){}
-								else{
-									tables.forEach(table => {
-										for (const row of table.rows) {
-											const cells = Array.from(row.cells);
-											// Clear existing cells
-											while (row.firstChild) row.removeChild(row.firstChild);
-											// Reinsert in reverse order
-											for (let i = cells.length - 1; i >= 0; i--) {
-												row.appendChild(cells[i]);
-											}
-										}
-									});
-								}
-							}
 						}
 					}
 					var isInIframe = false;
@@ -332,7 +320,7 @@
 					} catch (e) {
 						isInIframe = true;
 					}
-					if (isInIframe){
+					if (true){
 						resize_adapter();
 						window.addEventListener("resize", () => {
 							resize_adapter();
