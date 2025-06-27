@@ -13,7 +13,9 @@
 	--navSubMenu:34;
 	--infoTagWidth: 230px;
 	--infoTagHeight: 110px;
-	--zoomValue: 150%
+	--zoomValue: 150%;
+	--zoom:100;
+	--base-size:1
 }
 
 #table-containor{
@@ -102,7 +104,8 @@ td img{
 }
 
 #large-scheme.zoomed {
-	background-size: var(--zoomValue); /* zoom level */
+	/*background-size: var(--zoomValue); /* zoom level */
+	background-size: calc(var(--base-size) * var(--zoom) * 1%); /* zoom level */
 }
 
 #texts {
