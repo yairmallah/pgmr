@@ -185,8 +185,8 @@
 				console.log(ref["url"]);
 				//lrgSchm.className = "";
 				//root.style.setProperty("--zoomValue", "150%");
-				if (isInsideBottom) root.style.setProperty("--zoom", "150");
-				if (!isInsideBottom) root.style.setProperty("--zoom", "100");
+				/*if (isInsideBottom) root.style.setProperty("--zoom", "150");
+				if (!isInsideBottom) */root.style.setProperty("--zoom", "100");
 				/*`calc(var(--base-size) * var(--zoom) / 100%)`*/
 				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
 				update_img_ratio(ref["url"]);
