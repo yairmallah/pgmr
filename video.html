@@ -16,7 +16,7 @@
 					document.getElementById("toggle-light").addEventListener("click", () => {window.toggleMode(false)});
 					document.getElementById("toggle-dark").addEventListener("click", () => {window.toggleMode(true)});
 				} catch (e) {
-					console.log("no display mode button error ", e);
+					//console.log("no display mode button error ", e);
 				}
 				let isDark = sessionStorage.getItem("isDark") || true;
 				toggleMode(isDark);
@@ -250,7 +250,6 @@
 					if (isInIframe){
 						reset_triggers();
 						waitForVideoLoad();
-						console.log(document.getElementById("myVideo"));
 						window.vid.addEventListener('timeupdate', () => {
 							triggers.forEach(t => {
 								if (!t.fired && window.vid.currentTime >= t.time) {
@@ -293,6 +292,12 @@
 						}
 					}
 
+					function pop_legend(){
+						let temp = legend_cont.innerHTML;
+						legend_cont.innerHTML = "";
+						return temp;
+					}
+					
 					function resize_adapter(){
 						let bd = document.querySelector("body");
 						let width = bd.offsetWidth;
@@ -320,7 +325,7 @@
 					} catch (e) {
 						isInIframe = true;
 					}
-					if (true){
+					if (isInIframe){
 						resize_adapter();
 						window.addEventListener("resize", () => {
 							resize_adapter();
