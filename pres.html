@@ -156,18 +156,15 @@
 				});
 			}
 			function phase3_position_legend(){
-				console.log("iii");
 				let main_iframe = getMain();
 				waitForFunc(main_iframe, 'pop_legend', () => {
-					console.log("iii");
 					torah = getDocumentScripture(main_iframe);
 					let legend_par = torah.pop_legend();
 					let cont = document.createElement("div");
 					cont.id = "ph3-legend";
 					cont.innerHTML = "<div></div><div></div>" + legend_par;
-					console.log(legend_par);
-					console.log(cont);
 					document.querySelector("body").appendChild(cont);
+					window.temp_legend = cont;
 				});
 			}
 			function next_phase(){}
@@ -403,8 +400,10 @@
 					
 					main_iframe.src = phase_data[current_phase][0];
 					if (current_phase == 1) indexPageAdaptor(main_iframe);
-					if (current_phase == 2) phase3_position_legend();
 					else {main_iframe.style = "";}
+					if (current_phase == 2) phase3_position_legend();
+					else if (window.temp_legend) window.temp_legend.remove()
+					
 					popNav(main_iframe);
 				}
 			</script>
