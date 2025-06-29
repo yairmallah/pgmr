@@ -131,6 +131,7 @@ p.chosen{
 	display: grid;
 	width: 100vw;
 	grid-template-columns: 1fr 100vh 1fr;
+	pointer-events: none;
 }
 #ph3-legend #legend {
 	flex: 1; /* Takes up remaining space */
