@@ -37,7 +37,7 @@ html, body {
 #legend {
 	flex: 1; /* Takes up remaining space */
     border: none; /* Removes iframe border */
-	direction: rtl;
+	direction: ltr;
 	z-index: 2;
 	height: fit-content;
 	align-self: end;
@@ -63,7 +63,7 @@ video ::-webkit-media-controls-panel {
     padding: 10px;
     border-radius: 8px;	
 }
-#pres {
+#sym {
 	background: rgba(0, 0, 0, 0.5);
 }
 .legend table {
