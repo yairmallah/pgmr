@@ -71,6 +71,8 @@ video ::-webkit-media-controls-panel {
 }
 .legend table {
     border-collapse: collapse;
+	margin: auto;
+	margin-right: 0;
 }
 
 .legend td {
