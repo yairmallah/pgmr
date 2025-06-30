@@ -32,6 +32,15 @@
 				let isDark = sessionStorage.getItem("isDark") || true;
 				toggleMode(isDark);
 			});
+			function inv_vid_bootstrap(){
+				Object.assign(darkValues[false],{
+					"--rotHueVid":"hue-rotate(180deg)",
+					"--blendModeVid":"difference"
+				});
+				let isDark = sessionStorage.getItem("isDark") || true;
+				toggleMode(isDark);
+			}
+			window.inv_vid_bootstrap = inv_vid_bootstrap;
 		</script>
 		<script id="triggers">
 			var triggers = [];
