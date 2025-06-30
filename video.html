@@ -9,7 +9,14 @@
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>
 		<script type="module">
 			import { darkValues, toggleMode } from "https://yairmallah.github.io/pgmr/displayMode.js";
-			// rebind click event to the display mode buttons for path regenerationg
+			Object.assign(darkValues[false],{
+				"--rotHue":"hue-rotate(180deg)",
+				"--blendMode":"difference"
+			});
+			Object.assign(darkValues[true],{
+				"--rotHue":"unset",
+				"--blendMode":"normal"
+			});
 			window.toggleMode = toggleMode;
 			requestAnimationFrame(() => {
 				try {
