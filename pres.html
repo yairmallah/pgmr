@@ -229,10 +229,7 @@
 			for (const i in phase_data){
 				darkValues[true]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][true] + '")';
 				darkValues[false]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][false] + '")';
-				}
-				
 			}
-			{--thumbnailPh3: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph4.gif");}
 			window.darkValues = darkValues;
 			const toggleMode=(isDark)=>{
 				Object.keys(darkValues[isDark]).forEach(varMode => {
