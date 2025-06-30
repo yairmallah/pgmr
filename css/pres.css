@@ -94,7 +94,7 @@ p.chosen{
 	height: 80%;
 	overflow: hidden;
 	border: none;
-	/*background-color: var(--bgBody);*/
+	background-color: var(--bgBody);
 	box-shadow: 0px 0px 15px var(--invBG);
 	border-radius: 8px;
 	padding: 0;
@@ -102,7 +102,10 @@ p.chosen{
 	grid-template-columns: 100%;
 	grid-template-rows: 90% 10%;
 	gap: 0;
-	background-size: contain;
+	/*background-size: contain;*/
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 button#ph-0{
 	background-image: var(--thumbnailPh0)
