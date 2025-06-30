@@ -278,12 +278,12 @@
 							.then(html => {
 								let parser = new DOMParser();
 								let doc = parser.parseFromString(html, "text/html"); // Parse as DOM
-								let targetElement = doc.querySelector("#simulation-code"); // Select specific element
+								let targetElement = doc.querySelector("body"); // Select specific element
 								if (targetElement) {
 								document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
 								}
 							});
-					}update_code()
+					}update_code();
 					
 				</script>
 				<script>
