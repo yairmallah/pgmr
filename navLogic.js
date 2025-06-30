@@ -150,101 +150,41 @@ document.addEventListener("DOMContentLoaded", function () {
 // not here!! routes the pages on a route
 // Dictionary loading function using Promises
 
-function setupRoute(){
-	if (sessionStorage.getItem("presMode") == null || sessionStorage.getItem("presMode") == false){
-		sessionStorage.setItem("routeStep", 0);
-		sessionStorage.setItem("presMode", false);
-	}
-}
-setupRoute();
+function setupInactivityRedirect(timeoutMs = 3000, redirectUrl = '/pres.html') {
+  // Check if already on the redirect page
+  console.log("in");
+  console.log(redirectUrl);
+  console.log(window.location.pathname);
+  if (window.location.pathname === redirectUrl) {
+    return;
+  }
 
-const route = ['/pgmr/index.html', '/pgmr/log.html', '/pgmr/tba.html', '/pgmr/turb.html', '/pgmr/references.html', '/pgmr/video.html'];
+  let inactivityTimer;
 
-function activePresMode(){
-	sessionStorage.setItem("presMode", true);
-	console.log("pres mod act");
-	console.log("pres mod act");
-	document.documentElement.style.setProperty("--nonPresHeight", "80vh");
-	document.documentElement.style.setProperty("--PresHeight", "20vh");
-}
-function deActivePresMode(){
-	sessionStorage.setItem("presMode", false);
-	document.documentElement.style.setProperty("--nonPresHeight", "100vh");
-	document.documentElement.style.setProperty("--PresHeight", "0vh");
-}
+  // Reset the timer
+  function resetTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, timeoutMs);
+  }
 
-/*if (sessionStorage.getItem("activatePresMode") === "true") {
-	activePresMode();
-	console.log("in");
-	const presTxt = document.createElement("div");
-	presTxt.id = "presTxt";
-	presTxt.innerHTML = window.pgsTxts[window.location.pathname]; // or use proper route key
-	document.body.appendChild(presTxt);
-}
+  // Events that indicate user activity
+  const activityEvents = ['mousemove', 'keydown', 'scroll', 'touchstart'];
 
-
-function loadPgTxts(filePath, delimiter = ':\n') {
-	filePath = 'https://yairmallah.github.io/pgmr/texts/rouTxt.txt';
-    return fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to load file: ${response.statusText} | from ${filePath}`);
-            }
-            return response.text();
-        })
-        .then(text => {
-            const lines = text.split('\n\n').map(line => line.trim()).filter(line => line);
-            const dictionary = {};
-            lines.forEach(line => {
-                const [key, value] = line.split(delimiter).map(part => part.trim());
-                if (key && value !== undefined) {
-                    dictionary[key] = value.replaceAll("\n", "<br/>");
-                }
-            });
-            window.pgsTxts = dictionary;
-        })
-        .catch(error => {
-            console.error("Error loading dictionary:", error.message);
-            return {};
-        });
+  // Attach listeners for each event
+  activityEvents.forEach(event => {
+    window.addEventListener(event, resetTimer);
+  });
+  
+  // Start the initial timer
+  resetTimer();
 }
 
-loadPgTxts();
-
-*/
-function routeRunWhileInactive(callback, intervalSeconds = 20) {
-	let intervalId;
-	let timeoutId;
-
-	function startInterval() {
-		// Start repeating the callback every N seconds
-		intervalId = setInterval(callback, intervalSeconds * 1000);
-	}
-
-	function stopInterval() {
-		clearInterval(intervalId);
-		clearTimeout(timeoutId);
-	}
-
-	function reset() {
-		stopInterval();
-		// Restart the interval after inactivity
-		timeoutId = setTimeout(startInterval, 1000);
-		sessionStorage.setItem("routeStep", 0);
-		deActivePresMode();
-	}
-
-	const events = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-	events.forEach(event => {
-		document.addEventListener(event, reset, { passive: true });
-	});
-
-	startInterval();
-};
-/*routeRunWhileInactive(() => {
-	//activePresMode();
-	//window.alert(hih);
-	let step = parseInt(sessionStorage.getItem("routeStep"));
-	sessionStorage.setItem("routeStep", (step + 1));
-	window.location.href = route[step%route.length];
-});*/
+var isInIframe = false;
+try {
+	isInIframe = window.self !== window.top;
+} catch (e) {
+	isInIframe = true;
+}
+if (!isInIframe) setupInactivityRedirect(1.5 * 60 * 1000, '/pres.html');
