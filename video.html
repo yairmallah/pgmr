@@ -196,7 +196,7 @@
 								<td><div class="legendColor" style="background-color: hsl(224, 20%, 60%);"></div></td>
 							</tr>
 							<tr class="user-data data">
-								<td>מרחב הפונה כלפי חוץ; נושא פנים למי שאינו בקיא במערכת הפנימית. אינו מציב פרוגרמה קבועה, אלא מימד של פתיחות וחוסר הכרעה.</td>
+								<td>מרחב הפונה כלפי חוץ; נועד למי שאינו בקיא במערכת הפנימית, ומכיל מגוון לא מוגבל של פעולות.</td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr class="control-data">
@@ -204,7 +204,7 @@
 								<td><div class="legendColor" style="background-color: hsl(5, 20%, 25%);"></div></td>
 							</tr>
 							<tr class="control-data">
-								<td>המרחב שמתווך. זהו המנגנון הפנימי של הפעולה: מערכת השיקולים, לוח הזמנים, הארגון. הוא אינו נגיש בהכרח למשתמש, אך חייב להיות מתורגם אליו – ולהפך; הוא המערכת שמארגנת את היחסים בין חללים אחרים: מי נחשף למה, מה קודם למה, איך מגיעים.</td>
+								<td>המרחב המתרגם. מכניס את הפעולות הכלליות של המשתמש לפורמט.</td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr class="logic-data">
@@ -212,7 +212,7 @@
 								<td><div class="legendColor" style="background-color: hsl(0, 75%, 50%);"></div></td>
 							</tr>
 							<tr class="logic-data">
-								<td>כאשר משתמש נותן פקודה למחשב, היא מיתרגמת לסדרה של פעולות שנעשות על ידי יחידה לוגית, על גבי המידע הצבור בשרת. תרגום הפקודה נעשה על ידי יחידת בקרה, שמטרתה ״לקרב״ את רצון המשתמש לשפת התכנות של המחשב.</td>
+								<td>המרחב המכיל את הפעולות המתווכות בין המשתמש לבקשות שלו.</td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr class="server-data">
@@ -220,7 +220,7 @@
 								<td><div class="legendColor" style="background-color: hsl(224, 80%, 29%);"></div></td>
 							</tr>
 							<tr class="server-data">
-								<td>המרחב הפונה פנימה. הוא מתממשק עם מערכות גדולות ממנו – מים, ביוב, חשמל, אחסון, אקלים. השרת הוא מרחב של הכרח – לעיתים סמוי, לעיתים גלוי.</td>
+								<td>המרחב הפונה פנימה. הוא מתממשק עם מערכות גדולות ממנו – מים, ביוב, חשמל, אחסון, אקלים.</td>
 								<td>&nbsp;</td>
 							</tr>
 							<tr class="lib-data">
@@ -228,7 +228,7 @@
 								<td><div class="legendColor" style="background-color: hsl(0, 0%, 100%);"></div></td>
 							</tr>
 							<tr class="lib-data">
-								<td>משתמש</td>
+								<td>את הספריה בחרנו לקבע כמרחב של דממה. מכילה את כלל המצבים שסביבה וצופה אליהם</td>
 								<td>&nbsp;</td>
 							</tr>
 						</table>
@@ -323,7 +323,7 @@
 						let width = bd.offsetWidth;
 						let height = bd.offsetHeight;
 						if (height * 1.1 > width){
-							if (window.current_vid_index && window.current_vid_index == 1) {legend_cont.style.maxWidth = "28vh";}
+							if (window.current_vid_index && window.current_vid_index == 1) {legend_cont.style.maxWidth = "32vh";}
 							else {legend_cont.style.maxWidth = "";}
 							legend_cont.style.position = "fixed";
 							legend_cont.style.right = "0px";
