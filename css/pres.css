@@ -104,16 +104,16 @@ p.chosen{
 	gap: 0;
 	background-size: contain;
 }
-button#ph0{
+button#ph-0{
 	background-image: var(--thumbnailPh0)
 }
-button#ph1{
+button#ph-1{
 	background-image: var(--thumbnailPh1)
 }
-button#ph2{
+button#ph-2{
 	background-image: var(--thumbnailPh2)
 }
-button#ph3{
+button#ph-3{
 	background-image: var(--thumbnailPh3)
 }
 .phase-button.chosen{
