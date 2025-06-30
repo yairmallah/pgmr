@@ -69,9 +69,6 @@ video ::-webkit-media-controls-panel {
     padding: 10px;
     border-radius: 8px;	
 }
-#sym {
-	background: rgba(0, 0, 0, 0.5);
-}
 .legend table {
     border-collapse: collapse;
 }
