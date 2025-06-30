@@ -4,6 +4,51 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>פרזנטציה</title>
+				<script id="main-dict">
+			// index => 0=addres, 1=tumbnail
+			const phase_data = {
+				0: ["references.html", {true:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph1.gif", false:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph1I.gif"}],
+				1: ["index.html", {true:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph2.gif", false:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph2I.gif"}],
+				2: ["video.html", {true:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3.gif", false:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3I.gif"}],
+				3: ["video.html?vid=1", {true:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3.gif", false:"https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3I.gif"}],
+			};
+			// time table
+			const timeTable = {
+				0 : {
+					3: () => phase1_change_ref(phase1_ref_list[0]),
+					5: ()=> phase1_zoom(),
+					10: () => phase1_change_ref(phase1_ref_list[1]),
+					12: ()=> phase1_zoom(),
+					17: () => phase1_change_ref(phase1_ref_list[2]),
+					19: ()=> phase1_zoom(),
+					24: () => phase1_change_ref(phase1_ref_list[3]),
+					26: ()=> phase1_zoom(),
+					31: () => phase1_change_ref(phase1_ref_list[4]),
+					33: ()=> phase1_zoom(),
+					38: () => phase1_change_ref(phase1_ref_list[5]),
+					41: ()=> phase1_zoom(),
+					46: () => phase1_change_ref(phase1_ref_list[6]),
+					48: ()=> phase1_zoom(),
+					53: () => phase1_change_ref(phase1_ref_list[7]),
+					55: ()=> phase1_zoom(),
+					60: () => update_phase()
+				}, 
+				1 : {
+					7: () => phase2_random_wave(),
+					19: () => phase2_random_wave(),
+					31: () => phase2_random_wave(),
+					43: () => phase2_random_wave(),
+					51: () => update_phase()
+				},
+				2 : {
+					55: () => update_phase()
+				},
+				3 : {
+					74: () => update_phase()
+				}
+			};
+			
+		</script>
 		<script id="iframe-halper">
 			function getDocumentScripture(iframe){
 				iframeDoc = null;
@@ -181,6 +226,13 @@
 				"--invBG":darkValues[true]["--bgBody"],
 				"--invTXT":darkValues[true]["--textColor"]
 			});
+			for (const i in phase_data){
+				darkValues[true]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][true] + '")';
+				darkValues[false]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][false] + '")';
+				}
+				
+			}
+			{--thumbnailPh3: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph4.gif");}
 			window.darkValues = darkValues;
 			const toggleMode=(isDark)=>{
 				Object.keys(darkValues[isDark]).forEach(varMode => {
@@ -256,70 +308,21 @@
 				};
 			}	
 		</script>
-		<script id="main-dict">
-			// index => 0=addres, 1=tumbnail,  2=func
-			const phase_data = {
-				0: ["references.html"],
-				1: ["index.html"],
-				2: ["video.html"],
-				3: ["video.html?vid=1"],
-			};
-			// time table
-			const timeTable = {
-				0 : {
-					3: () => phase1_change_ref(phase1_ref_list[0]),
-					5: ()=> phase1_zoom(),
-					10: () => phase1_change_ref(phase1_ref_list[1]),
-					12: ()=> phase1_zoom(),
-					17: () => phase1_change_ref(phase1_ref_list[2]),
-					19: ()=> phase1_zoom(),
-					24: () => phase1_change_ref(phase1_ref_list[3]),
-					26: ()=> phase1_zoom(),
-					31: () => phase1_change_ref(phase1_ref_list[4]),
-					33: ()=> phase1_zoom(),
-					38: () => phase1_change_ref(phase1_ref_list[5]),
-					41: ()=> phase1_zoom(),
-					46: () => phase1_change_ref(phase1_ref_list[6]),
-					48: ()=> phase1_zoom(),
-					53: () => phase1_change_ref(phase1_ref_list[7]),
-					55: ()=> phase1_zoom(),
-					60: () => update_phase()
-				}, 
-				1 : {
-					7: () => phase2_random_wave(),
-					19: () => phase2_random_wave(),
-					31: () => phase2_random_wave(),
-					43: () => phase2_random_wave(),
-					51: () => update_phase()
-				},
-				2 : {
-					55: () => update_phase()
-				},
-				3 : {
-					74: () => update_phase()
-				}
-			};
-			
-		</script>
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
     <body>
 		<div id="thumbnails-container">
 			<div id="buttons-container">
 				<button class="phase-button" id="ph-0" onclick="update_phase(0)">
-					<iframe class="btn-frm" id="frm-btn-0" src="references.html"></iframe>
 					<p class="btn-txt" id="txt-btn-0">אדריכלות קלאסית ולואי קאהן</p>
 				</button>
 				<button class="phase-button" id="ph-1" onclick="update_phase(1)">
-					<iframe class="btn-frm" id="frm-btn-1" src="index.html"></iframe>
 					<p class="btn-txt" id="txt-btn-1">לואי קאהן וג'ון פן ניומן</p>
 				</button>
 				<button class="phase-button" id="ph-2" onclick="update_phase(2)">
-					<iframe class="btn-frm" id="frm-btn-2" src="video.html"></iframe>
 					<p class="btn-txt" id="txt-btn-2">ירושלים כמודל פרוגרמתי</p>
 				</button>
 				<button class="phase-button" id="ph-3" onclick="update_phase(3)">
-					<iframe class="btn-frm" id="frm-btn-3" src="video.html?vid=1"></iframe>
 					<p class="btn-txt" id="txt-btn-3">מימוש מודל על גבעת רם</p>
 				</button>
 			</div>

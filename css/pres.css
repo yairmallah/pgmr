@@ -8,7 +8,11 @@
 	
 	--invBG:hsla(50, 50%, 95%, 0.85);
 	--invTXT:black;
-}
+
+	--thumbnailPh0: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph1.gif");
+	--thumbnailPh1: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph2.gif");
+	--thumbnailPh2: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3.gif");
+	--thumbnailPh3: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph4.gif");
 
 body{
 	display: grid;
@@ -90,7 +94,7 @@ p.chosen{
 	height: 80%;
 	overflow: hidden;
 	border: none;
-	background-color: var(--bgBody);
+	/*background-color: var(--bgBody);*/
 	box-shadow: 0px 0px 15px var(--invBG);
 	border-radius: 8px;
 	padding: 0;
@@ -98,6 +102,19 @@ p.chosen{
 	grid-template-columns: 100%;
 	grid-template-rows: 90% 10%;
 	gap: 0;
+	background-size: contain;
+}
+button#ph0{
+	background-image: var(--thumbnailPh0)
+}
+button#ph1{
+	background-image: var(--thumbnailPh1)
+}
+button#ph2{
+	background-image: var(--thumbnailPh2)
+}
+button#ph3{
+	background-image: var(--thumbnailPh3)
 }
 .phase-button.chosen{
 	opacity: 1;
