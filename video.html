@@ -12,10 +12,14 @@
 			Object.assign(darkValues[false],{
 				"--rotHue":"hue-rotate(180deg)",
 				"--blendMode":"difference"
+				"--rotHueVid":"unset",
+				"--blendModeVid":"normal"
 			});
 			Object.assign(darkValues[true],{
 				"--rotHue":"unset",
 				"--blendMode":"normal"
+				"--rotHueVid":"unset",
+				"--blendModeVid":"normal"
 			});
 			window.toggleMode = toggleMode;
 			requestAnimationFrame(() => {
