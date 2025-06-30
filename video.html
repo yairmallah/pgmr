@@ -56,7 +56,7 @@
 				}
 		</script>
 		<script id="id-change">
-			const vid_adds = [["imgs\\סימולציה.mp4", "sym"] , ["imgs\\הגשה.mp4", "pres"]];
+			const vid_adds = [["imgs\\סימולציה.mp4", "sym", "simulationcode.html"] , ["imgs\\הגשה.mp4", "pres", "presentationcode.html"]];
 			function waitForVideoLoad(timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -108,8 +108,10 @@
 					document.getElementById(add[1]).classList.toggle("hidden", true);
 				});
 				document.getElementById(vid_adds[window.current_vid_index][1]).classList.toggle("hidden", false);
+				update_code();
 				window.vid.load();
 				window.vid.play();
+				
 			}
 		</script>
 		<script id="legend-surgical">
@@ -269,16 +271,20 @@
 				</script>
 				<div id="scheme-code" class="code"></div>
 				<script>
-					fetch("simulationcode.html") // Load the other page
-						.then(response => response.text()) // Convert response to text
-						.then(html => {
-							let parser = new DOMParser();
-							let doc = parser.parseFromString(html, "text/html"); // Parse as DOM
-							let targetElement = doc.querySelector("#simulation-code"); // Select specific element
-							if (targetElement) {
-							document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
-							}
-						});
+					function update_code(){
+						if (typeof window.current_vid_index === "undefined") window.current_vid_index = 0;
+						fetch(vid_adds[window.current_vid_index][2]) // Load the other page
+							.then(response => response.text()) // Convert response to text
+							.then(html => {
+								let parser = new DOMParser();
+								let doc = parser.parseFromString(html, "text/html"); // Parse as DOM
+								let targetElement = doc.querySelector("#simulation-code"); // Select specific element
+								if (targetElement) {
+								document.querySelector("#scheme-code").innerHTML = targetElement.innerHTML; // Insert only inner content
+								}
+							});
+					}update_code()
+					
 				</script>
 				<script>
 					var isInIframe = false;
