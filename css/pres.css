@@ -102,8 +102,8 @@ p.chosen{
 	grid-template-columns: 100%;
 	grid-template-rows: 90% 10%;
 	gap: 0;
-	/*background-size: contain;*/
-	background-size: 100% 100%;
+	background-size: contain;
+	/*background-size: 100% 100%;*/
 	background-repeat: no-repeat;
 	background-position: center;
 }
