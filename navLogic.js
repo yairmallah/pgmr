@@ -187,4 +187,4 @@ try {
 } catch (e) {
 	isInIframe = true;
 }
-if (!isInIframe) setupInactivityRedirect(1.5 * 60 * 1000, 'pres.html');
+if (!isInIframe) setupInactivityRedirect(0.06 * 60 * 1000, 'pres.html');
