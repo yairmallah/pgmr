@@ -151,35 +151,28 @@ document.addEventListener("DOMContentLoaded", function () {
 // Dictionary loading function using Promises
 
 function setupInactivityRedirect(timeoutMs = 3000, redirectUrl = 'pres.html') {
-  // Check if already on the redirect page
-  console.log("in");
-  console.log(redirectUrl);
-  console.log(window.location.pathname);
-  console.log(window.location.pathname.includes(redirectUrl));
-  if (window.location.pathname.includes(redirectUrl)) {
-    return;
-  }
+	// Check if already on the redirect page
+	if (window.location.pathname.includes(redirectUrl)) {
+		return;
+	}
 
-  let inactivityTimer;
+	let inactivityTimer;
+	
+	// Reset timer
+	function resetTimer() {
+		clearTimeout(inactivityTimer);
+		inactivityTimer = setTimeout(() => {
+			window.location.href = redirectUrl;
+		}, timeoutMs);
+	}
+	// User activity events
+	const activityEvents = ['mousemove', 'keydown', 'scroll', 'touchstart'];
+	activityEvents.forEach(event => {
+		window.addEventListener(event, resetTimer);
+	});
 
-  // Reset the timer
-  function resetTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(() => {
-      window.location.href = redirectUrl;
-    }, timeoutMs);
-  }
-
-  // Events that indicate user activity
-  const activityEvents = ['mousemove', 'keydown', 'scroll', 'touchstart'];
-
-  // Attach listeners for each event
-  activityEvents.forEach(event => {
-    window.addEventListener(event, resetTimer);
-  });
-  
-  // Start the initial timer
-  resetTimer();
+	// Initial timer
+	resetTimer();
 }
 
 var isInIframe = false;
@@ -188,4 +181,4 @@ try {
 } catch (e) {
 	isInIframe = true;
 }
-if (!isInIframe) setupInactivityRedirect(0.06 * 60 * 1000, 'pres.html');
+if (!isInIframe) setupInactivityRedirect(1.5 * 60 * 1000, 'pres.html');
