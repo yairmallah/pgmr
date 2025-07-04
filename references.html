@@ -146,14 +146,16 @@
 		</script>
 		<script>
 			var zoomInterval = null;
-			function zoomSlow(step = 2, interval = 50, max_zoom = 500) {
+			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 50) {
 				if (zoomInterval !== null) return;
 				zoomInterval = setInterval(() => {
 					let currentZoom = parseInt(root.style.getPropertyValue("--zoom")) || 100;
-					let newZoom = currentZoom + step;
-					if (newZoom >= max_zoom) stopZoom();
+					let newZoom = currentZoom * (1 + step/100);
+					if (max_zoom != -1 && newZoom >= max_zoom) stopZoom();
 					root.style.setProperty("--zoom", newZoom);
-					
+					if (zoom_loc != 'center center' && document.getElementById('large-scheme').style.backgroundPosition == 'center center'){
+						document.getElementById('large-scheme').style.backgroundPosition = zoom_loc;
+					}
 				}, interval);
 			}
 
