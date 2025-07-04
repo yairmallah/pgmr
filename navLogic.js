@@ -154,8 +154,9 @@ function setupInactivityRedirect(timeoutMs = 3000, redirectUrl = 'pres.html') {
   // Check if already on the redirect page
   console.log("in");
   console.log(redirectUrl);
-  console.log(window.location.href);
-  if (window.location.href === redirectUrl) {
+  console.log(window.location.pathname);
+  console.log(window.location.pathname.includes(redirectUrl));
+  if (window.location.pathname.includes(redirectUrl)) {
     return;
   }
 
