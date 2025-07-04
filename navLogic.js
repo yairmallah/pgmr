@@ -150,12 +150,12 @@ document.addEventListener("DOMContentLoaded", function () {
 // not here!! routes the pages on a route
 // Dictionary loading function using Promises
 
-function setupInactivityRedirect(timeoutMs = 3000, redirectUrl = '/pres.html') {
+function setupInactivityRedirect(timeoutMs = 3000, redirectUrl = 'pres.html') {
   // Check if already on the redirect page
   console.log("in");
   console.log(redirectUrl);
-  console.log(window.location.pathname);
-  if (window.location.pathname === redirectUrl) {
+  console.log(window.location.href);
+  if (window.location.href === redirectUrl) {
     return;
   }
 
@@ -187,4 +187,4 @@ try {
 } catch (e) {
 	isInIframe = true;
 }
-if (!isInIframe) setupInactivityRedirect(1.5 * 60 * 1000, '/pres.html');
+if (!isInIframe) setupInactivityRedirect(1.5 * 60 * 1000, 'pres.html');
