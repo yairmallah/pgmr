@@ -41,9 +41,11 @@
 					51: () => update_phase()
 				},
 				2 : {
+					0: () => phase34_paly_vid(),
 					55: () => update_phase()
 				},
 				3 : {
+					0: () => phase34_paly_vid(),
 					74: () => update_phase()
 				}
 			};
@@ -261,6 +263,17 @@
 					window.temp_legend = cont;
 				});
 			}
+			function phase34_paly_vid(){
+				let main_iframe = getMain();
+				console.log("in");
+				setTimeout(() => {
+				waitForFunc(main_iframe, 'playVid', () => {
+					waitForObj(main_iframe, "myVideo", () => {
+						torah = getDocumentScripture(main_iframe);
+						torah.playVid();
+					});
+				});}, 500);
+			}
 			function indexPageAdaptor(iframe, transform='transform: scale(0.66);transform-origin: top left;height: 150%;'){
 				//const iDoc = getDocumentSelector(iframe);
 				waitForObj(iframe, "display-layout", () => {getDocumentSelector(iframe).getElementById("display-layout").remove();});
@@ -295,27 +308,31 @@
 					titleCont.style.opacity = 1;
 				});
 
-				// Wait 4 seconds: 1 for fade in + 3 display
 				fadeOutTimeout = setTimeout(() => {
 					titleCont.style.opacity = 0; // Start fade out
+					//removeInteractionListenersT();
 					// After 1 more second, hide it completely
 					hideTimeout = setTimeout(() => {
 					titleCont.classList.add('hidden');
 					window.inactiveSeconds = 0;
+					if (timeTable[window.current_phase][0]) {
+							timeTable[window.current_phase][0]();
+						}
 					}, 1000);
 				}, (t-1)*1000);
 				
 				// Set up cancel on user interaction
-				const cancelOnTitleInteraction = () => {
+				/*const cancelOnTitleInteraction = () => {
 					clearTimeout(fadeOutTimeout);
+					console.log(1);
 					clearTimeout(hideTimeout);
 					window.inactiveSeconds = 0;
 					titleCont.style.opacity = 0;
 					titleCont.classList.add('hidden');
-					removeInteractionListeners();
+					removeInteractionListenersT();
 				};
 				
-				const removeInteractionListeners = () => {
+				const removeInteractionListenersT = () => {
 					userActivityEvents.forEach(evt => {
 						document.removeEventListener(evt, cancelOnTitleInteraction);
 					});
@@ -323,7 +340,7 @@
 
 				userActivityEvents.forEach(evt => {
 					document.addEventListener(evt, cancelOnTitleInteraction);
-				});
+				});*/
 				
 			}
 			function stepShow(stepP){
@@ -336,7 +353,7 @@
 				} else {textAppearWordByWord(stepP); }
 			}
 			function update_phase(phs=-1){
-				window.inactiveSeconds = -5;
+				window.inactiveSeconds = -4;
 				let main_iframe = document.getElementById("main");
 				let main_texts = document.getElementById("main-texts-wrapper");
 				document.getElementById(("st-" + window.current_phase)).classList.toggle("chosen", false);
@@ -349,9 +366,9 @@
 				document.getElementById(("st-" + current_phase)).classList.toggle("chosen", true);
 				document.getElementById(("ph-" + current_phase)).classList.toggle("chosen", true);
 				if (window.temp_legend) window.temp_legend.remove();
-				phase_transition(5);
+				phase_transition(4);
 				
-				const cancelOnTitleInteraction = () => {
+				/*const cancelOnTitleInteraction = () => {
 					clearTimeout(mainIframeUpdateTimeout);
 					clearTimeout(stepShowTimeout);
 					main_iframe.src = phase_data[current_phase][0];
@@ -378,7 +395,7 @@
 
 				userActivityEvents.forEach(evt => {
 					document.addEventListener(evt, cancelOnTitleInteraction);
-				});
+				});*/
 				
 				mainIframeUpdateTimeout = setTimeout(() => {
 					main_iframe.src = phase_data[current_phase][0];
@@ -396,10 +413,10 @@
 						top: main_texts.scrollHeight,
 						behavior: 'smooth'
 					});
-					userActivityEvents.forEach(evt => {
+					/*userActivityEvents.forEach(evt => {
 						getDocumentScripture(getMain()).addEventListener(evt, resetActivity);
-					});
-				}, 4500);
+					});*/
+				}, 3500);
 			}
 		</script>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
