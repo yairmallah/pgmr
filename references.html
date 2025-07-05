@@ -155,7 +155,6 @@
 					root.style.setProperty("--zoom", newZoom);
 					let bgPos = document.getElementById('large-scheme').style.backgroundPosition;
 					if (zoom_loc != 'center center' && (bgPos == 'center center' || bgPos == '')){
-						console.log('in');
 						document.getElementById('large-scheme').style.backgroundPosition = zoom_loc;
 					}
 				}, interval);
