@@ -123,7 +123,8 @@
 				document.getElementById(vid_adds[window.current_vid_index][1]).classList.toggle("hidden", false);
 				update_code();
 				window.vid.load();
-				if (!isInIframe) playVid();
+				console.log("is");
+				//if (!isInIframe) playVid();
 				
 			}
 		</script>
@@ -269,7 +270,7 @@
 						</table>
 					</div>
 				</div>
-				<video id="myVideo" controls muted autoplay>
+				<video id="myVideo" controls muted>
 					<source id="vidSource" src="imgs\סימולציה.mp4" type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
@@ -387,7 +388,7 @@
 							resize_adapter();
 						});
 					}
-					if (!isInIframe){playVid();}
+					//if (!isInIframe) playVid();
 				</script>
 			</div>
 		</div>
