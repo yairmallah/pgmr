@@ -192,7 +192,7 @@
 				if (!isInsideBottom) */root.style.setProperty("--zoom", "100");
 				/*`calc(var(--base-size) * var(--zoom) / 100%)`*/
 				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
-				lrgSchm.style.backgroundPosition = 'center center';
+				if (!isInsideBottom) lrgSchm.style.backgroundPosition = 'center center';
 				update_img_ratio(ref["url"]);
 				stopZoom();
 			}
