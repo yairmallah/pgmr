@@ -153,7 +153,9 @@
 					let newZoom = currentZoom * (1 + step/100);
 					if (max_zoom != -1 && newZoom >= max_zoom) stopZoom();
 					root.style.setProperty("--zoom", newZoom);
-					if (zoom_loc != 'center center' && document.getElementById('large-scheme').style.backgroundPosition == 'center center'){
+					let bgPos = document.getElementById('large-scheme').style.backgroundPosition;
+					if (zoom_loc != 'center center' && (bgPos == 'center center' || bgPos == '')){
+						console.log('in');
 						document.getElementById('large-scheme').style.backgroundPosition = zoom_loc;
 					}
 				}, interval);
