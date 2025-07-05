@@ -108,16 +108,20 @@ p.chosen{
 	background-repeat: no-repeat;
 	background-position: center;
 }
-button#ph-0{
+button #phd-0{
+	background-size: contain;
 	background-image: var(--thumbnailPh0)
 }
-button#ph-1{
+button #phd-1{
+	background-size: contain;
 	background-image: var(--thumbnailPh1)
 }
-button#ph-2{
+button #phd-2{
+	background-size: contain;
 	background-image: var(--thumbnailPh2)
 }
-button#ph-3{
+button #phd-3{
+	background-size: contain;
 	background-image: var(--thumbnailPh3)
 }
 .phase-button.chosen{
