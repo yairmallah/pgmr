@@ -56,6 +56,18 @@
 				}
 		</script>
 		<script id="id-change">
+			
+			function playVid(){
+				waitForVideoLoad();
+				window.vid.play().catch(error => {
+					const params = new URLSearchParams(window.location.search);
+					const vidIndex = parseInt(params.get('vid'));
+					if (isNaN(vidIndex) || vidIndex != 1) {
+						console.error("Playback failed:", error);
+					}
+				});
+			}
+			
 			const vid_adds = [["imgs\\סימולציה.mp4", "sym", "simulationcode.html"] , ["imgs\\הגשה.mp4", "pres", "presentationcode.html"]];
 			function waitForVideoLoad(timeout = 2000) {
 				const start = Date.now();
@@ -110,7 +122,7 @@
 				document.getElementById(vid_adds[window.current_vid_index][1]).classList.toggle("hidden", false);
 				update_code();
 				window.vid.load();
-				window.vid.play();
+				if (!isInIframe) playVid();
 				
 			}
 		</script>
@@ -260,15 +272,6 @@
 					<source id="vidSource" src="imgs\סימולציה.mp4" type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
-				<script>
-					document.getElementById("myVideo").play().catch(error => {
-						const params = new URLSearchParams(window.location.search);
-						const vidIndex = parseInt(params.get('vid'));
-						if (isNaN(vidIndex) || vidIndex != 1) {
-							console.error("Playback failed:", error);
-						}
-					});
-				</script>
 				<div id="scheme-code" class="code"></div>
 				<script>
 					function update_code(){
@@ -349,11 +352,14 @@
 						let width = bd.offsetWidth;
 						let height = bd.offsetHeight;
 						if (height * 1.1 > width){
-							if (window.current_vid_index && window.current_vid_index == 1) {legend_cont.style.maxWidth = "32vh";}
+							if (window.current_vid_index && window.current_vid_index == 1) {
+								legend_cont.style.maxWidth = "32vh";
+								legend_cont.style.position = "fixed";
+								legend_cont.style.right = "0px";
+								legend_cont.style.top = "0px";
+							}
 							else {legend_cont.style.maxWidth = "";}
-							legend_cont.style.position = "fixed";
-							legend_cont.style.right = "0px";
-							legend_cont.style.top = "0px";
+							
 							document.getElementById("scheme-code").classList.toggle("hidden", true);
 							document.getElementById("container").style.gridTemplateColumns = "none";
 						}
@@ -377,6 +383,7 @@
 							resize_adapter();
 						});
 					}
+					if (!isInIframe){playVid();}
 				</script>
 			</div>
 		</div>
