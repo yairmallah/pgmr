@@ -69,7 +69,7 @@
 				});
 			}
 			
-			const vid_adds = [["imgs\\סימולציה.mp4", "sym", "simulationcode.html"] , ["imgs\\הגשה.mp4", "pres", "presentationcode.html"]];
+			const vid_adds = [["imgs\\סימולציה.mp4", "sym", "simulationcode.html", "סימולציית תנועה"] , ["imgs\\הגשה.mp4", "pres", "presentationcode.html", "תכנון"]];
 			function waitForVideoLoad(timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -117,13 +117,13 @@
 					window.current_vid_index %= vid_adds.length;
 				}
 				window.source.src = vid_adds[window.current_vid_index][0];
+				document.querySelector("title").innerHTML = vid_adds[window.current_vid_index][3];
 				vid_adds.forEach(add =>{					
 					document.getElementById(add[1]).classList.toggle("hidden", true);
 				});
 				document.getElementById(vid_adds[window.current_vid_index][1]).classList.toggle("hidden", false);
 				update_code();
 				window.vid.load();
-				console.log("is");
 				//if (!isInIframe) playVid();
 				
 			}
