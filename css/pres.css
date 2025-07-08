@@ -108,6 +108,14 @@ p.chosen{
 	background-repeat: no-repeat;
 	background-position: center;
 }
+.phase-button-image{
+	overflow: hidden;
+	background-color: var(--bgBody);
+	background-size: contain;
+	/*background-size: 100% 100%;*/
+	background-repeat: no-repeat;
+	background-position: center;
+}
 button #phd-0{
 	background-size: contain;
 	background-image: var(--thumbnailPh0)
