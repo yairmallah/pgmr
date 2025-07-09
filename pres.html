@@ -144,6 +144,24 @@
 					}
 				})();
 			}
+			function waitForAtt(iframe, attName, callback, timeout = 2000) {
+				const start = Date.now();
+
+				(function check() {
+					try {
+						const fn = iframe.contentWindow?.[attName];
+						if ( fn != null) {
+							callback(fn); // success!
+						} else if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn(`${funcName} not available in iframe after timeout`);
+						}
+					} catch (err) {
+						console.error(err);
+					}
+				})();
+			}
 			function waitForClass(iframe, clsID, callback, timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -224,14 +242,25 @@
 				important!!
 				updateMainRef needs only ref, ref["url"]=> image url so sent only wrapper of {"url":"https://yairmallah.github.io/pgmr/imgs/ref/EXAMPLE.png"}
 				might cause some problem but who know :>
+				
+				v2 - ref key should be file name so this version will be able to accsses ref dict
 				*/
 				let main_iframe = getMain();
 				waitForFunc(main_iframe, 'updateMainRef', () => {
 					waitForObj(main_iframe, "large-scheme", () => {
 						torah = getDocumentScripture(main_iframe);
 						torah.updateMainRef({"url":img_url});
+						/*waitForAtt(main_iframe, "refJson", () => {
+							let refKey = img_url.split("/");
+							refKey = refKey[refKey.length-1];
+							navi = torah.refJson[refKey];
+							let catuv = torah.updateMainRef(navi);
+							console.log(catuv);
+						});*/
 					});
 				});
+				
+				
 			}
 			function phase1_zoom(zoom_loc='center center'){
 				let main_iframe = getMain();
