@@ -195,6 +195,7 @@
 				if (!isInsideBottom) lrgSchm.style.backgroundPosition = 'center center';
 				update_img_ratio(ref["url"]);
 				stopZoom();
+				return [ref["title"], ref["subtitle"], ref["info"]];
 			}
 			lrgSchm.addEventListener('mousemove', (e) => {
 				const rect = lrgSchm.getBoundingClientRect();
@@ -268,6 +269,7 @@
 				.then(data => {
 					
 					console.log(data);
+					window.refJson = data;
 					const rows = {};
 					let maxItemsInAnyRow = 0;
 					let LeftMax = 0;
