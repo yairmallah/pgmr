@@ -41,12 +41,12 @@
 					51: () => update_phase()
 				},
 				2 : {
-					0: () => phase34_paly_vid(),
-					56: () => update_phase()
+					0: () => phase34_paly_vid()/*,
+					56: () => update_phase()*/
 				},
 				3 : {
-					0: () => phase34_paly_vid(),
-					105: () => update_phase()
+					0: () => phase34_paly_vid()/*,
+					105: () => update_phase()*/
 				}
 			};
 			
@@ -294,14 +294,29 @@
 					window.temp_legend = cont;
 				});
 			}
+			function phase34_bind_flip(){
+				let main_iframe = getMain();
+				waitForObj(main_iframe, "myVideo", () => {
+					selector = getDocumentSelector(main_iframe);
+					selector.getElementById('myVideo').addEventListener('ended', function () {
+						if (!userIsActive) update_phase();
+						else {
+							(function check() {
+								if (!userIsActive) update_phase();
+								else setTimeout(check, 5000); // keep checking
+							})();
+						}
+					});
+				});
+			}
 			function phase34_paly_vid(){
 				let main_iframe = getMain();
-				console.log("in");
 				setTimeout(() => {
 				waitForFunc(main_iframe, 'playVid', () => {
 					waitForObj(main_iframe, "myVideo", () => {
 						torah = getDocumentScripture(main_iframe);
 						torah.playVid();
+						phase34_bind_flip();
 					});
 				});}, 500);
 			}
