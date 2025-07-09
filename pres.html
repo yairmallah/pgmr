@@ -249,14 +249,16 @@
 				waitForFunc(main_iframe, 'updateMainRef', () => {
 					waitForObj(main_iframe, "large-scheme", () => {
 						torah = getDocumentScripture(main_iframe);
-						torah.updateMainRef({"url":img_url});
-						/*waitForAtt(main_iframe, "refJson", () => {
+						
+						let successfull = false;
+						waitForAtt(main_iframe, "refJson", () => {
 							let refKey = img_url.split("/");
 							refKey = refKey[refKey.length-1];
 							navi = torah.refJson[refKey];
-							let catuv = torah.updateMainRef(navi);
-							console.log(catuv);
-						});*/
+							torah.updateMainRef(navi);
+							successfull = true;
+						});
+						if (!successfull) torah.updateMainRef({"url":img_url});
 					});
 				});
 				
