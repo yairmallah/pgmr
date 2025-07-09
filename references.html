@@ -195,7 +195,10 @@
 				if (!isInsideBottom) lrgSchm.style.backgroundPosition = 'center center';
 				update_img_ratio(ref["url"]);
 				stopZoom();
-				return [ref["title"], ref["subtitle"], ref["info"]];
+				if (typeof ref['title'] == 'string') {
+					document.getElementById("info-tag").className = "";
+					updateInfoTag(ref);
+				}
 			}
 			lrgSchm.addEventListener('mousemove', (e) => {
 				const rect = lrgSchm.getBoundingClientRect();
