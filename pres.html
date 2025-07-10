@@ -662,5 +662,30 @@
 			<div class="covers">
 			</div>
 		</div>
+		<script>
+			let wakeLock = null;
+
+			async function requestWakeLock() {
+				try {
+					wakeLock = await navigator.wakeLock.request('screen');
+					console.log('Wake Lock is active on ' + Date.now().toString());
+
+					wakeLock.addEventListener('release', () => {
+						console.log('Wake Lock was released on ' + Date.now().toString());
+					});
+				} catch (err) {
+					console.error(`${err.name}, ${err.message}`);
+				}
+			}
+
+			// Request the wake lock when the page is visible
+			document.addEventListener('visibilitychange', () => {
+				if (document.visibilityState === 'visible') {
+					requestWakeLock();
+				}
+			});
+
+			requestWakeLock();
+		</script>
     </body>
 </html>
