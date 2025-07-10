@@ -449,6 +449,7 @@
 				const phase = window.current_phase;
 				sessionStorage.setItem("phase", phase);
 				const overlay = document.getElementById("phase-title-container");
+				overlay.style.background = "var(--bgBody)";
 				overlay.style.opacity = 0
 				overlay.classList.toggle("hidden", false);
 				overlay.style.opacity = 1
