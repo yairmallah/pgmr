@@ -40,6 +40,7 @@
 					60: () => update_phase()
 				}, 
 				1 : {
+					0: ()=> phase2_position_legend(),
 					7: () => phase2_random_wave(),
 					19: () => phase2_random_wave(),
 					31: () => phase2_random_wave(),
@@ -358,6 +359,34 @@
 					torah.randomWave();
 				});
 			}
+			function phase2_position_legend(){
+				let legend_par ='<div class="legend" id="sym">'+
+					'<table class="legend-table">'+
+						'<tbody><tr>'+
+							'<td>משתמש</td>'+
+							'<td><div class="legendColor" style="background-color: hsl(224, 20%, 60%);"></div></td>'+
+						'</tr>'+
+						'<tr>'+
+							'<td>בקרה</td>'+
+							'<td><div class="legendColor" style="background-color: hsl(5, 20%, 25%);"></div></td>'+
+						'</tr>'+
+						'<tr>'+
+							'<td>לוגי</td>'+
+							'<td><div class="legendColor" style="background-color: hsl(0, 75%, 50%);"></div></td>'+
+						'</tr>'+
+						'<tr>'+
+							'<td>שרת</td>'+
+							'<td><div class="legendColor" style="background-color: hsl(224, 80%, 29%);"></div></td>'+
+						'</tr>'+
+					'</tbody></table>'+
+				'</div>'
+				
+				let cont = document.createElement("div");
+				cont.id = "ph3-legend";
+				cont.innerHTML = "<div></div><div></div>" + legend_par;
+				document.querySelector("body").appendChild(cont);
+				window.temp_legend = cont;
+			}
 			function phase3_position_legend(){
 				let main_iframe = getMain();
 				waitForFunc(main_iframe, 'pop_legend', () => {
@@ -412,6 +441,42 @@
 			}
 			
 		</script>
+		<script id="page-reload">
+			//startBlackoutAndReload();
+
+
+			function startBlackoutAndReload() {
+				const phase = window.current_phase;
+				sessionStorage.setItem("phase", phase);
+				const overlay = document.getElementById("phase-title-container");
+				overlay.style.opacity = 0
+				overlay.classList.toggle("hidden", false);
+				overlay.style.opacity = 1
+
+				// Wait for the fade-in to complete before reload
+				setTimeout(() => {
+					location.reload(); // triggers reload with black overlay on top
+				}, 1000); // match the fade-in duration
+			}
+
+			// When page loads, keep overlay visible and fade it out
+			window.addEventListener("load", () => {
+				update_phase(sessionStorage.getItem("phase") || 0)
+				const overlay = document.getElementById("phase-title-container");
+				overlay.classList.toggle("hidden", false);
+				sessionStorage.setItem("phase", 0);
+				setTimeout(() => {
+					overlay.style.opacity = 0
+					console.log("4");
+				}, 2000); // total duration including delay
+				setTimeout(() => {
+					console.log("itii");
+					overlay.classList.toggle("hidden", true);
+				}, 3000); // total duration including delay
+				
+			});
+
+		</script>
 		<script id="big-time-functions">
 			let fadeOutTimeout = null;
 			let hideTimeout = null;
@@ -419,6 +484,7 @@
 			let stepShowTimeout = null;
 			var backStagePartOnePassed = false;
 			var backStagePartTwoPassed = false;
+			var phase_passed = 0;
 			const userActivityEvents = ['mousemove', 'keydown', 'scroll', 'touchstart'];
 							
 			function backStageP1(){
@@ -473,14 +539,14 @@
 				
 				
 				const stopTransition = () => {
-					console.log(titleCont);
 					resetActivity();
-					console.log(window.inactiveSeconds);
 					const clone = titleCont.cloneNode(true); // true = deep clone
-					titleCont.parentNode.replaceChild(clone, titleCont);
-					userActivityEvents.forEach(evt => {
-						titleCont.removeEventListener(evt, stopTransition);
-					});
+					try {
+						titleCont.parentNode.replaceChild(clone, titleCont);
+						userActivityEvents.forEach(evt => {
+							titleCont.removeEventListener(evt, stopTransition);
+						});
+					}catch (e) {}
 					backStageP1();
 					clearTimeout(mainIframeUpdateTimeout);
 					backStageP2();
@@ -518,6 +584,7 @@
 			
 			function update_phase(phs=-1){
 				// constant stabilitation
+				phase_passed += 1;
 				backStagePartOnePassed = false;
 				backStagePartTwoPassed = false;
 				window.inactiveSeconds = -4;
@@ -527,6 +594,12 @@
 				else {current_phase = phs;}
 				current_phase %= 4;
 				window.current_phase = current_phase;
+				
+				if (phase_passed >= 10) {
+					startBlackoutAndReload();
+					return;
+				}
+				
 				let trans_time = 4
 				
 				// texts beahavior
@@ -588,6 +661,13 @@
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
     <body>
+		<div id="phase-title-container" class="">
+			<div>
+			</div>
+			<div id="phase-title-trans" class="covers">III<br/>מפידיאס עד לואי קאהן</div>
+			<div class="covers">
+			</div>
+		</div>
 		<div id="thumbnails-container">
 			<div id="buttons-container">
 				<button class="phase-button" id="ph-0" onclick="update_phase(0)">
@@ -611,7 +691,7 @@
 			
 			<iframe id="main" src=""></iframe>
 			<script id="phases-starter">
-				var current_phase = 0;
+				var current_phase = sessionStorage.getItem("phase") || 0;
 				window.current_phase = current_phase;
 				var inactiveSeconds = 0;
 				window.inactiveSeconds = inactiveSeconds;
@@ -659,7 +739,7 @@
 				}, 1000);
 		
 				requestAnimationFrame(() => {
-					update_phase(0);
+					//update_phase(0);
 					attachActivityToIframes(resetActivity);
 				});
 			</script>
@@ -679,14 +759,7 @@
 					</p>
 			</div>
 		</div>
-		<div id="phase-title-container" class="hidden">
-			<div>
-			</div>
-			<div id="phase-title-trans" class="covers">
-			</div>
-			<div class="covers">
-			</div>
-		</div>
+		
 		<script>
 			let wakeLock = null;
 
