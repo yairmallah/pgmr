@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				</tr>
 				<tr class="subMenuTR">
 					<td class="subMenuTD"><button class="navItem" data-link="log.html">מילון</button></td>
-					<td class="subMenuTD"><button class="navItem" data-link="tba.html">תב"ע</button></td>
+					<td class="subMenuTD"><button class="navItem" data-link="pres.html">הגשה</button></td>
 				</tr>
 				<tr class="subMenuTR">
 					<td class="subMenuTD"><button class="navItem" data-link="video.html">סימולציה</button></td>
