@@ -453,6 +453,8 @@
 				overlay.style.opacity = 0
 				overlay.classList.toggle("hidden", false);
 				overlay.style.opacity = 1
+				document.getElementById("phase-title-trans").innerHTML = "";
+				
 
 				// Wait for the fade-in to complete before reload
 				setTimeout(() => {
@@ -463,18 +465,7 @@
 			// When page loads, keep overlay visible and fade it out
 			window.addEventListener("load", () => {
 				update_phase(sessionStorage.getItem("phase") || 0)
-				const overlay = document.getElementById("phase-title-container");
-				overlay.classList.toggle("hidden", false);
 				sessionStorage.setItem("phase", 0);
-				setTimeout(() => {
-					overlay.style.opacity = 0
-					console.log("4");
-				}, 2000); // total duration including delay
-				setTimeout(() => {
-					console.log("itii");
-					overlay.classList.toggle("hidden", true);
-				}, 3000); // total duration including delay
-				
 			});
 
 		</script>
@@ -528,15 +519,25 @@
 			
 			function phase_transition(t=4){
 				const titleCont = document.getElementById('phase-title-container');
+				if (titleCont.style.opacity == 1) {
+					titleCont.style.transition = "background 1s ease";
+					titleCont.style.background = "";
+					setTimeout(() => {titleCont.style.transition = "";}, 1000);
+				};
 				titleCont.classList.remove('hidden');
+				
 				const titleEl = document.getElementById('phase-title-trans');
-				let titleI = "I".repeat(window.current_phase + 1);
-				if (window.current_phase == 3) titleI = "IV";
-				titleEl.innerHTML = titleI + "<br/>" +document.getElementById('txt-btn-'+window.current_phase).innerHTML;
+				titleEl.innerHTML = "";
 				// Trigger fade in
 				requestAnimationFrame(() => {
 					titleCont.style.opacity = 1;
 				});
+				
+				setTimeout(() => {
+					let titleI = "I".repeat(window.current_phase + 1);
+					if (window.current_phase == 3) titleI = "IV";
+					titleEl.innerHTML = titleI + "<br/>" +document.getElementById('txt-btn-'+window.current_phase).innerHTML;
+				}, 1000);
 				
 				
 				const stopTransition = () => {
@@ -554,7 +555,9 @@
 					clearTimeout(stepShowTimeout);
 					clearTimeout(fadeOutTimeout);
 					clearTimeout(hideTimeout);
-					clone.classList.add('hidden', true);
+					clone.classList.toggle('hidden', true);
+					clone.style.opacity = 0;
+					console.log(clone);
 				};
 				setTimeout(() => {
 					userActivityEvents.forEach(evt => {
@@ -596,7 +599,7 @@
 				current_phase %= 4;
 				window.current_phase = current_phase;
 				
-				if (phase_passed >= 10) {
+				if (phase_passed >= 5) {
 					startBlackoutAndReload();
 					return;
 				}
@@ -662,10 +665,10 @@
         <script type="module" src="https://yairmallah.github.io/pgmr/navLogic.js"></script>	
     </head>
     <body>
-		<div id="phase-title-container" class="">
-			<div>
+		<div id="phase-title-container" class="", style="background: var(--bgBody); opacity:1;">
+			<div style="pointer-events: none;">
 			</div>
-			<div id="phase-title-trans" class="covers">III<br/>מפידיאס עד לואי קאהן</div>
+			<div id="phase-title-trans" class="covers"></div>
 			<div class="covers">
 			</div>
 		</div>
