@@ -40,7 +40,7 @@
 					60: () => update_phase()
 				}, 
 				1 : {
-					0: ()=> phase2_position_legend(),
+					/*0: ()=> phase2_position_legend(),*/
 					7: () => phase2_random_wave(),
 					19: () => phase2_random_wave(),
 					31: () => phase2_random_wave(),
@@ -385,7 +385,7 @@
 				cont.id = "ph3-legend";
 				cont.innerHTML = "<div></div><div></div>" + legend_par;
 				document.querySelector("body").appendChild(cont);
-				window.temp_legend = cont;
+				window.temp_legend2 = cont;
 			}
 			function phase3_position_legend(){
 				let main_iframe = getMain();
@@ -396,7 +396,7 @@
 					cont.id = "ph3-legend";
 					cont.innerHTML = "<div></div><div></div>" + legend_par;
 					document.querySelector("body").appendChild(cont);
-					window.temp_legend = cont;
+					window.temp_legend3 = cont;
 				});
 			}
 			function phase34_bind_flip(){
@@ -502,6 +502,7 @@
 				let main_texts = document.getElementById("main-texts-wrapper");
 				
 				if (backStagePartTwoPassed) return;
+				if (current_phase == 1) phase2_position_legend();
 				if (current_phase == 2) phase3_position_legend();
 				for (let i = 0; i < 4; i ++){
 					let stepName = 'st-'+i;
@@ -557,7 +558,6 @@
 					clearTimeout(hideTimeout);
 					clone.classList.toggle('hidden', true);
 					clone.style.opacity = 0;
-					console.log(clone);
 				};
 				setTimeout(() => {
 					userActivityEvents.forEach(evt => {
@@ -609,7 +609,8 @@
 				// texts beahavior
 				document.getElementById(("st-" + current_phase)).classList.toggle("chosen", true);
 				document.getElementById(("ph-" + current_phase)).classList.toggle("chosen", true);
-				if (window.temp_legend) window.temp_legend.remove();
+				if (window.temp_legend2) window.temp_legend2.remove();
+				if (window.temp_legend3) window.temp_legend3.remove();
 				phase_transition(trans_time);
 				
 				mainIframeUpdateTimeout = setTimeout(() => {
