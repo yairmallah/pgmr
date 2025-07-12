@@ -209,7 +209,7 @@ button #phd-3{
 	opacity: 0;
 	transition: opacity 1s ease;
 	z-index: 10;
-	pointer-events: none;
+	/*pointer-events: none;*/
 }
 #phase-title-container .covers{
 	background-color: var(--bgBody);
