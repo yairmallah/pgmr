@@ -146,10 +146,11 @@
 		</script>
 		<script>
 			var zoomInterval = null;
-			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 50) {
+			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 20) {
 				if (zoomInterval !== null) return;
+				step = step * interval / 50;
 				zoomInterval = setInterval(() => {
-					let currentZoom = parseInt(root.style.getPropertyValue("--zoom")) || 100;
+					let currentZoom= parseInt(root.style.getPropertyValue("--zoom")) || 100;
 					let newZoom = currentZoom * (1 + step/100);
 					if (max_zoom != -1 && newZoom >= max_zoom) stopZoom();
 					root.style.setProperty("--zoom", newZoom);
@@ -197,7 +198,7 @@
 				if (!isInsideBottom) lrgSchm.style.backgroundPosition = 'center center';
 				update_img_ratio(ref["url"]);
 				stopZoom();
-				lrgSchm.style.transition = "background-size 0.3s ease";
+				/*lrgSchm.style.transition = "background-size 0.3s ease";*/
 				if (typeof ref['title'] == 'string') {
 					document.getElementById("info-tag").className = "";
 					updateInfoTag(ref);
