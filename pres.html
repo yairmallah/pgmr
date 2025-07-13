@@ -538,8 +538,10 @@
 				setTimeout(() => {
 					let titleI = "I".repeat(window.current_phase + 1);
 					if (window.current_phase == 3) titleI = "IV";
-					titleEl.innerHTML = titleI + " <br/> " +document.getElementById('txt-btn-'+window.current_phase).innerHTML;
-					textAppearWordByWord(titleEl);					
+					titleEl.innerHTML = "<div id='temp-title-wrapper' style='opacity: 0; transition: opacity 1.5s ease;'>" + titleI + " <br/> " +document.getElementById('txt-btn-'+window.current_phase).innerHTML + "</div>";
+					setTimeout(() => {
+						document.getElementById('temp-title-wrapper').style.opacity = 1;
+					}, 50);
 				}, 2000);
 				
 				
