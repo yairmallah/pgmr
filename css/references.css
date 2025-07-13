@@ -162,8 +162,6 @@ td img{
 	font-size: 14px;
 	min-width: var(--infoTagWidth);
 	min-height: var(--infoTagHeight);
-	bottom: 0px;
-	right: 0px;
 }
 #info-tag-type{
 	font-style: italic;
