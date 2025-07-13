@@ -147,7 +147,7 @@
 		<script>
 			var zoomInterval = null;
 			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 10) {
-				if (zoomInterval !== null) clearInterval(zoomInterval);
+				if (zoomInterval !== null) stopZoom();
 				console.log(zoomInterval);
 				step = step * interval / 50;
 				zoomInterval = setInterval(() => {
