@@ -1,6 +1,7 @@
 export const darkValues={
 	false: {
-		"--bgBody":"hsl(50, 50%, 95%)",
+		/*"--bgBody":"hsl(50, 50%, 95%)",*/
+		"--bgBody":"#fff",
 		"--textColor":"#000",
 		"--circStroke":"rgba(0, 0, 0, 0.7)",
 		
