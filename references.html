@@ -258,17 +258,25 @@
 			function mouseOnRef(e){
 				const windowHeight = window.innerHeight;
 				const windowWidth = window.innerWidth;
+				infoTag.style.bottom = "";
+				infoTag.style.right = "";
 				infoTag.style.top = Math.min((e.clientY + 5), windowHeight - minHeight - 15) + "px";
 				infoTag.style.left = Math.min((e.clientX + 5), windowWidth - minWidth - 15) + "px";
+
 			}
 			function mouseEnterRef(ref){
+				infoTag.style.bottom = "";
+				infoTag.style.right = "";
 				infoTag.className = "";
 				updateInfoTag(ref);
 			}
 			function mouseLeaveRef(){
 				infoTag.style.top = '';
 				infoTag.style.left = '';
+				
 				infoTag.className = "hidden";
+				infoTag.style.bottom = "0px";
+				infoTag.style.right = "0px";
 			}
 		</script>
 		<script>
