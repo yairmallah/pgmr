@@ -423,7 +423,7 @@
 						torah.playVid();
 						phase34_bind_flip();
 					});
-				});}, 500);
+				});}, 1000);
 			}
 			function indexPageAdaptor(iframe, transform='transform: scale(0.66);transform-origin: top left;height: 150%;'){
 				//const iDoc = getDocumentSelector(iframe);
@@ -459,7 +459,7 @@
 				// Wait for the fade-in to complete before reload
 				setTimeout(() => {
 					location.reload(); // triggers reload with black overlay on top
-				}, 1000); // match the fade-in duration
+				}, 2000); // match the fade-in duration
 			}
 
 			// When page loads, keep overlay visible and fade it out
@@ -537,8 +537,9 @@
 				setTimeout(() => {
 					let titleI = "I".repeat(window.current_phase + 1);
 					if (window.current_phase == 3) titleI = "IV";
-					titleEl.innerHTML = titleI + "<br/>" +document.getElementById('txt-btn-'+window.current_phase).innerHTML;
-				}, 1000);
+					titleEl.innerHTML = titleI + " <br/> " +document.getElementById('txt-btn-'+window.current_phase).innerHTML;
+					textAppearWordByWord(titleEl);					
+				}, 2000);
 				
 				
 				const stopTransition = () => {
@@ -563,7 +564,7 @@
 					userActivityEvents.forEach(evt => {
 						titleCont.addEventListener(evt, stopTransition);
 					});
-				}, 1000);
+				}, 2000);
 
 
 				fadeOutTimeout = setTimeout(() => {
@@ -573,8 +574,8 @@
 						titleCont.classList.add('hidden', true);
 						window.inactiveSeconds = 0;
 						stopTransition;
-					}, 1000);
-				}, (t-1)*1000);			
+					}, 2000);
+				}, (t-2)*1000);			
 			}
 			function stepShow(stepP){
 				const parStepInd = parseInt(stepP.id.split("-")[1]);
@@ -615,10 +616,10 @@
 				
 				mainIframeUpdateTimeout = setTimeout(() => {
 					backStageP1();
-				}, 1000);
+				}, 2000);
 				stepShowTimeout = setTimeout(() => {
 					backStageP2();
-				}, 3500);
+				}, 4000);
 			}
 		</script>
 		<link rel="stylesheet" type="text/css" href="css\general.css"/>
