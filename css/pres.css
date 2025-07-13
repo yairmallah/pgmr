@@ -14,6 +14,7 @@
 	--thumbnailPh1: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph2.gif");
 	--thumbnailPh2: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph3.gif");
 	--thumbnailPh3: url("https://yairmallah.github.io/pgmr/imgs/thumbnails/ph4.gif");
+	--btnImgFilter: none;
 }
 body{
 	display: grid;
@@ -110,13 +111,15 @@ p.chosen{
 }
 .phase-button-image{
 	overflow: hidden;
-	background-color: var(--bgBody);
+	/*background-color: var(--bgBody);*/
 	background-size: contain;
 	/*background-size: 100% 100%;*/
 	background-repeat: no-repeat;
 	background-position: center;
 	width:100%;
 	height:100%;
+	background-color: rgba(0, 0, 0, 0);
+	filter: var(--btnImgFilter);
 }
 button #phd-0{
 	background-size: contain;
