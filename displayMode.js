@@ -10,8 +10,8 @@ export const darkValues={
 		"--linkColor":"#bbb",
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchame.gif")',
-		"--navSubMenu":"#ddddddcc",
-		"--navItem":"#f1edd8",
+		"--navSubMenu":"#cccccccc",
+		"--navItem":"#eee",
 
 		"--scrollbarColor":"#ccc",
 		"--scrollbarHover":"#666"
@@ -26,7 +26,7 @@ export const darkValues={
 		"--linkColor":"#999",
 		
 		"--navButtonImage":'url("https://yairmallah.github.io/pgmr/imgs/navSchameD.gif")',
-		"--navSubMenu":"#222222cc",
+		"--navSubMenu":"#333333cc",
 		"--navItem":"#111",
 		
 		"--scrollbarColor":"#333",
