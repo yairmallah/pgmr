@@ -148,7 +148,7 @@
 			var zoomInterval = null;
 			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 50) {
 				if (zoomInterval !== null) return;
-				document.getElementById('large-scheme')style.transition = "zoom " + ((interval/1000).toString()) + "s linear";
+				document.getElementById('large-scheme').style.transition = "background-size " + ((interval/1000).toString()) + "s linear";
 				zoomInterval = setInterval(() => {
 					let currentZoom= parseInt(root.style.getPropertyValue("--zoom")) || 100;
 					let newZoom = currentZoom * (1 + step/100);
