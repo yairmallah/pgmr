@@ -218,4 +218,6 @@ button #phd-3{
 	font-size: 40px;
 	direction: rtl;
 	padding: 40px;
+	display: flex;
+	align-items: end;
 }
