@@ -352,6 +352,7 @@
 								img.src = item.url;
 								img.alt = item.title;
 								td.appendChild(img);
+								//td.style.backgroundImage = "url(" + item.url + ")";
 								td.addEventListener("click", () => {updateMainRef(item);});
 								td.addEventListener("mousemove", (e) => {mouseOnRef(e);});
 								td.addEventListener("mouseenter", () => {mouseEnterRef(item);});
