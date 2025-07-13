@@ -201,6 +201,10 @@
 				/*lrgSchm.style.transition = "background-size 0.3s ease";*/
 				if (typeof ref['title'] == 'string') {
 					document.getElementById("info-tag").className = "";
+					if (document.getElementById("info-tag").style.top == ""){
+						document.getElementById("info-tag").style.bottom = "0px";
+						document.getElementById("info-tag").style.right = "0px";
+					}
 					updateInfoTag(ref);
 				}
 			}
