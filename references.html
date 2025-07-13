@@ -189,12 +189,14 @@
 				//lrgSchm.className = "";
 				//root.style.setProperty("--zoomValue", "150%");
 				/*if (isInsideBottom) root.style.setProperty("--zoom", "150");
+    				lrgSchm.style.Transition = "background-size 0.3s ease";
 				if (!isInsideBottom) */root.style.setProperty("--zoom", "100");
 				/*`calc(var(--base-size) * var(--zoom) / 100%)`*/
 				lrgSchm.style.backgroundImage = `url(${ref["url"].replaceAll(" ", "%20")})`;
 				if (!isInsideBottom) lrgSchm.style.backgroundPosition = 'center center';
 				update_img_ratio(ref["url"]);
 				stopZoom();
+				lrgSchm.style.Transition = "background-size 0.3s ease";
 				if (typeof ref['title'] == 'string') {
 					document.getElementById("info-tag").className = "";
 					updateInfoTag(ref);
