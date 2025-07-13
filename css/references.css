@@ -4,13 +4,13 @@
 	--schemeHeight:80%;
 	--schemeTop:16%;
 	--schemeWidth:90%;
-	--bgInv:hsl(50, 50%, 95%);
+	--bgInv: #fff;
 	--colSize: 5%;
 	--rows: 16% 16% 16% 16% 16% 16%;
 	--textsTop: 67%;
 	--textSctionWidth:80%;
 	--textSectionRowSize:5.5vh;
-	--navSubMenu:34;
+	/*--navSubMenu:34;*/
 	--infoTagWidth: 230px;
 	--infoTagHeight: 110px;
 	--zoomValue: 150%;
@@ -157,7 +157,7 @@ td img{
 	position:fixed;
 	z-index:3;
 	border-radius: 5px;
-	background-color: rgba(calc(var(--navSubMenu)), calc(0.98*var(--navSubMenu)), calc(0.9*var(--navSubMenu)), 0.8);
+	background-color: var(--navSubMenu);
 	padding: 0px 10px;
 	font-size: 14px;
 	min-width: var(--infoTagWidth);
