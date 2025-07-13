@@ -146,7 +146,7 @@
 		</script>
 		<script>
 			var zoomInterval = null;
-			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 20) {
+			function zoomSlow(step = 2, max_zoom = -1, zoom_loc = 'center center', interval = 10) {
 				if (zoomInterval !== null) return;
 				step = step * interval / 50;
 				zoomInterval = setInterval(() => {
