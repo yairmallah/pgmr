@@ -631,16 +631,18 @@
 			import { darkValues/*, toggleMode*/ } from "https://yairmallah.github.io/pgmr/displayMode.js";
 			Object.assign(darkValues[true],{
 				"--invBG":darkValues[false]["--bgBody"],
-				"--invTXT":darkValues[false]["--textColor"]
+				"--invTXT":darkValues[false]["--textColor"],
+				"--btnImgFilter":"none"
 			});
 			Object.assign(darkValues[false],{
 				"--invBG":darkValues[true]["--bgBody"],
-				"--invTXT":darkValues[true]["--textColor"]
+				"--invTXT":darkValues[true]["--textColor"],
+				"--btnImgFilter":"hue-rotate(180deg) invert(1)"
 			});
-			for (const i in phase_data){
+			/*for (const i in phase_data){
 				darkValues[true]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][true] + '")';
 				darkValues[false]['--thumbnailPh' + i.toString()]= 'url("' + phase_data[i][1][false] + '")';
-			}
+			}*/
 			window.darkValues = darkValues;
 			const toggleMode=(isDark)=>{
 				Object.keys(darkValues[isDark]).forEach(varMode => {
