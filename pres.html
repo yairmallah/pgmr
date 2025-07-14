@@ -416,6 +416,20 @@
 				waitForObj(main_iframe, "myVideo", () => {
 					selector = getDocumentSelector(main_iframe);
 					selector.getElementById('myVideo').addEventListener('ended', function () {
+						if (overide_time_mec && window.current_phase == 3){
+							const img = document.createElement("div");
+							img.id = "overkill-last-img";							
+							document.body.appendChild(img);
+							setTimeout(() => {
+								img.addEventListener('click', ()=> {
+									window.current_phase = 0;
+									startBlackoutAndReload();
+								});
+								img.style.opacity = 1;
+							}, 50);
+							
+							return;
+						}
 						if (!userIsActive) update_phase();
 						else {
 							(function check() {
@@ -462,9 +476,9 @@
 				sessionStorage.setItem("phase", phase);
 				const overlay = document.getElementById("phase-title-container");
 				overlay.style.background = "var(--bgBody)";
-				overlay.style.opacity = 0
+				overlay.style.opacity = 0;
 				overlay.classList.toggle("hidden", false);
-				overlay.style.opacity = 1
+				overlay.style.opacity = 1;
 				document.getElementById("phase-title-trans").innerHTML = "";
 				
 
@@ -783,7 +797,7 @@
 	<div id="main-texts-wrapper">
 		<div id="main-texts">
 					<p class="main-text hidden" id="st-0">
-						הפרדיגמה הקלאסית של האדריכלות נבנתה על יחסים בין חלל וחומר וסמל: המרחב הוא מערכת שבה לכל אלמנט יש תפקיד צורני ומבני. עם המהפכה התעשייתית השנייה והופעתה של המכונית, נוצר מצב חדש: מרחקים התארכו ומבנים הוגדרו לפי תפקודם. קנה המידה האדריכלי הומר למהירות ויעילות. בתוך המפנה הזה ניסח לואי קאהן את המובחנות בין מרחבים משרתים למשורתים. תפיסת "משרת-משורת" שלו ביקשה לסמן מחדש את סט היחסים האדריכליים.
+						במסגרת צורת החשיבה הקלאסית, ארכיטקטורה הייתה נתונה תמיד במתח חומר-חלל. עם השכלול הטכנולוגי של ראשית המאה הקודמת, המאופיין במהירות, נוצרו תנאים חדשים (רשתות הכבישים ומשק החשמל), ונדרשה פרדיגמה אדריכלית המסכמת את רוח ההווה כחשיבה ארכיטקטונית; בטביעת המושגים משרת-משורת זיהה לואי קאהן כי עבור המודרניזם, חשיבותו של המתח שבין שני המושגים הללו גברה על זו של המתח הקלאסי. תפיסה זו מבקשת לסמן מחדש את מערכת היחסים האדריכליים.
 					</p>
 					<p class="main-text hidden" id="st-1">
 						בשנות החמישים הציע מדען המחשב ג'ון פון ניומן פרדיגמה ארכיטקטונית לבניית מחשב. הפרדיגמה מתבססת על ארבעה רכיבים המתקשרים ביניהם - משתמש, יחידת בקרה, יחידה לוגית ושרת. המשתמש שולח בקשה לשרת, הבקשה עוברת תרגום על ידי יחידת הבקרה, היחידה הלוגית מתווכת אותה לשרת ומחזירה ערך מתורגם למשתמש. ארכיטקטורת פון ניומן מבוססת על רשת מעברים בין מטא-פרוגרמות שונות.
