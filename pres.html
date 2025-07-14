@@ -465,11 +465,31 @@
 								return;
 							}
 							if (overide_time_mec && window.current_phase == 3){
+								const ims = ['https://yairmallah.github.io/pgmr/imgs/fins/1.png', 'https://yairmallah.github.io/pgmr/imgs/fins/2.png', 'https://yairmallah.github.io/pgmr/imgs/fins/3.png', 'https://yairmallah.github.io/pgmr/imgs/fins/4.jpg'];
+								var currunt_im = 0;
 								const img = document.createElement("div");
+								
+								var update_bg_ims_for_overkill = () => {
+									currunt_im += 1;
+									currunt_im %= 4;
+									const preloadImg = new Image();
+									preloadImg.src = ims[currunt_im];
+
+									setTimeout(() => {
+										
+										img.style.backgroundImage = 'url('+ims[currunt_im]+')';
+										update_bg_ims_for_overkill();
+									}, 7000);
+								};
+								window.addEventListener('keydown', (e)=> {
+									console.log(e.key);
+									if (e.key == 'p') update_bg_ims_for_overkill();
+								});
+								
 								img.id = "overkill-last-img";							
 								document.body.appendChild(img);
 								setTimeout(() => {
-									img.addEventListener('click', ()=> {
+									img.addEventListener('dblclick', ()=> {
 										window.current_phase = 0;
 										startBlackoutAndReload();
 									});
