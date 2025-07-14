@@ -58,6 +58,18 @@
 			};
 			
 		</script>
+		<script id="overide">
+			function catch_overide(e){
+				if (e.key == 'o') {
+					overide_time_mec = !overide_time_mec;
+					console.log("overide mechanism structure is ", overide_time_mec);
+				}
+				if (e.key == 's') {
+					overide_stop_button = !overide_stop_button;
+					console.log("time lock is ", overide_stop_button);
+				}
+			}
+		</script>
 		<script id="iframe-halper">
 			function getMain(){
 				return document.getElementById("main");
@@ -239,7 +251,6 @@
 			var timeToWord = 150;
 			function textAppearWordByWord(textElement){
 				let id = textElement.id.split("-")[1];
-				console.log(id);
 				let original = textElement.innerHTML;
 				
 				let words = original.split(" ");
@@ -563,11 +574,13 @@
 					clone.classList.toggle('hidden', true);
 					clone.style.opacity = 0;
 				};
-				setTimeout(() => {
-					userActivityEvents.forEach(evt => {
-						titleCont.addEventListener(evt, stopTransition);
-					});
-				}, 2000);
+				if (!overide_time_mec){
+					setTimeout(() => {
+						userActivityEvents.forEach(evt => {
+							titleCont.addEventListener(evt, stopTransition);
+						});
+					}, 2000);
+				}
 
 
 				fadeOutTimeout = setTimeout(() => {
@@ -709,6 +722,8 @@
 				var userIsActive = true;
 				var lastActivityTime = Date.now();
 				var activity_threshold = 4;
+				var overide_time_mec = false;
+				var overide_stop_button = false;
 
 				// Track activity
 				function resetActivity() {
@@ -737,7 +752,17 @@
 					const now = Date.now();
 					const elapsed = Math.floor((now - lastActivityTime) / 1000);
 
-					if (elapsed > activity_threshold) {
+					if ((!overide_time_mec) && elapsed > activity_threshold) {
+						if (userIsActive) stopActivity();
+						inactiveSeconds += 1;
+						console.log(inactiveSeconds);
+
+						// Check if a function is scheduled for this time
+						if (timeTable[window.current_phase][inactiveSeconds]) {
+							timeTable[window.current_phase][inactiveSeconds]();
+						}
+					}
+					if (overide_time_mec && (!overide_stop_button)){
 						if (userIsActive) stopActivity();
 						inactiveSeconds += 1;
 						console.log(inactiveSeconds);
@@ -752,6 +777,7 @@
 				requestAnimationFrame(() => {
 					//update_phase(0);
 					attachActivityToIframes(resetActivity);
+					window.addEventListener("keydown", (e) => {catch_overide(e)});
 				});
 			</script>
 	<div id="main-texts-wrapper">
