@@ -139,7 +139,7 @@ button #phd-3{
 }
 .phase-button.chosen{
 	opacity: 1;
-	border: inset 2px var(--invBG);
+	outline: solid 2px var(--invBG);
 }
 .btn-frm{
 	/*aspect-ratio: 2 / 1;*/
