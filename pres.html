@@ -181,6 +181,24 @@
 					}
 				})();
 			}
+			function waitForAttBool(iframe, attName, val, callback, timeout = 2000) {
+				const start = Date.now();
+
+				(function check() {
+					try {
+						const fn = iframe.contentWindow?.[attName];
+						if ( fn == val) {
+							callback(fn); // success!
+						} else if (Date.now() - start < timeout) {
+							setTimeout(check, 50); // keep checking
+						} else {
+							console.warn(`${funcName} not available in iframe after timeout`);
+						}
+					} catch (err) {
+						console.error(err);
+					}
+				})();
+			}
 			function waitForClass(iframe, clsID, callback, timeout = 2000) {
 				const start = Date.now();
 				(function check() {
@@ -234,6 +252,31 @@
 								try {
 									const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 									attachActivityListeners(iframeDoc, act);
+								} catch (e) {
+									// Ignore cross-origin
+									console.log(e);
+								}
+							});
+						}
+					} catch (e) {
+						console.log(e);
+						// Cross-origin iframe
+					}
+				});
+			}
+			function attachActivityActionToIframes(activity, action) {
+				document.addEventListener(action, activity, true);
+				document.querySelectorAll('iframe').forEach(iframe => {
+					try {
+						// Wait for iframe to be ready
+						const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+						if (iframeDoc.readyState === 'complete' || iframeDoc.readyState === 'interactive') {
+							iframeDoc.addEventListener(action, activity, true);
+						} else {
+							iframe.addEventListener('load', () => {
+								try {
+									const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+									iframeDoc.addEventListener(action, activity, true);
 								} catch (e) {
 									// Ignore cross-origin
 									console.log(e);
@@ -360,7 +403,7 @@
 					/*waitForObj(main_iframe, "large-scheme", () => {*/
 					console.log(zoom_loc);
 					torah = getDocumentScripture(main_iframe);
-					torah.zoomSlow(3, -1, zoom_loc, 50);
+					torah.zoomSlow(3.5, -1, zoom_loc, 50);
 					//});
 				});
 			}
@@ -413,30 +456,36 @@
 			}
 			function phase34_bind_flip(){
 				let main_iframe = getMain();
-				waitForObj(main_iframe, "myVideo", () => {
-					selector = getDocumentSelector(main_iframe);
-					selector.getElementById('myVideo').addEventListener('ended', function () {
-						if (overide_time_mec && window.current_phase == 3){
-							const img = document.createElement("div");
-							img.id = "overkill-last-img";							
-							document.body.appendChild(img);
-							setTimeout(() => {
-								img.addEventListener('click', ()=> {
-									window.current_phase = 0;
-									startBlackoutAndReload();
-								});
-								img.style.opacity = 1;
-							}, 50);
-							
-							return;
-						}
-						if (!userIsActive) update_phase();
-						else {
-							(function check() {
-								if (!userIsActive) update_phase();
-								else setTimeout(check, 5000); // keep checking
-							})();
-						}
+				waitForAttBool(main_iframe, "current_vid_index", window.current_phase - 2, () => {
+					waitForObj(main_iframe, "myVideo", () => {
+						selector = getDocumentSelector(main_iframe);
+						selector.getElementById('myVideo').addEventListener('ended', function () {
+							if (getDocumentScripture(main_iframe).current_vid_index != window.current_phase - 2) {
+								console.log("Attempt to skip phase catched for vid index", getDocumentScripture(main_iframe).current_vid_index, "phase", window.current_phase);
+								return;
+							}
+							if (overide_time_mec && window.current_phase == 3){
+								const img = document.createElement("div");
+								img.id = "overkill-last-img";							
+								document.body.appendChild(img);
+								setTimeout(() => {
+									img.addEventListener('click', ()=> {
+										window.current_phase = 0;
+										startBlackoutAndReload();
+									});
+									img.style.opacity = 1;
+								}, 50);
+								
+								return;
+							}
+							if (!userIsActive) update_phase();
+							else {
+								(function check() {
+									if (!userIsActive) update_phase();
+									else setTimeout(check, 5000); // keep checking
+								})();
+							}
+						});
 					});
 				});
 			}
@@ -521,13 +570,16 @@
 				popNav(main_iframe);
 				
 				backStagePartOnePassed = true;
-				setTimeout( () =>{attachActivityToIframes(resetActivity);}, 1000);
+				setTimeout(() =>{
+					attachActivityToIframes(resetActivity);
+					getDocumentScripture(getMain()).addEventListener('keydown', (e) => {catch_overide(e)});
+				}, 1000);
 			}
 			function backStageP2(){
 				// responsible for text load, run after 3.5s (when stagrs are being pulled up)
 				let main_texts = document.getElementById("main-texts-wrapper");
 				
-				if (backStagePartTwoPassed) return;
+				if (backStagePartTwoPassed) {console.log("false call to backStageP2, phs=", window.current_phase);return};
 				if (current_phase == 1) phase2_position_legend();
 				if (current_phase == 2) phase3_position_legend();
 				for (let i = 0; i < 4; i ++){
@@ -629,6 +681,7 @@
 				else {current_phase = phs;}
 				current_phase %= 4;
 				window.current_phase = current_phase;
+				console.log("going to phase", current_phase);
 				
 				if (phase_passed >= 13) {
 					startBlackoutAndReload();
