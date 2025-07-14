@@ -127,6 +127,7 @@ svg{
 	height:100%;
 	width:100%;
 	border: 2px solid var(--textColor);
+	display: flex;
 }
 #page-preview-container button{
 	position: absolute;
@@ -153,6 +154,7 @@ svg{
 	overflow: hidden;
 	/*pointer-events: none;*/
 	width: 200%;
+	position: absolute;
 }
 #code-preview{
 	display:none;
