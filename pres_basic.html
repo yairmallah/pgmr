@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="he">
+    <head>
+        <meta charset="UTF-8">
+		<link rel="prefetch" href="pres.html">
+		<link rel="prefetch" href="references.html">
+		<link rel="prefetch" href="index.html">
+		<link rel="prefetch" href="video.html">
+		<link rel="prefetch" href="video.html?vid=1">
+		<link rel="prefetch" href="imgs/הגשה.mp4" as="video">
+		<link rel="prefetch" href="imgs/סימולציה.mp4" as="video">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>פרזנטציה</title>
+		<link rel="stylesheet" type="text/css" href="css\general.css"/>
+		<style>
+			#slide-container{
+				height:100vh;
+				width:100vw;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-color: black;
+				background-position: center;
+			}
+			.titled{
+				transition: background-image 2s ease;
+			}
+		</style>
+		<script>
+		const imageUrls = [
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_1.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_2.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_3.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_4.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_5.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_6.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_7.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_8.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_9.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_10.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_11.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_12.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_13.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_14.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_15.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_16.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_17.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_18.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_19.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_20.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_21.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_22.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_23.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_24.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_25.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_26.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_27.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_28.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_29.png",
+			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_30.png"
+		];
+		const preloadedImages = [];
+
+		imageUrls.forEach(url => {
+			const img = new Image();
+			img.src = url;
+			preloadedImages.push(img);
+		});
+		</script>
+		<script>
+		</script>
+    </head>
+    <body>
+		<div id="slide-container" class="">
+			
+		</div>
+		
+    </body>
+</html>
