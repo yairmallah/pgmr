@@ -21,6 +21,15 @@
 				background-color: black;
 				background-position: center;
 			}
+			#trans-el{
+				height:100vh;
+				width:100vw;
+				background-color: black;
+				z-index: 100;
+				transition: opacity 2s ease-out;
+				display: none;
+				position: fixed;
+			}
 			.titled{
 				transition: background-image 2s ease;
 			}
@@ -69,19 +78,40 @@
 			console.log("fin");
 		</script>
 		<script>
-			const titels = [];
+			const titels = [0,7,14,24];
 			var current_slide = 0;
 			function nxtIm(){
 				let sc = document.getElementById("slide-container");
+				console.log(current_slide);
 				if (titels.includes(current_slide) || titels.includes(current_slide + 1)) sc.classList.toggle("titled", true);
 				else sc.classList.toggle("titled", false);
 				current_slide += 1;
+				
 				if (current_slide >= preloadedImages.length) {
-					window.location.href = "pres.html";
+					trns_el = document.getElementById("trans-el");
+					trns_el.style.display = "block";
+					
+					setTimeout(()=>{
+						trns_el.style.opacity = 1;
+					}, 50);
+					
+					setTimeout(()=>{
+						window.location.href = "pres.html";
+					}, 2050);
+					
 					return;
 				}
 				else {
-					sc.style.backgroundImage = `url('${preloadedImages[currentIndex].src}')`;
+					sc.style.backgroundImage = `url('${preloadedImages[current_slide].src}')`;
+				}
+			}function bckIm(){
+				let sc = document.getElementById("slide-container");
+				console.log(current_slide);
+				sc.classList.toggle("titled", false);
+				
+				if (current_slide >= 1) {
+					current_slide -= 1;
+					sc.style.backgroundImage = `url('${preloadedImages[current_slide].src}')`;
 				}
 			}
 		</script>
@@ -90,10 +120,14 @@
     </head>
     <body>
 		<div id="slide-container" class="" style="background-image: url(https://yairmallah.github.io/pgmr/imgs/pres1/p1_1.png)">
-			
+			<div id="trans-el" style="opacity: 0"></div>
 		</div>
 		<script>
 			window.addEventListener('click', ()=> {nxtIm();});
+			document.addEventListener("contextmenu", function(e) {
+				e.preventDefault();
+				bckIm();
+			});
 		</script>
     </body>
 </html>
