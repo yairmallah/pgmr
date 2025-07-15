@@ -26,53 +26,74 @@
 			}
 		</style>
 		<script>
-		const imageUrls = [
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_1.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_2.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_3.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_4.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_5.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_6.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_7.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_8.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_9.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_10.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_11.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_12.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_13.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_14.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_15.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_16.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_17.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_18.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_19.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_20.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_21.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_22.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_23.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_24.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_25.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_26.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_27.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_28.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_29.png",
-			"https://yairmallah.github.io/pgmr/imgs/pres1/p1_30.png"
-		];
-		const preloadedImages = [];
+			const imageUrls = [
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_1.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_2.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_3.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_4.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_5.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_6.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_7.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_8.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_9.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_10.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_11.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_12.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_13.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_14.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_15.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_16.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_17.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_18.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_19.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_20.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_21.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_22.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_23.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_24.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_25.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_26.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_27.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_28.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_29.png",
+				"https://yairmallah.github.io/pgmr/imgs/pres1/p1_30.png"
+			];
+			const preloadedImages = [];
 
-		imageUrls.forEach(url => {
-			const img = new Image();
-			img.src = url;
-			preloadedImages.push(img);
-		});
+			imageUrls.forEach(url => {
+				const img = new Image();
+				img.src = url;
+				preloadedImages.push(img);
+			});
+			
+			console.log("fin");
+		</script>
+		<script>
+			const titels = [];
+			var current_slide = 0;
+			function nxtIm(){
+				let sc = document.getElementById("slide-container");
+				if (titels.includes(current_slide) || titels.includes(current_slide + 1)) sc.classList.toggle("titled", true);
+				else sc.classList.toggle("titled", false);
+				current_slide += 1;
+				if (current_slide >= preloadedImages.length) {
+					window.location.href = "pres.html";
+					return;
+				}
+				else {
+					sc.style.backgroundImage = `url('${preloadedImages[currentIndex].src}')`;
+				}
+			}
 		</script>
 		<script>
 		</script>
     </head>
     <body>
-		<div id="slide-container" class="">
+		<div id="slide-container" class="" style="background-image: url(https://yairmallah.github.io/pgmr/imgs/pres1/p1_1.png)">
 			
 		</div>
-		
+		<script>
+			window.addEventListener('click', ()=> {nxtIm();});
+		</script>
     </body>
 </html>
