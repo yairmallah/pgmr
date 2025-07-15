@@ -482,10 +482,10 @@
 										update_bg_ims_for_overkill();
 									}, 10000);
 								};
-								window.addEventListener('keydown', (e)=> {
+								/*window.addEventListener('keydown', (e)=> {
 									console.log(e.key);
 									if (e.key == 'p') update_bg_ims_for_overkill();
-								});
+								});*/
 								
 								img.id = "overkill-last-img";							
 								document.body.appendChild(img);
@@ -495,7 +495,8 @@
 										startBlackoutAndReload();
 									});
 									img.style.opacity = 1;
-								}, 50);
+									update_bg_ims_for_overkill();
+								}, 3000);
 								
 								return;
 							}
