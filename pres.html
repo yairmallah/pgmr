@@ -472,7 +472,11 @@
 								var update_bg_ims_for_overkill = () => {
 									//return;
 									currunt_im += 1;
-									currunt_im %= 4;
+									if (currunt_im == 4){
+										window.current_phase = 0;
+										startBlackoutAndReload();
+										return;
+									}
 									const preloadImg = new Image();
 									preloadImg.src = ims[currunt_im];
 
@@ -482,10 +486,6 @@
 										update_bg_ims_for_overkill();
 									}, 10000);
 								};
-								/*window.addEventListener('keydown', (e)=> {
-									console.log(e.key);
-									if (e.key == 'p') update_bg_ims_for_overkill();
-								});*/
 								
 								img.id = "overkill-last-img";							
 								document.body.appendChild(img);
@@ -811,7 +811,7 @@
 				var userIsActive = true;
 				var lastActivityTime = Date.now();
 				var activity_threshold = 4;
-				var overide_time_mec = true;
+				var overide_time_mec = false;
 				var overide_stop_button = false;
 
 				// Track activity
