@@ -1,0 +1,40 @@
+:root {
+	--gridCol: 100%;
+	--gridRow: 47.5% 47.5%;
+	
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+	width: 100vw;
+    display: grid;
+	grid-template-columns: var(--gridCol);
+	grid-template-rows: var(--gridRow);
+	gap: 5%;
+}
+.main-section{
+	width: 100%;
+	height: 100%;
+	/*background-color: red;*/
+	/*background-size: contain;*/
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.data-list{
+	direction: rtl;
+	list-style-type: none;
+	margin-top: 20px;
+}
+.data-item{
+	margin: 10px;
+	text-indent: 15px;
+}
+.data-name{
+	text-indent: 0;
+}
+#yair{
+	background-image: url(https://yairmallah.github.io/pgmr/imgs/about/yair.png);
+}
