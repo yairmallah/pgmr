@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		<div id="subMenu" class="hidden">
 			<table id="subMenuTable">
 				<tr class="subMenuTR">
-					<td class="subMenuTD"><button class="navItem" data-link="turb.html">אורבניזם</button></td>
+					<td class="subMenuTD"><button class="navItem" data-link="video.html?vid=1">תכנון</button></td>
 					<td class="subMenuTD"><button class="navItem" data-link="index.html">בית</button></td>
 				</tr>
 				<tr class="subMenuTR">
