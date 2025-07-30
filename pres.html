@@ -500,6 +500,27 @@
 								
 								return;
 							}
+							if (window.current_phase == 3){
+								const ims = ['https://yairmallah.github.io/pgmr/imgs/fins/1.png'];
+								var currunt_im = 0;
+								const img = document.createElement("div");
+								img.id = "overkill-last-img";							
+								document.body.appendChild(img);
+								setTimeout(() => {
+									img.addEventListener('dblclick', ()=> {
+										window.current_phase = 0;
+										startBlackoutAndReload();
+									});
+									img.style.opacity = 1;
+									//update_bg_ims_for_overkill();
+									setTimeout(() => {
+										window.current_phase = 0;
+										startBlackoutAndReload();
+									}, 10000);
+								}, 1500);
+								
+								return;
+							}
 							if (!userIsActive) update_phase();
 							else {
 								(function check() {
